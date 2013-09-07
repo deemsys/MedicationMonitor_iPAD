@@ -91,8 +91,12 @@
 		//initTab is the index of the tabbar and viewcontroller that you decide to start the app with
 		if (i == initTab) {
 			[[tabItemsArray objectAtIndex:i] toggleOn:YES];
-		}
-	}
+           // [[tabItemsArray objectAtIndex:i] setEnabled:FALSE];
+		//[[[[self.tabBarController tabBar]items]objectAtIndex:i]setEnabled:FALSE];
+    }
+        
+    }
+    
 	[self.view bringSubviewToFront:tabBarHolder];
 	//show/hide tabbars and controllers with a particular index
 	[self initialTab:initTab];
@@ -102,7 +106,7 @@
 	for (int i = [tabItemsArray count]; i < [tabItemsArray count]; i++) {
 		if (i == index) {
 			[[tabItemsArray objectAtIndex:i] toggleOn:YES];
-          
+          [[tabItemsArray objectAtIndex:i] setEnabled:FALSE];
             //  [[tabItemsArray objectAtIndex:i] viewWillAppear:YES];
 		} else {
 			[[tabItemsArray objectAtIndex:i] toggleOn:NO];
