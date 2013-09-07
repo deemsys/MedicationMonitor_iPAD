@@ -457,6 +457,7 @@ else {
         else
         {
          BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Info!" message:@"Please Enter Correct Password.!"];
+         BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Invalid Username And Password."];
            /* HUD.labelText = @"Invalid Username & Password.";
             HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
             HUD.mode = MBProgressHUDModeCustomView;
