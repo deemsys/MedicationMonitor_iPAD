@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 @interface Communicate : UIViewController<MFMailComposeViewControllerDelegate>
 {
     IBOutlet UIButton*face;
