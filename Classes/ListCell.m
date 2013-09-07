@@ -30,7 +30,7 @@
         
    //     self.petImage =[self.petImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(90, 90) interpolationQuality:kCGInterpolationHigh];
         
-		self.petImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 78, 80)];
+		self.petImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 78, 90)];
 		[myContentView addSubview:self.petImage];
 		
         self.petNameLbl = [self newLabelWithPrimaryColor:[UIColor blackColor] 
