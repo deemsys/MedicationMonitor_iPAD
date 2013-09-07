@@ -12,6 +12,7 @@
 #import "SignUp.h"
 #import "Welcome.h"
 #import "BlockAlertView.h"
+#import"MainViewController.h"
 @interface LoginScreen ()
 
 @end
@@ -135,8 +136,8 @@
      
     [super viewDidLoad];
    
-    
   
+    //self.tabBarController.tabBar.hidden = YES;
     
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     label.backgroundColor = [UIColor clearColor];
@@ -148,6 +149,13 @@
     label.text = NSLocalizedString(@"Medication Monitor", @"");
     [label sizeToFit];
     
+    
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
     
     
     int reme=[[NSUserDefaults standardUserDefaults]integerForKey:@"rem"];
@@ -167,9 +175,11 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)dismissKeyboard {
+    [name resignFirstResponder];
+    [pass resignFirstResponder];
 
-
-
+}
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     
@@ -229,7 +239,18 @@
 
    //  [self audio];
   //  [self uploadImage];
-    if ([name.text length] == 0)
+    if(([name.text length]==0)&&([pass.text length]==0))
+    {
+        BlockAlertView *alert = [BlockAlertView alertWithTitle: @" Oh Snap!" message:@"Please Enter The Username And Password."];
+        
+        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+        
+        [alert setDestructiveButtonWithTitle:@"x" block:nil];
+        [alert show];
+        
+
+    }
+    else if ([name.text length] == 0)
     {
      
         
@@ -240,12 +261,12 @@
        [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
         
         
-        BlockAlertView *alert = [BlockAlertView alertWithTitle:@" Info!" message:@"Please Enter Your user Name" ];
-    
-      //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+        BlockAlertView *alert = [BlockAlertView alertWithTitle: @" Oh Snap!" message:@"Please Enter The Username."];
+        
+        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+        
         [alert setDestructiveButtonWithTitle:@"x" block:nil];
         [alert show];
-        
      
         
     }
@@ -259,7 +280,7 @@
         [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
                 
         
-        BlockAlertView *alert = [BlockAlertView alertWithTitle: @" Info!" message:@"Please Enter Correct Password"];
+        BlockAlertView *alert = [BlockAlertView alertWithTitle: @" Oh Snap!" message:@"Please Enter The Password."];
         
         //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
         
@@ -388,7 +409,7 @@ else {
       //  imgName=@"Connected.png";
     else
     {
-        HUD.labelText = @"Check newtwork connection....";
+        HUD.labelText = @"Check network connection...";
         HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]] autorelease];
         HUD.mode = MBProgressHUDModeCustomView;
         [HUD hide:YES afterDelay:2];
@@ -456,7 +477,6 @@ else {
         }
         else
         {
-         BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Info!" message:@"Please Enter Correct Password.!"];
          BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Invalid Username And Password."];
            /* HUD.labelText = @"Invalid Username & Password.";
             HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
@@ -573,7 +593,7 @@ else {
         [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
         
         
-        BlockAlertView *alert = [BlockAlertView alertWithTitle:@" Info!" message:@"Please Enter Your user Name"];
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@" Oh Snap!" message:@"Please Enter Your username."];
         
         //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
         [alert setDestructiveButtonWithTitle:@"x" block:nil];
@@ -590,7 +610,7 @@ else {
         [hintView addPageWithTitle:@"Info" text:@"Please Enter CorrectPassword"];
         [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
         
-        BlockAlertView *alert = [BlockAlertView alertWithTitle:@" Info!" message:@"Please Enter Correct Password"];
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@" Oh Snap!" message:@"Please Enter The Password."];
         
         //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
         [alert setDestructiveButtonWithTitle:@"x" block:nil];
