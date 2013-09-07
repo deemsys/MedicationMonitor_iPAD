@@ -14,6 +14,7 @@
 #import "Cremainder.h"
 #import "Appoinment.h"
 #import "Assessment.h"
+#import "GTabBar.h"
 
 
 @implementation UINavigationBar (CustomImage)
@@ -44,14 +45,15 @@
     {
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            
+         
             LoginScreen *browseViewController = [[LoginScreen alloc] initWithNibName:@"LoginScreen_iPhone" bundle:nil];
             browseViewController.view.backgroundColor=[UIColor clearColor];
             
             [self pushViewController:browseViewController animated:YES];
             [browseViewController release];
         } else {
-            
+          
+
             LoginScreen *browseViewController = [[LoginScreen alloc] initWithNibName:@"LoginScreen" bundle:nil];
             browseViewController.view.backgroundColor=[UIColor clearColor];
             
@@ -62,7 +64,7 @@
         
 		
 	}
-    else if (self.tabBarItem.title == @"Medication")
+    else if (self.tabBarItem.title == @"Medications")
     {	
 		
         RootViewController *browseViewController = [[RootViewController alloc] initWithNibName:@"roor" bundle:nil];
@@ -82,25 +84,29 @@
 		[self pushViewController:browseViewController animated:YES];
 		[browseViewController release];
 	}
-    else if (self.tabBarItem.title == @"Assessment")
+    else if (self.tabBarItem.title == @"Assessments")
     {
         Assessment *browseViewController = [[Assessment alloc] initWithNibName:@"Assessment" bundle:nil];
         browseViewController.view.backgroundColor=[UIColor clearColor];
         
 		[self pushViewController:browseViewController animated:YES];
 		[browseViewController release];
-
+       //  UITabBarItem *tabBarItem = [[tabItemsArray items] objectAtIndex:4];
+        //[tabBarItem setEnabled:FALSE];
+        //[[[[self.tabBarController tabBar]items]objectAtIndex:4]setEnabled:FALSE];
+        //self.tabBarController.tabBar.hidden=YES;
 	}
     
-    else if (self.tabBarItem.title == @"Appoinment") 
+    else if (self.tabBarItem.title == @"Appoinments") 
     {	
        
         Appoinment *browseViewController = [[Appoinment alloc] initWithNibName:@"Appoinment" bundle:nil];
         browseViewController.view.backgroundColor=[UIColor clearColor];
         
 		[self pushViewController:browseViewController animated:YES];
+        
 		[browseViewController release];
-
+         
 	}
     else if (self.tabBarItem.title == @"Communicate") 
     {	
