@@ -143,20 +143,20 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
        tabItem1 = [[GTabTabItem alloc] initWithFrame:CGRectMake(0, 0.6 ,109.7/2, 109/2) normalState:@"Home1.png" toggledState:@"Home2.png"];
-        tabItem2 = [[GTabTabItem alloc] initWithFrame:CGRectMake((109.7/2), 0.6 ,109.7/2, 109/2)normalState:@"Medication1.png" toggledState:@"Medication2.png"];
+        tabItem2 = [[GTabTabItem alloc] initWithFrame:CGRectMake((109.7/2), 0.6 ,109.7/2, 109/2)normalState:@"Medications1.png" toggledState:@"Medications2.png"];
        tabItem3 = [[GTabTabItem alloc] initWithFrame:CGRectMake((109.7/2)*2, 0.6 ,109.7/2, 109/2) normalState:@"Reminders1.png" toggledState:@"Reminders2.png"];
         tabItem4 = [[GTabTabItem alloc] initWithFrame:CGRectMake((109.7/2)*3,0.6 ,109.7/2, 109/2) normalState:@"Assesment1.png" toggledState:@"Assesment2.png"];
-        tabItem5 = [[GTabTabItem alloc] initWithFrame:CGRectMake((109.7/2)*4, 0.6 ,109.7/2, 109/2) normalState:@"Appointment1.png" toggledState:@"Appointment2.png"];
+        tabItem5 = [[GTabTabItem alloc] initWithFrame:CGRectMake((109.7/2)*4, 0.6 ,109.7/2, 109/2) normalState:@"Appointment1.png" toggledState:@"Appointments2.png"];
         tabItem6 = [[GTabTabItem alloc] initWithFrame:CGRectMake((109.7/2)*5, 0.6 ,109.7/2, 109/2) normalState:@"Communicate1.png" toggledState:@"Communicate2.png"];
      tabItem7 = [[GTabTabItem alloc] initWithFrame:CGRectMake((109.7/2)*6, 0.6 ,109.7/2, 109/2) normalState:@"Settings1.png" toggledState:@"Settings2.png"];
     }
     else
     {
        tabItem1 = [[GTabTabItem alloc] initWithFrame:CGRectMake(0, 0.6 ,109.7, 109) normalState:@"Home1.png" toggledState:@"Home2.png"];
-      tabItem2 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7, 0.6 ,109.7, 109)normalState:@"Medication1.png" toggledState:@"Medication2.png"];
+      tabItem2 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7, 0.6 ,109.7, 109)normalState:@"Medications1.png" toggledState:@"Medications2.png"];
      tabItem3 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*2, 0.6 ,109.7, 109) normalState:@"Reminders1.png" toggledState:@"Reminders2.png"];
         tabItem4 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*3,0.6 ,109.7, 109) normalState:@"Assesment1.png" toggledState:@"Assesment2.png"];
-        tabItem5 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*4, 0.6 ,109.7, 109) normalState:@"Appointment1.png" toggledState:@"Appointment2.png"];
+        tabItem5 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*4, 0.6 ,109.7, 109) normalState:@"Appointment1.png" toggledState:@"Appointments2.png"];
        tabItem6 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*5, 0.6 ,109.7, 109) normalState:@"Communicate1.png" toggledState:@"Communicate2.png"];
         tabItem7 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*6, 0.6 ,109.7, 109) normalState:@"Settings1.png" toggledState:@"Settings2.png"];
     }
@@ -182,7 +182,7 @@
     
 	MainViewController *viewController2 = [[[MainViewController alloc] initWithNibName:@"MainViewController.xib" bundle:nil] autorelease];
     
-	viewController2.tabBarItem.title = @"Medication";
+	viewController2.tabBarItem.title = @"Medications";
     viewController2.tabBarItem.image = [UIImage imageNamed:@"Button.png"];
     
     
@@ -201,16 +201,16 @@
     
     
 	MainViewController *viewController4 =[[[MainViewController alloc] initWithNibName:nil bundle:nil] autorelease];
-	viewController4.tabBarItem.title = @"Assessment";
+	viewController4.tabBarItem.title = @"Assessments";
     viewController4.tabBarItem.image = [UIImage imageNamed:@"Button.png"];
-
+    viewController4.tabBarItem.enabled=FALSE;
     
     
     
     
     
     MainViewController *viewController5 =[[[MainViewController alloc] initWithNibName:nil bundle:nil] autorelease];
-	viewController5.tabBarItem.title = @"Appoinment";
+	viewController5.tabBarItem.title = @"Appoinments";
     viewController5.tabBarItem.image = [UIImage imageNamed:@"Button.png"];
     
     MainViewController *viewController6 = [[[MainViewController alloc] initWithNibName:nil bundle:nil] autorelease];
