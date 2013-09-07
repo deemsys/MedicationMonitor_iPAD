@@ -25,5 +25,6 @@
 @property (retain,nonatomic) NSArray *_assQues;
 @property (retain,nonatomic) NSArray *_assAns;
 @property (retain, nonatomic) NSMutableDictionary *recordDict;
+
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl;
 @end
