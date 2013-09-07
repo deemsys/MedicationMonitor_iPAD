@@ -21,6 +21,7 @@
 }
 - (void)createEditableCopyOfDatabaseIfNeeded;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+@property(nonatomic,retain)UIViewController*viewcontroller;
 @property (nonatomic, retain) UITabBarController *tabBarController;
 @property (nonatomic, retain) NSMutableArray*notificationsArray;
 
