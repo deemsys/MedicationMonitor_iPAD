@@ -58,7 +58,7 @@ AppSharedInstance *instance;
     label.textAlignment = UITextAlignmentCenter;
     label.textColor = [UIColor whiteColor]; // change this color
     self.navigationItem.titleView = label;
-    label.text = NSLocalizedString(@"Medication Monitor", @"");
+    label.text = NSLocalizedString(@"Medications", @"");
     [label sizeToFit];
     
     
@@ -91,7 +91,7 @@ AppSharedInstance *instance;
         
 
         
-	UIImage *buttonImage = [UIImage imageNamed:@"Edit.png"];
+	/*UIImage *buttonImage = [UIImage imageNamed:@"Edit.png"];
 	UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[aButton setImage:buttonImage forState:UIControlStateNormal];
 	aButton.frame = CGRectMake(0, 0, 50, 30);
@@ -102,11 +102,11 @@ AppSharedInstance *instance;
                                          initWithCustomView:aButton] autorelease];  
         self.navigationItem.leftBarButtonItem = saveButton11;
         	
-	    
+	    */
     
     UIButton *save1 = [UIButton buttonWithType:UIButtonTypeCustom];  
-          save1.frame = CGRectMake(0, 0, 35, 30);  
-    UIImage *saveImage1 = [UIImage imageNamed:@"+.png"]  ;
+          save1.frame = CGRectMake(0, 0, 135, 30);
+    UIImage *saveImage1 = [UIImage imageNamed:@"addmedicationnew.png"]  ;
     [save1 setBackgroundImage:saveImage1 forState:UIControlStateNormal];  
     [save1 addTarget:self action:@selector(addPet)  
    forControlEvents:UIControlEventTouchUpInside];  
