@@ -12,6 +12,7 @@
 @interface MainViewController : UINavigationController {
 	UINavigationController *navigationController;
     NSMutableDictionary *recordDict;
+    UITabBarController *tabBarController;
 }
 
 @property (nonatomic, retain) UINavigationController *navigationController;
