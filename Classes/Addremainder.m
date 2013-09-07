@@ -13,6 +13,7 @@
 #import "ADLivelyTableView.h"
 #import "AddRemainder.h"
 #import "fileMngr.h"
+#import "BlockAlertView.h"
 #define USE_CUSTOM_DRAWING 1
 #define USE_CUSTOM_DRAWING 1
 
@@ -35,8 +36,9 @@ AppSharedInstance *instance;
 
 
 -(IBAction)setTime
+
 {
-    
+    [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
     if(timePicker.hidden==YES)
     {
         timePicker.hidden=NO;
@@ -54,6 +56,7 @@ AppSharedInstance *instance;
 }
 
 - (IBAction)changeTimeInLabel:(id)sender
+
 {
 	//Use NSDateFormatter to write out the date in a friendly format
 	/*NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -62,7 +65,7 @@ AppSharedInstance *instance;
                       [df stringFromDate:timePicker.date]];
 	[df release];*/
     
-    
+    [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
     
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"  h:mm a"];
@@ -76,6 +79,7 @@ AppSharedInstance *instance;
 
 
 - (IBAction)once:(UIButton *)button{
+    [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
     
     for (UIButton *but in [self.view subviews]) {
         if ([but isKindOfClass:[UIButton class]] && ![but isEqual:button]) {
@@ -121,10 +125,18 @@ AppSharedInstance *instance;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+     [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
     
     NSDate* now = [NSDate date];
     datePicker.date=now;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
     
+    [self.view addGestureRecognizer:tap];
+    
+    
+
   opt=@"";
     self.view.userInteractionEnabled=YES;
  //   NSFileManager *tempfileManager=[NSFileManager defaultManager];
@@ -189,7 +201,7 @@ AppSharedInstance *instance;
     
     
 	
-	instance = [AppSharedInstance sharedInstance];
+	
 	
     
     
@@ -214,7 +226,7 @@ AppSharedInstance *instance;
     UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]  
                                       initWithCustomView:home] autorelease];  
       self.navigationItem.leftBarButtonItem = cancelButton;
-  
+  instance = [AppSharedInstance sharedInstance];
 	
      savedValue = [[NSUserDefaults standardUserDefaults]
                       integerForKey:@"ApptType"];
@@ -230,12 +242,13 @@ AppSharedInstance *instance;
 	
 }
 
-
-
+-(void)dismissKeyboard {
+    [name resignFirstResponder];
+}
 -(void)saveRemainder
 {
     
-    if(name.text!=nil)
+    if([name.text length]!=0 &&((once.selected)||(daily.selected)))
     {
     
     [dictionaryArray addObject:dictionary];
@@ -320,9 +333,12 @@ AppSharedInstance *instance;
     }
     else
     {
-        UIAlertView *mes6=[[UIAlertView alloc] initWithTitle:@"INFO" message:@"Enter Reminder name and Date" delegate:self cancelButtonTitle:@"Login" otherButtonTitles:nil, nil];
-        [mes6 show];
-        [mes6 release];
+        
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter All The Required Fields."];
+        
+        
+        [alert setDestructiveButtonWithTitle:@"x" block:nil];
+        [alert show];
 
     }
     
@@ -440,8 +456,8 @@ if (cell == nil)
     //
     topLabel.tag = TOP_LABEL_TAG;
     topLabel.backgroundColor = [UIColor clearColor];
-    topLabel.textColor = [UIColor colorWithRed:0.25 green:0.0 blue:0.0 alpha:1.0];
-    topLabel.highlightedTextColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.9 alpha:1.0];
+    topLabel.textColor = [UIColor colorWithRed:0.6 green:0.4 blue:0.2 alpha:1.0];
+  topLabel.highlightedTextColor = [UIColor redColor];
     topLabel.font = [UIFont systemFontOfSize:40];
     
     //
@@ -465,8 +481,8 @@ if (cell == nil)
     //
     bottomLabel.tag = BOTTOM_LABEL_TAG;
     bottomLabel.backgroundColor = [UIColor clearColor];
-    bottomLabel.textColor = [UIColor colorWithRed:0.25 green:0.0 blue:0.0 alpha:1.0];
-    bottomLabel.highlightedTextColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.9 alpha:1.0];
+    bottomLabel.textColor = [UIColor colorWithRed:0.6 green:0.4 blue:0.2 alpha:1.0];
+    bottomLabel.highlightedTextColor = [UIColor redColor];
     bottomLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize] - 2];
     
     //
