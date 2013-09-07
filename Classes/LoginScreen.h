@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "Reachability.h"
+#import "GTabBar.h"
+#import"MainViewController.h"
 
 @interface LoginScreen : UIViewController<UITextFieldDelegate,MBProgressHUDDelegate>
 {
@@ -16,8 +18,12 @@
     IBOutlet UIButton *rem;
     MBProgressHUD *HUD;
     BOOL isConnect;
+    UITabBarController *tabbarcontroller;
+    GTabBar *tabview;
+    
 }
 -(IBAction)rem:(id)sender;
 - (IBAction) SignIn;
 -(IBAction)SingnUp;
+
 @end
