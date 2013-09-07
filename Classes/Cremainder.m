@@ -47,9 +47,93 @@ AppSharedInstance *instance;
 	[noteViewController release];
 }
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    
+        UIImageView *i=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"BG.jpg"]];
+    
+        [super viewDidLoad];
+    
+    
+    
+    
+    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
+    {
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"Top_Panel.png"] forBarMetrics:UIBarMetricsDefault];
+        
+        
+    }
+    ADLivelyTableView * livelyTableView = (ADLivelyTableView *)myTable;
+    livelyTableView.initialCellTransformBlock = ADLivelyTransformFan;
+    
+    share1=NO;
+    // self.title = @"Medication Monitor";
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont boldSystemFontOfSize:20.0];
+    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    label.textAlignment = UITextAlignmentCenter;
+    label.textColor = [UIColor whiteColor]; // change this color
+    self.navigationItem.titleView = label;
+    label.text = NSLocalizedString(@"Reminders", @"");
+    [label sizeToFit];
+    
+    myTable.rowHeight=100;
+	myTable.separatorColor = [UIColor clearColor];
+    
+	instance = [AppSharedInstance sharedInstance];
+    
+    
+    
+    /* Replace the +Add Remainder on the top right corner of navigation controller*/
+    
+    
     
    // [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *homeImage = [UIImage imageNamed:@"back.png"]  ;
+    [home setBackgroundImage:homeImage forState:UIControlStateNormal];
+    [home addTarget:self action:@selector(back)
+   forControlEvents:UIControlEventTouchUpInside];
+    home.frame = CGRectMake(0, 0, 50, 30);
+    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
+                                      initWithCustomView:home] autorelease];
+    
+    
+    
+    savedValue = [[NSUserDefaults standardUserDefaults]
+                  integerForKey:@"ApptType"];
+    savedValue=1;
+    if(savedValue!=5)
+    {
+        /*
+        UIImage *buttonImage = [UIImage imageNamed:@"Edit.png"];
+        UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [aButton setImage:buttonImage forState:UIControlStateNormal];
+        aButton.frame = CGRectMake(0, 0, 50, 30);
+        aButton.tag=111;
+        [aButton addTarget:self action:@selector(edit_Clicked) forControlEvents:UIControlEventTouchUpInside];
+        // [self.navigationController.navigationBar addSubview:aButton];
+        UIBarButtonItem *saveButton11 = [[[UIBarButtonItem alloc]
+                                          initWithCustomView:aButton] autorelease];
+        self.navigationItem.leftBarButtonItem = saveButton11;
+        
+        */
+        
+        
+        UIButton *save = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *saveImage = [UIImage imageNamed:@"addreminderdemo.png"]  ;
+        [save setBackgroundImage:saveImage forState:UIControlStateNormal];
+        [save addTarget:self action:@selector(Addremainder)
+       forControlEvents:UIControlEventTouchUpInside];
+        save.frame = CGRectMake(0, 0, 130, 30);
+        UIBarButtonItem *saveButton = [[[UIBarButtonItem alloc]
+                                        initWithCustomView:save] autorelease];
+        self.navigationItem.rightBarButtonItem = saveButton;
+    }
+    
+    
+
+    
     myTable.backgroundColor = [UIColor clearColor];
     self.parentViewController.view.backgroundColor = [UIColor colorWithRed:0.0 green:0.2 blue:0.5 alpha:0.7];
     
@@ -69,16 +153,15 @@ AppSharedInstance *instance;
 		_RemaindersArray=[[NSMutableArray alloc]init];
 	}
 
-    
-    
-    
-    
+        
     
     dicfile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"dicfile.hsa"]];
     if ([[NSFileManager defaultManager] fileExistsAtPath:dicfile]) 
 	{
 		dictionaryArray=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:dicfile]];
         NSMutableArray*array=[[NSMutableArray alloc]initWithArray:[dictionaryArray objectAtIndex:0]];
+        
+
 		//NSMutableArray*array=[dictionaryArray objectAtIndex:0];
         //NSLog(@"CCCCCCCCCC:%i",[array  count]);
 	}
@@ -92,61 +175,14 @@ AppSharedInstance *instance;
     
     
     //NSLog(@"RemaindersArrayCount:%i",[_RemaindersArray count]);
-    
-    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
-    {
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"Top_Panel.png"] forBarMetrics:UIBarMetricsDefault];
-      
-     
-    }
-    ADLivelyTableView * livelyTableView = (ADLivelyTableView *)myTable;
-    livelyTableView.initialCellTransformBlock = ADLivelyTransformFan;
-   
-
-    share1=NO;
-	  // self.title = @"Medication Monitor";
-    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-    label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont boldSystemFontOfSize:20.0];
-    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    label.textAlignment = UITextAlignmentCenter;
-    label.textColor = [UIColor whiteColor]; // change this color
-    self.navigationItem.titleView = label;
-    label.text = NSLocalizedString(@"Reminders", @"");
-    [label sizeToFit];
-    
-    
-    
-    UIImage *buttonImage = [UIImage imageNamed:@"Edit.png"];
-	UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[aButton setImage:buttonImage forState:UIControlStateNormal];
-	aButton.frame = CGRectMake(0, 0, 50, 30);
-    aButton.tag=111;
-	[aButton addTarget:self action:@selector(edit_Clicked) forControlEvents:UIControlEventTouchUpInside];
-    // [self.navigationController.navigationBar addSubview:aButton];
-    UIBarButtonItem *saveButton11 = [[[UIBarButtonItem alloc]  
-                                      initWithCustomView:aButton] autorelease];  
-    self.navigationItem.leftBarButtonItem = saveButton11;
-    
-	myTable.rowHeight=100;
-	myTable.separatorColor = [UIColor clearColor];
-    
-	instance = [AppSharedInstance sharedInstance];
-	//UIImage *barButton = [UIImage imageNamed:@"Edit.png"];
+ 	//UIImage *barButton = [UIImage imageNamed:@"Edit.png"];
    // [[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 	
 	//UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
 	//self.navigationItem.backBarButtonItem = backButton;
 	//[backButton release];
     
-    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];  
-    UIImage *homeImage = [UIImage imageNamed:@"back.png"]  ;
-    [home setBackgroundImage:homeImage forState:UIControlStateNormal];  
-    [home addTarget:self action:@selector(back)  
-   forControlEvents:UIControlEventTouchUpInside];  
-    home.frame = CGRectMake(0, 0, 50, 30);  
-    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]  
-                                      initWithCustomView:home] autorelease];  
+    
     //self.navigationItem.leftBarButtonItem = cancelButton;	
 	
        
@@ -159,9 +195,7 @@ AppSharedInstance *instance;
     //NSLog(@"raja:%i",[petArray count]);
     
     
-    savedValue = [[NSUserDefaults standardUserDefaults]
-                  integerForKey:@"ApptType"];
-    
+        
     SVSegmentedControl *redSC = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Today Remainders", @"All Remainders", nil]];
     [redSC addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
 	redSC.titleEdgeInsets = UIEdgeInsetsMake(0, 14, 0, 244);
@@ -180,6 +214,7 @@ AppSharedInstance *instance;
 	
 }
 
+
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl 
 {
     if(segmentedControl.selectedIndex==0)
@@ -197,6 +232,7 @@ AppSharedInstance *instance;
     [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
       [[self navigationController] popViewControllerAnimated:YES];
 }
+
 
 - (void)edit_Clicked {
 	if (myTable.editing) 
@@ -237,6 +273,17 @@ AppSharedInstance *instance;
     
     	
     
+    k=[petArray count];
+    if(k>0)
+    {
+        nolab.text=@" ";
+        
+    }
+    else{
+        nolab.text=@"Click +Add Remainder To Add Remainder Details";
+        
+    }
+
     
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -248,6 +295,7 @@ AppSharedInstance *instance;
 	if ([[NSFileManager defaultManager] fileExistsAtPath:reminderFile]) 
 	{
 		_RemaindersArray=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:reminderFile]];
+        
 		
 	}
 	else
@@ -262,7 +310,7 @@ AppSharedInstance *instance;
 	{
 		dictionaryArray=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:dicfile]];
         NSMutableArray*array=[[NSMutableArray alloc]initWithArray:[dictionaryArray objectAtIndex:0]];
-		//NSMutableArray*array=[dictionaryArray objectAtIndex:0];
+        		//NSMutableArray*array=[dictionaryArray objectAtIndex:0];
         //NSLog(@"CCCCCCCCCC:%i",[array  count]);
 	}
 	else
@@ -279,8 +327,8 @@ AppSharedInstance *instance;
       [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
 	
 	[myTable reloadData];
-   
-    [myTable reloadData];
+    
+    //[myTable reloadData];
     
      //NSLog(@"raja1mmmmmm:%i",[_RemaindersArray count]);
         
@@ -303,6 +351,7 @@ AppSharedInstance *instance;
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
 	return [[[UIApplication sharedApplication] scheduledLocalNotifications] count];
 }
 
@@ -384,8 +433,8 @@ reuseIdentifier:CellIdentifier]
 		//
 		topLabel.tag = TOP_LABEL_TAG;
 		topLabel.backgroundColor = [UIColor clearColor];
-		topLabel.textColor = [UIColor colorWithRed:0.25 green:0.0 blue:0.0 alpha:1.0];
-		topLabel.highlightedTextColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.9 alpha:1.0];
+		topLabel.textColor = [UIColor colorWithRed:0.6 green:0.4 blue:0.2 alpha:1.0];
+		topLabel.highlightedTextColor = [UIColor redColor];
 		topLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]];
         
 		//
@@ -409,8 +458,8 @@ reuseIdentifier:CellIdentifier]
 		//
 		bottomLabel.tag = BOTTOM_LABEL_TAG;
 		bottomLabel.backgroundColor = [UIColor clearColor];
-		bottomLabel.textColor = [UIColor colorWithRed:0.25 green:0.0 blue:0.0 alpha:1.0];
-		bottomLabel.highlightedTextColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.9 alpha:1.0];
+		bottomLabel.textColor = [UIColor colorWithRed:0.6 green:0.4 blue:0.2 alpha:1.0];
+		bottomLabel.highlightedTextColor = [UIColor redColor];
 		bottomLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize] - 2];
         
 		//
