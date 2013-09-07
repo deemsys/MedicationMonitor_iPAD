@@ -10,6 +10,7 @@
 -(void)back
 {
     
+    [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
@@ -186,7 +187,7 @@
 
         else
         {
-            HUD.labelText = @"Check newtwork connection....";
+            HUD.labelText = @"Check network connection....";
             HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]] autorelease];
             HUD.mode = MBProgressHUDModeCustomView;
             [HUD hide:YES afterDelay:2];
@@ -414,7 +415,7 @@
 		topLabel.tag = TOP_LABEL_TAG;
 		topLabel.backgroundColor = [UIColor clearColor];
 		topLabel.textColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:1.0];
-		topLabel.highlightedTextColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.9 alpha:1.0];
+		topLabel.highlightedTextColor = [UIColor redColor];
         if(aTableView.tag==1)
         {
             topLabel.font = [UIFont fontWithName:@"Courier" size:30];
@@ -533,7 +534,9 @@
     startButton.tag=[[_pId objectAtIndex:indexPath.row]intValue];
     [startButton addTarget:self action:@selector(playSound:) forControlEvents:UIControlEventTouchUpInside];
    // [cell addSubview:startButton];
+          // Disable the request button once the request has been sent
   
+          [startButton addTarget:self action:@selector(ActionPressed:) forControlEvents:UIControlEventTouchUpInside];
   
     cell.accessoryView =startButton;
 }
@@ -544,6 +547,11 @@
 #endif
 	
 	return cell;
+}
+-(void)ActionPressed:(UIButton *)butt
+{
+    UIButton *buttonThatWasPressed = (UIButton *)butt;
+    buttonThatWasPressed.enabled = NO;
 }
 
 -(void)playSound:(UIButton*)but
@@ -564,11 +572,16 @@
     if (luckyNumbers == nil)
     {
         ////NSLog(@"Failed");
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Info!" message:@"You already sent the request."];
+        
+        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+        [alert setDestructiveButtonWithTitle:@"x" block:nil];
+        [alert show];
         
     }
     else
     {
-        
+     //Successful sent
         NSDictionary* menu = [luckyNumbers objectForKey:@"serviceresponse"];
         //////NSLog(@"Menu id: %@", [menu objectForKey:@"success"]);
         
@@ -578,7 +591,7 @@
           /*  UIAlertView *alert1 = [[UIAlertView alloc]initWithTitle:@"Info" message:@"Your request has been sent" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alert1 show];*/
            
-            BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Info!" message:@"Your request has been sent"];
+            BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Info!" message:@"Your request has been sent."];
             
             //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
             [alert setDestructiveButtonWithTitle:@"x" block:nil];
