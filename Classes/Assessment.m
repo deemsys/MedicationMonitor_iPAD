@@ -11,13 +11,15 @@
 @synthesize _assQues;
 @synthesize _assAns;
 
-AppSharedInstance *instance;
 
+AppSharedInstance *instance;
+//[[[[self.tabBarController tabBar]items]objectAtIndex:1]setEnabled:FALSE];
 
 -(void)back
 {
-    
-   
+    /* Line added to avoid the overlapping of back button with Questionnarie? in Navigation controller*/
+    [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 1;
@@ -87,7 +89,7 @@ AppSharedInstance *instance;
 		topLabel.tag = TOP_LABEL_TAG;
 		topLabel.backgroundColor = [UIColor clearColor];
 		topLabel.textColor = [UIColor colorWithRed:0.25 green:0.0 blue:0.0 alpha:1.0];
-		topLabel.highlightedTextColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.9 alpha:1.0];
+		topLabel.highlightedTextColor = [UIColor redColor];
 		topLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]+10];
         
 		//
@@ -112,7 +114,7 @@ AppSharedInstance *instance;
 		bottomLabel.tag = BOTTOM_LABEL_TAG;
 		bottomLabel.backgroundColor = [UIColor clearColor];
 		bottomLabel.textColor = [UIColor colorWithRed:0.25 green:0.0 blue:0.0 alpha:1.0];
-		bottomLabel.highlightedTextColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.9 alpha:1.0];
+		bottomLabel.highlightedTextColor = [UIColor redColor];
 		bottomLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize] - 2];
         
 		//
