@@ -7,6 +7,8 @@
 //
 
 #import "Communicate.h"
+#import "BlockAlertView.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
 @interface Communicate ()
 
@@ -25,7 +27,9 @@
 
 -(IBAction)FaceClicked
 {
-    [[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString: @"facetime://5555555555"]];
+    [[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString: @"facetime://+441 34 5343"]];
+//[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"facetime://tel-number"]];
+
 }
 -(IBAction)SkypeClicked
 {
@@ -34,8 +38,7 @@
 }
 -(IBAction)mailClicked
 {
-    
-    
+       
     
     if ([MFMailComposeViewController canSendMail])
     {
@@ -43,10 +46,10 @@
         mailer.mailComposeDelegate = self;
         
         
-        // UIImageView* view1 = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"Panel_Top.png"]];
+     //UIImageView* view1 = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"Panel_Top.png"]];
         //  [mailer.navigationBar addSubview:view1];
         // [self.view sendSubviewToBack:view1];
-        [mailer setSubject:@"Mail"];
+        [mailer setSubject:@"Mail "];
         
         UIImage *barButton = [UIImage imageNamed:@"sSend.png"];
         [[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
@@ -54,6 +57,7 @@
         if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
         {
            [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"Top_Panel.png"] forBarMetrics:UIBarMetricsDefault];
+            mailer.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
             
             
         }
@@ -93,19 +97,30 @@
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure"
+        /*UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure"
                                                         message:@"Your device doesn't support the composer sheet"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles: nil];
         [alert show];
         [alert release];
-    }
+    */
 
+    BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Failure!" message:@"Your device doesn't support the composer sheet."];
+    /* HUD.labelText = @"Invalid Username & Password.";
+     HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
+     HUD.mode = MBProgressHUDModeCustomView;
+     [HUD hide:YES afterDelay:1.6];
+     //NSLog(@"raja");
+     */
     
     
+    [alert setDestructiveButtonWithTitle:@"x" block:nil];
+    [alert show];
+ 
     
     
+    }
     
 }
 
