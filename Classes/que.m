@@ -1,6 +1,7 @@
 #import "que.h"
 #import "AppSharedInstance.h"
 #import "SpeakHereViewController.h"
+#import "BlockAlertView.h"
 #define DOCUMENTS_FOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 #define USE_CUSTOM_DRAWING 1
 #define USE_CUSTOM_DRAWING 1
@@ -141,14 +142,22 @@ AppSharedInstance *instance;
     
       BOOL audioHWAvailable = audioSession.inputIsAvailable;
     if (! audioHWAvailable) {
-        UIAlertView *cantRecordAlert =
+        /*UIAlertView *cantRecordAlert =
         [[UIAlertView alloc] initWithTitle: @"Warning"
                                    message: @"Audio input hardware not available"
                                   delegate: nil
                          cancelButtonTitle:@"OK"
                          otherButtonTitles:nil];
         [cantRecordAlert show];
-        [cantRecordAlert release];
+        [cantRecordAlert release];*/
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Warning!" message:@"Audio input hardware not available."];
+        
+        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+        [alert setDestructiveButtonWithTitle:@"x" block:nil];
+        [alert show];
+
+        [alert release];
+        
         return;
     }
     
@@ -205,9 +214,10 @@ AppSharedInstance *instance;
         return;
     }
     
+    //AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    //[audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
+    [audioSession setActive:NO error:nil];
     
     
     
@@ -272,7 +282,7 @@ AppSharedInstance *instance;
     int a=[[NSUserDefaults standardUserDefaults]integerForKey:@"selectAss"];
     if(a==1)
     {
-        NSString*str=@"Daily Questionaries";
+        NSString*str=@"Daily Questionnaire";
         [recordDict setObject:str forKey:@"type"];
     }
     NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
@@ -515,6 +525,8 @@ AppSharedInstance *instance;
 
 -(void)back
 {
+    /* Line added to avoid the overlapping of back button with Questionnarie? in Navigation controller*/
+    [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
@@ -807,12 +819,12 @@ AppSharedInstance *instance;
                     //NSLog(@"asstype:%i",a);
                     if(a==1)
                     {
-                        NSString*str=@"Daily Questionaries";
+                        NSString*str=@"Daily Questionnaire";
                         [recordDict setObject:str forKey:@"type"];
                     }
                    else if(a==3)
                     {
-                        NSString*str=@"Monthly Questionaries";
+                        NSString*str=@"Monthly Questionnaire";
                         [recordDict setObject:str forKey:@"type"];
                     }
                         [recordDict setObject:@"" forKey:@"name"];
@@ -1018,7 +1030,8 @@ for (id anUpdate in self._assQues)
             NSNumber *numid = [(NSDictionary*)anUpdate objectForKey:@"ansid"];
             int nextID = [numid intValue];
           
-            
+                      
+          
             UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [button addTarget:self
                        action:@selector(aMethod:)
@@ -1500,12 +1513,12 @@ for (id anUpdate in self._assQues)
     //NSLog(@"asstype:%i",a);
     if(a==1)
     {
-        NSString*str=@"Daily Questionaries";
+        NSString*str=@"Daily Questionnaire";
         [recordDict setObject:str forKey:@"type"];
     }
     else if(a==3)
     {
-        NSString*str=@"Monthly Questionaries";
+        NSString*str=@"Monthly Questionnaire";
         [recordDict setObject:str forKey:@"type"];
     }
     
