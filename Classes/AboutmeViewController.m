@@ -14,6 +14,7 @@
 #import "SVSegmentedControl.h"
 #import "JSON/JSON.h"
 #import <QuartzCore/QuartzCore.h>
+#import "BlockAlertView.h"
 #define USE_CUSTOM_DRAWING 1
 #define USE_CUSTOM_DRAWING 1
 
@@ -27,33 +28,35 @@ AppSharedInstance *instance;
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
     [super viewWillAppear:animated];
     
-  //  _TimeArray=[[NSMutableArray alloc]init];
-   
+    //  _TimeArray=[[NSMutableArray alloc]init];
     
-  /*  if ([recordDict count]>0)
-    {
-        NSString *str=[recordDict objectForKey:@"name"];
     
-        if([str length]!=0)
-        {
-        NSMutableArray*m=[[NSUserDefaults standardUserDefaults]objectForKey:str];
-      
-        //    _TimeArray=[m copy];
-        }
-    }
-    else
-    {
+    /*  if ([recordDict count]>0)
+     {
+     NSString *str=[recordDict objectForKey:@"name"];
+     
+     if([str length]!=0)
+     {
+     NSMutableArray*m=[[NSUserDefaults standardUserDefaults]objectForKey:str];
+     
+     //    _TimeArray=[m copy];
+     }
+     }
+     else
+     {
      //   _TimeArray=[[NSMutableArray alloc]init];
-       
-    }*/
+     
+     }*/
     
     
-   
+    
     
     ////NSLog(@"RAJATYPE:%@",type);
-  
+    
     [myTable reloadData];
     [myTable1 reloadData];
 }
@@ -110,7 +113,7 @@ AppSharedInstance *instance;
         [[[UILabel alloc]
           initWithFrame:
           CGRectMake(
-                    100,
+                     100,
                      
                      0.5 * (aTableView.rowHeight - 2 * LABEL_HEIGHT),
                      
@@ -177,21 +180,21 @@ AppSharedInstance *instance;
     
     
     // NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
-//	UILocalNotification *notif = [reminderarray objectAtIndex:indexPath.row];
+    //	UILocalNotification *notif = [reminderarray objectAtIndex:indexPath.row];
 	//cell.textLabel.font=[UIFont fontWithName:@"Arial" size:30];
     // [cell.textLabel setText:notif.alertBody];
     // cell.detailTextLabel.textColor = [UIColor greenColor];
 	//[cell.detailTextLabel setText:[notif.fireDate description]];
     
     
-//	topLabel.text = notif.alertBody;
+    //	topLabel.text = notif.alertBody;
     if(aTableView.tag==222)
     {
         bottomLabel.text =[_onceTime objectAtIndex:indexPath.row];
     }
     else
     {
-	bottomLabel.text =[_TimeArray objectAtIndex:indexPath.row];
+        bottomLabel.text =[_TimeArray objectAtIndex:indexPath.row];
     }//[notif.fireDate descriptionWithLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]autorelease]] ;
 	
 	
@@ -252,9 +255,11 @@ AppSharedInstance *instance;
 
 -(IBAction)changeTime:(id)sender
 {
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
     if(timepicker.hidden==NO)
     {
-      //  timepicker.hidden=YES;
+        //  timepicker.hidden=YES;
         /*  NSDateFormatter *df1 = [[NSDateFormatter alloc] init];
          df1.dateStyle = NSDateFormatterMediumStyle;
          NSString *str=[NSString stringWithFormat:@"%@",
@@ -270,26 +275,26 @@ AppSharedInstance *instance;
          NSString *timetofill = [outputFormatter stringFromDate:datepicker.date];
          return timetofill;*/
         
-      //  NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-      //  [outputFormatter setDateFormat:@"hh:mm a"]; //24hr time format
-       //  [outputFormatter setDateFormat:@"dd:MM:yyy hh:mm a"];
-      //  NSString *dateString = [outputFormatter stringFromDate:timepicker.date];
+        //  NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+        //  [outputFormatter setDateFormat:@"hh:mm a"]; //24hr time format
+        //  [outputFormatter setDateFormat:@"dd:MM:yyy hh:mm a"];
+        //  NSString *dateString = [outputFormatter stringFromDate:timepicker.date];
         
         
-      /*NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        df.dateStyle = NSDateFormatterMediumStyle;
-    //   [df setDateFormat:@"dd:MM:yyy hh:mm a"]
+        /*NSDateFormatter *df = [[NSDateFormatter alloc] init];
+         df.dateStyle = NSDateFormatterMediumStyle;
+         //   [df setDateFormat:@"dd:MM:yyy hh:mm a"]
          NSString *dateString= [NSString stringWithFormat:@"%@",
-                         [df stringFromDate:timepicker.date]];*/
-
-     //   ////NSLog(@"datestring:%@",dateString);
+         [df stringFromDate:timepicker.date]];*/
+        
+        //   ////NSLog(@"datestring:%@",dateString);
         
         
         
-     //   [outputFormatter release];
+        //   [outputFormatter release];
         
     }
-
+    
 }
 
 
@@ -300,8 +305,8 @@ AppSharedInstance *instance;
     NSLocale *usLocale = [[[NSLocale alloc]
                            initWithLocaleIdentifier:@"en_US"] autorelease];
     
- 
-   
+    
+    
     
     
     
@@ -316,7 +321,7 @@ AppSharedInstance *instance;
     [myTable1 reloadData];
     
     
-  
+    
 }
 
 
@@ -324,7 +329,7 @@ AppSharedInstance *instance;
 -(void)aMethod
 {
     
-     timepicker.hidden=YES;
+    timepicker.hidden=YES;
     NSLocale *usLocale = [[[NSLocale alloc]
                            initWithLocaleIdentifier:@"en_US"] autorelease];
     
@@ -345,7 +350,8 @@ AppSharedInstance *instance;
 }
 -(IBAction)Morning1:(id)sender
 {
-    
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
     if(timepicker.hidden==YES)
     {
         timepicker.hidden=NO;
@@ -354,14 +360,14 @@ AppSharedInstance *instance;
         [button addTarget:self
                    action:@selector(aMethod)
          forControlEvents:UIControlEventTouchDown];
-      //  [button setTitle:@"Done" forState:UIControlStateNormal];
+        //  [button setTitle:@"Done" forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:@"Add_Time.png"] forState:UIControlStateNormal];
         button.frame = CGRectMake(490.0, 85.0, 140.0, 40.0);
         [timepicker addSubview:button];
         
         
     }
-     
+    
 }
 
 
@@ -373,6 +379,8 @@ AppSharedInstance *instance;
 
 -(IBAction)removeMorning
 {
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
     if (myTable.editing)
     {
 		myTable.editing=NO;
@@ -414,7 +422,7 @@ AppSharedInstance *instance;
             else{
                 //bgImage.image = [UIImage imageNamed:@"firstbg.png"];
             }
-
+            
         }
 		
 	}
@@ -443,25 +451,25 @@ AppSharedInstance *instance;
     NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     
-
+    
     
 }
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-  
+    
     UITouch *touch = [[event touchesForView:self.view] anyObject];
     CGPoint location = [touch locationInView:touch.view];
     
-      
-      datePicker1.minimumDate=datePicker.date;
+    
+    datePicker1.minimumDate=datePicker.date;
     if(picker1)
     {
-      /*  NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        df.dateStyle = NSDateFormatterMediumStyle;
-        fromd.text= [NSString stringWithFormat:@"%@",
-                     [df stringFromDate:picker1.date]];*/
+        /*  NSDateFormatter *df = [[NSDateFormatter alloc] init];
+         df.dateStyle = NSDateFormatterMediumStyle;
+         fromd.text= [NSString stringWithFormat:@"%@",
+         [df stringFromDate:picker1.date]];*/
         
         [picker1 removeFromSuperview];
         
@@ -472,133 +480,139 @@ AppSharedInstance *instance;
     if(setTimePicker.hidden==NO)
     {
         setTimePicker.hidden=YES;
-     //   NSDateFormatter *df = [[NSDateFormatter alloc] init];
-  //      df.dateStyle = NSDateFormatterMediumStyle;
-       // tim.text= [NSString stringWithFormat:@"%@",
-                  //   [df stringFromDate:setTimePicker.date]];
+        //   NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        //      df.dateStyle = NSDateFormatterMediumStyle;
+        // tim.text= [NSString stringWithFormat:@"%@",
+        //   [df stringFromDate:setTimePicker.date]];
         
         
-      /*  NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-        [outputFormatter setDateFormat:@"h:mm a"];
+        /*  NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+         [outputFormatter setDateFormat:@"h:mm a"];
+         
+         NSString *timetofill = [outputFormatter stringFromDate:setTimePicker.date];
+         tim.text=timetofill;*/
         
-        NSString *timetofill = [outputFormatter stringFromDate:setTimePicker.date];
-        tim.text=timetofill;*/
-
     }
     
     if(datePicker.hidden==NO)
     {
         datePicker.hidden=YES;
-   /*     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        df.dateStyle = NSDateFormatterMediumStyle;
-        fromd.text= [NSString stringWithFormat:@"%@",
-                     [df stringFromDate:datePicker.date]];*/
+        /*     NSDateFormatter *df = [[NSDateFormatter alloc] init];
+         df.dateStyle = NSDateFormatterMediumStyle;
+         fromd.text= [NSString stringWithFormat:@"%@",
+         [df stringFromDate:datePicker.date]];*/
     }
     if(datePicker1.hidden==NO)
     {
         datePicker1.hidden=YES;
-    /*    NSDateFormatter *df1 = [[NSDateFormatter alloc] init];
-        df1.dateStyle = NSDateFormatterMediumStyle;
-        tod.text= [NSString stringWithFormat:@"%@",
-                   [df1 stringFromDate:datePicker1.date]];*/
-
+        /*    NSDateFormatter *df1 = [[NSDateFormatter alloc] init];
+         df1.dateStyle = NSDateFormatterMediumStyle;
+         tod.text= [NSString stringWithFormat:@"%@",
+         [df1 stringFromDate:datePicker1.date]];*/
+        
     }
     
-  /*  if(timepicker.hidden==NO)
-    {
-        timepicker.hidden=YES;
+    /*  if(timepicker.hidden==NO)
+     {
+     timepicker.hidden=YES;
      /*  NSDateFormatter *df1 = [[NSDateFormatter alloc] init];
-        df1.dateStyle = NSDateFormatterMediumStyle;
-        NSString *str=[NSString stringWithFormat:@"%@",
-                       [df1 stringFromDate:timepicker.date]];
-   //     tod.text= [NSString stringWithFormat:@"%@",
-                   //[df1 stringFromDate:timepicker.date]];*/
-               
-        
-        
-      /*  NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-        [outputFormatter setDateFormat:@"h:mm a"];
-        
-        NSString *timetofill = [outputFormatter stringFromDate:datepicker.date];
-        return timetofill;*/
-        
-     /*   NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-        [outputFormatter setDateFormat:@"dd:MM:yyy hh:mm a"]; //24hr time format
-        NSString *dateString = [outputFormatter stringFromDate:timepicker.date];
-        [_TimeArray addObject:dateString];
-        [myTable reloadData];
-
-        [outputFormatter release];
-        
-    }*/
-
- 
+     df1.dateStyle = NSDateFormatterMediumStyle;
+     NSString *str=[NSString stringWithFormat:@"%@",
+     [df1 stringFromDate:timepicker.date]];
+     //     tod.text= [NSString stringWithFormat:@"%@",
+     //[df1 stringFromDate:timepicker.date]];*/
     
+    
+    
+    /*  NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+     [outputFormatter setDateFormat:@"h:mm a"];
      
+     NSString *timetofill = [outputFormatter stringFromDate:datepicker.date];
+     return timetofill;*/
     
- }
+    /*   NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+     [outputFormatter setDateFormat:@"dd:MM:yyy hh:mm a"]; //24hr time format
+     NSString *dateString = [outputFormatter stringFromDate:timepicker.date];
+     [_TimeArray addObject:dateString];
+     [myTable reloadData];
+     
+     [outputFormatter release];
+     
+     }*/
+    
+    
+    
+    
+    
+}
 
 
 - (IBAction)changefromTime:(id)sender
 {
-   
-      //  setTimePicker.hidden=YES;
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
+    //  setTimePicker.hidden=YES;
     
     
     
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"h:mm a"];
     NSString *timetofill = [outputFormatter stringFromDate:setTimePicker.date];
-  //  tim.text=timetofill;
+    //  tim.text=timetofill;
     
     
-   //   [_onceTime addObject:timetofill];
-  //  [myTable1 reloadData];
+    //   [_onceTime addObject:timetofill];
+    //  [myTable1 reloadData];
     
     //  NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     //  [outputFormatter setDateFormat:@"hh:mm a"]; //24hr time format
     //  [outputFormatter setDateFormat:@"dd:MM:yyy hh:mm a"];
     //  NSString *dateString = [outputFormatter stringFromDate:timepicker.date];
     
-       /* NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        df.dateStyle = NSDateFormatterMediumStyle;
-        tim.text= [NSString stringWithFormat:@"%@",
-                   [df stringFromDate:setTimePicker.date]];*/
-        
-
+    /* NSDateFormatter *df = [[NSDateFormatter alloc] init];
+     df.dateStyle = NSDateFormatterMediumStyle;
+     tim.text= [NSString stringWithFormat:@"%@",
+     [df stringFromDate:setTimePicker.date]];*/
+    
+    
     
 }
 
 - (IBAction)changefromdate:(id)sender
 {
-      datePicker1.minimumDate=datePicker.date;
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
+    datePicker1.minimumDate=datePicker.date;
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
 	df.dateStyle = NSDateFormatterMediumStyle;
 	fromd.text = [NSString stringWithFormat:@"%@",
-                      [df stringFromDate:datePicker.date]];
+                  [df stringFromDate:datePicker.date]];
 	[df release];
     
     
 }
 - (IBAction)changeTodate:(id)sender
 {
-       
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
     datePicker1.minimumDate=datePicker.date;
-        ////NSLog(@"Raja");
-        NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        df.dateStyle = NSDateFormatterMediumStyle;
-        tod.text = [NSString stringWithFormat:@"%@",
-                    [df stringFromDate:datePicker1.date]];
-        	[df release];
-
+    ////NSLog(@"Raja");
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateStyle = NSDateFormatterMediumStyle;
+    tod.text = [NSString stringWithFormat:@"%@",
+                [df stringFromDate:datePicker1.date]];
+    [df release];
+    
     UIPickerView*d= sender;
-  //´  d.hidden=YES;
+    //´  d.hidden=YES;
 }
 
 -(IBAction)setTimer:(id)sender
 {
-      datePicker1.hidden=YES;
-      datePicker.hidden=YES;
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
+    datePicker1.hidden=YES;
+    datePicker.hidden=YES;
     if(setTimePicker.hidden==YES)
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -620,7 +634,9 @@ AppSharedInstance *instance;
 
 -(IBAction)setFromDate
 {
-      datePicker1.hidden=YES;
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
+    datePicker1.hidden=YES;
     setTimePicker.hidden=YES;
     if(datePicker.hidden==YES)
     {
@@ -634,7 +650,10 @@ AppSharedInstance *instance;
 
 
 -(IBAction)setToDate
+
 {
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
     datePicker.hidden=YES;
     setTimePicker.hidden=YES;
     if(datePicker1.hidden==YES)
@@ -648,6 +667,9 @@ AppSharedInstance *instance;
 }
 
 -(IBAction)takePhoto {
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
+    
     
 	UIActionSheet *actionSheet;
 	if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -671,7 +693,7 @@ AppSharedInstance *instance;
 			if(share1==YES)
 			{
 				share1=NO;
-			
+                
 				return;
 			}
 			else {
@@ -700,26 +722,26 @@ AppSharedInstance *instance;
 	
 	// Set up the image picker
 	/*UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-	[imagePickerController setDelegate:self];
-	[imagePickerController setSourceType:sourceType];
-	[imagePickerController setAllowsEditing:YES];
-	
-	//[imagePickerController setAllowsImageEditing:YES];
-	[self presentModalViewController:imagePickerController animated:YES];
-	[imagePickerController release];*/
+     [imagePickerController setDelegate:self];
+     [imagePickerController setSourceType:sourceType];
+     [imagePickerController setAllowsEditing:YES];
+     
+     //[imagePickerController setAllowsImageEditing:YES];
+     [self presentModalViewController:imagePickerController animated:YES];
+     [imagePickerController release];*/
     
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     popover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
-    [popover presentPopoverFromRect:CGRectMake(0.0, 0.0, 400.0, 400.0) 
+    [popover presentPopoverFromRect:CGRectMake(250.0,150.0,200.0,90.0)
                              inView:self.view
-           permittedArrowDirections:UIPopoverArrowDirectionAny 
+           permittedArrowDirections:UIPopoverArrowDirectionAny
                            animated:YES];
     [imagePicker release];
-  //  [popover release];
+    //  [popover release];
     
-
+    
     
     
     
@@ -727,46 +749,47 @@ AppSharedInstance *instance;
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-//[self saveImage:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
+    //[self saveImage:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
     
     buttonImage =  [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     //UIImage *buttonImage = [UIImage imageNamed:@"Camera.png"];
-
+    
 	[iButton setImage:buttonImage forState:UIControlStateNormal];
-
-
-  [popover dismissPopoverAnimated:YES];
+    
+    
+    [popover dismissPopoverAnimated:YES];
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {	
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
 	[picker dismissModalViewControllerAnimated:YES];
 }
 
 -(void)saveImage:(UIImage *)img2{
-	UIImage *thumbImage =[img2 resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(90, 90) interpolationQuality:kCGInterpolationHigh];	
+	UIImage *thumbImage =[img2 resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(90, 90) interpolationQuality:kCGInterpolationHigh];
 	//thumbImage = [thumbImage croppedImage:CGRectMake(0,0,90,90)];
 	
 	NSString *filename = [NSString stringWithFormat:@"pet_%d.png",[[recordDict objectForKey:@"pk"] intValue]];
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
-	[UIImagePNGRepresentation(thumbImage) writeToFile:[documentsDirectory stringByAppendingPathComponent:filename] atomically:YES];	
+	[UIImagePNGRepresentation(thumbImage) writeToFile:[documentsDirectory stringByAppendingPathComponent:filename] atomically:YES];
     
- /*   NSString *file1 = [[NSBundle mainBundle] pathForResource:@"file1" ofType:@"caf"]; // Using PCM format
-    NSData *file1Data = [[NSData alloc] initWithContentsOfFile:file1];
-    [file1Data writeToFile:[documentsDirectory stringByAppendingPathComponent:filename] atomically:YES];*/
+    /*   NSString *file1 = [[NSBundle mainBundle] pathForResource:@"file1" ofType:@"caf"]; // Using PCM format
+     NSData *file1Data = [[NSData alloc] initWithContentsOfFile:file1];
+     [file1Data writeToFile:[documentsDirectory stringByAppendingPathComponent:filename] atomically:YES];*/
     
     
     
 }
 
 - (IBAction)checkboxButton:(UIButton *)button{
-    
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
     
     if( !button.selected)
     {
-          [button setSelected:YES];
+        [button setSelected:YES];
         [aButton1 setSelected:NO];
-         [aButton2 setSelected:NO];
+        [aButton2 setSelected:NO];
         type=@"Once";
     }
 }
@@ -774,7 +797,8 @@ AppSharedInstance *instance;
 
 - (IBAction)checkboxButton1:(UIButton *)button{
     
-    
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
     if( !button.selected)
     {
         [button setSelected:YES];
@@ -786,27 +810,29 @@ AppSharedInstance *instance;
 }
 
 - (IBAction)checkboxButton2:(UIButton *)button{
-    
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
     
     if( !button.selected)
     {
         [button setSelected:YES];
         [aButton1 setSelected:NO];
         [aButton setSelected:NO];
-         type=@"Couple";
+        type=@"Couple";
     }
 }
 
 
 -(void)back
 {
- 
+    
     [[self navigationController] popViewControllerAnimated:YES];
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
     datePicker1.minimumDate=datePicker.date;
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
 	df.dateStyle = NSDateFormatterMediumStyle;
@@ -821,22 +847,22 @@ AppSharedInstance *instance;
     tim.text=timetofill;
     
     
-  /*  NSDate* now = [NSDate date];
-    NSString *n=[NSString stringWithFormat:@"%@",now];
-    
-    
-    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-    [outputFormatter setDateFormat:@"d:MM:yyy"];
-    
-    NSString *timetofill = [outputFormatter stringFromDate:now];
-    n=timetofill;
-    fromd.text=n;*/
+    /*  NSDate* now = [NSDate date];
+     NSString *n=[NSString stringWithFormat:@"%@",now];
+     
+     
+     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+     [outputFormatter setDateFormat:@"d:MM:yyy"];
+     
+     NSString *timetofill = [outputFormatter stringFromDate:now];
+     n=timetofill;
+     fromd.text=n;*/
     
     v.hidden=YES;
     v1.hidden=YES;
     v.userInteractionEnabled=NO;
     v1.userInteractionEnabled=NO;
-      _TimeArray=[[NSMutableArray alloc]init];
+    _TimeArray=[[NSMutableArray alloc]init];
     _onceTime=[[NSMutableArray alloc]init];
     myTable.backgroundColor = [UIColor clearColor];
     myTable.editing=YES;
@@ -844,25 +870,25 @@ AppSharedInstance *instance;
     myTable1.backgroundColor = [UIColor clearColor];
     myTable1.editing=YES;
     self.view.userInteractionEnabled=YES;
-   
+    
     type=@"";
     k= [[NSUserDefaults standardUserDefaults]
-                      integerForKey:@"select"];
+        integerForKey:@"select"];
     share1=NO;
-    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];  
+    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
-    [home setBackgroundImage:homeImage forState:UIControlStateNormal];  
-    [home addTarget:self action:@selector(back)  
-   forControlEvents:UIControlEventTouchUpInside];  
-    home.frame = CGRectMake(0, 0, 50, 30);  
-    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]  
-                                      initWithCustomView:home] autorelease];  
+    [home setBackgroundImage:homeImage forState:UIControlStateNormal];
+    [home addTarget:self action:@selector(back)
+   forControlEvents:UIControlEventTouchUpInside];
+    home.frame = CGRectMake(0, 0, 50, 30);
+    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
+                                      initWithCustomView:home] autorelease];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
-	//NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"pet_%d.png",[[rowData objectForKey:@"pk"] intValue]]];		
+	//NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"pet_%d.png",[[rowData objectForKey:@"pk"] intValue]]];
 	
     
     NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"pet_%d.png",[[recordDict objectForKey:@"pk"] intValue]]];
@@ -873,39 +899,39 @@ AppSharedInstance *instance;
     
     
     
-    buttonImage = [buttonImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(85, 76) interpolationQuality:kCGInterpolationHigh];	
+    buttonImage = [buttonImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(85, 76) interpolationQuality:kCGInterpolationHigh];
     
     
 	//aButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[iButton setImage:buttonImage forState:UIControlStateNormal];
- //   aButton.backgroundColor=[UIColor redColor];
+    //   aButton.backgroundColor=[UIColor redColor];
 	//aButton.frame = CGRectMake(175.0, 200.0, 450, 270);
 	//aButton.tag=121;
-  //  [aButton setOpaque:YES];
+    //  [aButton setOpaque:YES];
 	//[aButton addTarget:self action:@selector(takePhoto) forControlEvents:UIControlEventTouchUpInside];
-  //  [self.view addSubview:aButton];
+    //  [self.view addSubview:aButton];
     
     
     UIImage *noteImage=[UIImage imageNamed:@"Notes1.png"];
     UIButton*Notes = [UIButton buttonWithType:UIButtonTypeCustom];
 	[Notes setImage:noteImage forState:UIControlStateNormal];
 	Notes.frame = CGRectMake(175.0, 550.0, 140, 54);
-	[Notes addTarget:self action:@selector(Notes) forControlEvents:UIControlEventTouchUpInside];    
-  //  [self.view addSubview:Notes];
+	[Notes addTarget:self action:@selector(Notes) forControlEvents:UIControlEventTouchUpInside];
+    //  [self.view addSubview:Notes];
     
     UIImage *AudioImage=[UIImage imageNamed:@"Audio1.png"];
     UIButton*Audio = [UIButton buttonWithType:UIButtonTypeCustom];
 	[Audio setImage:AudioImage forState:UIControlStateNormal];
 	Audio.frame = CGRectMake(480, 550.0, 140, 54);
-	[Audio addTarget:self action:@selector(Audio) forControlEvents:UIControlEventTouchUpInside];    
-//   [self.view addSubview:Audio];
-
-  
+	[Audio addTarget:self action:@selector(Audio) forControlEvents:UIControlEventTouchUpInside];
+    //   [self.view addSubview:Audio];
+    
+    
     
 	self.dobPicker = [[UIDatePicker alloc] init];
 	[self.dobPicker setDatePickerMode:UIDatePickerModeDate];
 	[self.dobPicker addTarget:self action:@selector(updateDate) forControlEvents:UIControlEventValueChanged];
-
+    
 	
     
     
@@ -915,9 +941,9 @@ AppSharedInstance *instance;
     label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     label.textAlignment = UITextAlignmentCenter;
     label.textColor = [UIColor whiteColor]; // change this color
-  
-  
-  
+    
+    
+    
     
     
     
@@ -927,37 +953,37 @@ AppSharedInstance *instance;
 	instance = [AppSharedInstance sharedInstance];
 	if ([recordDict count]>0) {
 		[self populateField];
-              [self.navigationController.navigationBar viewWithTag:121].hidden=NO;
-	//	self.title = @"Medication Info         ";
+        [self.navigationController.navigationBar viewWithTag:121].hidden=NO;
+        //	self.title = @"Medication Info         ";
         
         ////NSLog(@"%@",recordDict);
-          label.text = NSLocalizedString(@"Medication Info", @"");
+        label.text = NSLocalizedString(@"Medication Info", @"");
 	}
 	else {
 		recordDict = [[NSMutableDictionary alloc] init];
-              [self.navigationController.navigationBar viewWithTag:121].hidden=YES;
+        [self.navigationController.navigationBar viewWithTag:121].hidden=YES;
 		//self.title = @"Add Medication ";
-          label.text = NSLocalizedString(@"Add Medication", @"");
+        label.text = NSLocalizedString(@"Add Medication", @"");
 	}
     
     
- 
-   
+    
+    
     if ([recordDict count]>0)
     {
         
         
-           NSString *str=[recordDict objectForKey:@"name"];
+        NSString *str=[recordDict objectForKey:@"name"];
         
-         NSString *str1=[recordDict objectForKey:@"type"];
+        NSString *str1=[recordDict objectForKey:@"type"];
         
         type=[recordDict objectForKey:@"type"];
-    NSMutableArray*m=[[NSUserDefaults standardUserDefaults]objectForKey:str];
-
-       // _TimeArray=[m copy];
-         _TimeArray=[[NSMutableArray alloc]initWithArray:m];
+        NSMutableArray*m=[[NSUserDefaults standardUserDefaults]objectForKey:str];
         
-         NSString *str11=[NSString stringWithFormat:@"once%@",[recordDict objectForKey:@"name"]];
+        // _TimeArray=[m copy];
+        _TimeArray=[[NSMutableArray alloc]initWithArray:m];
+        
+        NSString *str11=[NSString stringWithFormat:@"once%@",[recordDict objectForKey:@"name"]];
         //NSLog(@"SRTR!!:%@",str11);
         
         NSMutableArray*m1=[[NSUserDefaults standardUserDefaults]objectForKey:str11];
@@ -972,22 +998,22 @@ AppSharedInstance *instance;
         redSC.thumb.textShadowOffset = CGSizeMake(0, 1);
         redSC. font = [UIFont boldSystemFontOfSize:20];
         redSC.height=50;
-             [redSC addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+        [redSC addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
         // redSC.selectedIndex=1;
         [self.view addSubview:redSC];
         redSC.center = CGPointMake(384, 380);
         redSC.tag = 2;
-
+        
     }
     else
     {
-     
+        
         //  NSString *str=[recordDict objectForKey:@"name"];
-      //  NSMutableArray*m=[[NSUserDefaults standardUserDefaults]objectForKey:str];
-     //    _onceTime=[[NSMutableArray alloc]initWithArray:m];
+        //  NSMutableArray*m=[[NSUserDefaults standardUserDefaults]objectForKey:str];
+        //    _onceTime=[[NSMutableArray alloc]initWithArray:m];
         _TimeArray=[[NSMutableArray alloc]init];
         _onceTime=[[NSMutableArray alloc]init];
-         type=@"Once";
+        type=@"Once";
         [[self.view viewWithTag:2] removeFromSuperview];
         SVSegmentedControl*  redSC = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Once", @"Daily", nil]];
         
@@ -1009,26 +1035,26 @@ AppSharedInstance *instance;
         v.hidden=NO;
         v.userInteractionEnabled=YES;
     }
-      self.navigationItem.titleView = label;
-      [label sizeToFit];
+    self.navigationItem.titleView = label;
+    [label sizeToFit];
 	//self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:74.0/255.0 green:136.0/255.0 blue:208.0/255.0 alpha:1.0];
-
-//	self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:69.0/255.0 green:158.0/255.0 blue:0 alpha:1.0];
-
+    
+    //	self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:69.0/255.0 green:158.0/255.0 blue:0 alpha:1.0];
+    
 	//self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											//   initWithBarButtonSystemItem:UIBarButtonSystemItemSave
-											//   target:self action:@selector(savePet)] autorelease];
+    //   initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+    //   target:self action:@selector(savePet)] autorelease];
     
     
     
-    UIButton *save = [UIButton buttonWithType:UIButtonTypeCustom];  
+    UIButton *save = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *saveImage = [UIImage imageNamed:@"Save.png"]  ;
-    [save setBackgroundImage:saveImage forState:UIControlStateNormal];  
-    [save addTarget:self action:@selector(savePet)  
-   forControlEvents:UIControlEventTouchUpInside];  
-    save.frame = CGRectMake(0, 0, 50, 30);  
-    UIBarButtonItem *saveButton = [[[UIBarButtonItem alloc]  
-                                      initWithCustomView:save] autorelease];  
+    [save setBackgroundImage:saveImage forState:UIControlStateNormal];
+    [save addTarget:self action:@selector(savePet)
+   forControlEvents:UIControlEventTouchUpInside];
+    save.frame = CGRectMake(0, 0, 50, 30);
+    UIBarButtonItem *saveButton = [[[UIBarButtonItem alloc]
+                                    initWithCustomView:save] autorelease];
     self.navigationItem.rightBarButtonItem = saveButton;
     
     
@@ -1036,7 +1062,7 @@ AppSharedInstance *instance;
 	
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	NSDate *today = [NSDate date];
-
+    
     
     
     int savedValue = [[NSUserDefaults standardUserDefaults]
@@ -1060,8 +1086,8 @@ AppSharedInstance *instance;
 	}
     
     
-  
-
+    
+    
     
 }
 
@@ -1070,28 +1096,30 @@ AppSharedInstance *instance;
 {
     NoteViewController *noteViewController = [[NoteViewController alloc] initWithNibName:@"NoteView" bundle:nil];
 	noteViewController.recordDict = recordDict;
-   noteViewController.recordDict = [recordDict objectForKey:@"pk"];
+    noteViewController.recordDict = [recordDict objectForKey:@"pk"];
 	[self.navigationController pushViewController:noteViewController animated:YES];
 	[noteViewController release];
 }
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl
 {
+    [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
+    [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
     if(segmentedControl.selectedIndex==0)
     {
-      
+        
         type=@"Once";
-    
+        
         v.hidden=NO;
         v.userInteractionEnabled=YES;
         v1.userInteractionEnabled=NO;
         v1.hidden=YES;
-
+        
     }
     else if(segmentedControl.selectedIndex==1)
     {
-          type=@"Daily";
+        type=@"Daily";
         
-         v.hidden=YES;
+        v.hidden=YES;
         v.userInteractionEnabled=NO;
         v1.userInteractionEnabled=YES;
         v1.hidden=NO;
@@ -1103,14 +1131,14 @@ AppSharedInstance *instance;
 {
     AudioFilesCOntroller *noteViewController = [[AudioFilesCOntroller alloc] initWithNibName:@"AudioFilesCOntroller" bundle:nil];
 	noteViewController.recordDict = recordDict;
-      noteViewController.recordDict = [recordDict objectForKey:@"pk"];
+    noteViewController.recordDict = [recordDict objectForKey:@"pk"];
 	[self.navigationController pushViewController:noteViewController animated:YES];
 	[noteViewController release];
 }
 -(void)share
 {
 	share1=YES;
-	UIActionSheet *sheet = [[UIActionSheet alloc] 
+	UIActionSheet *sheet = [[UIActionSheet alloc]
                             initWithTitle:@"Share"
                             delegate:self
                             cancelButtonTitle:@"Cancel"
@@ -1125,12 +1153,12 @@ AppSharedInstance *instance;
 	
 }
 
-- (void)populateField 
+- (void)populateField
 {
     
     
     NSString *s=[recordDict objectForKey:@"type"];
-   
+    
     
 	name.text = [recordDict objectForKey:@"name"];
     self.title = name.text;
@@ -1147,29 +1175,29 @@ AppSharedInstance *instance;
         NSString *timetofill = [outputFormatter stringFromDate:now];
         n=timetofill;
         fromd.text=n;
-       tod.text=@"ToDate";
-          tim.text=@"SetTime";
+        tod.text=@"ToDate";
+        tim.text=@"SetTime";
     }
-    else 
+    else
     {
         
-	fromd.text = [recordDict objectForKey:@"fromd"];
-    tod.text = [recordDict objectForKey:@"tod"];
-         tim.text = [recordDict objectForKey:@"notes"];
+        fromd.text = [recordDict objectForKey:@"fromd"];
+        tod.text = [recordDict objectForKey:@"tod"];
+        tim.text = [recordDict objectForKey:@"notes"];
     }
-
-/*	if ([[recordDict objectForKey:@"tod"] length] > 0) {
-		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-		[formatter setDateFormat:@"MM/dd/yyyy"];
-		self.dobPicker.date = [formatter dateFromString:[recordDict objectForKey:@"tod"]];
-		[formatter setDateFormat:@"MMM dd, yyyy"];
-		dob.text = [formatter stringFromDate:self.dobPicker.date];
-		[formatter release];
-		age.text = [self calculateAge];
-	}*/
+    
+    /*	if ([[recordDict objectForKey:@"tod"] length] > 0) {
+     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+     [formatter setDateFormat:@"MM/dd/yyyy"];
+     self.dobPicker.date = [formatter dateFromString:[recordDict objectForKey:@"tod"]];
+     [formatter setDateFormat:@"MMM dd, yyyy"];
+     dob.text = [formatter stringFromDate:self.dobPicker.date];
+     [formatter release];
+     age.text = [self calculateAge];
+     }*/
 	
 	//microchip.text = [recordDict objectForKey:@"type"];
-
+    
     if([s isEqualToString:@"Once"])
     {
         
@@ -1179,16 +1207,16 @@ AppSharedInstance *instance;
         v.userInteractionEnabled=YES;
         v1.userInteractionEnabled=NO;
     }
-   else if([s isEqualToString:@"Daily"])
+    else if([s isEqualToString:@"Daily"])
     {
-       
+        
         v1.hidden=NO;
         v.hidden=YES;
         
         v.userInteractionEnabled=NO;
         v1.userInteractionEnabled=YES;
     }
-  
+    
     
 	akc.text = [recordDict objectForKey:@"akc"];
 	notes.text = [recordDict objectForKey:@"notes"];
@@ -1214,7 +1242,7 @@ AppSharedInstance *instance;
 	return ageStr;
 }
 
-- (void)updateDate 
+- (void)updateDate
 {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"MM/dd/yyyy"];
@@ -1234,7 +1262,7 @@ AppSharedInstance *instance;
     // NSString *userId=@"alagar@ajsquare.net";
     
     
-  
+    
     
     
     
@@ -1251,7 +1279,7 @@ AppSharedInstance *instance;
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-  
+    
     NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
     [request setURL:url];
     [request setHTTPMethod:@"POST"];
@@ -1271,50 +1299,50 @@ AppSharedInstance *instance;
     NSString *data=[[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
     
     
-        return data;
+    return data;
     
 }
 
 
 
 -(void)setLocalNotifi
-  {
-      
-      for(int i=0; i<[_TimeArray count];i++)
-      {
-          ////NSLog(@"RAJAREmain");
-      NSString *dateString = [NSString stringWithFormat:@"%@",[_TimeArray objectAtIndex:i]];
-      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-      [dateFormatter setDateFormat:@"yyyy-MM-dd  hh:mm"];
-      NSDate *dateFromString = [[NSDate alloc] init];
-      dateFromString = [dateFormatter dateFromString:dateString];
-      [dateFormatter release];
-      
-      
-      UILocalNotification *localNotif = [[UILocalNotification alloc] init];
-      if (localNotif == nil)
-          return;
-      localNotif.fireDate = dateFromString;
-      localNotif.timeZone = [NSTimeZone systemTimeZone];
-      localNotif.alertBody = [NSString stringWithFormat:@"%@",name.text ];
-      localNotif.alertAction = @"View";
-      localNotif.soundName = UILocalNotificationDefaultSoundName;
-      localNotif.applicationIconBadgeNumber = 0;
-      NSString*s=[NSString stringWithFormat:@"%@",type];
-      if([s isEqualToString:@"Daily"])
-      {
-          localNotif.repeatInterval = NSDayCalendarUnit;
-      }
-      else
-      {
-          localNotif.repeatInterval = 0;
-      }
-      
-   //   NSDictionary *infoDict = [NSDictionary dictionaryWithObject:localNotif.fireDate forKey:@"date"];
-   //   localNotif.userInfo = infoDict;
-      [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
-     // [localNotif release];
-      }
+{
+    
+    for(int i=0; i<[_TimeArray count];i++)
+    {
+        ////NSLog(@"RAJAREmain");
+        NSString *dateString = [NSString stringWithFormat:@"%@",[_TimeArray objectAtIndex:i]];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd  hh:mm"];
+        NSDate *dateFromString = [[NSDate alloc] init];
+        dateFromString = [dateFormatter dateFromString:dateString];
+        [dateFormatter release];
+        
+        
+        UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+        if (localNotif == nil)
+            return;
+        localNotif.fireDate = dateFromString;
+        localNotif.timeZone = [NSTimeZone systemTimeZone];
+        localNotif.alertBody = [NSString stringWithFormat:@"%@",name.text ];
+        localNotif.alertAction = @"View";
+        localNotif.soundName = UILocalNotificationDefaultSoundName;
+        localNotif.applicationIconBadgeNumber = 0;
+        NSString*s=[NSString stringWithFormat:@"%@",type];
+        if([s isEqualToString:@"Daily"])
+        {
+            localNotif.repeatInterval = NSDayCalendarUnit;
+        }
+        else
+        {
+            localNotif.repeatInterval = 0;
+        }
+        
+        //   NSDictionary *infoDict = [NSDictionary dictionaryWithObject:localNotif.fireDate forKey:@"date"];
+        //   localNotif.userInfo = infoDict;
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+        // [localNotif release];
+    }
     
 }
 
@@ -1326,59 +1354,59 @@ AppSharedInstance *instance;
     [recordDict setObject:type forKey:@"type"];
     
     ////NSLog(@"Type:%@",type);
-   // if([type isEqualToString:@"Once"])
-   // {
-        
-        
+    // if([type isEqualToString:@"Once"])
+    // {
+    
+    
     NSString *str=name.text;
     [[NSUserDefaults standardUserDefaults]setObject:_TimeArray forKey:str];
- 
+    
     NSString *str1=[NSString stringWithFormat:@"once%@",name.text];
     //NSLog(@"ONCEKK:%@",str1);
     [[NSUserDefaults standardUserDefaults]setObject:_onceTime forKey:str1];
     
     
-        NSMutableArray*m=[[NSUserDefaults standardUserDefaults]objectForKey:str];
+    NSMutableArray*m=[[NSUserDefaults standardUserDefaults]objectForKey:str];
     //    [self setLocalNotifi];
-        [self setLocalNotifi];
-      //  fromd.text=@"FromDate";
-      //  tod.text=@"Todate";
-  //  }
-  //  else
-   // {
-        
-        [recordDict setObject:fromd.text forKey:@"fromd"];
-        [recordDict setObject:tod.text forKey:@"tod"];
-         [recordDict setObject:tim.text forKey:@"notes"];
-   // }
+    [self setLocalNotifi];
+    //  fromd.text=@"FromDate";
+    //  tod.text=@"Todate";
+    //  }
+    //  else
+    // {
+    
+    [recordDict setObject:fromd.text forKey:@"fromd"];
+    [recordDict setObject:tod.text forKey:@"tod"];
+    [recordDict setObject:tim.text forKey:@"notes"];
+    // }
     
     
     
-  
-      
+    
+    
     ////NSLog(@"DGD");
     
     
 	[self dismissKeyboard];
-	if ([self checkField]) 
+	if ([self checkField])
     {
 		if ([[recordDict objectForKey:@"pk"] intValue] > 0)
         {
 			[instance updatePet:recordDict];
-        ////NSLog(@"updateraja:%i",[[recordDict objectForKey:@"pk"] intValue]);
-                [self.navigationController popViewControllerAnimated:YES];
+            ////NSLog(@"updateraja:%i",[[recordDict objectForKey:@"pk"] intValue]);
+            [self.navigationController popViewControllerAnimated:YES];
         }
 		else
         {
-                ////NSLog(@"updaterajaNNNN:%@",[recordDict objectForKey:@"name"] );
-		
+            ////NSLog(@"updaterajaNNNN:%@",[recordDict objectForKey:@"name"] );
             
-            NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"]; 
+            
+            NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
             ////NSLog(@"runnumm:%@",runNumber);
             NSString *resultResponse=[self HttpPostEntityFirst:@"userid" ForValue1:runNumber EntitySecond:@"authkey" ForValue2:@"rzTFevN099Km39PV"];
             
             ////NSLog(@"********%@",resultResponse);
-             ////NSLog(@"vavavavavaavraja:%i",[[recordDict objectForKey:@"pk"] intValue]);
+            ////NSLog(@"vavavavavaavraja:%i",[[recordDict objectForKey:@"pk"] intValue]);
             
             NSError *error;
             
@@ -1392,7 +1420,7 @@ AppSharedInstance *instance;
                 ////NSLog(@"RAJA");
                 
             }
-            else 
+            else
             {
                 
                 NSDictionary* menu = [luckyNumbers objectForKey:@"serviceresponse"];
@@ -1400,15 +1428,18 @@ AppSharedInstance *instance;
                 
                 
                 
-                if ([[menu objectForKey:@"servicename"] isEqualToString:@"Medicine Details"]) 
+                if ([[menu objectForKey:@"servicename"] isEqualToString:@"Medicine Details"])
                 {
-                    if ([[menu objectForKey:@"message"] isEqualToString:@"Already Exist"]) 
+                    if ([[menu objectForKey:@"message"] isEqualToString:@"Already Exist"])
                     {
                         
-                        UIAlertView *mes6=[[UIAlertView alloc] initWithTitle:@"INFO" message:@"Medicine Already Exist" delegate:self cancelButtonTitle:@"Login" otherButtonTitles:nil, nil];
-                        [mes6 show];
-                        [mes6 release];
                         
+                        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Medicine Already Exist."];
+                        
+                        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+                        [alert setDestructiveButtonWithTitle:@"x" block:nil];
+                        [alert show];
+
                     }
                     else
                     {
@@ -1416,15 +1447,15 @@ AppSharedInstance *instance;
                     }
                 }
             }
-                        
             
             
-        
+            
+            
             [instance insertPet:recordDict];
-            	
+            
             [self.navigationController popViewControllerAnimated:YES];
         }
-	
+        
 	}
 	
 }
@@ -1444,12 +1475,12 @@ AppSharedInstance *instance;
 		msg = @"Medicine name cannot be empty";
 	
     if ([msg length] > 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:msg
-                                                       delegate:self 
-                                              cancelButtonTitle:@"OK" 
-                                              otherButtonTitles:nil];
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Medicine Name cannot be Empty."];
+        
+        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+        [alert setDestructiveButtonWithTitle:@"x" block:nil];
         [alert show];
-        [alert release];
+
         return NO;
     }
     else
@@ -1463,19 +1494,19 @@ AppSharedInstance *instance;
 		[currentField resignFirstResponder];
 		[self showDatePicker];
 		return NO;
-	} else 
+	} else
 		if (textField.tag == 4)
 			return NO;
 		else
 			[self dismissDatePicker];
 	return YES;
 	
-} 
+}
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {	
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
 	currentField=textField;
 	[self moveUp:textField];
-}  
+}
 
 // when DONE key on keyboard is pressed
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -1503,8 +1534,8 @@ AppSharedInstance *instance;
 						[recordDict setObject:textField.text forKey:@"akc"];
     
     [recordDict setObject:type forKey:@"type"];
-     NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
-      [recordDict setObject:UserId forKey:@"patid"];
+    NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
+    [recordDict setObject:UserId forKey:@"patid"];
     
 }
 
@@ -1566,7 +1597,7 @@ AppSharedInstance *instance;
 	[UIView setAnimationDidStopSelector:@selector(removeDatePickerFromParent)];
 	
 	frames.origin.y = CGRectGetMaxY(self.view.bounds);
-	self.dobPicker.frame = frames;	
+	self.dobPicker.frame = frames;
 	[UIView commitAnimations];
 	
 }
@@ -1596,9 +1627,9 @@ AppSharedInstance *instance;
 
 
 - (void)dealloc {
-  
-  
-      [super dealloc];
+    
+    
+    [super dealloc];
 }
 
 
