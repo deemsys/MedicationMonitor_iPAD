@@ -14,6 +14,8 @@
 	IBOutlet UITableView *myTable;
 	IBOutlet UILabel *noPet;
 	IBOutlet UIImageView *bgImage;
+    int i;
+    IBOutlet UILabel *nolab;
   
     BOOL share1;
     int savedValue;
