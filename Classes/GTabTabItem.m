@@ -37,7 +37,7 @@
 -(void)toggleOn:(BOOL)state {
 	_on = state;
 	[self setSelected:_on];
-}
+    }
 
 -(void)toggle {
 	[self setSelected:_on];
@@ -47,7 +47,7 @@
 	//send notification of the button that was currently pressed
   
 	[self.delegate selectedItem:target];
-  
+ // [self.delegate setEnabled:FALSE];
 }
 - (void)dealloc {
     [super dealloc];
