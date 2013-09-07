@@ -19,6 +19,8 @@
     int savedValue;
     NSString*reminderFile;
     NSMutableArray *_RemaindersArray;
+    int k;
+    IBOutlet UILabel*nolab;
     
     NSMutableDictionary *dictionary;
     NSString *dicfile;
