@@ -43,10 +43,36 @@ AppSharedInstance *instance;
 }
 - (void)viewDidLoad {
     
-    
+    UIImageView *i=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"BG.jpg"]];
     
     //NSLog(@"APPONment");
     [super viewDidLoad];
+    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
+    {
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"Top_Panel.png"] forBarMetrics:UIBarMetricsDefault];
+        
+        
+    }
+    ADLivelyTableView * livelyTableView = (ADLivelyTableView *)myTable;
+    livelyTableView.initialCellTransformBlock = ADLivelyTransformFan;
+    
+    if(i>0)
+        nolab.text=@" ";
+    else
+        nolab.text=@"You can view your list of appointments here..";
+    
+    share1=NO;
+    // self.title = @"Medication Monitor";
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont boldSystemFontOfSize:20.0];
+    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    label.textAlignment = UITextAlignmentCenter;
+    label.textColor = [UIColor whiteColor]; // change this color
+    self.navigationItem.titleView = label;
+    label.text = NSLocalizedString(@"Appointments", @"");
+    [label sizeToFit];
+   
     
    // [[UIApplication sharedApplication] cancelAllLocalNotifications];
     myTable.backgroundColor = [UIColor clearColor];
@@ -84,7 +110,7 @@ AppSharedInstance *instance;
     //NSLog(@"APP-D-ARRA:%i",[_AppDArr count]);
     //NSLog(@"APP-N-ARR:%i",[_AppNArr count]);
     
-    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
+   /* if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
     {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"Top_Panel.png"] forBarMetrics:UIBarMetricsDefault];
       
@@ -103,7 +129,7 @@ AppSharedInstance *instance;
     label.textAlignment = UITextAlignmentCenter;
     label.textColor = [UIColor whiteColor]; // change this color
     self.navigationItem.titleView = label;
-    label.text = NSLocalizedString(@"Appoinment", @"");
+    label.text = NSLocalizedString(@"Appoinments", @"");
     [label sizeToFit];
     
    	myTable.rowHeight=100;
@@ -113,8 +139,15 @@ AppSharedInstance *instance;
 	[myTable reloadData];
     
   
+    */
+
     
+   	myTable.rowHeight=100;
+	myTable.separatorColor = [UIColor clearColor];
 	
+    
+	[myTable reloadData];
+
 }
 
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl 
@@ -239,7 +272,9 @@ AppSharedInstance *instance;
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [_AppDArr count];
+	i=_AppDArr;
+    return [_AppDArr count];
+    
 }
 
 
@@ -321,7 +356,7 @@ reuseIdentifier:CellIdentifier]
 		topLabel.tag = TOP_LABEL_TAG;
 		topLabel.backgroundColor = [UIColor clearColor];
 		topLabel.textColor = [UIColor colorWithRed:0.25 green:0.0 blue:0.0 alpha:1.0];
-		topLabel.highlightedTextColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.9 alpha:1.0];
+		topLabel.highlightedTextColor = [UIColor redColor];
 		topLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]];
         
 		//
@@ -346,7 +381,7 @@ reuseIdentifier:CellIdentifier]
 		bottomLabel.tag = BOTTOM_LABEL_TAG;
 		bottomLabel.backgroundColor = [UIColor clearColor];
 		bottomLabel.textColor = [UIColor colorWithRed:0.25 green:0.0 blue:0.0 alpha:1.0];
-		bottomLabel.highlightedTextColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.9 alpha:1.0];
+		bottomLabel.highlightedTextColor = [UIColor redColor];
 		bottomLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize] - 2];
         
 		//
@@ -456,6 +491,9 @@ reuseIdentifier:CellIdentifier]
 	[self.navigationController pushViewController:petViewController animated:YES];
 	[petViewController release];*/
 }
+
+
+
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	
