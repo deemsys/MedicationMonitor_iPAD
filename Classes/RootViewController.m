@@ -136,7 +136,7 @@ AppSharedInstance *instance;
      [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
       [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
 	self.petArray = [instance getPet];
-       NSLog(@"self.petarray:%@",self.petArray);
+       NSLog(@"self.petarray in medication:%@",self.petArray);
     NSMutableArray*a=[[NSMutableArray alloc]init];
    // for (id anUpdate in self.petArray)
   //  {

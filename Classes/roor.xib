@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12B2080</string>
+		<string key="IBDocument.SystemVersion">12C3103</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187</string>
-		<string key="IBDocument.HIToolboxVersion">624.00</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -4837,7 +4837,7 @@ AAgAAf/AAAP/eAAB/7gAAf+4AAAzLAABAAEAAQABA</bytes>
 							<object class="IBUIImageView" id="933623740">
 								<reference key="NSNextResponder" ref="582553335"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{323, 11}, {78, 80}}</string>
+								<string key="NSFrame">{{15, 12}, {86, 79}}</string>
 								<reference key="NSSuperview" ref="582553335"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>

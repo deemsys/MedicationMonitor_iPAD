@@ -18,8 +18,9 @@
     BOOL share1;
     int savedValue;
     NSString*reminderFile;
-    NSMutableArray *_RemaindersArray;
     int k;
+    NSMutableArray *_RemaindersArray;
+   
     IBOutlet UILabel*nolab;
     
     NSMutableDictionary *dictionary;

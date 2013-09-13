@@ -163,7 +163,7 @@ AppSharedInstance *instance;
         
 
 		//NSMutableArray*array=[dictionaryArray objectAtIndex:0];
-        //NSLog(@"CCCCCCCCCC:%i",[array  count]);
+        NSLog(@"CCCCCCCCCC:%i",[array  count]);
 	}
 	else
 	{
@@ -174,7 +174,7 @@ AppSharedInstance *instance;
     
     
     
-    //NSLog(@"RemaindersArrayCount:%i",[_RemaindersArray count]);
+    NSLog(@"RemaindersArrayCount:%i",[_RemaindersArray count]);
  	//UIImage *barButton = [UIImage imageNamed:@"Edit.png"];
    // [[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 	
@@ -272,17 +272,6 @@ AppSharedInstance *instance;
     [super viewWillAppear:animated];
     
     	
-    
-    k=[petArray count];
-    if(k>0)
-    {
-        nolab.text=@" ";
-        
-    }
-    else{
-        nolab.text=@"Click +Add Remainder To Add Remainder Details";
-        
-    }
 
     
     
@@ -327,7 +316,17 @@ AppSharedInstance *instance;
       [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
 	
 	[myTable reloadData];
-    
+    if ([petArray count] > 0){
+		nolab.hidden=YES;
+        nolab.text=@" ";
+		bgImage.image = [UIImage imageNamed:@"Background.jpg"];
+	}
+	else{
+		nolab.hidden=NO;
+        nolab.text=@"";
+		//bgImage.image = [UIImage imageNamed:@"firstbg.png"];
+	}
+
     //[myTable reloadData];
     
      //NSLog(@"raja1mmmmmm:%i",[_RemaindersArray count]);

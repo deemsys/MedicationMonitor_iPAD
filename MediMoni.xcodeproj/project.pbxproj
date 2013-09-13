@@ -31,6 +31,9 @@
 		0D9FD07817D8A5500092B5D8 /* arrowtext.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9FD07717D8A5500092B5D8 /* arrowtext.png */; };
 		0D9FD07A17D8A5560092B5D8 /* arrowredtext.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9FD07917D8A5560092B5D8 /* arrowredtext.png */; };
 		0DA3D33B17D4D0150012DD57 /* adddate&time.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3D33A17D4D0070012DD57 /* adddate&time.png */; };
+		0DC2384417E0714D00153870 /* Default-Portrait~ipad3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC2384317E0714D00153870 /* Default-Portrait~ipad3.png */; };
+		0DC2384617E0715100153870 /* Default-Portrait~ipad4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC2384517E0715100153870 /* Default-Portrait~ipad4.png */; };
+		0DC2384717E0719E00153870 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C84AF0CA15C6534900720A1D /* Default-Portrait~ipad.png */; };
 		1D3623260D0F684500981E51 /* MediMoniAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MediMoniAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -136,8 +139,6 @@
 		C84AC44A15C9072400F1BFD3 /* Addremainder.xib in Resources */ = {isa = PBXBuildFile; fileRef = C84AC44815C9072400F1BFD3 /* Addremainder.xib */; };
 		C84AC4BA15C9479600F1BFD3 /* Welcome.m in Sources */ = {isa = PBXBuildFile; fileRef = C84AC4B815C9479600F1BFD3 /* Welcome.m */; };
 		C84AC4BB15C9479600F1BFD3 /* Welcome.xib in Resources */ = {isa = PBXBuildFile; fileRef = C84AC4B915C9479600F1BFD3 /* Welcome.xib */; };
-		C84AF0CB15C6534900720A1D /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C84AF0CA15C6534900720A1D /* Default-Portrait~ipad.png */; };
-		C84AF0CE15C6535500720A1D /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C84AF0CD15C6535500720A1D /* Default-Portrait@2x~ipad.png */; };
 		C84BA96A1608979600F6EBF7 /* que.xib in Resources */ = {isa = PBXBuildFile; fileRef = C84BA9671608979600F6EBF7 /* que.xib */; };
 		C84BA96B1608979600F6EBF7 /* que.m in Sources */ = {isa = PBXBuildFile; fileRef = C84BA9681608979600F6EBF7 /* que.m */; };
 		C84BA96E1608A03F00F6EBF7 /* Request.png in Resources */ = {isa = PBXBuildFile; fileRef = C84BA96D1608A03F00F6EBF7 /* Request.png */; };
@@ -262,6 +263,8 @@
 		0D9FD07717D8A5500092B5D8 /* arrowtext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowtext.png; sourceTree = "<group>"; };
 		0D9FD07917D8A5560092B5D8 /* arrowredtext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowredtext.png; sourceTree = "<group>"; };
 		0DA3D33A17D4D0070012DD57 /* adddate&time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adddate&time.png"; sourceTree = "<group>"; };
+		0DC2384317E0714D00153870 /* Default-Portrait~ipad3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad3.png"; sourceTree = "<group>"; };
+		0DC2384517E0715100153870 /* Default-Portrait~ipad4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad4.png"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* MediMoniAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediMoniAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* MediMoniAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediMoniAppDelegate.m; sourceTree = "<group>"; };
@@ -392,7 +395,6 @@
 		C84AC4B815C9479600F1BFD3 /* Welcome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Welcome.m; sourceTree = "<group>"; };
 		C84AC4B915C9479600F1BFD3 /* Welcome.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Welcome.xib; sourceTree = "<group>"; };
 		C84AF0CA15C6534900720A1D /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
-		C84AF0CD15C6535500720A1D /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "../Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		C84BA9671608979600F6EBF7 /* que.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = que.xib; sourceTree = "<group>"; };
 		C84BA9681608979600F6EBF7 /* que.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = que.m; sourceTree = "<group>"; };
 		C84BA9691608979600F6EBF7 /* que.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = que.h; sourceTree = "<group>"; };
@@ -616,6 +618,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				0DC2384517E0715100153870 /* Default-Portrait~ipad4.png */,
+				0DC2384317E0714D00153870 /* Default-Portrait~ipad3.png */,
 				C8FD0232165678EF00580FD7 /* Icon-112.png */,
 				0D9FD07317D8718C0092B5D8 /* Agearrow.png */,
 				C8FD02291656761C00580FD7 /* Icon-72.png */,
@@ -784,7 +788,6 @@
 		C815911715D0E46000F1E3D8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				C84AF0CD15C6535500720A1D /* Default-Portrait@2x~ipad.png */,
 				0D9E5FEF17CF624B002CB015 /* TAB IMAGES */,
 				C84AF0CA15C6534900720A1D /* Default-Portrait~ipad.png */,
 				C8FF1F8315C7B164001E546A /* touchbee_small.png */,
@@ -1194,8 +1197,6 @@
 				C8E6B7CB15C27BA400155290 /* soundbar_plate_mono.png in Resources */,
 				C8E6B7E415C27E2D00155290 /* AudioRecord.xib in Resources */,
 				C849DE2B15C2B94C00B1B000 /* au1.caf in Resources */,
-				C84AF0CB15C6534900720A1D /* Default-Portrait~ipad.png in Resources */,
-				C84AF0CE15C6535500720A1D /* Default-Portrait@2x~ipad.png in Resources */,
 				C8F243AA15C6B10F00FCCB6B /* LoginScreen.xib in Resources */,
 				C8F2446715C6B82700FCCB6B /* Login1.png in Resources */,
 				C8FF1F8215C7B15D001E546A /* 60-x.png in Resources */,
@@ -1312,6 +1313,9 @@
 				0D99686417D9A372008CB6CF /* roor.xib in Resources */,
 				0D99687717DA5DFB008CB6CF /* AddMedi.xib in Resources */,
 				0D99687917DB0021008CB6CF /* adddate&time.png in Resources */,
+				0DC2384417E0714D00153870 /* Default-Portrait~ipad3.png in Resources */,
+				0DC2384617E0715100153870 /* Default-Portrait~ipad4.png in Resources */,
+				0DC2384717E0719E00153870 /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1389,6 +1393,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: JACOB BENJAMIN (EQSE4S4WK5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JACOB BENJAMIN (EQSE4S4WK5)";
 				COPY_PHASE_STRIP = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1397,6 +1403,8 @@
 				INFOPLIST_FILE = "MediMoni-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = MediMoni;
+				PROVISIONING_PROFILE = "72C6E226-1792-42FA-8FDB-D7519EADE4A1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "72C6E226-1792-42FA-8FDB-D7519EADE4A1";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1406,14 +1414,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: JACOB BENJAMIN (EQSE4S4WK5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MediMoni_Prefix.pch;
 				INFOPLIST_FILE = "MediMoni-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = MediMoni;
+				PROVISIONING_PROFILE = "72C6E226-1792-42FA-8FDB-D7519EADE4A1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "72C6E226-1792-42FA-8FDB-D7519EADE4A1";
 				TARGETED_DEVICE_FAMILY = 2;
-				VALIDATE_PRODUCT = NO;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -1421,13 +1433,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JACOB BENJAMIN (EQSE4S4WK5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JACOB BENJAMIN (EQSE4S4WK5)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "8CC2EBDC-F8F8-464E-9563-AEFE8FB9295E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8CC2EBDC-F8F8-464E-9563-AEFE8FB9295E";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1437,14 +1451,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JACOB BENJAMIN (EQSE4S4WK5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "8CC2EBDC-F8F8-464E-9563-AEFE8FB9295E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1454,14 +1470,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JACOB BENJAMIN (EQSE4S4WK5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JACOB BENJAMIN (EQSE4S4WK5)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "8CC2EBDC-F8F8-464E-9563-AEFE8FB9295E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8CC2EBDC-F8F8-464E-9563-AEFE8FB9295E";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1471,14 +1489,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: JACOB BENJAMIN (EQSE4S4WK5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JACOB BENJAMIN (EQSE4S4WK5)";
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MediMoni_Prefix.pch;
 				INFOPLIST_FILE = "MediMoni-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = MediMoni;
+				PROVISIONING_PROFILE = "72C6E226-1792-42FA-8FDB-D7519EADE4A1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "72C6E226-1792-42FA-8FDB-D7519EADE4A1";
 				TARGETED_DEVICE_FAMILY = 2;
-				VALIDATE_PRODUCT = NO;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Adhoc;
 		};
@@ -1486,14 +1508,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JACOB BENJAMIN (EQSE4S4WK5)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "8CC2EBDC-F8F8-464E-9563-AEFE8FB9295E";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1503,14 +1527,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: JACOB BENJAMIN (EQSE4S4WK5)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MediMoni_Prefix.pch;
 				INFOPLIST_FILE = "MediMoni-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = MediMoni;
+				PROVISIONING_PROFILE = "72C6E226-1792-42FA-8FDB-D7519EADE4A1";
+				"PROVISIONING_PROFILE[sdk=*]" = "72C6E226-1792-42FA-8FDB-D7519EADE4A1";
 				TARGETED_DEVICE_FAMILY = 2;
-				VALIDATE_PRODUCT = NO;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;
 		};

@@ -950,7 +950,7 @@ AppSharedInstance *instance;
 	}
     
      
-  //////NSLog(@"SELF>_ASSQUES::::%@",  self._assQues);
+ // NSLog(@"SELF>_ASSANS::::%@",  self._assAns);
 //  ////NSLog(@"SELF>_ASSAns::::%@",  [self._assQues objectAtIndex:0]);
     
     
@@ -1209,6 +1209,23 @@ for (id anUpdate in self._assQues)
     [_QuestionArray addObject:question.text];
     [_AnswerArray addObject:but.titleLabel.text];
    //       [button setSelected:NO];
+   SelectAns=but.titleLabel.text;
+    
+    [self.view viewWithTag:2048].hidden=NO;
+    //       [button setSelected:NO];
+    for(int i=0;i< [buttonsToRemove count];i++)
+    {
+      UIButton*but=[buttonsToRemove objectAtIndex:i];
+        if([but isSelected])
+        {
+            [but setSelected:NO];
+            [but setImage:[UIImage imageNamed:@"AAUnselect.png"] forState:UIControlStateNormal];
+        }
+        
+        
+    }
+    
+
   if([but isSelected])
   {
       [but setSelected:NO];
@@ -1386,6 +1403,8 @@ for (id anUpdate in self._assQues)
             }
             else
             {
+                
+
               
              ////NSLog(@"YES");
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1398,7 +1417,8 @@ for (id anUpdate in self._assQues)
                 button.center=CGPointMake(134, 300+x);
                [button setImage:[UIImage imageNamed:@"AAUnselect.png"] forState:UIControlStateNormal];
                 [self.view addSubview:button];
-           
+           button.tag=x;
+                 [buttonsToRemove addObject:button];
                 
                 UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
                 label.backgroundColor = [UIColor clearColor];

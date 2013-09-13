@@ -27,7 +27,7 @@
 
 -(IBAction)FaceClicked
 {
-    [[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString: @"facetime://+441 34 5343"]];
+    [[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString: @"facetime:12345678"]];
 //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"facetime://tel-number"]];
 
 }
@@ -91,7 +91,7 @@
         // only for iPad
         // mailer.modalPresentationStyle = UIModalPresentationPageSheet;
         
-        [self presentModalViewController:mailer animated:YES];
+        [self presentModalViewController:mailer animated:YES ];
         
         [mailer release];
     }
@@ -130,23 +130,23 @@
 	switch (result)
 	{
 		case MFMailComposeResultCancelled:
-			//NSLog(@"Mail cancelled: you cancelled the operation and no email message was queued");
+			NSLog(@"Mail cancelled: you cancelled the operation and no email message was queued");
 			break;
 		case MFMailComposeResultSaved:
-			//NSLog(@"Mail saved: you saved the email message in the Drafts folder");
+			NSLog(@"Mail saved: you saved the email message in the Drafts folder");
 			break;
 		case MFMailComposeResultSent:
-			//NSLog(@"Mail send: the email message is queued in the outbox. It is ready to send the next time the user connects to email");
+			NSLog(@"Mail send: the email message is queued in the outbox. It is ready to send the next time the user connects to email");
 			break;
 		case MFMailComposeResultFailed:
-			//NSLog(@"Mail failed: the email message was nog saved or queued, possibly due to an error");
+			NSLog(@"Mail failed: the email message was nog saved or queued, possibly due to an error");
 			break;
 		default:
 			//NSLog(@"Mail not sent");
 			break;
 	}
     
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissModalViewControllerAnimated:YES ];
 }
 
 - (void)viewDidLoad
