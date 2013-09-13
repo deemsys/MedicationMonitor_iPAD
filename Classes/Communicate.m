@@ -27,12 +27,13 @@
 
 -(IBAction)FaceClicked
 {
-    [[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString: @"facetime:12345678"]];
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"facetime:///"]];
 //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"facetime://tel-number"]];
 
 }
 -(IBAction)SkypeClicked
 {
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"skype:///"]];
  //   NSString* urlString = [NSString stringWithFormat:@\"skype://%@?call\", raja.seenivasan];
                        //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 }

@@ -163,6 +163,7 @@
     {
         NSString *remuse=[[NSUserDefaults standardUserDefaults]objectForKey:@"remuser"];
          NSString *rempass=[[NSUserDefaults standardUserDefaults]objectForKey:@"rempass"];
+        
         name.text=remuse;
         pass.text=rempass;
             [rem setSelected:YES];

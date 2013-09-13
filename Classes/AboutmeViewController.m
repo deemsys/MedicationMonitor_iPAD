@@ -32,7 +32,7 @@ AppSharedInstance *instance;
     [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
     [super viewWillAppear:animated];
     iButton.titleLabel.text=@"No image";
-    [iButton setImage:[UIImage imageNamed:@"Camera.png"] forState:UIControlStateNormal];
+    [iButton setImage:[UIImage imageNamed:@"noimage.png"] forState:UIControlStateNormal];
     
     //  _TimeArray=[[NSMutableArray alloc]init];
     
