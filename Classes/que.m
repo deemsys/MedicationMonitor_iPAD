@@ -648,7 +648,7 @@ AppSharedInstance *instance;
                 [button setTitle:@"OK"  forState:UIControlStateNormal];
                 button.frame = CGRectMake(40.0, 210.0, 42, 38);
                 button.center=CGPointMake(134, 300+x);
-                [button setImage:[UIImage imageNamed:@"AAUnselect.png"] forState:UIControlStateNormal];
+                [button setImage:[UIImage imageNamed:@"unselect2.png"] forState:UIControlStateNormal];
                 [self.view addSubview:button];
                 button.tag=x;
                 
@@ -1219,7 +1219,7 @@ for (id anUpdate in self._assQues)
         if([but isSelected])
         {
             [but setSelected:NO];
-            [but setImage:[UIImage imageNamed:@"AAUnselect.png"] forState:UIControlStateNormal];
+            [but setImage:[UIImage imageNamed:@"unselect2.png"] forState:UIControlStateNormal];
         }
         
         
@@ -1229,11 +1229,11 @@ for (id anUpdate in self._assQues)
   if([but isSelected])
   {
       [but setSelected:NO];
-        [but setImage:[UIImage imageNamed:@"AAUnselect.png"] forState:UIControlStateNormal];
+        [but setImage:[UIImage imageNamed:@"unselect2.png"] forState:UIControlStateNormal];
   }
     else
     {
-          [but setImage:[UIImage imageNamed:@"AASelect.png"] forState:UIControlStateNormal];
+          [but setImage:[UIImage imageNamed:@"select2.png"] forState:UIControlStateNormal];
          [but setSelected:YES];
     }
     
@@ -1289,7 +1289,7 @@ for (id anUpdate in self._assQues)
         if([but isSelected])
         {
             [but setSelected:NO];
-            [but setImage:[UIImage imageNamed:@"AAUnselect.png"] forState:UIControlStateNormal];
+            [but setImage:[UIImage imageNamed:@"unselect2.png"] forState:UIControlStateNormal];
         }
 
         
@@ -1298,11 +1298,11 @@ for (id anUpdate in self._assQues)
     if([but isSelected])
     {
         [but setSelected:NO];
-        [but setImage:[UIImage imageNamed:@"AAUnselect.png"] forState:UIControlStateNormal];
+        [but setImage:[UIImage imageNamed:@"unselect2.png"] forState:UIControlStateNormal];
     }
     else
     {
-        [but setImage:[UIImage imageNamed:@"AASelect.png"] forState:UIControlStateNormal];
+        [but setImage:[UIImage imageNamed:@"select2.png"] forState:UIControlStateNormal];
         [but setSelected:YES];
     }
   
@@ -1415,7 +1415,7 @@ for (id anUpdate in self._assQues)
                 [button setTitle:@"OK"  forState:UIControlStateNormal];
                 button.frame = CGRectMake(40.0, 210.0, 42, 38);
                 button.center=CGPointMake(134, 300+x);
-               [button setImage:[UIImage imageNamed:@"AAUnselect.png"] forState:UIControlStateNormal];
+               [button setImage:[UIImage imageNamed:@"unselect2.png"] forState:UIControlStateNormal];
                 [self.view addSubview:button];
            button.tag=x;
                  [buttonsToRemove addObject:button];

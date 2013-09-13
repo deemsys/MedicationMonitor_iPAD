@@ -14,6 +14,8 @@
 		0D99686717D9A37F008CB6CF /* AboutmeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D99686617D9A37F008CB6CF /* AboutmeViewController.m */; };
 		0D99687717DA5DFB008CB6CF /* AddMedi.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D99687617DA5DFB008CB6CF /* AddMedi.xib */; };
 		0D99687917DB0021008CB6CF /* adddate&time.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D99687817DB0021008CB6CF /* adddate&time.png */; };
+		0D9CBFEC17E3B77500A067D5 /* select2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9CBFEA17E3B77500A067D5 /* select2.png */; };
+		0D9CBFED17E3B77500A067D5 /* unselect2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9CBFEB17E3B77500A067D5 /* unselect2.png */; };
 		0D9E5FD417CF194E002CB015 /* LoginBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9E5FD317CF194E002CB015 /* LoginBG.png */; };
 		0D9E5FD617CF1BCA002CB015 /* Medications2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9E5FD517CF1BCA002CB015 /* Medications2.png */; };
 		0D9E5FDC17CF1C51002CB015 /* Appointments2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9E5FDB17CF1C51002CB015 /* Appointments2.png */; };
@@ -90,8 +92,6 @@
 		C81E014415BFFA5F0048A67E /* Audio1.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E014215BFFA5F0048A67E /* Audio1.png */; };
 		C81E014515BFFA5F0048A67E /* Notes1.png in Resources */ = {isa = PBXBuildFile; fileRef = C81E014315BFFA5F0048A67E /* Notes1.png */; };
 		C81ED896163A683B00DF3E42 /* NExt.png in Resources */ = {isa = PBXBuildFile; fileRef = C81ED895163A683B00DF3E42 /* NExt.png */; };
-		C8244923161DB771003E36B2 /* AASelect.png in Resources */ = {isa = PBXBuildFile; fileRef = C8244921161DB771003E36B2 /* AASelect.png */; };
-		C8244924161DB771003E36B2 /* AAUnselect.png in Resources */ = {isa = PBXBuildFile; fileRef = C8244922161DB771003E36B2 /* AAUnselect.png */; };
 		C826E09D15BFCDAC003ADC12 /* BG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C826E09C15BFCDAC003ADC12 /* BG.jpg */; };
 		C826E0AE15BFCFB6003ADC12 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = C826E0AA15BFCFB6003ADC12 /* UIImage+Resize.m */; };
 		C826E0BE15BFD769003ADC12 /* petlove1.0.db in Resources */ = {isa = PBXBuildFile; fileRef = C826E0BD15BFD769003ADC12 /* petlove1.0.db */; };
@@ -247,6 +247,8 @@
 		0D99686617D9A37F008CB6CF /* AboutmeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutmeViewController.m; sourceTree = "<group>"; };
 		0D99687617DA5DFB008CB6CF /* AddMedi.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddMedi.xib; sourceTree = "<group>"; };
 		0D99687817DB0021008CB6CF /* adddate&time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "adddate&time.png"; path = "Classes/adddate&time.png"; sourceTree = "<group>"; };
+		0D9CBFEA17E3B77500A067D5 /* select2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select2.png; sourceTree = "<group>"; };
+		0D9CBFEB17E3B77500A067D5 /* unselect2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unselect2.png; sourceTree = "<group>"; };
 		0D9E5FD317CF194E002CB015 /* LoginBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBG.png; sourceTree = "<group>"; };
 		0D9E5FD517CF1BCA002CB015 /* Medications2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Medications2.png; sourceTree = "<group>"; };
 		0D9E5FDB17CF1C51002CB015 /* Appointments2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Appointments2.png; sourceTree = "<group>"; };
@@ -332,8 +334,6 @@
 		C81E014215BFFA5F0048A67E /* Audio1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Audio1.png; sourceTree = "<group>"; };
 		C81E014315BFFA5F0048A67E /* Notes1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Notes1.png; sourceTree = "<group>"; };
 		C81ED895163A683B00DF3E42 /* NExt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NExt.png; sourceTree = "<group>"; };
-		C8244921161DB771003E36B2 /* AASelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AASelect.png; sourceTree = "<group>"; };
-		C8244922161DB771003E36B2 /* AAUnselect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AAUnselect.png; sourceTree = "<group>"; };
 		C826E09C15BFCDAC003ADC12 /* BG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BG.jpg; sourceTree = "<group>"; };
 		C826E0A715BFCFB6003ADC12 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		C826E0A815BFCFB6003ADC12 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
@@ -690,8 +690,6 @@
 				C836CF3816043F6F0010711E /* Reminders1 */,
 				C8EE67BA16218B4100D20641 /* Music File.png */,
 				C8F116001621675E0016AFF4 /* 72x72.png */,
-				C8244921161DB771003E36B2 /* AASelect.png */,
-				C8244922161DB771003E36B2 /* AAUnselect.png */,
 				0D9E5FDD17CF1D46002CB015 /* addreminderdemo.png */,
 				C8D8DD001614552000D6FB07 /* Daily.jpg */,
 				C8D8DCFE1614526E00D6FB07 /* Once.png */,
@@ -1091,6 +1089,8 @@
 		C8FF1FE515C806F6001E546A /* Remainder */ = {
 			isa = PBXGroup;
 			children = (
+				0D9CBFEA17E3B77500A067D5 /* select2.png */,
+				0D9CBFEB17E3B77500A067D5 /* unselect2.png */,
 				C84AC43F15C9031F00F1BFD3 /* AddRemainder */,
 				C8FF1FE715C80743001E546A /* Cremainder.h */,
 				C8FF1FE815C80743001E546A /* Cremainder.m */,
@@ -1266,8 +1266,6 @@
 				C8EE081F16142342005208DF /* Remove_Time.png in Resources */,
 				C8D8DCFF1614526E00D6FB07 /* Once.png in Resources */,
 				C8D8DD011614552000D6FB07 /* Daily.jpg in Resources */,
-				C8244923161DB771003E36B2 /* AASelect.png in Resources */,
-				C8244924161DB771003E36B2 /* AAUnselect.png in Resources */,
 				C8F116011621675E0016AFF4 /* 72x72.png in Resources */,
 				C8EE67BB16218B4100D20641 /* Music File.png in Resources */,
 				C8E5AEBD16391E7100C8D6FE /* Medig.png in Resources */,
@@ -1320,6 +1318,8 @@
 				0DC2384617E0715100153870 /* Default-Portrait~ipad4.png in Resources */,
 				0DC2384717E0719E00153870 /* Default-Portrait~ipad.png in Resources */,
 				0D94C15217E3861B00B6ED22 /* noimage.png in Resources */,
+				0D9CBFEC17E3B77500A067D5 /* select2.png in Resources */,
+				0D9CBFED17E3B77500A067D5 /* unselect2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

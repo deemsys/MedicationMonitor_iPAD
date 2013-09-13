@@ -34,8 +34,8 @@
 
 
 - (void)viewDidLoad {
- 
-  [super viewDidLoad];
+    
+    [super viewDidLoad];
     
     if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
     {
@@ -54,7 +54,7 @@
 	redSC.thumb.tintColor = [UIColor redColor];
     redSC. font = [UIFont boldSystemFontOfSize:20];
     redSC.height=55;
-     [self.view addSubview:redSC];
+    [self.view addSubview:redSC];
 	
 	redSC.center = CGPointMake(384, 408);
     redSC.tag = 2;
@@ -68,7 +68,7 @@
     
     NSString*ProDFilel=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProDFilel"]];
     NSString*ProNamfilel=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProNamfilel"]];
-  
+    
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:ProDFile])
 	{
@@ -81,7 +81,7 @@
 	}
     
     
- 
+    
     if ([[NSFileManager defaultManager] fileExistsAtPath:ProNamfile])
 	{
 		_pName=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:ProNamfile]];
@@ -92,7 +92,7 @@
 		_pName=[[NSMutableArray alloc]init];
 	}
     
-  
+    
     
     
     
@@ -115,9 +115,9 @@
 	{
 		_pNamel=[[NSMutableArray alloc]init];
 	}
-
-
-         //NSLog(@"_pIdl:%@ %@",_pIdl,_pNamel);
+    
+    
+    //NSLog(@"_pIdl:%@ %@",_pIdl,_pNamel);
     
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     label.backgroundColor = [UIColor clearColor];
@@ -129,10 +129,11 @@
     label.text = NSLocalizedString(@"Settings", @"");
     [label sizeToFit];
     
-      myTable.backgroundColor = [UIColor clearColor];
+    myTable.backgroundColor = [UIColor clearColor];
     myTable.rowHeight=120;
 	myTable.separatorColor = [UIColor clearColor];
-      [myTable reloadData];
+    [myTable reloadData];
+    myTable.accessibilityElementsHidden=FALSE;
     myTable.hidden=YES;
     myTable1.editing=YES;
     
@@ -140,133 +141,133 @@
     myTable1.rowHeight=120;
 	myTable1.separatorColor = [UIColor clearColor];
     [myTable1 reloadData];
-  
+    
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	
     if(tableView.tag!=1)
     {
-	if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        
-        Reachability* wifiReach = [[Reachability reachabilityWithHostName: @"www.apple.com"] retain];
-        NetworkStatus netStatus = [wifiReach currentReachabilityStatus];
-        
-        switch (netStatus)
+        if (editingStyle == UITableViewCellEditingStyleDelete)
         {
-            case NotReachable:
+            
+            Reachability* wifiReach = [[Reachability reachabilityWithHostName: @"www.apple.com"] retain];
+            NetworkStatus netStatus = [wifiReach currentReachabilityStatus];
+            
+            switch (netStatus)
             {
-                isConnect=NO;
-                //NSLog(@"Access Not Available");
-                break;
+                case NotReachable:
+                {
+                    isConnect=NO;
+                    //NSLog(@"Access Not Available");
+                    break;
+                }
+                    
+                case ReachableViaWWAN:
+                {
+                    isConnect=YES;
+                    //NSLog(@"Reachable WWAN");
+                    break;
+                }
+                case ReachableViaWiFi:
+                {
+                    isConnect=YES;
+                    //NSLog(@"Reachable WiFi");
+                    break;
+                }
             }
+            
+            if(isConnect)
+            {
                 
-            case ReachableViaWWAN:
-            {
-                isConnect=YES;
-                //NSLog(@"Reachable WWAN");
-                break;
+                HUD.delegate =self;
+                HUD.labelText = @"Loading...";
+                [HUD show:YES];
+                
             }
-            case ReachableViaWiFi:
+            
+            else
             {
-                isConnect=YES;
-                //NSLog(@"Reachable WiFi");
-                break;
+                HUD.labelText = @"Check network connection....";
+                HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]] autorelease];
+                HUD.mode = MBProgressHUDModeCustomView;
+                [HUD hide:YES afterDelay:2];
+                return;
             }
-        }
-        
-        if(isConnect)
-        {
             
-            HUD.delegate =self;
-            HUD.labelText = @"Loading...";
-            [HUD show:YES];
+            NSError *error;
+            SBJSON *json = [[SBJSON new] autorelease];
+            NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
+            prodId=[_pIdl objectAtIndex:indexPath.row];
+            NSString *resultResponse=[self HttpPostEntityFirst5:@"patid" ForValue1:runNumber EntitySecond:@"authkey" ForValue2:@"rzTFevN099Km39PV"];
+            //NSLog(@"resultresponseeeeee:%@",resultResponse);
             
-        }
-
-        else
-        {
-            HUD.labelText = @"Check network connection....";
-            HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]] autorelease];
-            HUD.mode = MBProgressHUDModeCustomView;
-            [HUD hide:YES afterDelay:2];
-            return;
-        }
-        
-        NSError *error;
-        SBJSON *json = [[SBJSON new] autorelease];
-         NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
-           prodId=[_pIdl objectAtIndex:indexPath.row];
-        NSString *resultResponse=[self HttpPostEntityFirst5:@"patid" ForValue1:runNumber EntitySecond:@"authkey" ForValue2:@"rzTFevN099Km39PV"];
-        //NSLog(@"resultresponseeeeee:%@",resultResponse);
-        
-        
-        NSString *resultResponsePROVIDER=[self HttpPostEntityFirstPROVIDER:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
-        NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
-        
-        NSDictionary *luckyNumbersProvider = [json objectWithString:resultResponsePROVIDER error:&error];
-        NSDictionary *Provideritems = [luckyNumbersProvider objectForKey:@"serviceresponse"];
-        NSArray *Provideritems1=[Provideritems objectForKey:@"Select Provider"];
-        
-        NSDictionary *luckyNumberslistofpro = [json objectWithString:_listOfPro error:&error];
-        NSDictionary *_listOfProitems = [luckyNumberslistofpro objectForKey:@"serviceresponse"];
-        NSArray *_listOfProitems1=[_listOfProitems objectForKey:@"Select Providers"];;
-
-        NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *docDirectory = [path objectAtIndex:0];
-        
-        NSMutableArray *ProDl=[[NSMutableArray alloc]init];
-        NSMutableArray *ProNaml=[[NSMutableArray alloc]init];
-        NSString*ProDFilel=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProDFilel"]];
-        NSString*ProNamfilel=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProNamfilel"]];
-        for (id anUpdate in _listOfProitems1)
-        {
-            NSDictionary *ProID=[(NSDictionary*)anUpdate objectForKey:@"provideid"];
-            NSDictionary *ProName=[(NSDictionary*)anUpdate objectForKey:@"providername"];
-            ////NSLog(@"providerId:");
-            ////NSLog(@"ProviderName:%@",ProName);
-            [ProDl addObject:[NSString stringWithFormat:@"%@",ProID]];
-            [ProNaml addObject:[NSString stringWithFormat:@"%@",ProName]];
-        }
-        
-        [fileMngr saveDatapath:ProDFilel contentarray:ProDl];
-        [fileMngr saveDatapath:ProNamfilel contentarray:ProNaml];
-        
-        HUD.labelText = @"Feteching Data...";
-        // return;
-        
-        // ////NSLog(@"Provideritems1 =%@",Provideritems1);
-        
-        NSMutableArray *ProD=[[NSMutableArray alloc]init];
-        NSMutableArray *ProNam=[[NSMutableArray alloc]init];
-        for (id anUpdate in Provideritems1)
-        {
-            NSDictionary *ProID=[(NSDictionary*)anUpdate objectForKey:@"provideid"];
-            NSDictionary *ProName=[(NSDictionary*)anUpdate objectForKey:@"providername"];
-            ////NSLog(@"providerId:%@",ProID);
-            ////NSLog(@"ProviderName:%@",ProID);
-            [ProD addObject:[NSString stringWithFormat:@"%@",ProID]];
-            [ProNam addObject:[NSString stringWithFormat:@"%@",ProName]];
+            
+            NSString *resultResponsePROVIDER=[self HttpPostEntityFirstPROVIDER:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
+            NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
+            
+            NSDictionary *luckyNumbersProvider = [json objectWithString:resultResponsePROVIDER error:&error];
+            NSDictionary *Provideritems = [luckyNumbersProvider objectForKey:@"serviceresponse"];
+            NSArray *Provideritems1=[Provideritems objectForKey:@"Select Provider"];
+            
+            NSDictionary *luckyNumberslistofpro = [json objectWithString:_listOfPro error:&error];
+            NSDictionary *_listOfProitems = [luckyNumberslistofpro objectForKey:@"serviceresponse"];
+            NSArray *_listOfProitems1=[_listOfProitems objectForKey:@"Select Providers"];;
+            
+            NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *docDirectory = [path objectAtIndex:0];
+            
+            NSMutableArray *ProDl=[[NSMutableArray alloc]init];
+            NSMutableArray *ProNaml=[[NSMutableArray alloc]init];
+            NSString*ProDFilel=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProDFilel"]];
+            NSString*ProNamfilel=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProNamfilel"]];
+            for (id anUpdate in _listOfProitems1)
+            {
+                NSDictionary *ProID=[(NSDictionary*)anUpdate objectForKey:@"provideid"];
+                NSDictionary *ProName=[(NSDictionary*)anUpdate objectForKey:@"providername"];
+                ////NSLog(@"providerId:");
+                ////NSLog(@"ProviderName:%@",ProName);
+                [ProDl addObject:[NSString stringWithFormat:@"%@",ProID]];
+                [ProNaml addObject:[NSString stringWithFormat:@"%@",ProName]];
+            }
+            
+            [fileMngr saveDatapath:ProDFilel contentarray:ProDl];
+            [fileMngr saveDatapath:ProNamfilel contentarray:ProNaml];
+            
+            HUD.labelText = @"Feteching Data...";
+            // return;
+            
+            // ////NSLog(@"Provideritems1 =%@",Provideritems1);
+            
+            NSMutableArray *ProD=[[NSMutableArray alloc]init];
+            NSMutableArray *ProNam=[[NSMutableArray alloc]init];
+            for (id anUpdate in Provideritems1)
+            {
+                NSDictionary *ProID=[(NSDictionary*)anUpdate objectForKey:@"provideid"];
+                NSDictionary *ProName=[(NSDictionary*)anUpdate objectForKey:@"providername"];
+                ////NSLog(@"providerId:%@",ProID);
+                ////NSLog(@"ProviderName:%@",ProID);
+                [ProD addObject:[NSString stringWithFormat:@"%@",ProID]];
+                [ProNam addObject:[NSString stringWithFormat:@"%@",ProName]];
+                
+            }
+            NSString*ProDFile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProDFile"]];
+            NSString*ProNamfile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProNamfile"]];
+            [fileMngr saveDatapath:ProDFile contentarray:ProD];
+            [fileMngr saveDatapath:ProNamfile contentarray:ProNam];
+            
+            
+            
+            
+            
+            
+            //NSLog(@"TIMECOUNT:%@",prodId);
+            [_pIdl removeObjectAtIndex:indexPath.row];
+            [myTable1 reloadData];
+            // [myTable reloadData];
+            //  [self reload];
             
         }
-           NSString*ProDFile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProDFile"]];
-        NSString*ProNamfile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProNamfile"]];
-        [fileMngr saveDatapath:ProDFile contentarray:ProD];
-        [fileMngr saveDatapath:ProNamfile contentarray:ProNam];
-        
-        
-        
-        
-     
-    
-        //NSLog(@"TIMECOUNT:%@",prodId);
-		[_pIdl removeObjectAtIndex:indexPath.row];
-        [myTable1 reloadData];
-        [myTable reloadData];
-        [self reload];
-	
-	}
     }
 	
 }
@@ -356,7 +357,7 @@
     //NSLog(@"tableview.tag=%i",tableView.tag);
     if(tableView.tag==1)
     {
-	return [_pId count];
+        return [_pId count];
     }
     else
     {
@@ -384,10 +385,11 @@
         
 #if USE_CUSTOM_DRAWING
 		UIImage *indicatorImage = [UIImage imageNamed:@"Request.png"];
-	
+        
+        
         //[[[UIImageView alloc]
-          //initWithImage:indicatorImage]
-      //   autorelease];
+        //initWithImage:indicatorImage]
+        //   autorelease];
 		
 		const CGFloat LABEL_HEIGHT = 30;
 		UIImage *image = [UIImage imageNamed:@"imageA.png"];
@@ -406,7 +408,7 @@
                      - indicatorImage.size.width,
                      LABEL_HEIGHT)]
          autorelease];
-     //   topLabel.center=cell.cen
+        //   topLabel.center=cell.cen
 		[cell.contentView addSubview:topLabel];
         
 		//
@@ -484,7 +486,7 @@
     
     if(aTableView.tag==1)
     {
-	topLabel.text =[_pName objectAtIndex:indexPath.row];
+        topLabel.text =[_pName objectAtIndex:indexPath.row];
     }
     else
     {
@@ -500,7 +502,7 @@
 	if (row == 0 && row == sectionRows - 1)
 	{
 		rowBackground = [UIImage imageNamed:@"Strip.png"];
-		selectionBackground = [UIImage imageNamed:@""];
+		selectionBackground = [UIImage imageNamed:@"Request.pmg"];
 	}
 	else if (row == 0)
 	{
@@ -526,20 +528,20 @@
 	//
     
     
-      if(aTableView.tag==1)
-      {
-    UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 120, 44)];
-    [startButton setBackgroundImage:[[UIImage imageNamed:@"Request.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
-    [startButton setCenter:CGPointMake(195.0f, 208.0f)];
-    startButton.tag=[[_pId objectAtIndex:indexPath.row]intValue];
-    [startButton addTarget:self action:@selector(playSound:) forControlEvents:UIControlEventTouchUpInside];
-   // [cell addSubview:startButton];
-          // Disable the request button once the request has been sent
-  
-          [startButton addTarget:self action:@selector(ActionPressed:) forControlEvents:UIControlEventTouchUpInside];
-  
-    cell.accessoryView =startButton;
-}
+    if(aTableView.tag==1)
+    {
+        UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 120, 44)];
+        [startButton setBackgroundImage:[[UIImage imageNamed:@"Request.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:0] forState:UIControlStateNormal];
+        [startButton setCenter:CGPointMake(195.0f, 208.0f)];
+        startButton.tag=[[_pId objectAtIndex:indexPath.row]intValue];
+        [startButton addTarget:self action:@selector(playSound:) forControlEvents:UIControlEventTouchUpInside];
+        // [cell addSubview:startButton];
+        // Disable the request button once the request has been sent
+        
+        [startButton addTarget:self action:@selector(ActionPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.accessoryView =startButton;
+    }
     
 	
 #else
@@ -551,7 +553,8 @@
 -(void)ActionPressed:(UIButton *)butt
 {
     UIButton *buttonThatWasPressed = (UIButton *)butt;
-    buttonThatWasPressed.enabled = NO;
+    buttonThatWasPressed.enabled = YES;
+    
 }
 
 -(void)playSound:(UIButton*)but
@@ -560,7 +563,7 @@
     str=[NSString stringWithFormat:@"%d",but.tag];
     NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
     // NSString *resultResponse=[self HttpPostEntityFirst1:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
-     NSString *resultResponse=[self HttpPostEntityFirst:@"patid" ForValue1:runNumber EntitySecond:@"authkey" ForValue2:@"rzTFevN099Km39PV"];
+    NSString *resultResponse=[self HttpPostEntityFirst:@"patid" ForValue1:runNumber EntitySecond:@"authkey" ForValue2:@"rzTFevN099Km39PV"];
     //NSLog(@"resultresponseeeeee:%@",resultResponse);
     
     
@@ -581,26 +584,26 @@
     }
     else
     {
-     //Successful sent
+        //Successful sent
         NSDictionary* menu = [luckyNumbers objectForKey:@"serviceresponse"];
         //////NSLog(@"Menu id: %@", [menu objectForKey:@"success"]);
         
         if ([[menu objectForKey:@"success"] isEqualToString:@"Yes"])
         {
             
-          /*  UIAlertView *alert1 = [[UIAlertView alloc]initWithTitle:@"Info" message:@"Your request has been sent" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            [alert1 show];*/
-           
+            /*  UIAlertView *alert1 = [[UIAlertView alloc]initWithTitle:@"Info" message:@"Your request has been sent" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+             [alert1 show];*/
+            
             BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Info!" message:@"Your request has been sent."];
             
             //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
             [alert setDestructiveButtonWithTitle:@"x" block:nil];
             [alert show];
-
+            
             
         }
-
-}
+        
+    }
 }
 
 
@@ -670,7 +673,7 @@
     //NSLog(@"HTTP");
     
     
-       //NSLog(@"asw_pIdl:%@",prodId);
+    //NSLog(@"asw_pIdl:%@",prodId);
     NSString *post =[[NSString alloc] initWithFormat:@"%@=%@&proid=%@&%@=%@",firstEntity,value1,prodId,secondEntity,value2];
     
     //  NSString *post =[[NSString alloc] initWithFormat:@"facebook_id=%@&facebookscore=%@&level=%@&life=%@&lifeInHand=%@&gold=%@",value1,value2,value1,value1,value1,value1];
@@ -800,7 +803,7 @@
 	{
 		_pNamel=[[NSMutableArray alloc]init];
 	}
-
+    
     [myTable reloadData];
     [myTable1 reloadData];
     //NSLog(@"%@",_pId);
@@ -874,9 +877,10 @@
     
 }
 - (void)dealloc {
-  
     
-  [super dealloc];
+    
+    [super dealloc];
 }
 
 @end
+    
