@@ -105,7 +105,7 @@ AppSharedInstance *instance;
 	    */
     
     UIButton *save1 = [UIButton buttonWithType:UIButtonTypeCustom];  
-          save1.frame = CGRectMake(0, 0, 135, 30);
+          save1.frame = CGRectMake(0, 0, 135, 40);
     UIImage *saveImage1 = [UIImage imageNamed:@"addmedicationnew.png"]  ;
     [save1 setBackgroundImage:saveImage1 forState:UIControlStateNormal];  
     [save1 addTarget:self action:@selector(addPet)  

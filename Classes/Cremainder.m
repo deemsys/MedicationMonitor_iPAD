@@ -125,7 +125,7 @@ AppSharedInstance *instance;
         [save setBackgroundImage:saveImage forState:UIControlStateNormal];
         [save addTarget:self action:@selector(Addremainder)
        forControlEvents:UIControlEventTouchUpInside];
-        save.frame = CGRectMake(0, 0, 130, 30);
+        save.frame = CGRectMake(0, 0, 130, 40);
         UIBarButtonItem *saveButton = [[[UIBarButtonItem alloc]
                                         initWithCustomView:save] autorelease];
         self.navigationItem.rightBarButtonItem = saveButton;
