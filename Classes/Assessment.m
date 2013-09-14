@@ -404,13 +404,13 @@ AppSharedInstance *instance;
 
     
      myTable.backgroundColor = [UIColor clearColor];
-    myTable.rowHeight=100;
+    myTable.rowHeight=90;
 	myTable.separatorColor = [UIColor clearColor];
      [myTable reloadData];
     
     
     Audio.backgroundColor = [UIColor clearColor];
-    Audio.rowHeight=120;
+    Audio.rowHeight=90;
 	Audio.separatorColor = [UIColor clearColor];
     [Audio reloadData];
 
