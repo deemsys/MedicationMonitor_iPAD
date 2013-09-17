@@ -539,6 +539,11 @@ reuseIdentifier:CellIdentifier]
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
+    Addremainder *noteViewController = [[Addremainder alloc] initWithNibName:@"Addremainder" bundle:nil];
+	//noteViewController.recordDict = recordDict;
+    // noteViewController.recordDict = [recordDict objectForKey:@"pk"];
+	[self.navigationController pushViewController:noteViewController animated:YES];
+	[noteViewController release];
     //[self.navigationController.navigationBar viewWithTag:111].hidden=YES;
    
     
