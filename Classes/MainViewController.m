@@ -14,7 +14,8 @@
 #import "Cremainder.h"
 #import "Appoinment.h"
 #import "Assessment.h"
-#import "GTabBar.h"
+//#import "GTabBar.h"
+#import "Welcome.h"
 
 
 @implementation UINavigationBar (CustomImage)
@@ -46,7 +47,7 @@
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
          
-            LoginScreen *browseViewController = [[LoginScreen alloc] initWithNibName:@"LoginScreen_iPhone" bundle:nil];
+           LoginScreen*browseViewController = [[LoginScreen alloc] initWithNibName:@"LoginScreen" bundle:nil];
             browseViewController.view.backgroundColor=[UIColor clearColor];
             
             [self pushViewController:browseViewController animated:YES];
@@ -59,6 +60,8 @@
             
             [self pushViewController:browseViewController animated:YES];
             [browseViewController release];
+            
+            
         }
 
         
@@ -95,6 +98,8 @@
         //[tabBarItem setEnabled:FALSE];
         //[[[[self.tabBarController tabBar]items]objectAtIndex:4]setEnabled:FALSE];
         //self.tabBarController.tabBar.hidden=YES;
+        
+        
 	}
     
     else if (self.tabBarItem.title == @"Appoinments") 

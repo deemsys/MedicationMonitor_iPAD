@@ -59,7 +59,8 @@
 #pragma mark -
 #pragma mark Memory management
 
-- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
    
 }
 
@@ -169,6 +170,8 @@
     
 	viewController1.tabBarItem.title = @"Home";
     viewController1.tabBarItem.image = [UIImage imageNamed:@"Button.png"];
+  //  tabItem4.userInteractionEnabled=TRUE;
+    
     
     
     
@@ -203,7 +206,7 @@
 	MainViewController *viewController4 =[[[MainViewController alloc] initWithNibName:nil bundle:nil] autorelease];
 	viewController4.tabBarItem.title = @"Assessments";
     viewController4.tabBarItem.image = [UIImage imageNamed:@"Button.png"];
-    viewController4.tabBarItem.enabled=FALSE;
+   // tabItem4.userInteractionEnabled=FALSE;
     
     
     
@@ -231,7 +234,7 @@
 	[viewControllersArray addObject:viewController5];
     [viewControllersArray addObject:viewController6];
     [viewControllersArray addObject:viewController7];
-    // [viewControllersArray addObject:viewController6];
+    //[viewControllersArray addObject:viewController6];
 	
 	NSMutableArray *tabItemsArray = [[NSMutableArray alloc] init];
 	[tabItemsArray addObject:tabItem1];
@@ -241,7 +244,7 @@
 	[tabItemsArray addObject:tabItem5];
     [tabItemsArray addObject:tabItem6];
     [tabItemsArray addObject:tabItem7];
-    // [tabItemsArray addObject:tabItem6];
+    //[tabItemsArray addObject:tabItem6];
     
     
     

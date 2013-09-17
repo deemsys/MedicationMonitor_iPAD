@@ -734,7 +734,7 @@ AppSharedInstance *instance;
     
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
-    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.sourceType = sourceType;
     popover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
     [popover presentPopoverFromRect:CGRectMake(250.0,150.0,200.0,90.0)
                              inView:self.view
