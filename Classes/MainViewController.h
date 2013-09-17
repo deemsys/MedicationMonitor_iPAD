@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GTabBar.h"
 
 @interface MainViewController : UINavigationController {
 	UINavigationController *navigationController;
@@ -17,4 +17,8 @@
 
 @property (nonatomic, retain) UINavigationController *navigationController;
 @property (retain, nonatomic) NSMutableDictionary *recordDict;
+@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property(nonatomic,retain)UIViewController*viewcontroller;
+@property (nonatomic, retain) UITabBarController *tabBarController;
+@property (nonatomic, retain) NSMutableArray*notificationsArray;
 @end
