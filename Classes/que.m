@@ -58,8 +58,7 @@ AppSharedInstance *instance;
     
     rec.hidden=NO;
     recording.hidden=NO;
-    
-    
+    checked=YES;
     
     record.width=0.01;
     stop.width=0;
@@ -462,7 +461,8 @@ AppSharedInstance *instance;
 - (IBAction)save:(id)sender
 {
     
-    
+    if(checked == YES)
+    {
 	HUD.delegate = self;
 	
     [HUD show:YES];
@@ -471,7 +471,16 @@ AppSharedInstance *instance;
   //  HUD.mode = MBProgressHUDModeCustomView;
     [HUD hide:YES afterDelay:2.6];
      [self performSelector:@selector(save1) withObject:nil afterDelay:0.2];
-   
+    }
+    else
+    {
+    
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Please Record Your Answer"];
+        
+        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+        [alert setDestructiveButtonWithTitle:@"x" block:nil];
+        [alert show];
+    }
     
     
  
@@ -538,6 +547,7 @@ AppSharedInstance *instance;
 - (void)viewDidLoad
 {
  
+    checked=NO;
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 	[self.navigationController.view addSubview:HUD];
     

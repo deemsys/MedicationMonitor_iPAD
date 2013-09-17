@@ -8,7 +8,7 @@
     NSMutableDictionary *recordDict;
     int number;
     int questionid;
-    
+    BOOL checked;
     AVAudioPlayer *audioPlayer;
     AVAudioPlayer *audioPlayerRecord;
     AVAudioRecorder *audioRecorder;
