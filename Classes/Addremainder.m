@@ -359,7 +359,7 @@ AppSharedInstance *instance;
     [super viewWillAppear:animated];
         self.recordDict=recordDict;
 	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-     [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
+     
       [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
 	    
   
