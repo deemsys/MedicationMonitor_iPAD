@@ -562,15 +562,17 @@ AppSharedInstance *instance;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Addremainder *noteViewController = [[Addremainder alloc] initWithNibName:@"Addremainder" bundle:nil];
-	[self.navigationController pushViewController:noteViewController animated:YES];
-    
-    NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    /*  NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
     UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
     NSString *date=notif.fireDate;
     NSString *name=notif.alertBody;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"date" object:date];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"name" object:name];
+    Addremainder *noteViewController = [[Addremainder alloc] initWithNibName:@"Addremainder" bundle:nil];
+	[self.navigationController pushViewController:noteViewController animated:YES];
+    
+  
+   */
     
     /*AboutmeViewController *aboutmeViewController = [[AboutmeViewController alloc] initWithNibName:@"AddMedi" bundle:nil];
      aboutmeViewController.recordDict=recordDict;

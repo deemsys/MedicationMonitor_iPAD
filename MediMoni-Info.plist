@@ -53,7 +53,7 @@
 	<key>NSMainNibFile~ipad</key>
 	<string>MainWindow</string>
 	<key>UILaunchImageFile~ipad</key>
-	<string>Default-Portrait@2x~ipad.png</string>
+	<string>Default-Portrait@2x~ipad-Portrait~ipad.png</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIStatusBarHidden</key>

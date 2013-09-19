@@ -250,16 +250,7 @@
     [countryname addObject:@"Yemen"];
     [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
     sex=@"null";
-    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
-    [home setBackgroundImage:homeImage forState:UIControlStateNormal];
-    [home addTarget:self action:@selector(back)
-   forControlEvents:UIControlEventTouchUpInside];
-    home.frame = CGRectMake(0, 0, 50, 30);
-    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
-                                      initWithCustomView:home] autorelease];
-    self.navigationItem.leftBarButtonItem = cancelButton;
-    
+       
     name.clearButtonMode = UITextFieldViewModeWhileEditing;
     pass.clearButtonMode = UITextFieldViewModeWhileEditing;
     cpass.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -280,6 +271,16 @@
     self.navigationItem.titleView = label;
     label.text = NSLocalizedString(@"Sign Up", @"");
     [label sizeToFit];
+    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
+    [home setBackgroundImage:homeImage forState:UIControlStateNormal];
+    [home addTarget:self action:@selector(back)
+   forControlEvents:UIControlEventTouchUpInside];
+    home.frame = CGRectMake(0, 0, 50, 30);
+    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
+                                      initWithCustomView:home] autorelease];
+    self.navigationItem.leftBarButtonItem = cancelButton;
+
    // [pickerView selectRow:1 inComponent:0 animated:NO];
         
     agebutt.text=@"Select Age";
@@ -789,6 +790,7 @@
               //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
               [alert setDestructiveButtonWithTitle:@"x" block:nil];
               [alert show];
+              
           }
     
     
@@ -913,8 +915,8 @@
                     //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
                     [alert setDestructiveButtonWithTitle:@"x" block:nil];
                     [alert show];
+                    [[self navigationController] popViewControllerAnimated:YES];
                     
-                     [[self navigationController ]popViewControllerAnimated:YES];
                     
                 }
                 else

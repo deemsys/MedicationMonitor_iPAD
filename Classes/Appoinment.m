@@ -56,7 +56,7 @@ AppSharedInstance *instance;
     ADLivelyTableView * livelyTableView = (ADLivelyTableView *)myTable;
     livelyTableView.initialCellTransformBlock = ADLivelyTransformFan;
     
-    if(i>0)
+    if(i>=0)
         nolab.text=@" ";
     else
         nolab.text=@"You can view your list of appointments here..";
@@ -494,7 +494,7 @@ reuseIdentifier:CellIdentifier]
 
 
 
-
+/*
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	if (editingStyle == UITableViewCellEditingStyleDelete) 
@@ -506,25 +506,25 @@ reuseIdentifier:CellIdentifier]
         NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
         UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
        [[UIApplication sharedApplication] cancelLocalNotification:notif];
-    //    [notificationArray ];
+       [notificationArray ];
         [myTable reloadData];
       
         
-		/*[instance deletePet:[petArray objectAtIndex:indexPath.section]];
+		[instance deletePet:[petArray objectAtIndex:indexPath.section]];
 		self.petArray = [instance getPet];
 		[myTable reloadData];
 		if ([petArray count] > 0){
 			noPet.hidden=YES;
-			bgImage.image = [UIImage imageNamed:@"bg.png"];*/
+			bgImage.image = [UIImage imageNamed:@"bg.png"];
 		}
 		else{
-		//	noPet.hidden=NO;
-			//bgImage.image = [UIImage imageNamed:@"firstbg.png"];
+			noPet.hidden=NO;
+			bgImage.image = [UIImage imageNamed:@"firstbg.png"];
 		}
 	
 	
 }
-
+*/
 
 #pragma mark -
 #pragma mark Memory management

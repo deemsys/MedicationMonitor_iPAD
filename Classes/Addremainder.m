@@ -82,11 +82,7 @@ AppSharedInstance *instance;
     dateLabel.hidden=NO;
     selected=YES;
     theString = [notification object];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init] ;
-    [dateFormat setDateFormat:@"YYYY-MM-dd"];
-    NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
-    NSLog(@"Date: %@", dateString);
-    
+      
     dateLabel.text=[NSString stringWithFormat:@"%@",theString];
     //name.text=[NSString stringWithFormat:@"%@",name1];
     

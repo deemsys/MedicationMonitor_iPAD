@@ -243,7 +243,7 @@ AppSharedInstance *instance;
 	
 	return cell;
 }
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+/*- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     @try {
         if (editingStyle == UITableViewCellEditingStyleDelete)
@@ -267,22 +267,22 @@ AppSharedInstance *instance;
                  [[UIApplication sharedApplication] cancelLocalNotification:notif];
                  NSLog(@"======%i",[photoArray count]);
                  [Audio reloadData];*/
-            }
-        }
-        else{
+           // }
+       // }
+      //  else{
             
-        }
+       // }
         
         
-    }
-    @catch (NSException *exception) {
+    //}
+   // @catch (NSException *exception) {
         
-    }
-    @finally {
+   // }
+    //@finally {
         
-    }
+    //}
 	
-}
+//}
 
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
