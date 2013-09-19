@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,9 +34,9 @@
 		0D9FD07817D8A5500092B5D8 /* arrowtext.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9FD07717D8A5500092B5D8 /* arrowtext.png */; };
 		0D9FD07A17D8A5560092B5D8 /* arrowredtext.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9FD07917D8A5560092B5D8 /* arrowredtext.png */; };
 		0DA3D33B17D4D0150012DD57 /* adddate&time.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3D33A17D4D0070012DD57 /* adddate&time.png */; };
-		0DC2384417E0714D00153870 /* Default-Portrait~ipad3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC2384317E0714D00153870 /* Default-Portrait~ipad3.png */; };
 		0DC2384617E0715100153870 /* Default-Portrait~ipad4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC2384517E0715100153870 /* Default-Portrait~ipad4.png */; };
 		0DC2384717E0719E00153870 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C84AF0CA15C6534900720A1D /* Default-Portrait~ipad.png */; };
+		0DD1DB9E17EA42D10068339A /* Default-Portrait~ipad3-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DD1DB9D17EA42D10068339A /* Default-Portrait~ipad3-Portrait~ipad.png */; };
 		1D3623260D0F684500981E51 /* MediMoniAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MediMoniAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -147,7 +147,6 @@
 		C86707FD164E1761006E04F7 /* history.m in Sources */ = {isa = PBXBuildFile; fileRef = C86707FB164E1761006E04F7 /* history.m */; };
 		C86AA5AD16035E3400BB9184 /* Radio_But.png in Resources */ = {isa = PBXBuildFile; fileRef = C86AA5AC16035E3400BB9184 /* Radio_But.png */; };
 		C8729D5115C8198D00191375 /* AddReminder1.png in Resources */ = {isa = PBXBuildFile; fileRef = C8729D5015C8198D00191375 /* AddReminder1.png */; };
-		C873B5C9164A8FD9000DF234 /* au1.caf in Resources */ = {isa = PBXBuildFile; fileRef = C873B5C8164A8FD8000DF234 /* au1.caf */; };
 		C8816CDE163A78D80045ECEF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8816CDD163A78D80045ECEF /* MapKit.framework */; };
 		C883126D1601ADAC00A97134 /* Appoinment.m in Sources */ = {isa = PBXBuildFile; fileRef = C883126B1601ADAC00A97134 /* Appoinment.m */; };
 		C883126E1601ADAC00A97134 /* Appoinment.xib in Resources */ = {isa = PBXBuildFile; fileRef = C883126C1601ADAC00A97134 /* Appoinment.xib */; };
@@ -269,6 +268,7 @@
 		0DA3D33A17D4D0070012DD57 /* adddate&time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adddate&time.png"; sourceTree = "<group>"; };
 		0DC2384317E0714D00153870 /* Default-Portrait~ipad3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad3.png"; sourceTree = "<group>"; };
 		0DC2384517E0715100153870 /* Default-Portrait~ipad4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad4.png"; sourceTree = "<group>"; };
+		0DD1DB9D17EA42D10068339A /* Default-Portrait~ipad3-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad3-Portrait~ipad.png"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* MediMoniAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediMoniAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* MediMoniAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediMoniAppDelegate.m; sourceTree = "<group>"; };
@@ -620,6 +620,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				0DD1DB9D17EA42D10068339A /* Default-Portrait~ipad3-Portrait~ipad.png */,
 				0DC2384517E0715100153870 /* Default-Portrait~ipad4.png */,
 				0DC2384317E0714D00153870 /* Default-Portrait~ipad3.png */,
 				C8FD0232165678EF00580FD7 /* Icon-112.png */,
@@ -1136,8 +1137,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MediMoni" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -1280,7 +1284,6 @@
 				C8E8C51F163A91F400A97EFC /* alert-red-button@2x.png in Resources */,
 				C8E8C520163A91F400A97EFC /* alert-window.png in Resources */,
 				C8E8C521163A91F400A97EFC /* alert-window@2x.png in Resources */,
-				C873B5C9164A8FD9000DF234 /* au1.caf in Resources */,
 				C82DB373164B6F34001B636D /* MainViewController_iPhone.xib in Resources */,
 				C82DB3AA164B706B001B636D /* LoginScreen_iPhone.xib in Resources */,
 				C8AD4D4B164B7CD200D772D3 /* alert.png in Resources */,
@@ -1314,12 +1317,12 @@
 				0D99686417D9A372008CB6CF /* roor.xib in Resources */,
 				0D99687717DA5DFB008CB6CF /* AddMedi.xib in Resources */,
 				0D99687917DB0021008CB6CF /* adddate&time.png in Resources */,
-				0DC2384417E0714D00153870 /* Default-Portrait~ipad3.png in Resources */,
 				0DC2384617E0715100153870 /* Default-Portrait~ipad4.png in Resources */,
 				0DC2384717E0719E00153870 /* Default-Portrait~ipad.png in Resources */,
 				0D94C15217E3861B00B6ED22 /* noimage.png in Resources */,
 				0D9CBFEC17E3B77500A067D5 /* select2.png in Resources */,
 				0D9CBFED17E3B77500A067D5 /* unselect2.png in Resources */,
+				0DD1DB9E17EA42D10068339A /* Default-Portrait~ipad3-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1443,7 +1446,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PREBINDING = NO;
 				PROVISIONING_PROFILE = "8CC2EBDC-F8F8-464E-9563-AEFE8FB9295E";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8CC2EBDC-F8F8-464E-9563-AEFE8FB9295E";
 				SDKROOT = iphoneos;
@@ -1462,7 +1464,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PREBINDING = NO;
 				PROVISIONING_PROFILE = "8CC2EBDC-F8F8-464E-9563-AEFE8FB9295E";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -1481,7 +1482,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PREBINDING = NO;
 				PROVISIONING_PROFILE = "8CC2EBDC-F8F8-464E-9563-AEFE8FB9295E";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8CC2EBDC-F8F8-464E-9563-AEFE8FB9295E";
 				SDKROOT = iphoneos;
@@ -1519,7 +1519,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PREBINDING = NO;
 				PROVISIONING_PROFILE = "8CC2EBDC-F8F8-464E-9563-AEFE8FB9295E";
 				"PROVISIONING_PROFILE[sdk=*]" = "6F0C8FCF-D04A-4848-BE60-3D6892CEB8AE";
 				SDKROOT = iphoneos;

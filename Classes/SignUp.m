@@ -45,7 +45,7 @@
     }
 }
 -(BOOL)validateEmail:(NSString*)candidate{
-    NSString *emailFormat1 = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}";
+    NSString *emailFormat1 = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}";
     
     
     NSPredicate *emailTest1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailFormat1];
@@ -74,7 +74,7 @@
     
 }
 -(BOOL)validateMobile:(NSString*)mobilenumber{
-    NSString *mobileFormat1 =  @"[0-9]{6}([0-9]{4})?";
+    NSString *mobileFormat1 =  @"[0-9]{10}?";
     
     [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
     NSPredicate *mobileTest1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", mobileFormat1];
@@ -440,7 +440,7 @@
 -(IBAction)SingnUp
 {
     static int c=1;
-    
+   int count=1;
     [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
     [(UITextField*)[self.view viewWithTag:102] resignFirstResponder];
      [(UITextField*)[self.view viewWithTag:103] resignFirstResponder];
@@ -582,7 +582,7 @@
     }
     
 
-   if([city.text length] != 0 &&[state.text length] != 0&&[mobile.text length] != 0&&[email.text length] != 0&&[cpass.text length] != 0&&[pass.text length] != 0&&[name.text length] != 0 && ![agebutt.text isEqualToString:@"Select Age"] &&! [sex isEqualToString: @"null"]&&![countrybutt.text isEqualToString:@"Select Country"])
+   if([city.text length] != 0 &&[state.text length] != 0&&[mobile.text length] != 0&&[email.text length] != 0&&[cpass.text length] != 0&&[pass.text length] != 0&&[name.text length] != 0 && ![agebutt.text isEqualToString:@"Select Age"] &&! [sex isEqualToString: @"null"]&&![countrybutt.text isEqualToString:@"Select Country"]&&[zip.text length]!=0)
       {
       switchcase:  switch (c) {
                       
@@ -604,7 +604,7 @@
               //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
               [alert setDestructiveButtonWithTitle:@"x" block:nil];
               [alert show];
-              
+              c=1;
                }
                   break;
           case 5:
@@ -619,7 +619,7 @@
               goto switchcase;
           }
           else {
-              
+              c=1;
               BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid mobile number."];
               
               //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
@@ -630,7 +630,7 @@
                }
           }
           else
-          {
+          {c=1;
               BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid mobile number."];
               
               //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
@@ -646,6 +646,7 @@
               goto switchcase;
               
           } else {
+              c=1;
               BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid city name."];
               
               //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
@@ -663,6 +664,7 @@
               
           }
           else{
+              c=1;
           BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid state name."];
           
           //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
@@ -679,6 +681,7 @@
           }
           else
           {
+              c=1;
               BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid zipcode."];
               
               //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
@@ -694,6 +697,7 @@
                       goto switchcase;
               
           } else {
+              c=1;
               BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid Username."];
               
               //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
@@ -711,6 +715,7 @@
               }
               else
               {
+                  c=1;
                   BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter Country."];
               
               //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
@@ -727,6 +732,7 @@
               }
               else
               {
+                  c=1;
                   BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter Age."];
                   
                   //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
@@ -742,6 +748,7 @@
               goto switchcase;
           }
           else{
+              c=1;
               BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Password Doesnt Match."];
               
               //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
@@ -907,7 +914,7 @@
                     [alert setDestructiveButtonWithTitle:@"x" block:nil];
                     [alert show];
                     
-
+                     [[self navigationController ]popViewControllerAnimated:YES];
                     
                 }
                 else
@@ -998,7 +1005,7 @@
     
     
     
-    NSString *post =[[NSString alloc] initWithFormat:@"%@=%@&pswd=%@&sex=%@&age=%@&email=%@&skype=%@&facetime=%@&mobile=%@&country=%@&state=%@&city=%@&%@=%@",firstEntity,value1,pass.text,sex,agebutt.text,email.text,skype.text,face.text,mobile.text,countrybutt.text,state.text,city.text,secondEntity,value2];
+    NSString *post =[[NSString alloc] initWithFormat:@"%@=%@&pswd=%@&sex=%@&age=%@&email=%@&skype=%@&facetime=%@&mobile=%@&country=%@&state=%@&city=%@&zip=%@&%@=%@",firstEntity,value1,pass.text,sex,agebutt.text,email.text,skype.text,face.text,mobile.text,countrybutt.text,state.text,city.text,zip.text,secondEntity,value2];
     
    //  NSString *post =[[NSString alloc] initWithFormat:@"facebook_id=%@&facebookscore=%@&level=%@&life=%@&lifeInHand=%@&gold=%@",value1,value2,value1,value1,value1,value1];
     

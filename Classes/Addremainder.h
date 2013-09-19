@@ -16,7 +16,10 @@
 	IBOutlet UIImageView *bgImage;
     NSMutableDictionary *recordDict;
     BOOL share1;
-
+    NSString *name1;
+    NSString *theString;
+    BOOL selected;
+    
     int savedValue;
     IBOutlet UITextField*name;
     UISegmentedControl *scheduleControl;
@@ -28,11 +31,11 @@
     NSMutableArray *dictionaryArray;
     
     
-        UIDatePicker *datePicker;
+    UIDatePicker *datePicker;
     IBOutlet UIButton*once;
     IBOutlet UIButton*setdate;
     IBOutlet UILabel*dateLabel;
-     IBOutlet UIImageView*mask;
+    IBOutlet UIImageView*mask;
     
     IBOutlet UIDatePicker *timePicker;
     IBOutlet UIButton*daily;
@@ -41,7 +44,7 @@
     IBOutlet UIImageView*maskDaily;
     int alertType;
     BOOL opt;
-  
+    
 }
 - (IBAction)changeTimeInLabel:(id)sender;
 -(IBAction)once:(id)sender;

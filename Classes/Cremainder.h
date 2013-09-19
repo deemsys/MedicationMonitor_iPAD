@@ -1,4 +1,3 @@
-//
 //  RootViewController.h
 //  PetLove
 //
@@ -19,14 +18,15 @@
     int savedValue;
     NSString*reminderFile;
     int k;
+    NSArray *arr;
     NSMutableArray *_RemaindersArray;
-   
+    
     IBOutlet UILabel*nolab;
     
     NSMutableDictionary *dictionary;
     NSString *dicfile;
     NSMutableArray *dictionaryArray;
-  
+    
 }
 -(IBAction)Addremainder;
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl;

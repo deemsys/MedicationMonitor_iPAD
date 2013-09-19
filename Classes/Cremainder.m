@@ -42,18 +42,32 @@ AppSharedInstance *instance;
 {
     Addremainder *noteViewController = [[Addremainder alloc] initWithNibName:@"Addremainder" bundle:nil];
 	//noteViewController.recordDict = recordDict;
-   // noteViewController.recordDict = [recordDict objectForKey:@"pk"];
+    // noteViewController.recordDict = [recordDict objectForKey:@"pk"];
 	[self.navigationController pushViewController:noteViewController animated:YES];
 	[noteViewController release];
 }
 - (void)viewDidLoad {
     
-        UIImageView *i=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"BG.jpg"]];
+    UIImageView *i=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"BG.jpg"]];
     
-        [super viewDidLoad];
+    [super viewDidLoad];
     
     
+    NSArray *notificationArray1 = [[UIApplication sharedApplication] scheduledLocalNotifications];
     
+    k=notificationArray1.count;
+    if(k>0)
+    {
+        nolab.hidden=YES;
+        nolab.text=@" ";
+        bgImage.image=[UIImage imageNamed:@"Background.jpg"];
+        
+    }
+    else{
+        nolab.hidden=NO;
+        nolab.text=@"Click +Add Remainder To Add Remainder Details";
+        
+    }
     
     if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
     {
@@ -87,7 +101,7 @@ AppSharedInstance *instance;
     
     
     
-   // [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    // [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
     UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *homeImage = [UIImage imageNamed:@"back.png"]  ;
@@ -106,18 +120,18 @@ AppSharedInstance *instance;
     if(savedValue!=5)
     {
         /*
-        UIImage *buttonImage = [UIImage imageNamed:@"Edit.png"];
-        UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [aButton setImage:buttonImage forState:UIControlStateNormal];
-        aButton.frame = CGRectMake(0, 0, 50, 30);
-        aButton.tag=111;
-        [aButton addTarget:self action:@selector(edit_Clicked) forControlEvents:UIControlEventTouchUpInside];
-        // [self.navigationController.navigationBar addSubview:aButton];
-        UIBarButtonItem *saveButton11 = [[[UIBarButtonItem alloc]
-                                          initWithCustomView:aButton] autorelease];
-        self.navigationItem.leftBarButtonItem = saveButton11;
-        
-        */
+         UIImage *buttonImage = [UIImage imageNamed:@"Edit.png"];
+         UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
+         [aButton setImage:buttonImage forState:UIControlStateNormal];
+         aButton.frame = CGRectMake(0, 0, 50, 30);
+         aButton.tag=111;
+         [aButton addTarget:self action:@selector(edit_Clicked) forControlEvents:UIControlEventTouchUpInside];
+         // [self.navigationController.navigationBar addSubview:aButton];
+         UIBarButtonItem *saveButton11 = [[[UIBarButtonItem alloc]
+         initWithCustomView:aButton] autorelease];
+         self.navigationItem.leftBarButtonItem = saveButton11;
+         
+         */
         
         
         UIButton *save = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -132,7 +146,7 @@ AppSharedInstance *instance;
     }
     
     
-
+    
     
     myTable.backgroundColor = [UIColor clearColor];
     self.parentViewController.view.backgroundColor = [UIColor colorWithRed:0.0 green:0.2 blue:0.5 alpha:0.7];
@@ -143,7 +157,7 @@ AppSharedInstance *instance;
 	reminderFile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"reminderFile.hsa"]];
     
     
-	if ([[NSFileManager defaultManager] fileExistsAtPath:reminderFile]) 
+	if ([[NSFileManager defaultManager] fileExistsAtPath:reminderFile])
 	{
 		_RemaindersArray=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:reminderFile]];
 		
@@ -152,16 +166,16 @@ AppSharedInstance *instance;
 	{
 		_RemaindersArray=[[NSMutableArray alloc]init];
 	}
-
-        
+    
+    
     
     dicfile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"dicfile.hsa"]];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:dicfile]) 
+    if ([[NSFileManager defaultManager] fileExistsAtPath:dicfile])
 	{
 		dictionaryArray=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:dicfile]];
         NSMutableArray*array=[[NSMutableArray alloc]initWithArray:[dictionaryArray objectAtIndex:0]];
         
-
+        
 		//NSMutableArray*array=[dictionaryArray objectAtIndex:0];
         NSLog(@"CCCCCCCCCC:%i",[array  count]);
 	}
@@ -172,30 +186,30 @@ AppSharedInstance *instance;
 	}
     
     
-    
+    k=[_RemaindersArray count];
     
     NSLog(@"RemaindersArrayCount:%i",[_RemaindersArray count]);
  	//UIImage *barButton = [UIImage imageNamed:@"Edit.png"];
-   // [[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    // [[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 	
 	//UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
 	//self.navigationItem.backBarButtonItem = backButton;
 	//[backButton release];
     
     
-    //self.navigationItem.leftBarButtonItem = cancelButton;	
+    //self.navigationItem.leftBarButtonItem = cancelButton;
 	
-       
     
     
-       self.recordDict=recordDict;
+    
+    self.recordDict=recordDict;
     self.petArray = [instance getPet];
 	[myTable reloadData];
     
-    //NSLog(@"raja:%i",[petArray count]);
+    NSLog(@"raja:%i",[dictionaryArray count]);
     
     
-        
+    
     SVSegmentedControl *redSC = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Today Remainders", @"All Remainders", nil]];
     [redSC addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
 	redSC.titleEdgeInsets = UIEdgeInsetsMake(0, 14, 0, 244);
@@ -209,33 +223,33 @@ AppSharedInstance *instance;
 	redSC.center = CGPointMake(384, 30);
     redSC.tag = 2;
     [self.view bringSubviewToFront:redSC];
-
+    
     
 	
 }
 
 
-- (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl 
+- (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl
 {
     if(segmentedControl.selectedIndex==0)
     {
-         }
+    }
     else if(segmentedControl.selectedIndex==1)
     {
-              
+        
     }
-       
+    
     
 }
 -(void)back
 {
     [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
-      [[self navigationController] popViewControllerAnimated:YES];
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 
 - (void)edit_Clicked {
-	if (myTable.editing) 
+	if (myTable.editing)
     {
 		myTable.editing=NO;
         //	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
@@ -251,7 +265,7 @@ AppSharedInstance *instance;
         [(UIButton*)[self.navigationController.navigationBar viewWithTag:111] setImage:buttonImage forState:UIControlStateNormal];
         
         
-	}		
+	}
 	else {
 		myTable.editing=YES;
         UIImage *buttonImage = [UIImage imageNamed:@"Done.png"];
@@ -271,8 +285,24 @@ AppSharedInstance *instance;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    	
-
+    NSArray *notificationArray1 = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    
+    k=notificationArray1.count;
+    if(k>0)
+    {
+        nolab.hidden=YES;
+        nolab.text=@" ";
+        bgImage.image=[UIImage imageNamed:@"Background.jpg"];
+        
+    }
+    else{
+        nolab.hidden=NO;
+        nolab.text=@"Click +Add Remainder To Add Remainder Details";
+        
+    }
+    
+    arr=[[NSArray alloc]init];
+    arr=[[UIApplication sharedApplication] scheduledLocalNotifications] ;
     
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -281,7 +311,7 @@ AppSharedInstance *instance;
 	reminderFile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"reminderFile.hsa"]];
     
     
-	if ([[NSFileManager defaultManager] fileExistsAtPath:reminderFile]) 
+	if ([[NSFileManager defaultManager] fileExistsAtPath:reminderFile])
 	{
 		_RemaindersArray=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:reminderFile]];
         
@@ -295,11 +325,11 @@ AppSharedInstance *instance;
     
     
     dicfile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"dicfile.hsa"]];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:dicfile]) 
+    if ([[NSFileManager defaultManager] fileExistsAtPath:dicfile])
 	{
 		dictionaryArray=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:dicfile]];
         NSMutableArray*array=[[NSMutableArray alloc]initWithArray:[dictionaryArray objectAtIndex:0]];
-        		//NSMutableArray*array=[dictionaryArray objectAtIndex:0];
+        //NSMutableArray*array=[dictionaryArray objectAtIndex:0];
         //NSLog(@"CCCCCCCCCC:%i",[array  count]);
 	}
 	else
@@ -312,25 +342,19 @@ AppSharedInstance *instance;
     
     
 	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-     [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
-      [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
+    [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
+    [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
 	
 	[myTable reloadData];
-    if ([petArray count] > 0){
-		nolab.hidden=YES;
-        nolab.text=@" ";
-		bgImage.image = [UIImage imageNamed:@"Background.jpg"];
-	}
-	else{
-		nolab.hidden=NO;
-        nolab.text=@"";
-		//bgImage.image = [UIImage imageNamed:@"firstbg.png"];
-	}
-
+    
+    
+    //bgImage.image = [UIImage imageNamed:@"firstbg.png"];
+	
+    
     //[myTable reloadData];
     
-     //NSLog(@"raja1mmmmmm:%i",[_RemaindersArray count]);
-        
+    //NSLog(@"raja1mmmmmm:%i",[_RemaindersArray count]);
+    
     
     
 }
@@ -350,32 +374,31 @@ AppSharedInstance *instance;
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-	return [[[UIApplication sharedApplication] scheduledLocalNotifications] count];
+   	return [[[UIApplication sharedApplication] scheduledLocalNotifications] count];
 }
 
 
 // Customize the appearance of table view cells.
 /*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    // Configure the cell...
-    
-	NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
-	UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
-	cell.textLabel.font=[UIFont fontWithName:@"Arial" size:30];
-    [cell.textLabel setText:notif.alertBody];
-   cell.detailTextLabel.textColor = [UIColor greenColor];
-	[cell.detailTextLabel setText:[notif.fireDate description]];
-	return cell;
-}
-*/
+ 
+ static NSString *CellIdentifier = @"Cell";
+ 
+ UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+ if (cell == nil) {
+ cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+ }
+ 
+ // Configure the cell...
+ 
+ NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+ UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
+ cell.textLabel.font=[UIFont fontWithName:@"Arial" size:30];
+ [cell.textLabel setText:notif.alertBody];
+ cell.detailTextLabel.textColor = [UIColor greenColor];
+ [cell.detailTextLabel setText:[notif.fireDate description]];
+ return cell;
+ }
+ */
 
 
 
@@ -398,8 +421,8 @@ AppSharedInstance *instance;
 	{
 		
 		cell =[[[UITableViewCell alloc]initWithFrame:CGRectZero
-reuseIdentifier:CellIdentifier]
-         autorelease];
+                                     reuseIdentifier:CellIdentifier]
+               autorelease];
         
 #if USE_CUSTOM_DRAWING
 		UIImage *indicatorImage = [UIImage imageNamed:@"indicator.png"];
@@ -483,8 +506,8 @@ reuseIdentifier:CellIdentifier]
     NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
 	UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
 	//cell.textLabel.font=[UIFont fontWithName:@"Arial" size:30];
-   // [cell.textLabel setText:notif.alertBody];
-   // cell.detailTextLabel.textColor = [UIColor greenColor];
+    // [cell.textLabel setText:notif.alertBody];
+    // cell.detailTextLabel.textColor = [UIColor greenColor];
 	//[cell.detailTextLabel setText:[notif.fireDate description]];
     
     
@@ -537,45 +560,47 @@ reuseIdentifier:CellIdentifier]
 #pragma mark -
 #pragma mark Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Addremainder *noteViewController = [[Addremainder alloc] initWithNibName:@"Addremainder" bundle:nil];
-	//noteViewController.recordDict = recordDict;
-    // noteViewController.recordDict = [recordDict objectForKey:@"pk"];
 	[self.navigationController pushViewController:noteViewController animated:YES];
-	[noteViewController release];
-    //[self.navigationController.navigationBar viewWithTag:111].hidden=YES;
-   
+    
+    NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
+    NSString *date=notif.fireDate;
+    NSString *name=notif.alertBody;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"date" object:date];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"name" object:name];
     
     /*AboutmeViewController *aboutmeViewController = [[AboutmeViewController alloc] initWithNibName:@"AddMedi" bundle:nil];
-	aboutmeViewController.recordDict=recordDict;
-    aboutmeViewController.recordDict = [petArray objectAtIndex:indexPath.section];
+     aboutmeViewController.recordDict=recordDict;
+     aboutmeViewController.recordDict = [petArray objectAtIndex:indexPath.section];
+     
+     [[NSUserDefaults standardUserDefaults] setInteger:indexPath.section forKey:@"select"];
+     [self.navigationController pushViewController:aboutmeViewController animated:YES];
+     [aboutmeViewController release];*/
     
-    [[NSUserDefaults standardUserDefaults] setInteger:indexPath.section forKey:@"select"];
-	[self.navigationController pushViewController:aboutmeViewController animated:YES];
-	[aboutmeViewController release];*/
-  
     if(savedValue==5)
     {
         //[self btnPostPress];
         [self share];
-         self.recordDict=recordDict;
+        self.recordDict=recordDict;
         self.recordDict=[petArray objectAtIndex:indexPath.section];
-       /* AboutmeViewController *aboutmeViewController = [[AboutmeViewController alloc] initWithNibName:@"AboutmeViewController" bundle:nil];
-       
-        aboutmeViewController.recordDict = [petArray objectAtIndex:indexPath.section];
-        [self.navigationController pushViewController:aboutmeViewController animated:YES];
-        [aboutmeViewController release];*/
+        /* AboutmeViewController *aboutmeViewController = [[AboutmeViewController alloc] initWithNibName:@"AboutmeViewController" bundle:nil];
+         
+         aboutmeViewController.recordDict = [petArray objectAtIndex:indexPath.section];
+         [self.navigationController pushViewController:aboutmeViewController animated:YES];
+         [aboutmeViewController release];*/
     }
 	/*PetViewController *petViewController = [[PetViewController alloc] initWithNibName:@"PetViewController" bundle:nil];
-	petViewController.recordDict = [petArray objectAtIndex:indexPath.section];
-	[self.navigationController pushViewController:petViewController animated:YES];
-	[petViewController release];*/
+     petViewController.recordDict = [petArray objectAtIndex:indexPath.section];
+     [self.navigationController pushViewController:petViewController animated:YES];
+     [petViewController release];*/
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	if (editingStyle == UITableViewCellEditingStyleDelete) 
+	if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         
         
@@ -583,22 +608,22 @@ reuseIdentifier:CellIdentifier]
         
         NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
         UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
-       [[UIApplication sharedApplication] cancelLocalNotification:notif];
-    //    [notificationArray ];
+        [[UIApplication sharedApplication] cancelLocalNotification:notif];
+        //    [notificationArray ];
         [myTable reloadData];
-      
+        [self viewDidLoad];
         
 		/*[instance deletePet:[petArray objectAtIndex:indexPath.section]];
-		self.petArray = [instance getPet];
-		[myTable reloadData];
-		if ([petArray count] > 0){
-			noPet.hidden=YES;
-			bgImage.image = [UIImage imageNamed:@"bg.png"];*/
-		}
-		else{
+         self.petArray = [instance getPet];
+         [myTable reloadData];
+         if ([petArray count] > 0){
+         noPet.hidden=YES;
+         bgImage.image = [UIImage imageNamed:@"bg.png"];*/
+    }
+    else{
 		//	noPet.hidden=NO;
-			//bgImage.image = [UIImage imageNamed:@"firstbg.png"];
-		}
+        //bgImage.image = [UIImage imageNamed:@"firstbg.png"];
+    }
 	
 	
 }
@@ -614,11 +639,11 @@ reuseIdentifier:CellIdentifier]
 	// Relinquish ownership any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
 	// Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	// For example: self.myOutlet = nil;
-} 
+}
 
 
 
@@ -636,4 +661,3 @@ reuseIdentifier:CellIdentifier]
 
 
 @end
-

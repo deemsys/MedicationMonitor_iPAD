@@ -133,7 +133,7 @@
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="106589839">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="582553335">
@@ -4869,7 +4869,6 @@ AAgAAf/AAAP/eAAB/7gAAf+4AAAzLAABAAEAAQABA</bytes>
 					</object>
 				</array>
 				<string key="NSFrameSize">{650, 105}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="582553335"/>
 				<reference key="IBUIBackgroundColor" ref="653113872"/>
 				<bool key="IBUIOpaque">NO</bool>

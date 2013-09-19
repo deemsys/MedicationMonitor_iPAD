@@ -16,7 +16,7 @@
  
     
     	IBOutlet UITableView*Audio;
-    NSArray *photoArray;
+    NSMutableArray *photoArray;
     NSString*questiontype;
 	
    

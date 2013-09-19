@@ -243,6 +243,46 @@ AppSharedInstance *instance;
 	
 	return cell;
 }
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    @try {
+        if (editingStyle == UITableViewCellEditingStyleDelete)
+        {
+            if(tableView.tag==200){
+                
+                
+              //  [instance delHis:[photoArray objectAtIndex:indexPath.section]];
+                //photoArray=[instance getAudio];
+               // [Audio reloadData];
+                
+                
+                [photoArray removeObjectAtIndex: [indexPath section]];
+                
+                //[photoArray deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath]
+                //withRowAnimation:UITableViewRowAnimationFade];
+                /*[photoArray removeObjectAtIndex:indexPath.section];
+                 
+                 NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+                 UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
+                 [[UIApplication sharedApplication] cancelLocalNotification:notif];
+                 NSLog(@"======%i",[photoArray count]);
+                 [Audio reloadData];*/
+            }
+        }
+        else{
+            
+        }
+        
+        
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
+	
+}
 
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag

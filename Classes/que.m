@@ -1,3 +1,4 @@
+
 #import "que.h"
 #import "AppSharedInstance.h"
 #import "SpeakHereViewController.h"
@@ -42,7 +43,7 @@ AppSharedInstance *instance;
     
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Track1" ofType: @"m4a"];
     
-   
+    
     NSURL *url = [NSURL fileURLWithPath: path];
     
     NSError *error;
@@ -119,7 +120,7 @@ AppSharedInstance *instance;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *recDir = [paths objectAtIndex:0];
-      int i=0+arc4random()%1000;
+    int i=0+arc4random()%1000;
     NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%irecordTest.caf", recDir,i]];
     
     filenew=[[NSString alloc]init];
@@ -137,30 +138,30 @@ AppSharedInstance *instance;
     int channels = audioPlayerRecord.numberOfChannels;
     ////NSLog(@"Channels:%i",channels);
     [audioRecorder updateMeters];
-  audioPlayer.delegate = self;
+    audioPlayer.delegate = self;
     
-      BOOL audioHWAvailable = audioSession.inputIsAvailable;
+    BOOL audioHWAvailable = audioSession.inputIsAvailable;
     if (! audioHWAvailable) {
         /*UIAlertView *cantRecordAlert =
-        [[UIAlertView alloc] initWithTitle: @"Warning"
-                                   message: @"Audio input hardware not available"
-                                  delegate: nil
-                         cancelButtonTitle:@"OK"
-                         otherButtonTitles:nil];
-        [cantRecordAlert show];
-        [cantRecordAlert release];*/
+         [[UIAlertView alloc] initWithTitle: @"Warning"
+         message: @"Audio input hardware not available"
+         delegate: nil
+         cancelButtonTitle:@"OK"
+         otherButtonTitles:nil];
+         [cantRecordAlert show];
+         [cantRecordAlert release];*/
         BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Warning!" message:@"Audio input hardware not available."];
         
         //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
         [alert setDestructiveButtonWithTitle:@"x" block:nil];
         [alert show];
-
+        
         [alert release];
         
         return;
     }
     
-   
+    
     if ([audioRecorder prepareToRecord]) {
         [audioRecorder record];
         if (!playerTimer)
@@ -170,12 +171,12 @@ AppSharedInstance *instance;
                                                          userInfo:nil
                                                           repeats:YES];
         }
-
+        
         //////NSLog(@"recording");
     } else {
         //        int errorCode = CFSwapInt32HostToBig ([error code]);
         //        ////NSLog(@"Error: %@ [%4.4s])" , [error localizedDescription], (char*)&errorCode);
-    //    ////NSLog(@"recorder: %@ %d %@", [error domain], [error code], [[error userInfo] description]);
+        //    ////NSLog(@"recorder: %@ %d %@", [error domain], [error code], [[error userInfo] description]);
     }
     
     
@@ -185,14 +186,14 @@ AppSharedInstance *instance;
 
 -(void) monitorAudioPlayer
 {
-  //  ////NSLog(@"raja");
-   /* [audioRecorder updateMeters];
-    
-    for (int i=0; i<audioPlayerRecord.numberOfChannels; i++)
-    {
-        //Log the peak and average power
-        ////NSLog(@"%d %0.2f %0.2f", i, [audioPlayerRecord peakPowerForChannel:i],[audioPlayerRecord averagePowerForChannel:i]);
-    }*/
+    //  ////NSLog(@"raja");
+    /* [audioRecorder updateMeters];
+     
+     for (int i=0; i<audioPlayerRecord.numberOfChannels; i++)
+     {
+     //Log the peak and average power
+     ////NSLog(@"%d %0.2f %0.2f", i, [audioPlayerRecord peakPowerForChannel:i],[audioPlayerRecord averagePowerForChannel:i]);
+     }*/
 }
 
 - (IBAction)stopRecordClicked:(id)sender {
@@ -232,7 +233,7 @@ AppSharedInstance *instance;
     
     
     
-   
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *recDir = [paths objectAtIndex:0];
     
@@ -247,8 +248,8 @@ AppSharedInstance *instance;
     ///  ////NSLog(@"STR:%@",str);
     [recordDict setObject:CCC forKey:@"name"];
     
-     
-  }
+    
+}
 
 
 -(NSString *)applicationDocumentsDirectory {
@@ -289,33 +290,33 @@ AppSharedInstance *instance;
     [instance insertAudio:recordDict];
     
     
-  
+    
     
     NSMutableArray *ar=[instance getAudio];
     
-
+    
     NSString*str=[[ar lastObject]objectForKey:@"pk" ];
     NSString*Astr=[NSString stringWithFormat:@"A%@",[[ar lastObject]objectForKey:@"pk" ]];
-     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *recDir = [paths objectAtIndex:0];
     
     NSString*p=[NSString stringWithFormat:@"%@/%@recordTest.text", recDir,str];
-      NSString*pa=[NSString stringWithFormat:@"%@/%@recordTest.text", recDir,Astr];
+    NSString*pa=[NSString stringWithFormat:@"%@/%@recordTest.text", recDir,Astr];
     //NSLog(@"P:%@",p);
-     //NSLog(@"PAp:%@",pa);
+    //NSLog(@"PAp:%@",pa);
     [_QuestionArray writeToFile:p atomically:YES];
-       [_AnswerArray writeToFile:pa atomically:YES];
+    [_AnswerArray writeToFile:pa atomically:YES];
     
     
     
-       
+    
     NSString *newString = CCC;
     NSString *newString1 = [newString stringByReplacingOccurrencesOfString:@"file://localhost" withString:@""];
     //  NSString *newString12 = [newString1 stringByReplacingOccurrencesOfString:@"like" withString:@""];
     //   NSString *final = [newString12 stringByReplacingOccurrencesOfString:@"and" withString:@""];
     
     
-//    //NSLog(@"FIna:%@",newString1);
+    //    //NSLog(@"FIna:%@",newString1);
     
     
     NSString *result;
@@ -375,14 +376,14 @@ AppSharedInstance *instance;
         
         
         xmlFile=[NSString stringWithFormat:@"<Result><Question>%@,,%@</Question><Answer>%@,,%@</Answer></Result>",[_QuestionArray objectAtIndex:0],[_QuestionArray objectAtIndex:1],[_AnswerArray objectAtIndex:0],[_AnswerArray objectAtIndex:1]];
-
+        
         ////NSLog(@"XMLFile:%@",_QuestionArray);
-      //  [recordDict setObject:_QuestionArray forKey:@"name"];
+        //  [recordDict setObject:_QuestionArray forKey:@"name"];
         
-      //  [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n",stringBoundary] dataUsingEncoding:NSASCIIStringEncoding]];
+        //  [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n",stringBoundary] dataUsingEncoding:NSASCIIStringEncoding]];
         
-    //    [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"assessxml\"\r\n\r\n"] dataUsingEncoding:NSASCIIStringEncoding]];
-     //   [postBody appendData:[[NSString stringWithFormat:@"%@",xmlFile] dataUsingEncoding:NSASCIIStringEncoding]];
+        //    [postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"assessxml\"\r\n\r\n"] dataUsingEncoding:NSASCIIStringEncoding]];
+        //   [postBody appendData:[[NSString stringWithFormat:@"%@",xmlFile] dataUsingEncoding:NSASCIIStringEncoding]];
         
         
         [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",stringBoundary] dataUsingEncoding:NSASCIIStringEncoding]];
@@ -438,21 +439,21 @@ AppSharedInstance *instance;
     ////NSLog(@"QUESTION%@",_QuestionArray);
     ////NSLog(@"ANSWER%@",_AnswerArray);
     
-     //  [recordDict setObject:UserId forKey:@"patid"];
-  //  [recordDict setObject:_QuestionArray forKey:@"ques"];
- //   [recordDict setObject:_AnswerArray forKey:@"ans"];
-   //  [instance insertHis:recordDict];
+    //  [recordDict setObject:UserId forKey:@"patid"];
+    //  [recordDict setObject:_QuestionArray forKey:@"ques"];
+    //   [recordDict setObject:_AnswerArray forKey:@"ans"];
+    //  [instance insertHis:recordDict];
     
-  //  NSMutableArray*aa=[instance getHis];
-  //  //NSLog(@"AAAAA:%@",aa);
+    //  NSMutableArray*aa=[instance getHis];
+    //  //NSLog(@"AAAAA:%@",aa);
     
     
     [_QuestionArray addObject:@""];
     [_AnswerArray   addObject:@""];
-      
     
-  //  NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
-  //  NSString *resultResponse=[self HttpPostEntityFirst:@"patid" ForValue1:runNumber EntitySecond:@"authkey" ForValue2:@"rzTFevN099Km39PV"];
+    
+    //  NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
+    //  NSString *resultResponse=[self HttpPostEntityFirst:@"patid" ForValue1:runNumber EntitySecond:@"authkey" ForValue2:@"rzTFevN099Km39PV"];
     ////NSLog(@"ResulrTEsponse:%@",resultResponse);
     
     
@@ -463,18 +464,18 @@ AppSharedInstance *instance;
     
     if(checked == YES)
     {
-	HUD.delegate = self;
-	
-    [HUD show:YES];
-    HUD.labelText = @"Processing....";
-//    HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
-  //  HUD.mode = MBProgressHUDModeCustomView;
-    [HUD hide:YES afterDelay:2.6];
-     [self performSelector:@selector(save1) withObject:nil afterDelay:0.2];
+        HUD.delegate = self;
+        
+        [HUD show:YES];
+        HUD.labelText = @"Processing....";
+        //    HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
+        //  HUD.mode = MBProgressHUDModeCustomView;
+        [HUD hide:YES afterDelay:2.6];
+        [self performSelector:@selector(save1) withObject:nil afterDelay:0.2];
     }
     else
     {
-    
+        
         BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Please Record Your Answer"];
         
         //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
@@ -483,7 +484,7 @@ AppSharedInstance *instance;
     }
     
     
- 
+    
 }
 - (IBAction)playRecordClicked:(id)sender {
     
@@ -498,20 +499,20 @@ AppSharedInstance *instance;
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *recDir = [paths objectAtIndex:0];
-   
+    
 	//NSDate*now=
     ////NSLog(@"CurrentAudio:%@",curentAudio);
     NSURL *url = curentAudio;
-   
     
-  //  NSString*str=[NSString stringWithFormat:@"%@",url];
+    
+    //  NSString*str=[NSString stringWithFormat:@"%@",url];
     CCC=[NSString stringWithFormat:@"%@",url];
     ////NSLog(@"raja:%@",url);
-  ///  ////NSLog(@"STR:%@",str);
+    ///  ////NSLog(@"STR:%@",str);
     [recordDict setObject:CCC forKey:@"name"];
-   // [instance insertAudio:recordDict];
+    // [instance insertAudio:recordDict];
     
     ////NSLog(@"reco:%@",recordDict);
     ////NSLog(@"getaudio%@",[instance getAudio]);
@@ -519,7 +520,7 @@ AppSharedInstance *instance;
     //    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/recordTest.caf", [[NSBundle mainBundle] resourcePath]]];
     NSError *error;
     audioPlayerRecord = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-      audioPlayerRecord.delegate=self;
+    audioPlayerRecord.delegate=self;
     [audioPlayerRecord play];
     
     ////NSLog(@"Recoder file >");
@@ -546,20 +547,20 @@ AppSharedInstance *instance;
 
 - (void)viewDidLoad
 {
- 
+    
     checked=NO;
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 	[self.navigationController.view addSubview:HUD];
     
     _QuestionArray=[[NSMutableArray alloc]init];
     _AnswerArray=[[NSMutableArray alloc]init];
-     recordEncoding = ENC_PCM;
+    recordEncoding = ENC_PCM;
     stop.width=0.01;
-  [super viewDidLoad];
+    [super viewDidLoad];
     ret=1;
     ret1=0;
     monthindex=0;
-   
+    
     daily=[[NSUserDefaults standardUserDefaults]integerForKey:@"daily"];
     ////NSLog(@"Daily:%i",daily);
     
@@ -568,21 +569,21 @@ AppSharedInstance *instance;
     lables=[[NSMutableArray alloc]init];
     number=0;
     
-    	instance = [AppSharedInstance sharedInstance];
-     self._assQues=[instance getAssQue];
-      self._assAns=[instance getAssAnswer];
-   
+    instance = [AppSharedInstance sharedInstance];
+    self._assQues=[instance getAssQue];
+    self._assAns=[instance getAssAnswer];
     
-  
-        buttonsToRemove = [[NSMutableArray alloc]init];
-   //  [self speak];
-  //  //////NSLog(@"SELF>_ASSAns::::%@",self._assAns);
+    
+    
+    buttonsToRemove = [[NSMutableArray alloc]init];
+    //  [self speak];
+    //  //////NSLog(@"SELF>_ASSAns::::%@",self._assAns);
     if ([recordDict count]>0) {
-	
+        
 	}
 	else {
-		recordDict = [[NSMutableDictionary alloc] init];
-      
+        recordDict = [[NSMutableDictionary alloc] init];
+        
 	}
     
     
@@ -612,7 +613,7 @@ AppSharedInstance *instance;
     UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
                                       initWithCustomView:home] autorelease];
     self.navigationItem.leftBarButtonItem = cancelButton;
-   
+    
 }
 
 
@@ -626,7 +627,7 @@ AppSharedInstance *instance;
         
         NSNumber *num1 = [(NSDictionary*)anUpdate objectForKey:@"assid"];
         int theValue1 = [num1 intValue];
-          int okok=[[NSUserDefaults standardUserDefaults]integerForKey:@"selectAss"];
+        int okok=[[NSUserDefaults standardUserDefaults]integerForKey:@"selectAss"];
         if(theValue1==okok)
         {
             NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
@@ -675,7 +676,7 @@ AppSharedInstance *instance;
                 [lables addObject:label];
                 label.text =[(NSDictionary*)anUpdate objectForKey:@"answer"];
                 
-                 [button setTitle:[(NSDictionary*)anUpdate objectForKey:@"answer"]  forState:UIControlStateNormal];
+                [button setTitle:[(NSDictionary*)anUpdate objectForKey:@"answer"]  forState:UIControlStateNormal];
                 [label sizeToFit];
                 label.tag=x;
                 [self.view addSubview:label];
@@ -686,7 +687,7 @@ AppSharedInstance *instance;
             
         }
     }
-
+    
 }
 
 -(void)saveMonth
@@ -714,7 +715,7 @@ AppSharedInstance *instance;
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
-
+    
     
     NSError *error;
     NSURLResponse *response;
@@ -734,12 +735,12 @@ AppSharedInstance *instance;
 {
     
     
-   // [self performSelector:@selector() withObject:nil afterDelay:0.3];
+    // [self performSelector:@selector() withObject:nil afterDelay:0.3];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self
                action:@selector(rem)   forControlEvents:UIControlEventTouchUpInside];
-     UIImage*btnImage = [UIImage imageNamed:@"NExt.png"];
-     [button setImage:btnImage forState:UIControlStateNormal];
+    UIImage*btnImage = [UIImage imageNamed:@"NExt.png"];
+    [button setImage:btnImage forState:UIControlStateNormal];
     button.backgroundColor=[UIColor clearColor];
     //[button setTitle:[(NSDictionary*)anUpdate objectForKey:@"answer"]  forState:UIControlStateNormal];
     button.frame = CGRectMake(80.0, 210.0, 120, 44);
@@ -747,14 +748,14 @@ AppSharedInstance *instance;
     [self.view addSubview:button];
     button.hidden=YES;
     button.tag=2048;
-   
     
     
     
     
-      int okok=[[NSUserDefaults standardUserDefaults]integerForKey:@"selectAss"];
-  //  ////NSLog(@"[self._assQues objectAtIndex:0]:%@",[self._assQues objectAtIndex:0]);
-  //  return;
+    
+    int okok=[[NSUserDefaults standardUserDefaults]integerForKey:@"selectAss"];
+    //  ////NSLog(@"[self._assQues objectAtIndex:0]:%@",[self._assQues objectAtIndex:0]);
+    //  return;
     
     
     for (id anUpdate in self._assQues)
@@ -770,30 +771,30 @@ AppSharedInstance *instance;
         if(theValue1==okok)
         {
             ////NSLog(@"OKOK:%i",okok);
-              ////NSLog(@"theValue1:%i",theValue1);
+            ////NSLog(@"theValue1:%i",theValue1);
             NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assparentanswerid"];
             int theValue = [num intValue];
-         //   [num release];
-        //    ////NSLog(@"NUMBER:%i",number);
+            //   [num release];
+            //    ////NSLog(@"NUMBER:%i",number);
             if(theValue==number)
             {
-                  
+                
                 NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"assquestion"];
                 //    ////NSLog(@"assquestion:%@",arrayList);
                 question.text=[(NSDictionary*)anUpdate objectForKey:@"assquestion"];
-             //   question.textAlignment = NSTextAlignmentJustified;
+                //   question.textAlignment = NSTextAlignmentJustified;
                 question.numberOfLines = 0;
-                 //   question.textAlignment = NSTextAlignmentJustified;
-              /*  CGSize labelSize = [question.text sizeWithFont:question.font
-                                          constrainedToSize:question.frame.size
-                                              lineBreakMode:question.lineBreakMode];
-                question.frame = CGRectMake(
-                                         question.frame.origin.x, question.frame.origin.y,
-                                         question.frame.size.width, labelSize.height);*/
+                //   question.textAlignment = NSTextAlignmentJustified;
+                /*  CGSize labelSize = [question.text sizeWithFont:question.font
+                 constrainedToSize:question.frame.size
+                 lineBreakMode:question.lineBreakMode];
+                 question.frame = CGRectMake(
+                 question.frame.origin.x, question.frame.origin.y,
+                 question.frame.size.width, labelSize.height);*/
                 
                 NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
                 questionid = [num intValue];
-           //     [num release];
+                //     [num release];
                 
                 ret1++;
                 if(ret==ret1)
@@ -802,16 +803,16 @@ AppSharedInstance *instance;
                     ////NSLog(@"RET:%i   RET!!!:%i",ret,ret1);
                     ret1=0;
                     [self monthans];
-                     return;
+                    return;
                 }
                 else if(ret==13)
                 {
-                     question.text=@"Thank you for completing this questionnaire.";
-                     //   question.textAlignment = NSTextAlignmentJustified;
+                    question.text=@"Thank you for completing this questionnaire.";
+                    //   question.textAlignment = NSTextAlignmentJustified;
                     ////NSLog(@"_QuestionArrayP:%@",_QuestionArray);
-                      ////NSLog(@"_QuestionArrayP:%@",_AnswerArray);
+                    ////NSLog(@"_QuestionArrayP:%@",_AnswerArray);
                     
-                     xmlFile=[NSString stringWithFormat:@"<Result><Question>%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@</Question><Answer>%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@</Answer></Result>",[_QuestionArray objectAtIndex:0],[_QuestionArray objectAtIndex:1],[_QuestionArray objectAtIndex:2],[_QuestionArray objectAtIndex:3],[_QuestionArray objectAtIndex:4],[_QuestionArray objectAtIndex:5],[_QuestionArray objectAtIndex:6],[_QuestionArray objectAtIndex:7],[_QuestionArray objectAtIndex:8],[_QuestionArray objectAtIndex:9],[_QuestionArray objectAtIndex:10],[_QuestionArray objectAtIndex:11],[_AnswerArray objectAtIndex:0],[_AnswerArray objectAtIndex:1],[_AnswerArray objectAtIndex:2],[_AnswerArray objectAtIndex:3],[_AnswerArray objectAtIndex:4],[_AnswerArray objectAtIndex:5],[_AnswerArray objectAtIndex:6],[_AnswerArray objectAtIndex:7],[_AnswerArray objectAtIndex:8],[_AnswerArray objectAtIndex:9],[_AnswerArray objectAtIndex:10],[_AnswerArray objectAtIndex:11]];
+                    xmlFile=[NSString stringWithFormat:@"<Result><Question>%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@</Question><Answer>%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@,,%@</Answer></Result>",[_QuestionArray objectAtIndex:0],[_QuestionArray objectAtIndex:1],[_QuestionArray objectAtIndex:2],[_QuestionArray objectAtIndex:3],[_QuestionArray objectAtIndex:4],[_QuestionArray objectAtIndex:5],[_QuestionArray objectAtIndex:6],[_QuestionArray objectAtIndex:7],[_QuestionArray objectAtIndex:8],[_QuestionArray objectAtIndex:9],[_QuestionArray objectAtIndex:10],[_QuestionArray objectAtIndex:11],[_AnswerArray objectAtIndex:0],[_AnswerArray objectAtIndex:1],[_AnswerArray objectAtIndex:2],[_AnswerArray objectAtIndex:3],[_AnswerArray objectAtIndex:4],[_AnswerArray objectAtIndex:5],[_AnswerArray objectAtIndex:6],[_AnswerArray objectAtIndex:7],[_AnswerArray objectAtIndex:8],[_AnswerArray objectAtIndex:9],[_AnswerArray objectAtIndex:10],[_AnswerArray objectAtIndex:11]];
                     
                     NSDate* now = [NSDate date];
                     NSString *n=[NSString stringWithFormat:@"%@",now];
@@ -832,23 +833,23 @@ AppSharedInstance *instance;
                         NSString*str=@"Daily Questionnaire";
                         [recordDict setObject:str forKey:@"type"];
                     }
-                   else if(a==3)
+                    else if(a==3)
                     {
                         NSString*str=@"Monthly Questionnaire";
                         [recordDict setObject:str forKey:@"type"];
                     }
-                        [recordDict setObject:@"" forKey:@"name"];
+                    [recordDict setObject:@"" forKey:@"name"];
                     NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
                     [recordDict setObject:UserId forKey:@"patid"];
                     [instance insertAudio:recordDict];
                     
                     NSMutableArray *ar=[instance getAudio];
                     NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
-                     NSString *resultResponse=[self HttpPostEntityFirst:@"patid" ForValue1:runNumber EntitySecond:@"authkey" ForValue2:@"rzTFevN099Km39PV"];
+                    NSString *resultResponse=[self HttpPostEntityFirst:@"patid" ForValue1:runNumber EntitySecond:@"authkey" ForValue2:@"rzTFevN099Km39PV"];
                     ////NSLog(@"UPDATED....:%@",resultResponse);
-                      question.numberOfLines = 0;
+                    question.numberOfLines = 0;
                     
-                   
+                    
                     NSString*str=[[ar lastObject]objectForKey:@"pk" ];
                     NSString*Astr=[NSString stringWithFormat:@"A%@",[[ar lastObject]objectForKey:@"pk" ]];
                     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -862,36 +863,36 @@ AppSharedInstance *instance;
                     [_AnswerArray writeToFile:pa atomically:YES];
                     
                     return;
-                  /*  UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-                    [button addTarget:self
-                               action:@selector(saveMonth)   forControlEvents:UIControlEventTouchUpInside];
-                    UIImage*btnImage = [UIImage imageNamed:@"NExt.png"];
-                    [button setImage:btnImage forState:UIControlStateNormal];
-                    button.backgroundColor=[UIColor clearColor];
-                    //[button setTitle:[(NSDictionary*)anUpdate objectForKey:@"answer"]  forState:UIControlStateNormal];
-                    button.frame = CGRectMake(10.0, 210.0, 120, 44);
-                    button.center=CGPointMake(314, 704);
-                    [self.view addSubview:button];
-                   // button.hidden=YES;
-                    button.tag=2088;*/
-                      
+                    /*  UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+                     [button addTarget:self
+                     action:@selector(saveMonth)   forControlEvents:UIControlEventTouchUpInside];
+                     UIImage*btnImage = [UIImage imageNamed:@"NExt.png"];
+                     [button setImage:btnImage forState:UIControlStateNormal];
+                     button.backgroundColor=[UIColor clearColor];
+                     //[button setTitle:[(NSDictionary*)anUpdate objectForKey:@"answer"]  forState:UIControlStateNormal];
+                     button.frame = CGRectMake(10.0, 210.0, 120, 44);
+                     button.center=CGPointMake(314, 704);
+                     [self.view addSubview:button];
+                     // button.hidden=YES;
+                     button.tag=2088;*/
+                    
                 }
-               
                 
-             //  if(ret==1)
-             //  {
-                   
-            //    return;
-              // }
-             
+                
+                //  if(ret==1)
+                //  {
+                
+                //    return;
+                // }
+                
             }
             else
             {
-              
-             //   ////NSLog(@"COMPLETE");
+                
+                //   ////NSLog(@"COMPLETE");
             }
         }
-
+        
         
         
     }
@@ -899,9 +900,9 @@ AppSharedInstance *instance;
     //  ////NSLog(@"_assAns:%@",self._assQues);
     
     
-       
     
-
+    
+    
     
     
     
@@ -912,104 +913,104 @@ AppSharedInstance *instance;
 -(void)viewWillAppear:(BOOL)animated
 {
     
-  
-  
+    
+    
     
     NSDate* now = [NSDate date];
     NSDate*old=[[NSUserDefaults standardUserDefaults]objectForKey:@"nowold"];
     
-  //  ////NSLog(@"now:%@",now);
-  //   ////NSLog(@"old:%@",old);
+    //  ////NSLog(@"now:%@",now);
+    //   ////NSLog(@"old:%@",old);
     if ([now compare:old] == NSOrderedDescending) {
-     //   ////NSLog(@"now is later than date2");
+        //   ////NSLog(@"now is later than date2");
         [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"daily"];
         
     }  if ([now compare:old] == NSOrderedAscending) {
-      //  ////NSLog(@"date1 is earlier than date2");
+        //  ////NSLog(@"date1 is earlier than date2");
         
     } else {
-     //   ////NSLog(@"dates are the same");
+        //   ////NSLog(@"dates are the same");
         
     }
     
-     daily=[[NSUserDefaults standardUserDefaults]integerForKey:@"daily"];
+    daily=[[NSUserDefaults standardUserDefaults]integerForKey:@"daily"];
     int okok=[[NSUserDefaults standardUserDefaults]integerForKey:@"selectAss"];
     //  [[NSUserDefaults standardUserDefaults] setInteger:indexPath.section forKey:@"selectAss"];
     //////NSLog(@"okok:%i",okok);
     if(okok==1 && daily==1 )
     {
         
-           question.text =@"You have already answer your daily assessment. Your next daily assessment is on _____.";
-         //   question.textAlignment = NSTextAlignmentJustified;
+        question.text =@"You have already answer your daily assessment. Your next daily assessment is on _____.";
+        //   question.textAlignment = NSTextAlignmentJustified;
         
-          question.numberOfLines = 0;
+        question.numberOfLines = 0;
         
         return;
     }
-        
+    
     instance = [AppSharedInstance sharedInstance];
     self._assQues=[instance getAssQue];
-     self._assAns=[instance getAssAnswer];
-       buttonsToRemove = [[NSMutableArray alloc]init];
+    self._assAns=[instance getAssAnswer];
+    buttonsToRemove = [[NSMutableArray alloc]init];
     if ([recordDict count]>0) {
         
 	}
 	else {
-		recordDict = [[NSMutableDictionary alloc] init];
+        recordDict = [[NSMutableDictionary alloc] init];
         
 	}
     
-     
- // NSLog(@"SELF>_ASSANS::::%@",  self._assAns);
-//  ////NSLog(@"SELF>_ASSAns::::%@",  [self._assQues objectAtIndex:0]);
+    
+    // NSLog(@"SELF>_ASSANS::::%@",  self._assAns);
+    //  ////NSLog(@"SELF>_ASSAns::::%@",  [self._assQues objectAtIndex:0]);
     
     
     
     
-     //[[NSUserDefaults standardUserDefaults] setObject:questiontype forKey:@"questionType"];
+    //[[NSUserDefaults standardUserDefaults] setObject:questiontype forKey:@"questionType"];
     NSString *type=[[NSUserDefaults standardUserDefaults]objectForKey:@"questionType"];
     if([type isEqualToString:@"Monthly Questionnaire"])
     {
         [self mothly];
         return;
     }
-   
-  
-    
-for (id anUpdate in self._assQues)
-{
     
     
-      NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"assid"];
-      ////NSLog(@"assid:%@",arrayList);
     
-    NSNumber *num1 = [(NSDictionary*)anUpdate objectForKey:@"assid"];
-    int theValue1 = [num1 intValue];
-    
-    if(theValue1==okok)
+    for (id anUpdate in self._assQues)
     {
-    NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assparentanswerid"];
-    int theValue = [num intValue];
-     [num release];
-    if(theValue==number)
-    {
-         NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"assquestion"];
-    //    ////NSLog(@"assquestion:%@",arrayList);
-        question.text=[(NSDictionary*)anUpdate objectForKey:@"assquestion"];
-          question.numberOfLines = 0;
-         //   question.textAlignment = NSTextAlignmentJustified;
-        NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
-        questionid = [num intValue];
-        [num release];
-        //return;
+        
+        
+        NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"assid"];
+        ////NSLog(@"assid:%@",arrayList);
+        
+        NSNumber *num1 = [(NSDictionary*)anUpdate objectForKey:@"assid"];
+        int theValue1 = [num1 intValue];
+        
+        if(theValue1==okok)
+        {
+            NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assparentanswerid"];
+            int theValue = [num intValue];
+            [num release];
+            if(theValue==number)
+            {
+                NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"assquestion"];
+                //    ////NSLog(@"assquestion:%@",arrayList);
+                question.text=[(NSDictionary*)anUpdate objectForKey:@"assquestion"];
+                question.numberOfLines = 0;
+                //   question.textAlignment = NSTextAlignmentJustified;
+                NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
+                questionid = [num intValue];
+                [num release];
+                //return;
+            }
+        }
     }
-}
-}
-   
-  //  ////NSLog(@"_assAns:%@",self._assQues);
+    
+    //  ////NSLog(@"_assAns:%@",self._assQues);
     
     
-     int x=0;
+    int x=0;
     for (id anUpdate in self._assAns)
     {
         NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
@@ -1019,63 +1020,63 @@ for (id anUpdate in self._assQues)
         
         if(theValue1==okok)
         {
-        NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
-        int theValue = [num intValue];
-      //  [num release];
-       
-        if(theValue==questionid)
-        {
-            
-          
-        // //////NSLog(@"questionid:%@",arrayList);
-            NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"answer"];
-               NSDictionary *arrayList2=[(NSDictionary*)anUpdate objectForKey:@"ansid"];
-            
-         //////NSLog(@"ANSID:::%@",arrayList2);
             NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
+            int theValue = [num intValue];
+            //  [num release];
             
-            
-            
-            
-            NSNumber *numid = [(NSDictionary*)anUpdate objectForKey:@"ansid"];
-            int nextID = [numid intValue];
-          
-                      
-          
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [button addTarget:self
-                       action:@selector(aMethod:)
-             forControlEvents:UIControlEventTouchUpInside];
-            [button setTitle:[(NSDictionary*)anUpdate objectForKey:@"answer"]  forState:UIControlStateNormal];
-            button.frame = CGRectMake(80.0, 210.0, 360.0, 40.0);
-            button.center=CGPointMake(384, 304+x);
-            button.tag= nextID;
-            [buttonsToRemove addObject:button];
-            NSDictionary *assname=[(NSDictionary*)anUpdate objectForKey:@"assname"];
-            
-            NSString *s=[NSString stringWithFormat:@"%@",[(NSDictionary*)anUpdate objectForKey:@"assname"]];
-            
-            if([s isEqualToString:@"Daily Questionnaire"])
+            if(theValue==questionid)
             {
+                
+                
+                // //////NSLog(@"questionid:%@",arrayList);
+                NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"answer"];
+                NSDictionary *arrayList2=[(NSDictionary*)anUpdate objectForKey:@"ansid"];
+                
+                //////NSLog(@"ANSID:::%@",arrayList2);
+                NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
+                
+                
+                
+                
+                NSNumber *numid = [(NSDictionary*)anUpdate objectForKey:@"ansid"];
+                int nextID = [numid intValue];
+                
+                
+                
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                [button addTarget:self
+                           action:@selector(aMethod:)
+                 forControlEvents:UIControlEventTouchUpInside];
+                [button setTitle:[(NSDictionary*)anUpdate objectForKey:@"answer"]  forState:UIControlStateNormal];
+                button.frame = CGRectMake(80.0, 210.0, 360.0, 40.0);
+                button.center=CGPointMake(384, 304+x);
+                button.tag= nextID;
+                [buttonsToRemove addObject:button];
+                NSDictionary *assname=[(NSDictionary*)anUpdate objectForKey:@"assname"];
+                
+                NSString *s=[NSString stringWithFormat:@"%@",[(NSDictionary*)anUpdate objectForKey:@"assname"]];
+                
+                if([s isEqualToString:@"Daily Questionnaire"])
+                {
                     [self.view addSubview:button];
+                }
+                else
+                {
+                    [scrollview addSubview:button];
+                }
+                
+                
+                x=x+60;
+                //  [num release];
+                
             }
-            else
-            {
-                     [scrollview addSubview:button];
-            }
-
-       
-            x=x+60;
-          //  [num release];
             
         }
-       
-      }
     }
     
     
-   
-
+    
+    
     
 }
 
@@ -1088,30 +1089,30 @@ for (id anUpdate in self._assQues)
     number=but.tag;
     NSString*st=but.titleLabel.text;
     ////NSLog(@"NUMBER:%@",st);
-//[[self.view viewWithTag:number]removeFromSuperview];
+    //[[self.view viewWithTag:number]removeFromSuperview];
     
-
+    
     if([st isEqualToString:@"No"])
+    {
+        
+        ////NSLog(@"butt:%i",[buttonsToRemove count]);
+        for (int i=0; i<=1; i++)
         {
-         
-            ////NSLog(@"butt:%i",[buttonsToRemove count]);
-            for (int i=0; i<=1; i++)
-            {
-                UIButton*but=[buttonsToRemove objectAtIndex:i];
-                
-                
-                [but removeFromSuperview];
-                ////NSLog(@"butttttt:%i",[buttonsToRemove count]);
-            }
-            [buttonsToRemove removeAllObjects];
-               if([question.text isEqualToString:@"Do you have any other thoughts you would like to share about your new prescription?"])
-               {
-                   ////NSLog(@"return");
-                   [self complete1];
-                   return;
-               }
-            check=YES;
+            UIButton*but=[buttonsToRemove objectAtIndex:i];
+            
+            
+            [but removeFromSuperview];
+            ////NSLog(@"butttttt:%i",[buttonsToRemove count]);
         }
+        [buttonsToRemove removeAllObjects];
+        if([question.text isEqualToString:@"Do you have any other thoughts you would like to share about your new prescription?"])
+        {
+            ////NSLog(@"return");
+            [self complete1];
+            return;
+        }
+        check=YES;
+    }
     else
     {
         ////NSLog(@"butt:%i",[buttonsToRemove count]);
@@ -1125,16 +1126,16 @@ for (id anUpdate in self._assQues)
         }
         [buttonsToRemove removeAllObjects];
         check=NO;
-         
+        
     }
     
-      
+    
     if(check==YES)
     {
         [self explainRecord];
         //  [self speak];
     }
-   
+    
     [self NextQuestion];
     
 }
@@ -1204,9 +1205,9 @@ for (id anUpdate in self._assQues)
     button.center=CGPointMake(384, 800);
     
     toolbar.hidden=NO;
-  //  [self.view addSubview:button];
+    //  [self.view addSubview:button];
     [buttonsToRemove addObject:button];
- 
+    
 }
 -(void)record:(UIButton*)sender
 {
@@ -1218,14 +1219,14 @@ for (id anUpdate in self._assQues)
     
     [_QuestionArray addObject:question.text];
     [_AnswerArray addObject:but.titleLabel.text];
-   //       [button setSelected:NO];
-   SelectAns=but.titleLabel.text;
+    //       [button setSelected:NO];
+    SelectAns=but.titleLabel.text;
     
     [self.view viewWithTag:2048].hidden=NO;
     //       [button setSelected:NO];
     for(int i=0;i< [buttonsToRemove count];i++)
     {
-      UIButton*but=[buttonsToRemove objectAtIndex:i];
+        UIButton*but=[buttonsToRemove objectAtIndex:i];
         if([but isSelected])
         {
             [but setSelected:NO];
@@ -1235,21 +1236,21 @@ for (id anUpdate in self._assQues)
         
     }
     
-
-  if([but isSelected])
-  {
-      [but setSelected:NO];
+    
+    if([but isSelected])
+    {
+        [but setSelected:NO];
         [but setImage:[UIImage imageNamed:@"unselect2.png"] forState:UIControlStateNormal];
-  }
+    }
     else
     {
-          [but setImage:[UIImage imageNamed:@"select2.png"] forState:UIControlStateNormal];
-         [but setSelected:YES];
+        [but setImage:[UIImage imageNamed:@"select2.png"] forState:UIControlStateNormal];
+        [but setSelected:YES];
     }
     
     
     
-     
+    
 }
 
 -(void)rem
@@ -1257,7 +1258,7 @@ for (id anUpdate in self._assQues)
     [_QuestionArray addObject:question.text];
     [_AnswerArray addObject:SelectAns];
     //NSString*SelectAns
-  //  ////NSLog(@"SelectAns%@",SelectAns);
+    //  ////NSLog(@"SelectAns%@",SelectAns);
     
     
     [self.view viewWithTag:2048].hidden=YES;
@@ -1301,10 +1302,10 @@ for (id anUpdate in self._assQues)
             [but setSelected:NO];
             [but setImage:[UIImage imageNamed:@"unselect2.png"] forState:UIControlStateNormal];
         }
-
+        
         
     }
-
+    
     if([but isSelected])
     {
         [but setSelected:NO];
@@ -1315,8 +1316,8 @@ for (id anUpdate in self._assQues)
         [but setImage:[UIImage imageNamed:@"select2.png"] forState:UIControlStateNormal];
         [but setSelected:YES];
     }
-  
-  
+    
+    
     
 }
 
@@ -1329,18 +1330,18 @@ for (id anUpdate in self._assQues)
 -(void)NextQuestion
 {
     
-   
-  
     
-   
+    
+    
+    
     self._assQues=[instance getAssQue];
     self._assAns=[instance getAssAnswer];
- //   ////NSLog(@"self._assQues:%@",self._assQues);
+    //   ////NSLog(@"self._assQues:%@",self._assQues);
     
     
     for (id anUpdate in self._assQues)
     {
-       
+        
         NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"assparentquestionid"];
         // //////NSLog(@"assparentquestionid:%@",arrayList);
         NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assparentanswerid"];
@@ -1351,10 +1352,10 @@ for (id anUpdate in self._assQues)
         {
             
             NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"assquestion"];
-    //  ////NSLog(@"assquestion:%@",arrayList);
+            //  ////NSLog(@"assquestion:%@",arrayList);
             question.text=[(NSDictionary*)anUpdate objectForKey:@"assquestion"];
-              question.numberOfLines = 0;
-             //   question.textAlignment = NSTextAlignmentJustified;
+            question.numberOfLines = 0;
+            //   question.textAlignment = NSTextAlignmentJustified;
             NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
             questionid = [num intValue];
             [num release];
@@ -1366,7 +1367,7 @@ for (id anUpdate in self._assQues)
         {
             
             hh=0;
-         //   return;
+            //   return;
             
         }
     }
@@ -1390,33 +1391,33 @@ for (id anUpdate in self._assQues)
             NSNumber *numid = [(NSDictionary*)anUpdate objectForKey:@"ansid"];
             int nextID = [numid intValue];
             
-  //     ////NSLog(@"ANSID:::%@",arrayList2);
+            //     ////NSLog(@"ANSID:::%@",arrayList2);
             NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
             
             
             if(check==NO)
             {
                 
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [button addTarget:self
-                       action:@selector(aMethod:)
-             forControlEvents:UIControlEventTouchUpInside];
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                [button addTarget:self
+                           action:@selector(aMethod:)
+                 forControlEvents:UIControlEventTouchUpInside];
                 
-            [button setTitle:[(NSDictionary*)anUpdate objectForKey:@"answer"]  forState:UIControlStateNormal];
-            button.frame = CGRectMake(80.0, 210.0, 360.0, 40.0);
-            button.center=CGPointMake(384, 304+x);
-            button.tag= nextID;
-            [self.view addSubview:button];
-            [buttonsToRemove addObject:button];
-            x=x+60;
+                [button setTitle:[(NSDictionary*)anUpdate objectForKey:@"answer"]  forState:UIControlStateNormal];
+                button.frame = CGRectMake(80.0, 210.0, 360.0, 40.0);
+                button.center=CGPointMake(384, 304+x);
+                button.tag= nextID;
+                [self.view addSubview:button];
+                [buttonsToRemove addObject:button];
+                x=x+60;
                 ////NSLog(@"NONO");
             }
             else
             {
                 
-
-              
-             ////NSLog(@"YES");
+                
+                
+                ////NSLog(@"YES");
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                 [button addTarget:self
                            action:@selector(checkMethod:)
@@ -1425,29 +1426,29 @@ for (id anUpdate in self._assQues)
                 [button setTitle:@"OK"  forState:UIControlStateNormal];
                 button.frame = CGRectMake(40.0, 210.0, 42, 38);
                 button.center=CGPointMake(134, 300+x);
-               [button setImage:[UIImage imageNamed:@"unselect2.png"] forState:UIControlStateNormal];
+                [button setImage:[UIImage imageNamed:@"unselect2.png"] forState:UIControlStateNormal];
                 [self.view addSubview:button];
-           button.tag=x;
-                 [buttonsToRemove addObject:button];
+                button.tag=x;
+                [buttonsToRemove addObject:button];
                 
                 UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
                 label.backgroundColor = [UIColor clearColor];
                 label.font = [UIFont boldSystemFontOfSize:20.0];
-                 label.frame = CGRectMake(80.0, 210.0, 360.0, 40.0);
+                label.frame = CGRectMake(80.0, 210.0, 360.0, 40.0);
                 label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-                   label.center=CGPointMake(384, 308+x);
+                label.center=CGPointMake(384, 308+x);
                 label.textAlignment = UITextAlignmentCenter;
                 label.textColor = [UIColor whiteColor]; // change this color
                 
                 label.text =[(NSDictionary*)anUpdate objectForKey:@"answer"];
-                   [button setTitle:[(NSDictionary*)anUpdate objectForKey:@"answer"]  forState:UIControlStateNormal];
+                [button setTitle:[(NSDictionary*)anUpdate objectForKey:@"answer"]  forState:UIControlStateNormal];
                 [label sizeToFit];
-                   [self.view addSubview:label];
-                   x=x+60;
-            
+                [self.view addSubview:label];
+                x=x+60;
+                
             }
             
-        //    [num release];
+            //    [num release];
             
         }
         
@@ -1456,7 +1457,7 @@ for (id anUpdate in self._assQues)
     
     if(hh==0)
     {
-      //  [self speak];
+        //  [self speak];
         ////NSLog(@"Complete");
         [self complete];
     }
@@ -1464,32 +1465,32 @@ for (id anUpdate in self._assQues)
 }
 -(void)complete
 {
-  
+    
     ////NSLog(@"[buttonsToRemove count]:%i",[buttonsToRemove count]);
     if([buttonsToRemove count]!=0)
     {
-    for (int i=0; i<[buttonsToRemove count]; i++)
-    {
-        UIButton*but=[buttonsToRemove objectAtIndex:i];
-        
-        
-        [but removeFromSuperview];
-        ////NSLog(@"butttttt:%i",[buttonsToRemove count]);
+        for (int i=0; i<[buttonsToRemove count]; i++)
+        {
+            UIButton*but=[buttonsToRemove objectAtIndex:i];
+            
+            
+            [but removeFromSuperview];
+            ////NSLog(@"butttttt:%i",[buttonsToRemove count]);
+        }
+        [buttonsToRemove removeAllObjects];
     }
-            [buttonsToRemove removeAllObjects];
-    }
-
+    
     question.text =@"Thank you for completing this questionnaire.";
-      question.numberOfLines = 0;
-     //   question.textAlignment = NSTextAlignmentJustified;
-      NSDate* now = [NSDate date];
+    question.numberOfLines = 0;
+    //   question.textAlignment = NSTextAlignmentJustified;
+    NSDate* now = [NSDate date];
     [[NSUserDefaults standardUserDefaults]setObject:now forKey:@"nowold"];
     [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"daily"];
     
     [self explainRecord1];
- //   return;
-  
-  
+    //   return;
+    
+    
 }
 
 -(void)complete1
@@ -1515,7 +1516,7 @@ for (id anUpdate in self._assQues)
     }
     
     question.text =@"Thank you for completing this questionnaire.";
-      question.numberOfLines = 0;
+    question.numberOfLines = 0;
     NSDate* now = [NSDate date];
     [[NSUserDefaults standardUserDefaults]setObject:now forKey:@"nowold"];
     [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"daily"];
@@ -1527,7 +1528,7 @@ for (id anUpdate in self._assQues)
     NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
     NSString *resultResponse=[self HttpPostEntityFirst:@"patid" ForValue1:runNumber EntitySecond:@"authkey" ForValue2:@"rzTFevN099Km39PV"];
     
-  //  NSDate* now = [NSDate date];
+    //  NSDate* now = [NSDate date];
     NSString *n=[NSString stringWithFormat:@"%@",now];
     
     
@@ -1554,7 +1555,7 @@ for (id anUpdate in self._assQues)
     
     NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
     [recordDict setObject:UserId forKey:@"patid"];
-     [recordDict setObject:@"" forKey:@"name"];
+    [recordDict setObject:@"" forKey:@"name"];
     [instance insertAudio:recordDict];
     NSMutableArray *ar=[instance getAudio];
     NSString*str=[[ar lastObject]objectForKey:@"pk" ];
@@ -1570,7 +1571,7 @@ for (id anUpdate in self._assQues)
     [_AnswerArray writeToFile:pa atomically:YES];
     ////NSLog(@"ResulrTEsponse:%@",resultResponse);
     
-   // [self explainRecord1];
+    // [self explainRecord1];
     //   return;
     
     
@@ -1603,7 +1604,7 @@ for (id anUpdate in self._assQues)
     
     question.text =@"Thank you for completing this questionnaire.";
     question.numberOfLines = 0;
-     
+    
     [_QuestionArray addObject:@""];
     [_AnswerArray addObject:@""];
     xmlFile=[NSString stringWithFormat:@"<Result><Question>%@,,%@</Question><Answer>%@,,%@</Answer></Result>",[_QuestionArray objectAtIndex:0],[_QuestionArray objectAtIndex:1],[_AnswerArray objectAtIndex:0],[_AnswerArray objectAtIndex:1]];
@@ -1627,10 +1628,10 @@ for (id anUpdate in self._assQues)
 -(void)speak
 {
     SpeakHereViewController *newNoteController = [[SpeakHereViewController alloc] initWithNibName:@"AudioRecord" bundle:nil];
-  
+    
     newNoteController.recordDict = recordDict;
     [self.view addSubview:newNoteController.view];
-//[self.navigationController pushViewController:newNoteController animated:YES];
+    //[self.navigationController pushViewController:newNoteController animated:YES];
     [newNoteController release];
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -1638,11 +1639,12 @@ for (id anUpdate in self._assQues)
     
 }
 - (void)dealloc {
-  
+    
     [audioPlayer release];
     [audioRecorder release];
     [audioPlayerRecord release];
-  [super dealloc];
+    [super dealloc];
 }
 
 @end
+
