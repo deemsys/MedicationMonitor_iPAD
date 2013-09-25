@@ -10,7 +10,7 @@
 		0D28688F17EB254B00DED1FA /* Default-Portrait@2x~ipad-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D28688E17EB254B00DED1FA /* Default-Portrait@2x~ipad-Portrait~ipad.png */; };
 		0D28689117EB254D00DED1FA /* Default-Portrait@2x~ipad-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D28689017EB254D00DED1FA /* Default-Portrait@2x~ipad-Portrait@2x~ipad.png */; };
 		0D94C15217E3861B00B6ED22 /* noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D94C15117E3861B00B6ED22 /* noimage.png */; };
-		0D9599BC17D0827200452C0C /* registrationBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9599BB17D0827200452C0C /* registrationBG.png */; };
+		0D96856817F2F2C600D7CED4 /* registrationBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D96856717F2F2C600D7CED4 /* registrationBG.png */; };
 		0D99686217D9A36C008CB6CF /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D99686117D9A36C008CB6CF /* RootViewController.m */; };
 		0D99686417D9A372008CB6CF /* roor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D99686317D9A372008CB6CF /* roor.xib */; };
 		0D99686717D9A37F008CB6CF /* AboutmeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D99686617D9A37F008CB6CF /* AboutmeViewController.m */; };
@@ -239,7 +239,7 @@
 		0D28688E17EB254B00DED1FA /* Default-Portrait@2x~ipad-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad-Portrait~ipad.png"; sourceTree = "<group>"; };
 		0D28689017EB254D00DED1FA /* Default-Portrait@2x~ipad-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		0D94C15117E3861B00B6ED22 /* noimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage.png; sourceTree = "<group>"; };
-		0D9599BB17D0827200452C0C /* registrationBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registrationBG.png; sourceTree = "<group>"; };
+		0D96856717F2F2C600D7CED4 /* registrationBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registrationBG.png; sourceTree = "<group>"; };
 		0D99686017D9A363008CB6CF /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		0D99686117D9A36C008CB6CF /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		0D99686317D9A372008CB6CF /* roor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = roor.xib; sourceTree = "<group>"; };
@@ -1038,8 +1038,8 @@
 				C8F243A815C6B10F00FCCB6B /* LoginScreen.xib */,
 				C82DB3A9164B706B001B636D /* LoginScreen_iPhone.xib */,
 				C8FF1F9315C7BD75001E546A /* SignUp.h */,
-				0D9599BB17D0827200452C0C /* registrationBG.png */,
 				C8FF1F9415C7BD75001E546A /* SignUp.m */,
+				0D96856717F2F2C600D7CED4 /* registrationBG.png */,
 				C8FF1F9515C7BD75001E546A /* SignUp.xib */,
 				C8AD4F1F164B908600D772D3 /* SignUp_iPhone.xib */,
 			);
@@ -1303,7 +1303,6 @@
 				0D9E5FFB17CF624B002CB015 /* Medications1.png in Resources */,
 				0D9E5FFD17CF624B002CB015 /* Settings1.png in Resources */,
 				0D9E600117CF7259002CB015 /* Reminders1.png in Resources */,
-				0D9599BC17D0827200452C0C /* registrationBG.png in Resources */,
 				0DA3D33B17D4D0150012DD57 /* adddate&time.png in Resources */,
 				0D9FD07417D8718C0092B5D8 /* Agearrow.png in Resources */,
 				0D9FD07617D881010092B5D8 /* smBG2.png in Resources */,
@@ -1317,6 +1316,7 @@
 				0D9CBFED17E3B77500A067D5 /* unselect2.png in Resources */,
 				0D28688F17EB254B00DED1FA /* Default-Portrait@2x~ipad-Portrait~ipad.png in Resources */,
 				0D28689117EB254D00DED1FA /* Default-Portrait@2x~ipad-Portrait@2x~ipad.png in Resources */,
+				0D96856817F2F2C600D7CED4 /* registrationBG.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
