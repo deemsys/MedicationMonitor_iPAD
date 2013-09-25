@@ -301,8 +301,7 @@ AppSharedInstance *instance;
         
     }
     
-    arr=[[NSArray alloc]init];
-    arr=[[UIApplication sharedApplication] scheduledLocalNotifications] ;
+   
     
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -560,45 +559,49 @@ AppSharedInstance *instance;
 #pragma mark -
 #pragma mark Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*  NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
-    NSString *date=notif.fireDate;
-    NSString *name=notif.alertBody;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"date" object:date];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"name" object:name];
+    
     Addremainder *noteViewController = [[Addremainder alloc] initWithNibName:@"Addremainder" bundle:nil];
-	[self.navigationController pushViewController:noteViewController animated:YES];
     
-  
-   */
+	
     
-    /*AboutmeViewController *aboutmeViewController = [[AboutmeViewController alloc] initWithNibName:@"AddMedi" bundle:nil];
-     aboutmeViewController.recordDict=recordDict;
-     aboutmeViewController.recordDict = [petArray objectAtIndex:indexPath.section];
-     
-     [[NSUserDefaults standardUserDefaults] setInteger:indexPath.section forKey:@"select"];
-     [self.navigationController pushViewController:aboutmeViewController animated:YES];
-     [aboutmeViewController release];*/
+    noteViewController.clicked=1;
+    noteViewController.index=indexPath.row;
     
+    NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    
+    UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
+    
+    noteViewController.notifdate=notif.fireDate;
+    
+    noteViewController.notifname=notif.alertBody;
+    
+    
+    
+    //    NSLog(@"Selected Row %i",index);
+    
+    // [[NSNotificationCenter defaultCenter] postNotificationName:@"date" object:date];
+    
+    // [[NSNotificationCenter defaultCenter] postNotificationName:@"name" object:name];
+    
+    
+    [self.navigationController pushViewController:noteViewController animated:YES];
+    
+    [noteViewController release];
     if(savedValue==5)
     {
-        //[self btnPostPress];
+        
         [self share];
         self.recordDict=recordDict;
         self.recordDict=[petArray objectAtIndex:indexPath.section];
-        /* AboutmeViewController *aboutmeViewController = [[AboutmeViewController alloc] initWithNibName:@"AboutmeViewController" bundle:nil];
-         
-         aboutmeViewController.recordDict = [petArray objectAtIndex:indexPath.section];
-         [self.navigationController pushViewController:aboutmeViewController animated:YES];
-         [aboutmeViewController release];*/
+        
     }
-	/*PetViewController *petViewController = [[PetViewController alloc] initWithNibName:@"PetViewController" bundle:nil];
-     petViewController.recordDict = [petArray objectAtIndex:indexPath.section];
-     [self.navigationController pushViewController:petViewController animated:YES];
-     [petViewController release];*/
+    [self viewDidLoad];
+    [self viewWillAppear:YES];
 }
+
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	

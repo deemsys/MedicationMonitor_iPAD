@@ -17,19 +17,19 @@
     BOOL share1;
     int savedValue;
     NSString*reminderFile;
-    int k;
-    NSArray *arr;
     NSMutableArray *_RemaindersArray;
-    
+    int k;
     IBOutlet UILabel*nolab;
-    
+    int selected;
     NSMutableDictionary *dictionary;
     NSString *dicfile;
     NSMutableArray *dictionaryArray;
+    
     
 }
 -(IBAction)Addremainder;
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl;
 @property (retain,nonatomic) NSArray *petArray;
 @property (retain, nonatomic) NSMutableDictionary *recordDict;
+
 @end
