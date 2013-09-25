@@ -41,8 +41,17 @@
     [self.view sendSubviewToBack:i];
 	[super viewDidLoad];
 	//NSLog(@"Main View Did Load: %@", self.tabBarItem.title);
+  
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(becomeActive:)
+                                                     name:UIApplicationDidBecomeActiveNotification
+                                                   object:nil];
+  
+    
+    
 
-	if(self.tabBarItem.title == @"Home") 
+	if([self.tabBarItem.title isEqual: @"Home"]) 
     {
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -67,7 +76,7 @@
         
 		
 	}
-    else if (self.tabBarItem.title == @"Medications")
+    else if ([self.tabBarItem.title isEqual: @"Medications"])
     {	
 		
         RootViewController *browseViewController = [[RootViewController alloc] initWithNibName:@"roor" bundle:nil];
@@ -78,7 +87,7 @@
 		[browseViewController release];
       
 	}
-    else if (self.tabBarItem.title == @"Remainders")
+    else if ([self.tabBarItem.title isEqual: @"Remainders"])
     {	
       
         Cremainder *browseViewController = [[Cremainder alloc] initWithNibName:@"Cremainder" bundle:nil];
@@ -87,7 +96,7 @@
 		[self pushViewController:browseViewController animated:YES];
 		[browseViewController release];
 	}
-    else if (self.tabBarItem.title == @"Assessments")
+    else if ([self.tabBarItem.title isEqual: @"Assessments"])
     {
         Assessment *browseViewController = [[Assessment alloc] initWithNibName:@"Assessment" bundle:nil];
         browseViewController.view.backgroundColor=[UIColor clearColor];
@@ -102,8 +111,7 @@
         
 	}
     
-    else if (self.tabBarItem.title == @"Appoinments") 
-    {	
+    else if ([self.tabBarItem.title isEqual: @"Appoinments"])     {	
        
         Appoinment *browseViewController = [[Appoinment alloc] initWithNibName:@"Appoinment" bundle:nil];
         browseViewController.view.backgroundColor=[UIColor clearColor];
@@ -113,7 +121,7 @@
 		[browseViewController release];
          
 	}
-    else if (self.tabBarItem.title == @"Communicate") 
+    else if ([self.tabBarItem.title isEqual: @"Communicate"]) 
     {	
         Communicate *browseViewController = [[Communicate alloc] initWithNibName:@"Communicate" bundle:nil];
         browseViewController.view.backgroundColor=[UIColor clearColor];
@@ -122,7 +130,7 @@
 		[browseViewController release];
 
 	}
-    else if (self.tabBarItem.title == @"Settings") 
+    else if ([self.tabBarItem.title isEqual: @"Settings"]) 
     {
         NewViewController *browseViewController = [[NewViewController alloc] initWithNibName:@"NewViewController" bundle:nil];
         browseViewController.view.backgroundColor=[UIColor clearColor];
@@ -132,7 +140,13 @@
 	}
 
 }
-
+-(void)becomeActive:(NSNotification *)notification {
+    // only respond if the selected tab is our current tab
+    if (self.tabBarController.selectedIndex == 0) { // Tab 1 is 0 index, Tab 2 is 1, etc
+        [self viewWillAppear:YES];
+    }
+    
+}
 - (void)didReceiveMemoryWarning
 {
     
