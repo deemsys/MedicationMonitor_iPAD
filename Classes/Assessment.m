@@ -3,6 +3,7 @@
 #import "que.h"
 #import "SVSegmentedControl.h"
 #import "history.h"
+#import "fileMngr.h"
 #define USE_CUSTOM_DRAWING 1
 #define USE_CUSTOM_DRAWING 1
 @implementation Assessment
@@ -297,26 +298,27 @@ AppSharedInstance *instance;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if(tableView.tag==200)
     {
         
         NSUInteger row1 = [indexPath row];
         NSUInteger count = [photoArray count];
         NSString*str=[[photoArray objectAtIndex:(count-row1-1)]objectForKey:@"pk" ];
-        NSLog(@"pk:%@",str);
+        NSLog(@"pk value str:%@",str);
         [[NSUserDefaults standardUserDefaults]setObject:str forKey:@"kiss"];
         
         NSString*name=[NSString stringWithFormat:@"%@",[[photoArray objectAtIndex:(count-row1-1)]objectForKey:@"type" ]];
          [[NSUserDefaults standardUserDefaults]setObject:name forKey:@"kissname"];
-         //NSLog(@"nameSSSSSSS:%@",name);
+         NSLog(@"nameSSSSSSS: name%@",name);
         NSString*date=[NSString stringWithFormat:@"%@",[[photoArray objectAtIndex:(count-row1-1)]objectForKey:@"date" ]];
         [[NSUserDefaults standardUserDefaults]setObject:date forKey:@"kissdate"];
-       // NSLog(@"DATEEEEE:%@",date);
+     NSLog(@"DATEEEEE date:%@",date);
         
         NSString*str6=[[photoArray objectAtIndex:(count-row1-1)]objectForKey:@"name" ];
-         NSLog(@"DATEEEEE:%@",str6);
+         NSLog(@"DATEEEEE str6:%@",str6);
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", str]];
-    NSLog(@"raja:%@",url);
+    NSLog(@"raja url:%@",url);
         [[NSUserDefaults standardUserDefaults]setObject:str6 forKey:@"musicAA"];
         history *aboutmeViewController = [[history alloc] initWithNibName:@"history" bundle:nil];
         aboutmeViewController.recordDict=recordDict;
@@ -368,7 +370,57 @@ AppSharedInstance *instance;
 
 }
 
+- (void)tableView:(UITableView *)atableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+    if(atableView.tag==200)
+    {
+        [photoArray removeObjectAtIndex:[indexPath section]];
+        [recordDict removeObjectForKey:@"pk"];
+       
+        NSUInteger row1 = [indexPath section];
+        NSUInteger count = [photoArray count];
+        NSString*str=[[photoArray objectAtIndex:(count-row1-1)]objectForKey:@"pk" ];
+         
+        
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", str]];
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *recDir = [paths objectAtIndex:0];
+        NSString*p=[NSString stringWithFormat:@"%@/%@recordTest.text", recDir,str];
+        NSString*pa=[NSString stringWithFormat:@"%@/%@recordTest.text", recDir,[NSString stringWithFormat:@"A%@",str]];
+        
+        
+        NSMutableArray *_Question=[[NSMutableArray alloc]initWithContentsOfFile:p];
+        //NSLog(@"STR:%@",_Question);
+        NSMutableArray *_Answer=[[NSMutableArray alloc]initWithContentsOfFile:pa];
+	
+        
+        [_Question removeObjectAtIndex:indexPath.section];
+        [_Answer removeObjectAtIndex:indexPath.section];
+        [photoArray removeObjectAtIndex:[indexPath section]];
+        
+        
+        [fileMngr saveDatapath:p  contentarray:_Question];
+        
+        [fileMngr saveDatapath:pa contentarray:_Answer];
+       
+   
+            [Audio reloadData];
+       // [self viewWillAppear:YES];
+         
+        //[self reload];
+        
+       
+    }
+    else{
+		
+    }
+}
 
+}
 
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl
 {
@@ -400,7 +452,7 @@ AppSharedInstance *instance;
 
     }
     
-    
+
 }
 
 
