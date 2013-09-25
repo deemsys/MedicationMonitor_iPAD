@@ -13,6 +13,7 @@
 #import "AppSharedInstance.h"
 #import "ADLivelyTableView.h"
 #import "BlockAlertView.h"
+#import "ListCell.h"
 #define USE_CUSTOM_DRAWING 1
 #define USE_CUSTOM_DRAWING 1
 @interface Welcome ()
@@ -25,6 +26,12 @@
 @synthesize _assQues;
 @synthesize _assAns;
 @synthesize assesment;
+@synthesize tableContents;
+@synthesize sortedKeys;
+
+int c=0;
+
+
 
 AppSharedInstance *instance;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -48,7 +55,7 @@ AppSharedInstance *instance;
 
 -(IBAction)sunc:(id)sender
 {
-    	
+    
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 	[self.navigationController.view addSubview:HUD];
 	
@@ -62,15 +69,15 @@ AppSharedInstance *instance;
 -(IBAction)sunc1
 {
     
-  
-   
-      instance = [AppSharedInstance sharedInstance];
+    
+    c=1;
+    instance = [AppSharedInstance sharedInstance];
     self.petArray = [instance getPet];
     self._assQues=[instance getAssQue];
     self._assAns=[instance getAssAnswer];
     self.assesment=[instance getAssesment];
     NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
- 
+    
     
     
     Reachability* wifiReach = [[Reachability reachabilityWithHostName: @"www.apple.com"] retain];
@@ -117,16 +124,14 @@ AppSharedInstance *instance;
     
     
     
-NSString *resultResponse=[self HttpPostEntityFirst1:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
-NSString *resultResponse1=[self HttpPostEntityFirst:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
-NSString *resultResponseASS=[self HttpPostEntityFirstASS:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
-NSString *resultResponseREMINDER=[self HttpPostEntityFirstREMINDER:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
+    NSString *resultResponse=[self HttpPostEntityFirst1:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
+    NSString *resultResponse1=[self HttpPostEntityFirst:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
+    NSString *resultResponseASS=[self HttpPostEntityFirstASS:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
+    NSString *resultResponseREMINDER=[self HttpPostEntityFirstREMINDER:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
+    NSString *resultResponsePROVIDER=[self HttpPostEntityFirstPROVIDER:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
+    NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
     
     
-NSString *resultResponsePROVIDER=[self HttpPostEntityFirstPROVIDER:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
-NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runNumber  EntityThird:@"authkey" ForValue3:@"rzTFevN099Km39PV"];
-    
-
     
     
     
@@ -144,9 +149,9 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
     
     
     NSDictionary *luckyNumberslistofpro = [json objectWithString:_listOfPro error:&error];
-     NSDictionary *_listOfProitems = [luckyNumberslistofpro objectForKey:@"serviceresponse"];
+    NSDictionary *_listOfProitems = [luckyNumberslistofpro objectForKey:@"serviceresponse"];
     NSArray *_listOfProitems1=[_listOfProitems objectForKey:@"Select Providers"];
-   
+    
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *docDirectory = [path objectAtIndex:0];
     
@@ -155,49 +160,49 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
     NSString*ProDFilel=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProDFilel"]];
     NSString*ProNamfilel=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProNamfilel"]];
     NSLog(@"_listOfProitems1:%@",_listOfProitems1);
-                               for (id anUpdate in _listOfProitems1)
-                               {
-                                   NSDictionary *ProID=[(NSDictionary*)anUpdate objectForKey:@"provideid"];
-                                   NSDictionary *ProName=[(NSDictionary*)anUpdate objectForKey:@"providername"];
-                                   ////NSLog(@"providerId:");
-                                   ////NSLog(@"ProviderName:%@",ProName);
-                                   [ProDl addObject:[NSString stringWithFormat:@"%@",ProID]];
-                                   [ProNaml addObject:[NSString stringWithFormat:@"%@",ProName]];
-                               }
+    for (id anUpdate in _listOfProitems1)
+    {
+        NSDictionary *ProID=[(NSDictionary*)anUpdate objectForKey:@"provideid"];
+        NSDictionary *ProName=[(NSDictionary*)anUpdate objectForKey:@"providername"];
+        ////NSLog(@"providerId:");
+        ////NSLog(@"ProviderName:%@",ProName);
+        [ProDl addObject:[NSString stringWithFormat:@"%@",ProID]];
+        [ProNaml addObject:[NSString stringWithFormat:@"%@",ProName]];
+    }
     
     [fileMngr saveDatapath:ProDFilel contentarray:ProDl];
     [fileMngr saveDatapath:ProNamfilel contentarray:ProNaml];
     
     HUD.labelText = @"Feteching Data...";
-   // return;
+    // return;
     
-   // ////NSLog(@"Provideritems1 =%@",Provideritems1);
+    // ////NSLog(@"Provideritems1 =%@",Provideritems1);
     
     NSMutableArray *ProD=[[NSMutableArray alloc]init];
     NSMutableArray *ProNam=[[NSMutableArray alloc]init];
     
-      NSLog(@"Provideritems1:%@",Provideritems1);
+    NSLog(@"Provideritems1:%@",Provideritems1);
     for (id anUpdate in Provideritems1)
     {
-       NSDictionary *ProID=[(NSDictionary*)anUpdate objectForKey:@"provideid"];
+        NSDictionary *ProID=[(NSDictionary*)anUpdate objectForKey:@"provideid"];
         NSDictionary *ProName=[(NSDictionary*)anUpdate objectForKey:@"providername"];
         ////NSLog(@"providerId:%@",ProID);
         ////NSLog(@"ProviderName:%@",ProID);
         [ProD addObject:[NSString stringWithFormat:@"%@",ProID]];
         [ProNam addObject:[NSString stringWithFormat:@"%@",ProName]];
-     
+        
     }
     
     
 	NSString*ProDFile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProDFile"]];
     NSString*ProNamfile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"ProNamfile"]];
     [fileMngr saveDatapath:ProDFile contentarray:ProD];
-        [fileMngr saveDatapath:ProNamfile contentarray:ProNam];
+    [fileMngr saveDatapath:ProNamfile contentarray:ProNam];
     
     ////NSLog(@"%@",ProD);
     ////NSLog(@"%@",ProNam);
     
-   
+    
     
     
     
@@ -208,13 +213,13 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
     
     
     
-   
     
-     NSDictionary *luckyNumbersREMINDER = [json objectWithString:resultResponseREMINDER error:&error];
+    
+    NSDictionary *luckyNumbersREMINDER = [json objectWithString:resultResponseREMINDER error:&error];
     NSDictionary *REMINDERitems = [luckyNumbersREMINDER objectForKey:@"serviceresponse"];
     NSArray *REMINDERitems1=[REMINDERitems objectForKey:@"Patient Reminder"];
     
-      
+    
     
     for (id anUpdate in REMINDERitems1)
     {
@@ -226,7 +231,7 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
         ////NSLog(@"remaindername:%@",arrayListType);
         ////NSLog(@"remaindername:%@",arrayListDate);
         
-     
+        
         
         NSString *dateString = [NSString stringWithFormat:@"%@",arrayListDate];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -248,51 +253,51 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
         NSString*s=[NSString stringWithFormat:@"%@",arrayListType];
         if([s isEqualToString:@"Daily"])
         {
-               localNotif.repeatInterval = NSDayCalendarUnit;
+            localNotif.repeatInterval = NSDayCalendarUnit;
         }
         else
         {
             localNotif.repeatInterval = 0;
         }
         
-     //    NSDictionary *infoDict = [NSDictionary dictionaryWithObject: localNotif.fireDate forKey:@"date"];
-      //  localNotif.userInfo = infoDict;
+        //    NSDictionary *infoDict = [NSDictionary dictionaryWithObject: localNotif.fireDate forKey:@"date"];
+        //  localNotif.userInfo = infoDict;
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
         [localNotif release];
         
         
         
     }
-
+    
     
     
     
     //////***********************ASSESSMENT*********************??//
     
     NSDictionary *items = [luckyNumbers objectForKey:@"serviceresponse"];
-     NSArray *items1=[items objectForKey:@"Patient Medicines"];
+    NSArray *items1=[items objectForKey:@"Patient Medicines"];
     
     NSDictionary *itemsApp = [luckyNumbers1 objectForKey:@"serviceresponse"];
-     NSArray *items1App=[itemsApp objectForKey:@"Patient Appointment"];
+    NSArray *items1App=[itemsApp objectForKey:@"Patient Appointment"];
     
     
     NSDictionary *qusres = [luckyNumbersASS objectForKey:@"serviceresponse"];
     
     NSArray *patQuestion=[qusres objectForKey:@"Patient Question"];
     
-     // NSArray *assessment=[luckyNumbersASS objectForKey:@"assessment"];
-//NSDictionary *qusres1 = [luckyNumbersASS objectForKey:@"assessment"];
+    // NSArray *assessment=[luckyNumbersASS objectForKey:@"assessment"];
+    //NSDictionary *qusres1 = [luckyNumbersASS objectForKey:@"assessment"];
     
-   // ////NSLog(@"RESULT ASSESS =%@",patQuestion);ass
+    // ////NSLog(@"RESULT ASSESS =%@",patQuestion);ass
     
-      
+    
     
     for (id anUpdate in patQuestion)
     {
         NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"assid"];
         NSDictionary *arrayList1=[(NSDictionary*)anUpdate objectForKey:@"assname"];
         
-      //  //NSLog(@"self.assesment.count:%i",[self.assesment count]);
+        //  //NSLog(@"self.assesment.count:%i",[self.assesment count]);
         
         if([self.assesment count]==0)
         {
@@ -310,7 +315,7 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
                 [recordDict setObject:arrayList forKey:@"assid"];
                 ////NSLog(@"assid:%@",arrayList);
                 [recordDict setObject:arrayList1 forKey:@"assname"];
-             //   [instance insertAss:recordDict];
+                //   [instance insertAss:recordDict];
                 
                 
                 NSDictionary *arrayListid=[(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
@@ -336,9 +341,9 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
                 {
                     
                     
-                  //  //NSLog(@"RAJA");
+                    //  //NSLog(@"RAJA");
                     [recordDict setObject:arrayList forKey:@"assid"];
-                  //  [instance insertAnswer:recordDict];
+                    //  [instance insertAnswer:recordDict];
                     
                     
                     NSDictionary *arrayList1=[(NSDictionary*)anUpdate objectForKey:@"assanswerid"];
@@ -347,10 +352,10 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
                     [recordDict setObject:arrayList2 forKey:@"answer"];
                     [instance insertAnswer:recordDict];
                     
-                //    //NSLog(@"recordDict:R%@",recordDict);
-                  
+                    //    //NSLog(@"recordDict:R%@",recordDict);
+                    
                 }
-              
+                
                 
                 
             }
@@ -363,14 +368,14 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
             {
                 NSString*s1= [[self.assesment objectAtIndex:j] objectForKey:@"id"];
                 NSString*s=[(NSDictionary*)anUpdate objectForKey:@"assid"];
-          //  //NSLog(@"AAAAAAAAAAs1:%@",s);
-              //  //NSLog(@"s:%@",s);
+                //  //NSLog(@"AAAAAAAAAAs1:%@",s);
+                //  //NSLog(@"s:%@",s);
                 if(![s1 isEqualToString:s])
                 {
                     Add++;
-                  /* 
-                    
-                    */
+                    /*
+                     
+                     */
                     
                 }
                 
@@ -418,18 +423,18 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
                     {
                         
                         [recordDict setObject:arrayList forKey:@"assid"];
-                    //    [instance insertAnswer:recordDict];
+                        //    [instance insertAnswer:recordDict];
                         
                         NSDictionary *arrayList1=[(NSDictionary*)anUpdate objectForKey:@"assanswerid"];
                         NSDictionary *arrayList2=[(NSDictionary*)anUpdate objectForKey:@"assanswer"];
-                      
+                        
                         
                         [recordDict setObject:arrayList1 forKey:@"ansid"];
                         [recordDict setObject:arrayList2 forKey:@"answer"];
                         [instance insertAnswer:recordDict];
                     }
                 }
-             //   //NSLog(@"RAJAADDASS");
+                //   //NSLog(@"RAJAADDASS");
             }
             
             
@@ -438,7 +443,7 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
         }
         
         
-             
+        
         
     }
     
@@ -456,16 +461,16 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
     for (id anUpdate in items1)
     {
         NSDictionary *arrayList1=[(NSDictionary*)anUpdate objectForKey:@"serviceresponse"];
-    //NSLog(@"MEDI NAME:%@",[arrayList1 objectForKey:@"medicinename"]);
+        //NSLog(@"MEDI NAME:%@",[arrayList1 objectForKey:@"medicinename"]);
         //  ////NSLog(@"DIRECTION:%@",[arrayList1 objectForKey:@"direction"]);
         
         [tempM addObject:[arrayList1 objectForKey:@"medicinename"]];
         
-      
+        
         
     }
     
-  //    ////NSLog(@"PETARRAYCOUNT::%i",[petArray count]);
+    //    ////NSLog(@"PETARRAYCOUNT::%i",[petArray count]);
     
     if([petArray count]==0)
     {
@@ -490,7 +495,7 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
                 NSString*s=[tempM objectAtIndex:i];
                 NSString*s1= [[petArray objectAtIndex:j] objectForKey:@"name"];
                 
-               //NSLog(@"PPPPPPPPPPPPPP:%@ %@",s,s1);
+                //NSLog(@"PPPPPPPPPPPPPP:%@ %@",s,s1);
                 
                 if([s isEqualToString:s1])
                 {
@@ -598,36 +603,49 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
     [fileMngr saveDatapath:appoNFile contentarray:_AppNArr];
     
     
-//    ////NSLog(@"%@",self._assQues);
-     //NSLog(@"self._assAns:%@",self._assAns);
+    //    ////NSLog(@"%@",self._assQues);
+    //NSLog(@"self._assAns:%@",self._assAns);
     
-     // [HUD hide:YES];
+    // [HUD hide:YES];
     HUD.labelText = @"Completed.";
     HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
 	HUD.mode = MBProgressHUDModeCustomView;
     [HUD hide:YES afterDelay:0];
+    [self viewDidLoad];
     
 }
 
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+	return [self.sortedKeys count];
+    
 }
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	return [self.sortedKeys objectAtIndex:section];
+}
+
 
 
 // Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [reminderarray count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSArray *listData =[self.tableContents objectForKey:[self.sortedKeys objectAtIndex:section]];
+	return [listData count];
 }
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
 #if USE_CUSTOM_DRAWING
 	const NSInteger TOP_LABEL_TAG = 1001;
 	const NSInteger BOTTOM_LABEL_TAG = 1002;
 	UILabel *topLabel;
 	UILabel *bottomLabel;
 #endif
+    NSArray *listData =[self.tableContents objectForKey:[self.sortedKeys objectAtIndex:[indexPath section]]];
+    NSLog(@"[self.sortedKeys objectAtIndex:[indexPath section]] ---->%@",[self.sortedKeys objectAtIndex:[indexPath section]]);
+    
     
 	static NSString *CellIdentifier = @"Cell";
 	UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -714,21 +732,37 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
 		topLabel = (UILabel *)[cell viewWithTag:TOP_LABEL_TAG];
 		bottomLabel = (UILabel *)[cell viewWithTag:BOTTOM_LABEL_TAG];
 	}
-	
+    if([[self.sortedKeys objectAtIndex:[indexPath section]]isEqual:@"Appointment"])
+    {
+        
+        bottomLabel.text=[_AppDArr objectAtIndex:indexPath.row];
+        topLabel.text=[_AppNArr objectAtIndex:indexPath.row];
+    }
+    
+    else if([[self.sortedKeys objectAtIndex:[indexPath section]]isEqual:@"Reminder"])
+    {
+        UILocalNotification *notif = [reminderarray objectAtIndex:indexPath.row];
+        //cell.textLabel.font=[UIFont fontWithName:@"Arial" size:30];
+        // [cell.textLabel setText:notif.alertBody];
+        // cell.detailTextLabel.textColor = [UIColor greenColor];
+        //[cell.detailTextLabel setText:[notif.fireDate description]];
+        
+        //NSUInteger row1 = [indexPath row];
+        //cell.textLabel.text = [listData objectAtIndex:row1];
+        
+        
+        topLabel.text = notif.alertBody;
+        bottomLabel.text =[notif.fireDate descriptionWithLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]autorelease]] ;
+        
+    }
+    else if([[self.sortedKeys objectAtIndex:[indexPath section]]isEqual:@"Medication"])
+    {
+        topLabel.text=[[petArray objectAtIndex:indexPath.row] objectForKey:@"name"];
+        bottomLabel.text=[[petArray objectAtIndex:indexPath.row]objectForKey:@"fromd"];
+        
+    }
     
     
-   // NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
-	UILocalNotification *notif = [reminderarray objectAtIndex:indexPath.row];
-	//cell.textLabel.font=[UIFont fontWithName:@"Arial" size:30];
-    // [cell.textLabel setText:notif.alertBody];
-    // cell.detailTextLabel.textColor = [UIColor greenColor];
-	//[cell.detailTextLabel setText:[notif.fireDate description]];
-    
-    
-	topLabel.text = notif.alertBody;
-	bottomLabel.text =[notif.fireDate descriptionWithLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]autorelease]] ;
-	
-	
 	UIImage *rowBackground;
 	UIImage *selectionBackground;
 	NSInteger sectionRows = [aTableView numberOfRowsInSection:[indexPath section]];
@@ -766,10 +800,8 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
 #endif
 	
 	return cell;
+    
 }
-
-
-
 
 #pragma mark -
 #pragma mark Table view delegate
@@ -793,8 +825,9 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
 }
 - (void)viewWillAppear:(BOOL)animated
 {
+    choose=0;
     int syncType=[[NSUserDefaults standardUserDefaults]integerForKey:@"syncType"];
-      instance = [AppSharedInstance sharedInstance];
+    instance = [AppSharedInstance sharedInstance];
     self._assQues=[instance getAssQue];
     self._assAns=[instance getAssAnswer];
     self.assesment=[instance getAssesment];
@@ -815,11 +848,11 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
             saveButton = [[[UIBarButtonItem alloc]
                            initWithCustomView:save] autorelease];
             
-              self.navigationItem.rightBarButtonItem = saveButton;
+            self.navigationItem.rightBarButtonItem = saveButton;
         }
         else
         {
-         self.navigationItem.rightBarButtonItem = saveButton;
+            self.navigationItem.rightBarButtonItem = saveButton;
         }
         
     }
@@ -827,12 +860,148 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
     {
         if(self.navigationItem.rightBarButtonItem!=nil)
         {
-          self.navigationItem.rightBarButtonItem = nil;
+            self.navigationItem.rightBarButtonItem = nil;
         }
     }
     
-
     
+    
+    reminderarray=[[NSMutableArray alloc]init];
+    
+    NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for(int i=0;i<[notificationArray count];i++)
+    {
+        UILocalNotification *notif = [notificationArray objectAtIndex:i];
+        NSDictionary *userInfoCurrent = notif.userInfo;
+        
+        NSDate *dateCurrent = [userInfoCurrent valueForKey:@"date"];
+        //  ////NSLog(@"Found scheduled alarm with date:%@", userInfoCurrent );
+        
+        
+        [reminderarray addObject:notif];
+        
+        NSDateFormatter* df = [[NSDateFormatter alloc]init];
+        [df setDateFormat:@"MM/dd/yyyy"];
+        NSString *result = [df stringFromDate:dateCurrent];
+        [df release];
+        
+        
+        
+        NSDate* date = [NSDate date];
+        NSDateFormatter* df1 = [[NSDateFormatter alloc]init];
+        [df1 setDateFormat:@"MM/dd/yyyy"];
+        NSString *result1 = [df1 stringFromDate:date];
+        
+        
+        
+        if([result isEqualToString:result1])
+        {
+            ////NSLog(@"result schedulh date:%@", result );
+            ////NSLog(@"Result1:::::::%@", result1);
+            //   [reminderarray addObject:notif];
+        }
+        
+        
+        /*NSInteger nWords = 10;
+         NSRange wordRange = NSMakeRange(0,10);
+         NSArray *firstWords = [[[NSString stringWithFormat:@"%@",userInfoCurrent] componentsSeparatedByString:@" "] subarrayWithRange:wordRange];
+         NSString *result = [firstWords componentsJoinedByString:@" "];
+         ////NSLog(@"RESULT:%@",result);*/
+    }
+    
+    self.petArray = [instance getPet];
+    NSLog(@"self.petarray:%@",self.petArray);
+    NSMutableArray*a=[[NSMutableArray alloc]init];
+    // for (id anUpdate in self.petArray)
+    //  {
+    // NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"patid"];
+    NSLog(@"%i",[self.petArray count]);
+    for(int j=0;j<[self.petArray count];j++)
+    {
+        NSLog(@"yes");
+        NSString*s1= [[self.petArray objectAtIndex:j] objectForKey:@"patid"];
+        NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
+        //  NSLog(@"AAAAAAAAAAs1:%@",UserId);
+        //  //NSLog(@"s:%@",s);
+        if([s1 isEqualToString:UserId])
+        {
+            [a addObject:[self.petArray objectAtIndex:j]];
+            
+            
+        }
+    }
+    
+    // }
+    self.petArray=a;
+    NSLog(@"YES:%@",petArray);
+    
+    
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *docDirectory = [path objectAtIndex:0];
+    
+	appoFile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"appoFile.hsa"]];
+    appoNFile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"appoNFile.hsa"]];
+    
+    
+	if ([[NSFileManager defaultManager] fileExistsAtPath:appoFile])
+	{
+		_AppDArr=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:appoFile]];
+		
+	}
+	else
+        
+	{
+		_AppDArr=[[NSMutableArray alloc]init];
+	}
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:appoNFile])
+	{
+		_AppNArr=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:appoNFile]];
+		
+	}
+	else
+	{
+		_AppNArr=[[NSMutableArray alloc]init];
+	}
+    
+    
+    
+    
+    
+    
+    
+    /********************AppoinMent   End********************/
+    
+    
+    NSString*name=[[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+    
+    NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
+    
+    
+    NSDictionary *temp =[[NSDictionary alloc]initWithObjectsAndKeys:reminderarray,@"Reminder",_AppDArr,@"Appointment",petArray,@"Medication",nil];
+    
+    self.tableContents =temp;
+    [temp release];
+	NSLog(@"table %@",self.tableContents);
+	NSLog(@"table with Keys %@",[self.tableContents allKeys]);
+	self.sortedKeys =[[self.tableContents allKeys] sortedArrayUsingSelector:@selector(compare:)];
+	NSLog(@"sorted %@",self.sortedKeys);
+	[reminderarray release];
+	[_AppDArr release];
+    [petArray release];
+    [myTable reloadData];
+    
+    
+}
+
+- (void)viewDidLoad
+{
+    
+    
+    [super viewDidLoad];
+    
+    
+    myTable.backgroundColor = [UIColor clearColor];
     reminderarray=[[NSMutableArray alloc]init];
     
     NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
@@ -877,62 +1046,6 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
          ////NSLog(@"RESULT:%@",result);*/
     }
     
-
-        
-      [myTable reloadData];
-    
-        
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-     myTable.backgroundColor = [UIColor clearColor];
-    reminderarray=[[NSMutableArray alloc]init];
-    
-    NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    for(int i=0;i<[notificationArray count];i++)
-    {
-    UILocalNotification *notif = [notificationArray objectAtIndex:i];
-        NSDictionary *userInfoCurrent = notif.userInfo;
-        
-        NSDate *dateCurrent = [userInfoCurrent valueForKey:@"date"];
-      //  ////NSLog(@"Found scheduled alarm with date:%@", userInfoCurrent );
-        
-        
-         [reminderarray addObject:notif];
-        
-        NSDateFormatter* df = [[NSDateFormatter alloc]init];
-        [df setDateFormat:@"MM/dd/yyyy"];
-        NSString *result = [df stringFromDate:dateCurrent];
-        [df release];
-   
-        
-        
-        NSDate* date = [NSDate date];
-        NSDateFormatter* df1 = [[NSDateFormatter alloc]init];
-        [df1 setDateFormat:@"MM/dd/yyyy"];
-        NSString *result1 = [df1 stringFromDate:date];
-       
-        
-        
-        if([result isEqualToString:result1])
-        {
-                ////NSLog(@"result schedulh date:%@", result );
-            ////NSLog(@"Result1:::::::%@", result1);
-          //   [reminderarray addObject:notif];
-        }
-        
-       
-        
-        /*NSInteger nWords = 10;
-        NSRange wordRange = NSMakeRange(0,10);
-        NSArray *firstWords = [[[NSString stringWithFormat:@"%@",userInfoCurrent] componentsSeparatedByString:@" "] subarrayWithRange:wordRange];
-        NSString *result = [firstWords componentsJoinedByString:@" "];
-        ////NSLog(@"RESULT:%@",result);*/
-    }
-    
     
     ADLivelyTableView * livelyTableView = (ADLivelyTableView *)myTable;
     livelyTableView.initialCellTransformBlock = ADLivelyTransformFan;
@@ -970,49 +1083,74 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
    forControlEvents:UIControlEventTouchUpInside];
     save.frame = CGRectMake(0, 0, 80, 40);
     saveButton = [[[UIBarButtonItem alloc]
-                                    initWithCustomView:save] autorelease];
-   
+                   initWithCustomView:save] autorelease];
+    
     
     int syncType=[[NSUserDefaults standardUserDefaults]integerForKey:@"syncType"];
     
+    
     if(syncType==1)
     {
-    
-       self.navigationItem.rightBarButtonItem = saveButton;
+        
+        self.navigationItem.rightBarButtonItem = saveButton;
         
     }
     else
     {
-       //  syn.hidden=YES;
+        //  syn.hidden=YES;
     }
     
     
     
     instance = [AppSharedInstance sharedInstance];
- 
-  
+    
+    
     if ([recordDict count]>0) {
-	
-             ////NSLog(@"recordDictA:%@",recordDict);
+        
+        ////NSLog(@"recordDictA:%@",recordDict);
 	}
 	else {
 		recordDict = [[NSMutableDictionary alloc] init];
 	}
     
-      //  [recordDict setObject:@"RAJA" forKey:@"name"];
+    //  [recordDict setObject:@"RAJA" forKey:@"name"];
 	//	[instance insertPet:recordDict];
     
+    self.petArray = [instance getPet];
+    NSLog(@"self.petarray:%@",self.petArray);
+    NSMutableArray*a=[[NSMutableArray alloc]init];
+    // for (id anUpdate in self.petArray)
+    //  {
+    // NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"patid"];
+    NSLog(@"%i",[self.petArray count]);
+    for(int j=0;j<[self.petArray count];j++)
+    {
+        NSLog(@"yes");
+        NSString*s1= [[self.petArray objectAtIndex:j] objectForKey:@"patid"];
+        NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
+        //  NSLog(@"AAAAAAAAAAs1:%@",UserId);
+        //  //NSLog(@"s:%@",s);
+        if([s1 isEqualToString:UserId])
+        {
+            [a addObject:[self.petArray objectAtIndex:j]];
+            
+            
+        }
+    }
     
+    // }
+    self.petArray=a;
+    NSLog(@"YES:%@",petArray);
     
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *docDirectory = [path objectAtIndex:0];
     
 	appoFile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"appoFile.hsa"]];
-    	appoNFile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"appoNFile.hsa"]];
+    appoNFile=[[NSString alloc] initWithString:[docDirectory stringByAppendingPathComponent:@"appoNFile.hsa"]];
     
     
-	if ([[NSFileManager defaultManager] fileExistsAtPath:appoFile]) 
+	if ([[NSFileManager defaultManager] fileExistsAtPath:appoFile])
 	{
 		_AppDArr=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:appoFile]];
 		
@@ -1022,7 +1160,7 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
 		_AppDArr=[[NSMutableArray alloc]init];
 	}
     
-    if ([[NSFileManager defaultManager] fileExistsAtPath:appoNFile]) 
+    if ([[NSFileManager defaultManager] fileExistsAtPath:appoNFile])
 	{
 		_AppNArr=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:appoNFile]];
 		
@@ -1031,41 +1169,51 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
 	{
 		_AppNArr=[[NSMutableArray alloc]init];
 	}
-
     
     
     
     
     
-   
+    
     
     /********************AppoinMent   End********************/
     
-   // ////NSLog(@"APP-D-ARRA:%i",[_AppDArr count]);
-  //  ////NSLog(@"APP-N-ARR:%i",[_AppNArr count]);
+    // ////NSLog(@"APP-D-ARRA:%i",[_AppDArr count]);
+    //  ////NSLog(@"APP-N-ARR:%i",[_AppNArr count]);
     NSString*name=[[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
-     
+    
     NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
- /*   __block DemoHintView* hintView = [DemoHintView  infoHintView];
-    hintView.hintID = kHintID_Home;
-    hintView.title = @"Welcome!";
-    [hintView addPageWithTitle:@"Info" text:name];
-    [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
-    
-    
+    /*   __block DemoHintView* hintView = [DemoHintView  infoHintView];
+     hintView.hintID = kHintID_Home;
+     hintView.title = @"Welcome!";
+     [hintView addPageWithTitle:@"Info" text:name];
+     [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
+    if(c!=1)
+    {
     BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Welcome!" message:name];
     welcome.text=[NSString stringWithFormat:@"Welcome %@ !",name];
     //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
     [alert setDestructiveButtonWithTitle:@"x" block:nil];
     [alert show];
+    }
+    NSDictionary *temp =[[NSDictionary alloc]initWithObjectsAndKeys:reminderarray,@"Reminder",_AppDArr,@"Appointment",petArray,@"Medication",nil];
     
+    self.tableContents =temp;
+    [temp release];
+	NSLog(@"table %@",self.tableContents);
+	NSLog(@"table with Keys %@",[self.tableContents allKeys]);
+	self.sortedKeys =[[self.tableContents allKeys] sortedArrayUsingSelector:@selector(compare:)];
+	NSLog(@"sorted %@",self.sortedKeys);
+	[reminderarray release];
+	[_AppDArr release];
+    [petArray release];
     
     [myTable reloadData];
     
-  
-
     
-   
+    
+    
+    
 }
 
 
@@ -1096,7 +1244,7 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
     NSString *data=[[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
     
     
-  
+    
     
     return data;
     
@@ -1117,10 +1265,10 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
 -(NSString *)HttpPostEntityFirst1:(NSString*)firstEntity ForValue1:(NSString*)value1  EntityThird:(NSString*)thirdEntity ForValue3:(NSString*)value3
 {
     
-        HUD.labelText = @"Feteching Medicines...";
+    HUD.labelText = @"Feteching Medicines...";
     NSString *post =[[NSString alloc] initWithFormat:@"%@=%@&%@=%@",firstEntity,value1,thirdEntity,value3];
     
-  
+    
     
     
     NSURL *url=[NSURL URLWithString:@"http://www.medsmonit.com/Service/medicineresponce.php?service=patmeddetail"];
@@ -1134,14 +1282,14 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
     
-        NSError *error;
+    NSError *error;
     NSURLResponse *response;
     NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     NSString *data=[[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
     
     
-       
+    
     return data;
     
 }
@@ -1155,7 +1303,7 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
 -(NSString *)HttpPostEntityFirstASS:(NSString*)firstEntity ForValue1:(NSString*)value1  EntityThird:(NSString*)thirdEntity ForValue3:(NSString*)value3
 {
     
-       HUD.labelText = @"Feteching Assesments...";
+    HUD.labelText = @"Feteching Assesments...";
     NSString *post =[[NSString alloc] initWithFormat:@"%@=%@&%@=%@",firstEntity,value1,thirdEntity,value3];
     
     
@@ -1296,6 +1444,9 @@ NSString* _listOfPro=[self HttpPostEntityFirst_listOfPro:@"patid" ForValue1:runN
 
 - (void)viewDidUnload
 {
+    [tableContents release];
+	[sortedKeys release];
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

@@ -11,9 +11,11 @@
 #import "Reachability.h"
 @interface Welcome : UIViewController<MBProgressHUDDelegate>
 {
+    NSDictionary *tableContents;
+	NSArray *sortedKeys;
     MBProgressHUD *HUD;
     NSString*appoFile;
-      NSString*appoNFile;
+    NSString*appoNFile;
     NSMutableDictionary *recordDict;
     NSMutableArray *_AppDArr;
     NSMutableArray *_AppNArr;
@@ -29,14 +31,19 @@
     NSMutableArray *reminderarray;
     NSArray *assesment;
     int Add;
+    int choose;
     BOOL isConnect;
+    BOOL select;
+    NSArray *newArray;
+    
     
 }
 -(IBAction)back1;
 -(IBAction)sunc:(id)sender;
 @property (retain,nonatomic) NSArray *petArray;
+@property (nonatomic,retain) NSDictionary *tableContents;
+@property (nonatomic,retain) NSArray *sortedKeys;
 @property (retain,nonatomic) NSArray *_assQues;
-
 @property (retain,nonatomic) NSArray *_assAns;
 @property (retain,nonatomic) NSArray *assesment;
 @property (retain, nonatomic) NSMutableDictionary *recordDict;
