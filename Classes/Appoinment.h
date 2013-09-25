@@ -12,7 +12,7 @@
 @interface Appoinment : UIViewController<UIActionSheetDelegate> {
 	NSArray *petArray;
 	IBOutlet UITableView *myTable;
-	IBOutlet UILabel *noPet;
+
 	IBOutlet UIImageView *bgImage;
     int i;
     IBOutlet UILabel *nolab;

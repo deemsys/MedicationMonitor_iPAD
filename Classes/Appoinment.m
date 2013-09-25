@@ -44,10 +44,9 @@ AppSharedInstance *instance;
 - (void)viewDidLoad {
     
     UIImageView *i=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"BG.jpg"]];
-    
-    //NSLog(@"APPONment");
+   
     [super viewDidLoad];
-    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
+       if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
     {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"Top_Panel.png"] forBarMetrics:UIBarMetricsDefault];
         
@@ -55,12 +54,7 @@ AppSharedInstance *instance;
     }
     ADLivelyTableView * livelyTableView = (ADLivelyTableView *)myTable;
     livelyTableView.initialCellTransformBlock = ADLivelyTransformFan;
-    
-    if(i>=0)
-        nolab.text=@" ";
-    else
-        nolab.text=@"You can view your list of appointments here..";
-    
+   
     share1=NO;
     // self.title = @"Medication Monitor";
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -74,8 +68,7 @@ AppSharedInstance *instance;
     [label sizeToFit];
    
     
-   // [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    myTable.backgroundColor = [UIColor clearColor];
+      myTable.backgroundColor = [UIColor clearColor];
     self.parentViewController.view.backgroundColor = [UIColor colorWithRed:0.0 green:0.2 blue:0.5 alpha:0.7];
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -107,48 +100,24 @@ AppSharedInstance *instance;
 	}
     
     
-    //NSLog(@"APP-D-ARRA:%i",[_AppDArr count]);
-    //NSLog(@"APP-N-ARR:%i",[_AppNArr count]);
-    
-   /* if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
+        if([_AppDArr count]>0)
     {
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"Top_Panel.png"] forBarMetrics:UIBarMetricsDefault];
-      
-     
+        NSLog(@"in DidLoad text wont print %d",[_AppDArr count]);
+        nolab.hidden=YES;
+        nolab.text=@" ";
     }
-    ADLivelyTableView * livelyTableView = (ADLivelyTableView *)myTable;
-    livelyTableView.initialCellTransformBlock = ADLivelyTransformFan;
-   
-
-    share1=NO;
-	  // self.title = @"Medication Monitor";
-    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-    label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont boldSystemFontOfSize:20.0];
-    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    label.textAlignment = UITextAlignmentCenter;
-    label.textColor = [UIColor whiteColor]; // change this color
-    self.navigationItem.titleView = label;
-    label.text = NSLocalizedString(@"Appoinments", @"");
-    [label sizeToFit];
-    
+    else
+    {
+        NSLog(@"in didload text print %d",[_AppDArr count]);
+        nolab.hidden=NO;
+        nolab.text=@"You Can View Your Appointments Here.";
+    }
    	myTable.rowHeight=100;
 	myTable.separatorColor = [UIColor clearColor];
 	
     
 	[myTable reloadData];
-    
-  
-    */
-
-    
-   	myTable.rowHeight=100;
-	myTable.separatorColor = [UIColor clearColor];
-	
-    
-	[myTable reloadData];
-
-}
+    }
 
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl 
 {
@@ -203,6 +172,7 @@ AppSharedInstance *instance;
 
 
 - (void)viewWillAppear:(BOOL)animated {
+   
     [super viewWillAppear:animated];
     
     	
@@ -245,11 +215,25 @@ AppSharedInstance *instance;
 	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
      [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
       [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
-	
+	if([_AppDArr count]>0)
+    {
+        NSLog(@"in view will appear textwont print %d",[_AppDArr count]);
+        nolab.hidden=YES;
+        nolab.text=@" ";
+    }
+    else
+    {
+        NSLog(@"view will appear text print %d",[_AppDArr count]);
+        nolab.hidden=NO;
+        nolab.text=@"You Can View Your Appointments Here.";
+    }
+    
 	[myTable reloadData];
    
-    [myTable reloadData];
+
     
+    
+
      //NSLog(@"APP-D-ARR:%i",[_AppDArr count]);
      //NSLog(@"APP-N-ARR:%i",[_AppNArr count]);
         
@@ -456,75 +440,59 @@ reuseIdentifier:CellIdentifier]
 	return cell;
 }
 
-
-
-
 #pragma mark -
 #pragma mark Table view delegate
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        
+        [_AppNArr removeObjectAtIndex:indexPath.row];
+        [_AppDArr removeObjectAtIndex:indexPath.row];
+        [fileMngr saveDatapath:appoNFile  contentarray:_AppNArr];
+        
+        [fileMngr saveDatapath:appoFile contentarray:_AppDArr];
+     
+        [myTable reloadData];
+        [self viewWillAppear:YES];
+      
+        
+        if(([_AppDArr count]>0)||([_AppNArr count]>0))
+        {
+            nolab.hidden=YES;
+            nolab.text=@" ";
+        }
+        else
+        {
+            nolab.hidden=NO;
+            nolab.text=@"You Can View Your Appointments Here.";
+		}
+    }
+    else{
+		
+    }
+}
+
+
+
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    //[self.navigationController.navigationBar viewWithTag:111].hidden=YES;
-   
-    
-    /*AboutmeViewController *aboutmeViewController = [[AboutmeViewController alloc] initWithNibName:@"AddMedi" bundle:nil];
-	aboutmeViewController.recordDict=recordDict;
-    aboutmeViewController.recordDict = [petArray objectAtIndex:indexPath.section];
-    
-    [[NSUserDefaults standardUserDefaults] setInteger:indexPath.section forKey:@"select"];
-	[self.navigationController pushViewController:aboutmeViewController animated:YES];
-	[aboutmeViewController release];*/
-  
+      
     if(savedValue==5)
     {
         //[self btnPostPress];
         [self share];
         
-       /* AboutmeViewController *aboutmeViewController = [[AboutmeViewController alloc] initWithNibName:@"AboutmeViewController" bundle:nil];
-       
-        aboutmeViewController.recordDict = [petArray objectAtIndex:indexPath.section];
-        [self.navigationController pushViewController:aboutmeViewController animated:YES];
-        [aboutmeViewController release];*/
-    }
-	/*PetViewController *petViewController = [[PetViewController alloc] initWithNibName:@"PetViewController" bundle:nil];
-	petViewController.recordDict = [petArray objectAtIndex:indexPath.section];
-	[self.navigationController pushViewController:petViewController animated:YES];
-	[petViewController release];*/
-}
-
-
-
-/*
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	if (editingStyle == UITableViewCellEditingStyleDelete) 
-    {
-        
-        
-        
-        
-        NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
-        UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
-       [[UIApplication sharedApplication] cancelLocalNotification:notif];
-       [notificationArray ];
-        [myTable reloadData];
       
-        
-		[instance deletePet:[petArray objectAtIndex:indexPath.section]];
-		self.petArray = [instance getPet];
-		[myTable reloadData];
-		if ([petArray count] > 0){
-			noPet.hidden=YES;
-			bgImage.image = [UIImage imageNamed:@"bg.png"];
-		}
-		else{
-			noPet.hidden=NO;
-			bgImage.image = [UIImage imageNamed:@"firstbg.png"];
-		}
-	
-	
+    }
+
 }
-*/
+
+
+
 
 #pragma mark -
 #pragma mark Memory management
