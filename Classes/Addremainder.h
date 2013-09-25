@@ -11,14 +11,10 @@
 
 @interface Addremainder : UIViewController<UIActionSheetDelegate> {
 	NSArray *petArray;
-	
-	IBOutlet UILabel *noPet;
+    IBOutlet UILabel *noPet;
 	IBOutlet UIImageView *bgImage;
     NSMutableDictionary *recordDict;
     BOOL share1;
-    NSString *name1;
-    NSString *theString;
-    BOOL selected;
     
     int savedValue;
     IBOutlet UITextField*name;
@@ -29,8 +25,9 @@
     NSMutableArray *dictionary;
     NSString *dicfile;
     NSMutableArray *dictionaryArray;
-    
-    
+    UILocalNotification *notiff;
+    NSString *theString;
+    NSString *name1;
     UIDatePicker *datePicker;
     IBOutlet UIButton*once;
     IBOutlet UIButton*setdate;
@@ -44,7 +41,14 @@
     IBOutlet UIImageView*maskDaily;
     int alertType;
     BOOL opt;
-    
+    int row1;
+    IBOutlet UITextField *selected1;
+    int clicked;
+    int index;
+    NSString *notifname;
+    NSDate *notifdate;
+    int timeset;
+    int dateset;
 }
 - (IBAction)changeTimeInLabel:(id)sender;
 -(IBAction)once:(id)sender;
@@ -55,4 +59,12 @@
 @property (nonatomic,retain) IBOutlet UIDatePicker *datePicker;
 @property (retain,nonatomic) NSArray *petArray;
 @property (retain, nonatomic) NSMutableDictionary *recordDict;
+@property(nonatomic)int clicked;
+@property(nonatomic)int index;
+@property(nonatomic,retain)IBOutlet NSString*notifname;
+@property(nonatomic,retain)NSDate *notifdate;
+@property(nonatomic)int timeset;
+@property(nonatomic)int dateset;
+
+
 @end

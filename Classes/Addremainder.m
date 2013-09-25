@@ -1,11 +1,3 @@
-//
-//  RootViewController.m
-//  PetLove
-//
-//  Created by CS Soon on 4/17/11.
-//  Copyright 2011 Espressoft Technologies. All rights reserved.
-//
-
 #import "Addremainder.h"
 #import "AppSharedInstance.h"
 #import "ListCell.h"
@@ -29,6 +21,11 @@
 @synthesize petArray;
 @synthesize recordDict;
 @synthesize datePicker;
+@synthesize clicked;
+@synthesize index;
+@synthesize notifname;
+@synthesize notifdate;
+
 AppSharedInstance *instance;
 
 #pragma mark -
@@ -38,6 +35,10 @@ AppSharedInstance *instance;
 -(IBAction)setTime
 
 {
+    if(clicked==1)
+    {
+        timeset=1;
+    }
     [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
     if(timePicker.hidden==YES)
     {
@@ -48,6 +49,7 @@ AppSharedInstance *instance;
         timePicker.hidden=YES;
         
     }
+    
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"  h:mm a"];
     
@@ -76,27 +78,6 @@ AppSharedInstance *instance;
     
     
 }
-- (void)ThingYouWantToDoWithString:(NSNotification *)notification{
-    // Make sure you have an string set up in your header file or just do NSString *theString = [notification object] if your using ARC, if not allocate and initialize it and then do what I just said
-    timeLabel.hidden=NO;
-    dateLabel.hidden=NO;
-    selected=YES;
-    theString = [notification object];
-      
-    dateLabel.text=[NSString stringWithFormat:@"%@",theString];
-    //name.text=[NSString stringWithFormat:@"%@",name1];
-    
-}
-- (void)ThingYouWantToDoWithString1:(NSNotification *)notification{
-    // Make sure you have an string set up in your header file or just do NSString *theString = [notification object] if your using ARC, if not allocate and initialize it and then do what I just said
-    
-    name1=[notification object];
-    NSLog(@"name1 %@", name1);
-    //timeLabel.text=[NSString stringWithFormat:@"%@",theString];
-    name.text=[NSString stringWithFormat:@"%@",name1];
-    
-}
-
 
 
 - (IBAction)once:(UIButton *)button{
@@ -143,10 +124,30 @@ AppSharedInstance *instance;
     }
     
 }
+- (void)ThingYouWantToDoWithString:(NSNotification *)notification{
+    // Make sure you have an string set up in your header file or just do NSString *theString = [notification object] if your using ARC, if not allocate and initialize it and then do what I just said
+    
+    timeLabel.hidden=NO;
+    dateLabel.hidden=NO;
+    theString = [notification object];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init] ;
+    [dateFormat setDateFormat:@"dd-MM-YYYY"];
+    NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
+    NSLog(@"Date: %@", dateString);
+    
+    dateLabel.text=[NSString stringWithFormat:@"%@",theString];
+    //name.text=[NSString stringWithFormat:@"%@",name1];
+    
+}
 
 - (void)viewDidLoad {
+    
+    
     [super viewDidLoad];
+    
+    
     [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
+    
     
     NSDate* now = [NSDate date];
     datePicker.date=now;
@@ -156,13 +157,26 @@ AppSharedInstance *instance;
     
     [self.view addGestureRecognizer:tap];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ThingYouWantToDoWithString:) name:@"date" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ThingYouWantToDoWithString1:) name:@"name" object:nil];
     
     
     opt=@"";
     self.view.userInteractionEnabled=YES;
+    if (clicked==1) {
+        name.text=notifname;
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init] ;
+        [dateFormat setDateFormat:@"dd-MM-YYYY"];
+        NSString *dateString = [dateFormat stringFromDate:notifdate];
+        NSLog(@"Date: %@", dateString);
+        
+        dateLabel.text=dateString;
+        
+        
+        
+    }
+    
+    
+    
+    
     //   NSFileManager *tempfileManager=[NSFileManager defaultManager];
 	NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *docDirectory = [path objectAtIndex:0];
@@ -271,9 +285,9 @@ AppSharedInstance *instance;
 }
 -(void)saveRemainder
 {
-    
     if([name.text length]!=0 &&((once.selected)||(daily.selected)))
     {
+        
         
         [dictionaryArray addObject:dictionary];
         [fileMngr saveDatapath:dicfile contentarray:dictionaryArray];
@@ -307,7 +321,17 @@ AppSharedInstance *instance;
         
         
         
-        
+        if(clicked==1)
+                {
+                    
+                    NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+            UILocalNotification *notif = [notificationArray objectAtIndex:index];
+            NSLog(@"Notification deleted at %@",notif.alertBody);
+            
+            [[UIApplication sharedApplication] cancelLocalNotification:notif];
+            
+            
+        }
         UILocalNotification *localNotif = [[UILocalNotification alloc] init];
         if (localNotif == nil)
             return;
@@ -359,6 +383,7 @@ AppSharedInstance *instance;
         //    [localNotif release];
         [[self navigationController] popViewControllerAnimated:YES];
     }
+    
     else
     {
         
@@ -373,6 +398,8 @@ AppSharedInstance *instance;
 }
 -(void)back
 {
+    
+    
     [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
     [[self navigationController] popViewControllerAnimated:YES];
 }
@@ -385,9 +412,10 @@ AppSharedInstance *instance;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     self.recordDict=recordDict;
 	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    
+    [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
     [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
     
     
@@ -397,6 +425,9 @@ AppSharedInstance *instance;
 
 -(IBAction)setDate
 {
+    if (clicked==1) {
+        dateset=1;
+    }
     if(datePicker.hidden==YES)
     {
         self.datePicker.hidden=NO;
@@ -406,6 +437,7 @@ AppSharedInstance *instance;
         self.datePicker.hidden=YES;
         
     }
+    
     NSDate *pickerDate = [self.datePicker date];
     setdate.titleLabel.text=[NSString stringWithFormat:@"%@",pickerDate];
 }
@@ -700,6 +732,7 @@ AppSharedInstance *instance;
     
     NSString *coordinates = [NSString stringWithFormat:@"%@ %@", str, str2];
     dateLabel.text=coordinates;
+    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -764,3 +797,4 @@ AppSharedInstance *instance;
 
 
 @end
+
