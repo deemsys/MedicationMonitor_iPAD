@@ -11,6 +11,7 @@
 
 @synthesize _assQues;
 @synthesize _assAns;
+@synthesize pastdate;
 
 AppSharedInstance *instance;
 
@@ -299,8 +300,7 @@ AppSharedInstance *instance;
     NSString*Astr=[NSString stringWithFormat:@"A%@",[[ar lastObject]objectForKey:@"pk" ]];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *recDir = [paths objectAtIndex:0];
-    
-    NSString*p=[NSString stringWithFormat:@"%@/%@recordTest.text", recDir,str];
+     NSString*p=[NSString stringWithFormat:@"%@/%@recordTest.text", recDir,str];
     NSString*pa=[NSString stringWithFormat:@"%@/%@recordTest.text", recDir,Astr];
     //NSLog(@"P:%@",p);
     //NSLog(@"PAp:%@",pa);
@@ -463,7 +463,14 @@ AppSharedInstance *instance;
 {
     
     if(checked == YES)
+        
     {
+        NSUserDefaults *sharedDefaults = [NSUserDefaults standardUserDefaults];
+        [sharedDefaults setObject:[NSDate date] forKey:@"nowold"];
+        //[[NSUserDefaults standardUserDefaults]setObject:now forKey:@"nowold"];
+        [sharedDefaults synchronize];
+        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"daily"];
+
         HUD.delegate = self;
         
         [HUD show:YES];
@@ -476,7 +483,7 @@ AppSharedInstance *instance;
     else
     {
         
-        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Please Record Your Answer"];
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Please Record Your Opinion"];
         
         //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
         [alert setDestructiveButtonWithTitle:@"x" block:nil];
@@ -917,21 +924,42 @@ AppSharedInstance *instance;
     
     
     NSDate* now = [NSDate date];
-    NSDate*old=[[NSUserDefaults standardUserDefaults]objectForKey:@"nowold"];
+ NSDate*old=[[NSUserDefaults standardUserDefaults]objectForKey:@"nowold"];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init] ;
+    [dateFormat setDateFormat:@"dd-MM-YYYY"];
+    NSString *currentdate = [dateFormat stringFromDate:now];
+     NSString *pastdate1 = [dateFormat stringFromDate:old];
+    NSLog(@"current date %@",currentdate);
+    NSLog(@"past date %@",pastdate1);
     
-    //  ////NSLog(@"now:%@",now);
-    //   ////NSLog(@"old:%@",old);
-    if ([now compare:old] == NSOrderedDescending) {
-        //   ////NSLog(@"now is later than date2");
+    if ([currentdate compare:pastdate1] == NSOrderedDescending)
+    {
+       NSLog(@"now is later than date2");
         [[NSUserDefaults standardUserDefaults]setInteger:0 forKey:@"daily"];
         
-    }  if ([now compare:old] == NSOrderedAscending) {
-        //  ////NSLog(@"date1 is earlier than date2");
-        
-    } else {
-        //   ////NSLog(@"dates are the same");
+    }
+    else if ([currentdate compare:pastdate1] == NSOrderedAscending)
+    {
+     NSLog(@"date1 is earlier than date2");
         
     }
+    else {
+     NSLog(@"dates are the same");
+        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"daily"];
+        
+    }
+    NSDate *tt= [dateFormat dateFromString:currentdate];
+    NSCalendar   *calendar = [[[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar] autorelease];
+   
+    NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
+    
+    components.day = 1;
+   
+    NSDate *tomorrow = [calendar dateByAddingComponents: components toDate:tt options: 0];
+    
+    NSString *tomorrowdate = [dateFormat stringFromDate:tomorrow];
+    
+    NSLog(@"New date %@",tomorrowdate);
     
     daily=[[NSUserDefaults standardUserDefaults]integerForKey:@"daily"];
     int okok=[[NSUserDefaults standardUserDefaults]integerForKey:@"selectAss"];
@@ -940,7 +968,7 @@ AppSharedInstance *instance;
     if(okok==1 && daily==1 )
     {
         
-        question.text =@"You have already answer your daily assessment. Your next daily assessment is on _____.";
+        question.text =@"You have already answer your daily assessment. Your next daily assessment will be on tomorrow.";
         //   question.textAlignment = NSTextAlignmentJustified;
         
         question.numberOfLines = 0;
@@ -1159,8 +1187,7 @@ AppSharedInstance *instance;
     
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button addTarget:self
-               action:@selector(record:)
+    [button addTarget:self action:@selector(record:)
      forControlEvents:UIControlEventTouchUpInside];
     
     [button setTitle:@"Record"  forState:UIControlStateNormal];
@@ -1483,8 +1510,12 @@ AppSharedInstance *instance;
     question.text =@"Thank you for completing this questionnaire.";
     question.numberOfLines = 0;
     //   question.textAlignment = NSTextAlignmentJustified;
-    NSDate* now = [NSDate date];
-    [[NSUserDefaults standardUserDefaults]setObject:now forKey:@"nowold"];
+   // NSDate* now = [NSDate date];
+  
+    NSUserDefaults *sharedDefaults = [NSUserDefaults standardUserDefaults];
+    [sharedDefaults setObject:[NSDate date] forKey:@"nowold"];
+    //[[NSUserDefaults standardUserDefaults]setObject:now forKey:@"nowold"];
+    [sharedDefaults synchronize]; 
     [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"daily"];
     
     [self explainRecord1];
@@ -1518,9 +1549,11 @@ AppSharedInstance *instance;
     question.text =@"Thank you for completing this questionnaire.";
     question.numberOfLines = 0;
     NSDate* now = [NSDate date];
-    [[NSUserDefaults standardUserDefaults]setObject:now forKey:@"nowold"];
+    NSUserDefaults *sharedDefaults = [NSUserDefaults standardUserDefaults];
+    [sharedDefaults setObject:[NSDate date] forKey:@"nowold"];
+    //[[NSUserDefaults standardUserDefaults]setObject:now forKey:@"nowold"];
+    [sharedDefaults synchronize];
     [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"daily"];
-    
     
     xmlFile=[NSString stringWithFormat:@"<Result><Question>%@,,%@,,%@</Question><Answer>%@,,%@,,%@</Answer></Result>",[_QuestionArray objectAtIndex:0],[_QuestionArray objectAtIndex:1],[_QuestionArray objectAtIndex:2],[_AnswerArray objectAtIndex:0],[_AnswerArray objectAtIndex:1],[_AnswerArray objectAtIndex:2]];
     

@@ -50,7 +50,7 @@
     IBOutlet UILabel*recording;
     IBOutlet UIActivityIndicatorView*rec;
     NSTimer *playerTimer;
-    
+    NSDate *pastdate;
     NSString *xmlFile;;
     NSMutableArray *_QuestionArray;
     NSMutableArray *_AnswerArray;
@@ -68,4 +68,5 @@
 @property (retain,nonatomic) NSArray *_assAns;
 @property (retain, nonatomic) NSMutableDictionary *recordDict;
 @property(retain,nonatomic)NSMutableArray*AVA;
+@property(retain,nonatomic)NSDate *pastdate;
 @end
