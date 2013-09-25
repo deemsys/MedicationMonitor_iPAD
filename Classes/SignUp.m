@@ -20,6 +20,7 @@
 @synthesize countrybutt;
 @synthesize agebutt;
 
+
 - (IBAction)checkboxButton:(UIButton *)button{
     
     [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
@@ -45,7 +46,7 @@
     }
 }
 -(BOOL)validateEmail:(NSString*)candidate{
-    NSString *emailFormat1 = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}";
+    NSString *emailFormat1 = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     
     
     NSPredicate *emailTest1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailFormat1];
@@ -64,15 +65,6 @@
 }
 
 
--(BOOL)validateCountry:(NSString *)country1
-{
-    NSString *countryFormat1 = @"(?:[A-Za-z]+[a-z]*)";
-    
-    [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
-    NSPredicate *countryTest1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", countryFormat1];
-    return [countryTest1 evaluateWithObject:country1];
-    
-}
 -(BOOL)validateMobile:(NSString*)mobilenumber{
     NSString *mobileFormat1 =  @"[0-9]{10}?";
     
@@ -81,12 +73,13 @@
     return [mobileTest1 evaluateWithObject:mobilenumber];
     
 }
--(BOOL)validateZip:(NSString *)zipnumber{
-    NSString *zipFormat1 =  @"[0-9]{6}?";
+-(BOOL)validateNames:(NSString *)country1
+{
+    NSString *countryFormat1 = @"(?:[A-Za-z]+[a-z]*)";
     
     [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
-    NSPredicate *zipTest1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", zipFormat1];
-    return [zipTest1 evaluateWithObject:zipnumber];
+    NSPredicate *countryTest1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", countryFormat1];
+    return [countryTest1 evaluateWithObject:country1];
     
 }
 
@@ -257,10 +250,11 @@
     email.clearButtonMode = UITextFieldViewModeWhileEditing;
     mobile.clearButtonMode = UITextFieldViewModeWhileEditing;
     //country.clearButtonMode = UITextFieldViewModeWhileEditing;
-    state.clearButtonMode = UITextFieldViewModeWhileEditing;
+    firstname.clearButtonMode=UITextFieldViewModeWhileEditing;
+    lastname.clearButtonMode=UITextFieldViewModeWhileEditing;
     face.clearButtonMode = UITextFieldViewModeWhileEditing;
     skype.clearButtonMode = UITextFieldViewModeWhileEditing;
-    city.clearButtonMode = UITextFieldViewModeWhileEditing;
+
 
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     label.backgroundColor = [UIColor clearColor];
@@ -287,7 +281,7 @@
     
     //agebutt.text= [arrayNo objectAtIndex:[pickerView selectedRowInComponent:0]];
     
-    countrybutt.text=@"Select Country";
+    countrybutt.text=@"United States";
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -322,10 +316,9 @@
     [email resignFirstResponder];
     [skype resignFirstResponder];
     [mobile resignFirstResponder];
-    [state resignFirstResponder];
-    [city resignFirstResponder];
+    [firstname resignFirstResponder];
+    [lastname resignFirstResponder];
     [face resignFirstResponder];
-    [zip resignFirstResponder];
     [agebutt resignFirstResponder];
      
 }
@@ -440,375 +433,175 @@
 
 -(IBAction)SingnUp
 {
-    static int c=1;
-   int count=1;
-    [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
-    [(UITextField*)[self.view viewWithTag:102] resignFirstResponder];
-     [(UITextField*)[self.view viewWithTag:103] resignFirstResponder];
-     [(UITextField*)[self.view viewWithTag:104] resignFirstResponder];
-     [(UITextField*)[self.view viewWithTag:105] resignFirstResponder];
-     [(UITextField*)[self.view viewWithTag:106] resignFirstResponder];
-     [(UITextField*)[self.view viewWithTag:107] resignFirstResponder];
-     [(UITextField*)[self.view viewWithTag:108] resignFirstResponder];
-     [(UITextField*)[self.view viewWithTag:109] resignFirstResponder];
-     [(UITextField*)[self.view viewWithTag:110] resignFirstResponder];
-     [(UITextField*)[self.view viewWithTag:111] resignFirstResponder];
-    [(UITextField*)[self.view viewWithTag:112] resignFirstResponder];
-      [(UILabel*)[self.view viewWithTag:3] resignFirstResponder];
-      [(UILabel*)[self.view viewWithTag:4] resignFirstResponder];
-    
-    //NSLog(@"signUp1");
-    if ([name.text length] == 0) 
-    {
-        us.hidden=NO;
-    }
-    else
-    {
-         us.hidden=YES;
-    }
-    
-   if ([pass.text length] == 0) 
-    {
-        pa.hidden=NO;
-    }
-   else
-   {
-       pa.hidden=YES;
-   }
-     if ([cpass.text length] == 0)
-    {
+        static int c=0;
         
-      copa.hidden=NO;
-    }
-     else
-     {
-         copa.hidden=YES;
-     }
-    
-    
-   /*   if([sex isEqualToString: @"null"] )
-    {
-      __block DemoHintView* hintView = [DemoHintView  infoHintView];
-        hintView.hintID = kHintID_Home;
-        hintView.title = @"Info!";
-        [hintView addPageWithTitle:@"Info" text:@"Please select Gender"];
-        [hintView showInView:self.view orientation:kHintViewOrientationTop];
+        [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
+        [(UITextField*)[self.view viewWithTag:102] resignFirstResponder];
+        [(UITextField*)[self.view viewWithTag:105] resignFirstResponder];
+        [(UITextField*)[self.view viewWithTag:106] resignFirstResponder];
+        [(UITextField*)[self.view viewWithTag:107] resignFirstResponder];
+        [(UITextField*)[self.view viewWithTag:108] resignFirstResponder];
+        [(UITextField*)[self.view viewWithTag:109] resignFirstResponder];
+        [(UITextField*)[self.view viewWithTag:110] resignFirstResponder];
+        [(UILabel*)[self.view viewWithTag:3] resignFirstResponder];
+        [(UILabel*)[self.view viewWithTag:4] resignFirstResponder];
         
-        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Please select Sex."];
+        //NSLog(@"signUp1");
+        if ([name.text length] == 0)
+        {
+            us.hidden=NO;
+        }
+        else
+        {
+            us.hidden=YES;
+        }
         
-        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-        [alert setDestructiveButtonWithTitle:@"x" block:nil];
-        [alert show];
-    }
-    
-    */
-   /*
-      if ([age.text length] == 0)
-    {
-        
-        sa.hidden=NO;
-    } else
-    {
-        sa.hidden=YES;
-    }
-    */
-    
-     if ([email.text length] == 0)
-    {
-        
-        eid.hidden=NO;
-    }
-     else
-     {
-         eid.hidden=YES;
-     }
-    
-      if ([mobile.text length] == 0)
-    {
-        
-        mob.hidden=NO;
-    }
-      else
-      {
-          mob.hidden=YES;
-      }
-    if ([state.text length] == 0)
-    {
-        
-        st.hidden=NO;
-    }
-    else
-    {
-        st.hidden=YES;
-    }
-    
-  //  if ([countrybutt.text length] == 0)
-    if([countrybutt.text isEqualToString: @"Select Country"] )
-    {
-        
-        country.hidden=NO;
-    }
-    else
-    {
-        country.hidden=YES;
-    }
-    
-    
-    //if ([agebutt.text length] == 0)
-        if([agebutt.text isEqualToString: @"Select Age"] )
-    {
-        
-        age.hidden=NO;
-    }
-    else
-    {
-        age.hidden=YES;
-    }
-    
-    if ([city.text length] == 0)
-    {
-        
-        cty.hidden=NO;
-    }
-    else
-    {
-        cty.hidden=YES;
-    }
-    if ([zip.text length]==0)
-    {
-        zipc.hidden=NO;
-    } else
-    {
-        zipc.hidden=YES;
-    }
-    
-
-   if([city.text length] != 0 &&[state.text length] != 0&&[mobile.text length] != 0&&[email.text length] != 0&&[cpass.text length] != 0&&[pass.text length] != 0&&[name.text length] != 0 && ![agebutt.text isEqualToString:@"Select Age"] &&! [sex isEqualToString: @"null"]&&![countrybutt.text isEqualToString:@"Select Country"]&&[zip.text length]!=0)
-      {
-      switchcase:  switch (c) {
-                      
-              
-        case 4:
-          
-          if([self validateEmail:[email text]] ==1)
-          {
-              
-              a=TRUE;
-              c++;
-              goto switchcase;
-  
-          }
-          else
-          {
-              BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid email id."];
-              
-              //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-              [alert setDestructiveButtonWithTitle:@"x" block:nil];
-              [alert show];
-              c=1;
-               }
-                  break;
-          case 5:
-          if ([mobile.text length]==10) {
+        if ([pass.text length] == 0)
+        {
+            pa.hidden=NO;
+        }
+        else
+        {
+            pa.hidden=YES;
+        }
+        if ([cpass.text length] == 0)
+        {
             
-              
+            copa.hidden=NO;
+        }
+        else
+        {
+            copa.hidden=YES;
+        }
         
-          if ([self validateMobile:[mobile text]]==1)
-          {
-              b=TRUE;
-              c++;
-              goto switchcase;
-          }
-          else {
-              c=1;
-              BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid mobile number."];
-              
-              //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-              [alert setDestructiveButtonWithTitle:@"x" block:nil];
-              [alert show];
-              break;
-              
-               }
-          }
-          else
-          {c=1;
-              BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid mobile number."];
-              
-              //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-              [alert setDestructiveButtonWithTitle:@"x" block:nil];
-              [alert show];
-  
-          }
-                  break;
-         case 8:
-          if ([self validateCountry:[city text]]==1) {
-              c1=TRUE;
-              c++;
-              goto switchcase;
-              
-          } else {
-              c=1;
-              BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid city name."];
-              
-              //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-              [alert setDestructiveButtonWithTitle:@"x" block:nil];
-              [alert show];
-              
-          }
-                  break;
-         case 7:
-          if([self validateCountry:[state text]]==1)
-          {
-              d=TRUE;
-              c++;
-              goto switchcase;
-              
-          }
-          else{
-              c=1;
-          BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid state name."];
-          
-          //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-          [alert setDestructiveButtonWithTitle:@"x" block:nil];
-          [alert show];
-          }
-                  break;
-        case 9:
-                  if ([self validateZip:[zip text]]==1) {
-              e=TRUE;
-                      c++;
-                      goto switchcase;
-              
-          }
-          else
-          {
-              c=1;
-              BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid zipcode."];
-              
-              //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-              [alert setDestructiveButtonWithTitle:@"x" block:nil];
-              [alert show];
-          }
-                  break;
-              case 1:
-                  if ([self validateUsername:[name text]]==1) {
-              
-                      f=TRUE;
-                      c++;
-                      goto switchcase;
-              
-          } else {
-              c=1;
-              BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid Username."];
-              
-              //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-              [alert setDestructiveButtonWithTitle:@"x" block:nil];
-              [alert show];
-              
-          }
-                  break;
-          case 6:
-              if([countrybutt.text length]!=0)
-              {
-                  h=TRUE;
-                  c++;
-                  goto switchcase;
-              }
-              else
-              {
-                  c=1;
-                  BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter Country."];
-              
-              //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-              [alert setDestructiveButtonWithTitle:@"x" block:nil];
-              [alert show];
-              }
-              break;
-          case 3:
-              if([agebutt.text length]!=0)
-              {
-                  i=TRUE;
-                  c++;
-                  goto switchcase;
-              }
-              else
-              {
-                  c=1;
-                  BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter Age."];
-                  
-                  //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-                  [alert setDestructiveButtonWithTitle:@"x" block:nil];
-                  [alert show];
-              }
-              break;
-              case 2:
-                  if ([pass.text isEqualToString:cpass.text])
-          {
-              g=true;
-              c++;
-              goto switchcase;
-          }
-          else{
-              c=1;
-              BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Password Doesnt Match."];
-              
-              //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-              [alert setDestructiveButtonWithTitle:@"x" block:nil];
-              [alert show];
-          }
-                  break;
-                  
-              
-          }
-          if((a==TRUE)&&(b==TRUE)&&(c1==TRUE)&&(d==TRUE)&&(e==TRUE)&&(f==TRUE)&&(g==TRUE)&&(h==TRUE)&&(i==TRUE))
-          {
-          
-             HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-              [self.navigationController.view addSubview:HUD];
-              
-              
-              HUD.delegate = self;
-              HUD.labelText = @"Registering....";
-              [HUD show:YES];
-           [self performSelector:@selector(signUpMethod)withObject:nil afterDelay:0.2 ];
+        
                 
-         
-      }
-      }//validation end
-    
-          else
-          {
-           /*   __block DemoHintView* hintView = [DemoHintView  infoHintView];
-              hintView.hintID = kHintID_Home;
-              hintView.title = @"Info!";
-              [hintView addPageWithTitle:@"Info" text:@"Password Doesn't Match"];
-              [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
-              
-              
-              BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Please Enter All The Required Fields."];
-              
-              //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-              [alert setDestructiveButtonWithTitle:@"x" block:nil];
-              [alert show];
-              
-          }
-    
-    
-    //Not Null validation ends
-    
-}
-//signup ends
-
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSString *alertIndex = [alertView buttonTitleAtIndex:buttonIndex];
-    
-    if([alertIndex isEqualToString:@"Login"])
-    {
-         [[self navigationController] popViewControllerAnimated:YES];
+        if ([email.text length] == 0)
+        {
+            
+            eid.hidden=NO;
+        }
+        else
+        {
+            eid.hidden=YES;
+        }
+        if([agebutt.text isEqualToString: @"Select Age"] )
+        {
+            
+            age.hidden=NO;
+        }
+        else
+        {
+            age.hidden=YES;
+        }
+        
+        
+        if([email.text length] != 0&&[cpass.text length] != 0&&[pass.text length] != 0&&[name.text length] != 0 && ![agebutt.text isEqualToString:@"Select Age"] &&! [sex isEqualToString: @"null"])
+            
+        {
+            c=0;
+            if ([self validateUsername:[name text]]==1)
+            {
+                if([agebutt.text length]!=0)
+                {
+                    if([self validateEmail:[email text]] ==1)
+                    {
+                        
+                        if ([pass.text isEqualToString:cpass.text])
+                        {
+                            if([self validateMobile:[mobile text]]==1)
+                            {
+                                c=1;
+                            }
+                            else
+                            {
+                                BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter Valid Mobile Number."];
+                                
+                                //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+                                [alert setDestructiveButtonWithTitle:@"x" block:nil];
+                                [alert show];
+                                
+                            }
+                        }
+                        else
+                        {
+                            
+                            BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Password Doesnt Match."];
+                            
+                            //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+                            [alert setDestructiveButtonWithTitle:@"x" block:nil];
+                            [alert show];
+                        }
+                        
+                    }
+                    
+                    else
+                    {
+                        
+                        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid email id."];
+                        
+                        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+                        [alert setDestructiveButtonWithTitle:@"x" block:nil];
+                        [alert show];
+                        
+                    }
+                    
+                }
+                
+                else
+                {
+                    
+                    BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter Age."];
+                    
+                    //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+                    [alert setDestructiveButtonWithTitle:@"x" block:nil];
+                    [alert show];
+                }
+                
+                
+                
+            }
+            
+            
+            else{
+                BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid Username."];
+                
+                //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+                [alert setDestructiveButtonWithTitle:@"x" block:nil];
+                [alert show];
+                
+            }
+            
+                        
+            
+            if(c==1)
+            {
+                NSLog(@"signup called");
+                HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+                [self.navigationController.view addSubview:HUD];
+                HUD.delegate = self;
+                HUD.labelText = @"Registering....";
+                [HUD show:YES];
+                [self performSelector:@selector(signUpMethod)withObject:nil afterDelay:0.2 ];
+                
+            }
+            else{
+                NSLog(@"%d",c);
+                NSLog(@"signup failed");
+            }
+        }
+        else
+        {
+            BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Please Enter All The Required Fields."];
+            
+            //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+            [alert setDestructiveButtonWithTitle:@"x" block:nil];
+            [alert show];
+        }
+        
+        
     }
-}
+
 
 
 -(void)signUpMethod
@@ -1007,7 +800,8 @@
     
     
     
-    NSString *post =[[NSString alloc] initWithFormat:@"%@=%@&pswd=%@&sex=%@&age=%@&email=%@&skype=%@&facetime=%@&mobile=%@&country=%@&state=%@&city=%@&zip=%@&%@=%@",firstEntity,value1,pass.text,sex,agebutt.text,email.text,skype.text,face.text,mobile.text,countrybutt.text,state.text,city.text,zip.text,secondEntity,value2];
+    
+    NSString *post =[[NSString alloc] initWithFormat:@"%@=%@&fname=%@&lname=%@&pswd=%@&sex=%@&age=%@&email=%@&skype=%@&facetime=%@&mobile=%@&country=%@&%@=%@",firstEntity,value1,firstname.text,lastname.text,pass.text,sex,agebutt.text,email.text,skype.text,face.text,mobile.text,countrybutt.text,secondEntity,value2];
     
    //  NSString *post =[[NSString alloc] initWithFormat:@"facebook_id=%@&facebookscore=%@&level=%@&life=%@&lifeInHand=%@&gold=%@",value1,value2,value1,value1,value1,value1];
     

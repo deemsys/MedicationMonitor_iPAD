@@ -12,14 +12,20 @@
 @interface SignUp : UIViewController<MBProgressHUDDelegate>
 {
     MBProgressHUD *HUD;
-    IBOutlet UITextField *pass,*cpass,*email,*skype,*face,*mobile,*state,*city;
-    IBOutlet UITextField *zip;
+    IBOutlet UITextField *email;
+    IBOutlet UITextField *skype;
+    IBOutlet UITextField *face;
+    IBOutlet UITextField *mobile;
     IBOutlet UITextField *name;
+    IBOutlet UITextField *pass;
+    IBOutlet UITextField *cpass;
+    IBOutlet UITextField *firstname;
+    IBOutlet UITextField *lastname;
     IBOutlet UIButton*male,*female;
     NSString *sex;
     BOOL isConnect;
     UIImage *img;
-    BOOL a,b,c1,d,e,f,g,h,i;
+    int a,b,c1,d,e,f,g,h;
     IBOutlet UIButton*agebut;
     IBOutlet UIButton*countrybut;
     IBOutlet UIPickerView *pickerView;
@@ -28,18 +34,20 @@
     IBOutlet UILabel*countrybutt;
     NSMutableArray *arrayNo;
     NSMutableArray *countryname;
-    IBOutlet UIImageView*us,*pa,*copa,*eid,*mob,*con,*cty;
-    IBOutlet UIImageView*st;
+    IBOutlet UIImageView*us;
+    IBOutlet UIImageView*pa;
+    IBOutlet UIImageView*copa;
+    IBOutlet UIImageView*eid;
     IBOutlet UIImageView *age;
-    IBOutlet UIImageView*country;
-    IBOutlet UIImageView*zipc;
+    int visit,visit1,visit2;
+    
 }
 @property (retain, nonatomic) IBOutlet UIPickerView *pickerCountry;
 - (IBAction)countrybut:(id)sender;
 @property (retain, nonatomic) IBOutlet UILabel *countrybutt;
 
 - (IBAction)agebut:(id)sender;
-@property (nonatomic, retain) UILabel *agebutt;
+@property (nonatomic, retain)IBOutlet UILabel *agebutt;
 @property(nonatomic,retain)IBOutlet UIPickerView *pickerView;
 
 - (IBAction)checkboxButton:(UIButton *)button;
@@ -47,7 +55,7 @@
 -(IBAction)SingnUp;
 -(BOOL)validateEmail:(NSString*)candidate;
 -(BOOL)validateMobile:(NSString*)mobilenumber;
--(BOOL)validateCountry:(NSString*)country1;
+-(BOOL)validateNames:(NSString*)country1;
 -(BOOL)validateUsername:(NSString*)user;
 -(BOOL)validateZip:(NSString*)zipnumber;
 @end
