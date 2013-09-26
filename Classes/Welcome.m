@@ -1291,7 +1291,7 @@ AppSharedInstance *instance;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-       return 35.0f;
+       return 30.0f;
     }
 
 //To set color for every header in table section
@@ -1304,8 +1304,8 @@ AppSharedInstance *instance;
         tempLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         tempLabel.shadowOffset = CGSizeMake(0,2);
         tempLabel.textColor = [UIColor whiteColor]; //here you can change the text color of header.
-        tempLabel.font = [UIFont fontWithName:@"Helvetica" size:22];
-        tempLabel.font = [UIFont boldSystemFontOfSize:22];
+        tempLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
+       
         tempLabel.text=[self.sortedKeys objectAtIndex:section];
         [tempView addSubview:tempLabel];
     
