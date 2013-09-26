@@ -150,7 +150,7 @@ AppSharedInstance *instance;
     
     
     NSDate* now = [NSDate date];
-    datePicker.date=now;
+    datePicker.minimumDate=now;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
@@ -373,7 +373,8 @@ AppSharedInstance *instance;
         [app scheduleLocalNotification:localNotif];
         
         // this will fire the notification right away, it will still also fire at the date we set
-        [app presentLocalNotificationNow:localNotif];
+        //i hidden here dueto displaying the same remainder for 2 times==>
+        //[app presentLocalNotificationNow:localNotif];
         // Specify custom data for the notification
         NSDictionary *infoDict = [NSDictionary dictionaryWithObject: localNotif.fireDate forKey:@"date"];
         localNotif.userInfo = infoDict;

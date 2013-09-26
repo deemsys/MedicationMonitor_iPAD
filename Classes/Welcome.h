@@ -24,6 +24,7 @@
     NSArray *_assQues;
     NSArray *_assAns;
     UIBarButtonItem *saveButton;
+    int first;
     
     IBOutlet UITableView *myTable;
     IBOutlet UILabel *welcome;
@@ -55,5 +56,6 @@
 @property (retain,nonatomic) NSArray *_assAns;
 @property (retain,nonatomic) NSArray *assesment;
 @property (retain, nonatomic) NSMutableDictionary *recordDict;
+@property(assign)int first;
 
 @end

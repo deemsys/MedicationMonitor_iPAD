@@ -484,6 +484,7 @@
             
             
             Welcome *noteViewController = [[Welcome alloc] initWithNibName:@"Welcome" bundle:nil];
+            noteViewController.first=1;
             [self.navigationController pushViewController:noteViewController animated:YES];
             [noteViewController release];
             

@@ -142,6 +142,7 @@ AppSharedInstance *instance;
 {
     
      Welcome* new = [[Welcome alloc] initWithNibName:@"Welcome" bundle:nil];
+    new.first=0;
     [self.navigationController pushViewController:new animated:YES];
     [Welcome release];
     
@@ -382,6 +383,7 @@ AppSharedInstance *instance;
 		[instance deletePet:[petArray objectAtIndex:indexPath.section]];
 		self.petArray = [instance getPet];
 		[myTable reloadData];
+        [self viewWillAppear:YES];
 		if ([petArray count] > 0){
 			noPet.hidden=YES;
 			bgImage.image = [UIImage imageNamed:@"bg.png"];

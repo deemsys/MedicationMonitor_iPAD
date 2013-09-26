@@ -52,6 +52,7 @@ AppSharedInstance *instance;
 {
     
     Welcome*new = [[Welcome alloc] initWithNibName:@"Welcome" bundle:nil];
+    new.first=0;
     [self.navigationController pushViewController:new animated:YES];
     [Welcome release];
 }
