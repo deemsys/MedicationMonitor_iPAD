@@ -25,20 +25,34 @@
 @synthesize index;
 @synthesize notifname;
 @synthesize notifdate;
+@synthesize datepicker1;
+@synthesize datepicker2;
 
 AppSharedInstance *instance;
 
 #pragma mark -
 #pragma mark View lifecycle
 
+- (IBAction)todate:(id)sender {
+    
+    if(datepicker2.hidden==YES)
+    {
+        self.datepicker2.hidden=NO;
+    }
+    else
+    {
+        self.datepicker2.hidden=YES;
+        
+    }
+    NSDate *pickerDate = [datepicker2 date];
+    tolabel.text=[NSString stringWithFormat:@"%@",pickerDate];
+    
+}
 
 -(IBAction)setTime
 
 {
-    if(clicked==1)
-    {
-        timeset=1;
-    }
+   
     [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
     if(timePicker.hidden==YES)
     {
@@ -55,6 +69,42 @@ AppSharedInstance *instance;
     
     NSString *timetofill = [outputFormatter stringFromDate:timePicker.date];
     timeLabel.text=timetofill;
+}
+- (IBAction)changefromdate:(id)sender
+{
+    //NSLog(@"RAja");
+    
+    
+    //datepicker1.minimumDate=datePicker.date;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+	df.dateStyle = NSDateFormatterMediumStyle;
+	fromlabel.text = [NSString stringWithFormat:@"%@",
+                      [df stringFromDate:datepicker1.date]];
+	
+	[df release];
+    
+    
+    
+    
+    
+}
+- (IBAction)changetodate:(id)sender
+{
+    //NSLog(@"RAja");
+    
+    
+    //datepicker1.minimumDate=datePicker.date;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+	df.dateStyle = NSDateFormatterMediumStyle;
+	tolabel.text = [NSString stringWithFormat:@"%@",
+                      [df stringFromDate:datepicker2.date]];
+	
+	[df release];
+    
+    
+    
+    
+    
 }
 
 - (IBAction)changeTimeInLabel:(id)sender
@@ -105,8 +155,14 @@ AppSharedInstance *instance;
         settime.hidden=YES;
         timeLabel.hidden=YES;
         timePicker.hidden=YES;
-        alertType=1;
+        fromlabel.hidden=YES;
+        tolabel.hidden=YES;
+        datepicker1.hidden=YES;
+        datepicker2.hidden=YES;
+        fromdate.hidden=YES;
+        todate.hidden=YES;
         
+        alertType=1;
     }
     else
     {
@@ -119,7 +175,13 @@ AppSharedInstance *instance;
         timeLabel.hidden=NO;
         settime.hidden=NO;
         maskDaily.hidden=YES;
+        fromlabel.hidden=NO;
+        tolabel.hidden=NO;
+        fromdate.hidden=NO;
+        todate.hidden=NO;
         alertType=2;
+        
+
         
     }
     
@@ -141,8 +203,8 @@ AppSharedInstance *instance;
 }
 
 - (void)viewDidLoad {
-    
-    
+    datePicker.minimumDate=[NSDate date];
+
     [super viewDidLoad];
     
     
@@ -150,7 +212,10 @@ AppSharedInstance *instance;
     
     
     NSDate* now = [NSDate date];
-    datePicker.date=now;
+    datePicker.date=[NSDate date];
+    datePicker.minimumDate=[NSDate date];
+    datepicker1.minimumDate=[NSDate date];
+    datepicker2.minimumDate=[NSDate date];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
@@ -295,7 +360,7 @@ AppSharedInstance *instance;
         
         //[[UIApplication sharedApplication] cancelAllLocalNotifications];
         NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-        NSDate *pickerDate;
+           NSDate *pickerDate,*pickerDate1,*pickerDate2;
         if(alertType==1)
         {
             pickerDate = [self.datePicker date];
@@ -373,14 +438,13 @@ AppSharedInstance *instance;
         [app scheduleLocalNotification:localNotif];
         
         // this will fire the notification right away, it will still also fire at the date we set
-        [app presentLocalNotificationNow:localNotif];
+        //=====>i hide this due to 2 time remainder box
+        //[app presentLocalNotificationNow:localNotif];
         // Specify custom data for the notification
         NSDictionary *infoDict = [NSDictionary dictionaryWithObject: localNotif.fireDate forKey:@"date"];
-        localNotif.userInfo = infoDict;
+    localNotif.userInfo = infoDict;
         
-        // Schedule the notification
-        // [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
-        //    [localNotif release];
+       
         [[self navigationController] popViewControllerAnimated:YES];
     }
     
@@ -411,8 +475,13 @@ AppSharedInstance *instance;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    datePicker.minimumDate=[NSDate date];
+    datepicker1.minimumDate=[NSDate date];
+    datepicker2.minimumDate=[NSDate date];
     [super viewWillAppear:animated];
-    
+    datePicker.minimumDate=[NSDate date];
+    datepicker1.minimumDate=[NSDate date];
+    datepicker2.minimumDate=[NSDate date];
     self.recordDict=recordDict;
 	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
@@ -425,10 +494,7 @@ AppSharedInstance *instance;
 
 -(IBAction)setDate
 {
-    if (clicked==1) {
-        dateset=1;
-    }
-    if(datePicker.hidden==YES)
+        if(datePicker.hidden==YES)
     {
         self.datePicker.hidden=NO;
     }
@@ -442,6 +508,20 @@ AppSharedInstance *instance;
     setdate.titleLabel.text=[NSString stringWithFormat:@"%@",pickerDate];
 }
 
+- (IBAction)fromdate:(id)sender {
+    if(datepicker1.hidden==YES)
+    {
+        self.datepicker1.hidden=NO;
+    }
+    else
+    {
+        self.datepicker1.hidden=YES;
+        
+    }
+    NSDate *pickerDate = [datepicker1 date];
+    fromlabel.text=[NSString stringWithFormat:@"%@",pickerDate];
+    
+}
 
 
 #pragma mark -
@@ -769,7 +849,19 @@ AppSharedInstance *instance;
          timeLabel.text=timetofill;*/
     }
     
+    if(datepicker1.hidden==NO)
+    {
+        datepicker1.hidden=YES;
+        datepicker1.minimumDate=[NSDate date];
+       
+    }
     
+    if(datepicker2.hidden==NO)
+    {
+        datepicker2.hidden=YES;
+         datepicker2.minimumDate=datepicker1.date;
+    }
+
     
     
     
@@ -789,8 +881,15 @@ AppSharedInstance *instance;
 - (void)dealloc {
 	
     [datePicker release];
-	[super dealloc];
-}
+    [fromdate release];
+    [fromlabel release];
+    [dailymask1 release];
+    
+    [datepicker1 release];
+    [todate release];
+    [tolabel release];
+    [datepicker2 release];
+	[super dealloc];}
 
 
 

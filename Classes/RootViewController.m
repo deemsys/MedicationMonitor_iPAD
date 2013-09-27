@@ -195,7 +195,7 @@ AppSharedInstance *instance;
      [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
       [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
 	self.petArray = [instance getPet];
-       NSLog(@"self.petarray in medication:%@",self.petArray);
+       NSLog(@"self.petarray in medication without user relevant:%@",self.petArray);
     NSMutableArray*a=[[NSMutableArray alloc]init];
    // for (id anUpdate in self.petArray)
   //  {
@@ -382,6 +382,7 @@ AppSharedInstance *instance;
 		[instance deletePet:[petArray objectAtIndex:indexPath.section]];
 		self.petArray = [instance getPet];
 		[myTable reloadData];
+        [self viewWillAppear:YES];
 		if ([petArray count] > 0){
 			noPet.hidden=YES;
 			bgImage.image = [UIImage imageNamed:@"bg.png"];
