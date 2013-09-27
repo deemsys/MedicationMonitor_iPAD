@@ -14,6 +14,17 @@
 #import "ADLivelyTableView.h"
 #import "BlockAlertView.h"
 #import "ListCell.h"
+#import "RootViewController.h"
+#import "SignUp.h"
+#import "AboutmeViewController.h"
+#import "NewViewController.h"
+#import "Cremainder.h"
+#import "que.h"
+#import "Appoinment.h"
+#import "Communicate.h"
+#import "Assessment.h"
+#import "MainViewController.h"
+#import "LoginScreen.h"
 #define USE_CUSTOM_DRAWING 1
 #define USE_CUSTOM_DRAWING 1
 @interface Welcome ()
@@ -64,6 +75,59 @@ AppSharedInstance *instance;
 	HUD.labelText = @"Loading...";
     [HUD show:YES];
     [self performSelector:@selector(sunc1) withObject:nil afterDelay:0.2 ];
+}
+
+-(IBAction)signout
+{
+    
+    LoginScreen*new = [[LoginScreen alloc] initWithNibName:@"LoginScreen" bundle:nil];
+   [self.navigationController pushViewController:new animated:YES];
+    [LoginScreen release];
+    
+}
+
+-(IBAction)Hometomedi
+{
+    
+    RootViewController*new = [[RootViewController alloc] initWithNibName:@"roor" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [RootViewController release];
+    
+}
+-(IBAction)Hometorem
+{
+    
+    Cremainder*new = [[Cremainder alloc] initWithNibName:@"Cremainder" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Cremainder release];
+}
+-(IBAction)Hometoass
+{
+    
+    Assessment*new = [[Assessment alloc] initWithNibName:@"Assessment" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Assessment release];
+}
+-(IBAction)Hometoapp
+{
+    
+    Appoinment*new = [[Appoinment alloc] initWithNibName:@"Appoinment" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Appoinment release];
+}
+-(IBAction)Hometocom
+{
+    
+    Communicate*new = [[Communicate alloc] initWithNibName:@"Communicate" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Communicate release];
+}
+-(IBAction)Hometoset
+{
+    
+    NewViewController*new = [[NewViewController alloc] initWithNibName:@"NewViewController" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [NewViewController release];
 }
 
 -(IBAction)sunc1
@@ -994,12 +1058,21 @@ AppSharedInstance *instance;
     
 }
 
+
 - (void)viewDidLoad
 {
-    
+    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *homeImage = [UIImage imageNamed:@""]  ;
+    [home setBackgroundImage:homeImage forState:UIControlStateNormal];
+    [home addTarget:self action:@selector(back)
+   forControlEvents:UIControlEventTouchUpInside];
+    home.frame = CGRectMake(0, 0, 50, 30);
+    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
+                                      initWithCustomView:home] autorelease];
+    self.navigationItem.leftBarButtonItem = cancelButton;
     
     [super viewDidLoad];
-    
+    [homeload setImage:[UIImage imageNamed:@"Home2.png"]forState:UIControlStateNormal];
     
     myTable.backgroundColor = [UIColor clearColor];
     reminderarray=[[NSMutableArray alloc]init];
@@ -1053,15 +1126,15 @@ AppSharedInstance *instance;
     myTable.rowHeight=100;
 	myTable.separatorColor = [UIColor clearColor];
     
-    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *homeImage = [UIImage imageNamed:@"Back.jng"]  ;
+  /*  UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
     [home setBackgroundImage:homeImage forState:UIControlStateNormal];
     [home addTarget:self action:@selector(back)
    forControlEvents:UIControlEventTouchUpInside];
     home.frame = CGRectMake(0, 0, 50, 30);
     UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
                                       initWithCustomView:home] autorelease];
-    self.navigationItem.leftBarButtonItem = cancelButton;
+    self.navigationItem.leftBarButtonItem = cancelButton;*/
     
     
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -1188,11 +1261,12 @@ AppSharedInstance *instance;
      hintView.title = @"Welcome!";
      [hintView addPageWithTitle:@"Info" text:name];
      [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
+    welcome.text=[NSString stringWithFormat:@"Welcome %@ !",name];
+
     if(c!=1)
     {
     BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Welcome!" message:name];
-    welcome.text=[NSString stringWithFormat:@"Welcome %@ !",name];
-    //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
     [alert setDestructiveButtonWithTitle:@"x" block:nil];
     [alert show];
     }

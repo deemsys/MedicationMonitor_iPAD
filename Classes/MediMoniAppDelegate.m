@@ -153,13 +153,13 @@
     }
     else
     {
-       tabItem1 = [[GTabTabItem alloc] initWithFrame:CGRectMake(0, 0.6 ,109.7, 109) normalState:@"Home1.png" toggledState:@"Home2.png"];
-      tabItem2 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7, 0.6 ,109.7, 109)normalState:@"Medications1.png" toggledState:@"Medications2.png"];
-     tabItem3 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*2, 0.6 ,109.7, 109) normalState:@"Reminders1.png" toggledState:@"Reminders2.png"];
-        tabItem4 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*3,0.6 ,109.7, 109) normalState:@"Assesment1.png" toggledState:@"Assesment2.png"];
-        tabItem5 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*4, 0.6 ,109.7, 109) normalState:@"Appointment1.png" toggledState:@"Appointments2.png"];
-       tabItem6 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*5, 0.6 ,109.7, 109) normalState:@"Communicate1.png" toggledState:@"Communicate2.png"];
-        tabItem7 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*6, 0.6 ,109.7, 109) normalState:@"Settings1.png" toggledState:@"Settings2.png"];
+       tabItem1 = [[GTabTabItem alloc] initWithFrame:CGRectMake(0, 200 ,109.7, 109) normalState:@"Home1.png" toggledState:@"Home2.png"];
+      tabItem2 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7, 200 ,109.7, 109)normalState:@"Medications1.png" toggledState:@"Medications2.png"];
+     tabItem3 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*2, 200 ,109.7, 109) normalState:@"Reminders1.png" toggledState:@"Reminders2.png"];
+        tabItem4 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*3,200 ,109.7, 109) normalState:@"Assesment1.png" toggledState:@"Assesment2.png"];
+        tabItem5 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*4, 200 ,109.7, 109) normalState:@"Appointment1.png" toggledState:@"Appointments2.png"];
+       tabItem6 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*5, 200 ,109.7, 109) normalState:@"Communicate1.png" toggledState:@"Communicate2.png"];
+        tabItem7 = [[GTabTabItem alloc] initWithFrame:CGRectMake(109.7*6, 200 ,109.7, 109) normalState:@"Settings1.png" toggledState:@"Settings2.png"];
     }
 
    

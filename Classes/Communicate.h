@@ -14,8 +14,17 @@
     IBOutlet UIButton*face;
     IBOutlet UIButton*skype;
     IBOutlet UIButton*mail;
+      IBOutlet UIButton * comload;
 }
 -(IBAction)FaceClicked;
 -(IBAction)SkypeClicked;
 -(IBAction)mailClicked;
+
+-(IBAction)comtomedi;
+-(IBAction)comtorem;
+-(IBAction)comtoass;
+-(IBAction)comtoapp;
+-(IBAction)comtohome;
+-(IBAction)comtoset;
+
 @end

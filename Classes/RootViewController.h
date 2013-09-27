@@ -20,10 +20,19 @@
     NSMutableDictionary *recordDict;
     BOOL share1;
     int savedValue;
-    
+    IBOutlet UIButton * mediload;
+
+
     
   
 }
+-(IBAction)meditohome;
+-(IBAction)meditorem;
+-(IBAction)meditoass;
+-(IBAction)meditoapp;
+-(IBAction)meditocom;
+-(IBAction)meditoset;
+
 @property (retain,nonatomic) NSArray *petArray;
 @property (retain, nonatomic) NSMutableDictionary *recordDict;
 @end

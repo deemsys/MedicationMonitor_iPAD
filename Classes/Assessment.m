@@ -4,6 +4,17 @@
 #import "SVSegmentedControl.h"
 #import "history.h"
 #import "fileMngr.h"
+#import "RootViewController.h"
+#import "SignUp.h"
+#import "AboutmeViewController.h"
+#import "NewViewController.h"
+#import "Cremainder.h"
+#import "que.h"
+#import "Appoinment.h"
+#import "Communicate.h"
+#import "Assessment.h"
+#import "MainViewController.h"
+#import "Welcome.h"
 #define USE_CUSTOM_DRAWING 1
 #define USE_CUSTOM_DRAWING 1
 @implementation Assessment
@@ -22,6 +33,51 @@ AppSharedInstance *instance;
     [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
     [[self navigationController] popViewControllerAnimated:YES];
 }
+-(IBAction)asstomedi
+{
+    
+    RootViewController*new = [[RootViewController alloc] initWithNibName:@"roor" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [RootViewController release];
+    
+}
+-(IBAction)asstorem
+{
+    
+    Cremainder*new = [[Cremainder alloc] initWithNibName:@"Cremainder" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Cremainder release];
+}
+-(IBAction)asstohome
+{
+    
+    Welcome*new = [[Welcome alloc] initWithNibName:@"Welcome" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Welcome release];
+}
+-(IBAction)asstoapp
+{
+    
+    Appoinment*new = [[Appoinment alloc] initWithNibName:@"Appoinment" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Appoinment release];
+}
+-(IBAction)asstocom
+{
+    
+    Communicate*new = [[Communicate alloc] initWithNibName:@"Communicate" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Communicate release];
+}
+-(IBAction)asstoset
+{
+    
+    NewViewController*new = [[NewViewController alloc] initWithNibName:@"NewViewController" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [NewViewController release];
+}
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 1;
 }
@@ -476,6 +532,17 @@ AppSharedInstance *instance;
    // [self displayPhoto];
     
     
+    [assload setImage:[UIImage imageNamed:@"Assesment2.png"]forState:UIControlStateNormal];
+    
+    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
+    [home setBackgroundImage:homeImage forState:UIControlStateNormal];
+    [home addTarget:self action:@selector(back)
+   forControlEvents:UIControlEventTouchUpInside];
+    home.frame = CGRectMake(0, 0, 50, 30);
+    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
+                                      initWithCustomView:home] autorelease];
+    self.navigationItem.leftBarButtonItem = cancelButton;
     
     
   SVSegmentedControl *redSC = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Questionnaire    ", @"Questionnaire History  ", nil]];

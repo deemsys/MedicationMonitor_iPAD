@@ -14,9 +14,18 @@
     NSString*str;
     NSString *prodId;
     BOOL isConnect;
+    IBOutlet UIButton* setload;
     
     
 }
+
+-(IBAction)settomedi;
+-(IBAction)settorem;
+-(IBAction)settoass;
+-(IBAction)settoapp;
+-(IBAction)settocom;
+-(IBAction)settohome;
+
 - (IBAction)checkboxButton:(UIButton *)button;
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl;
 @end

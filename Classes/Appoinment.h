@@ -16,7 +16,7 @@
 	IBOutlet UIImageView *bgImage;
     int i;
     IBOutlet UILabel *nolab;
-  
+  IBOutlet UIButton * appload;
     BOOL share1;
     int savedValue;
     NSString*appoFile;
@@ -26,6 +26,13 @@
   
 }
 
+
+-(IBAction)apptomedi;
+-(IBAction)apptorem;
+-(IBAction)apptoass;
+-(IBAction)apptohome;
+-(IBAction)apptocom;
+-(IBAction)apptoset;
 
 
 @end

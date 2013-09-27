@@ -13,6 +13,17 @@
 #import "ADLivelyTableView.h"
 #import "Addremainder.h"
 #import "fileMngr.h"
+#import "RootViewController.h"
+#import "SignUp.h"
+#import "AboutmeViewController.h"
+#import "NewViewController.h"
+#import "Cremainder.h"
+#import "que.h"
+#import "Appoinment.h"
+#import "Communicate.h"
+#import "Assessment.h"
+#import "MainViewController.h"
+#import "Welcome.h"
 #define USE_CUSTOM_DRAWING 1
 #define USE_CUSTOM_DRAWING 1
 
@@ -46,6 +57,9 @@ AppSharedInstance *instance;
     UIImageView *i=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"BG.jpg"]];
    
     [super viewDidLoad];
+    [appload setImage:[UIImage imageNamed:@"Appointments2.png"]forState:UIControlStateNormal];
+    
+    
        if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
     {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"Top_Panel.png"] forBarMetrics:UIBarMetricsDefault];
@@ -66,6 +80,16 @@ AppSharedInstance *instance;
     self.navigationItem.titleView = label;
     label.text = NSLocalizedString(@"Appointments", @"");
     [label sizeToFit];
+    
+    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
+    [home setBackgroundImage:homeImage forState:UIControlStateNormal];
+    [home addTarget:self action:@selector(back)
+   forControlEvents:UIControlEventTouchUpInside];
+    home.frame = CGRectMake(0, 0, 50, 30);
+    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
+                                      initWithCustomView:home] autorelease];
+    self.navigationItem.leftBarButtonItem = cancelButton;
    
     
       myTable.backgroundColor = [UIColor clearColor];
@@ -131,6 +155,51 @@ AppSharedInstance *instance;
        
     
 }
+
+-(IBAction)apptomedi
+{
+    
+    RootViewController*new = [[RootViewController alloc] initWithNibName:@"roor" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [RootViewController release];
+    
+}
+-(IBAction)apptorem
+{
+    
+    Cremainder*new = [[Cremainder alloc] initWithNibName:@"Cremainder" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Cremainder release];
+}
+-(IBAction)apptoass
+{
+    
+    Assessment*new = [[Assessment alloc] initWithNibName:@"Assessment" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Assessment release];
+}
+-(IBAction)apptohome
+{
+    
+    Welcome*new = [[Welcome alloc] initWithNibName:@"Welcome" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Welcome release];
+}
+-(IBAction)apptocom
+{
+    
+    Communicate*new = [[Communicate alloc] initWithNibName:@"Communicate" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Communicate release];
+}
+-(IBAction)apptoset
+{
+    
+    NewViewController*new = [[NewViewController alloc] initWithNibName:@"NewViewController" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [NewViewController release];
+}
+
 -(void)back
 {
     [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];

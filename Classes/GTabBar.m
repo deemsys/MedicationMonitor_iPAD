@@ -66,7 +66,7 @@
     }
     else
     {
-        tabBarHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 1024-110, 768, 110)];
+        tabBarHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 1200, 768, 110)];
     }
    
     tabBarHolder.backgroundColor=[UIColor yellowColor];

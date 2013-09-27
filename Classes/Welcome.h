@@ -27,6 +27,7 @@
     
     IBOutlet UITableView *myTable;
     IBOutlet UILabel *welcome;
+    IBOutlet UIButton *homeload;
     
     NSMutableArray *reminderarray;
     NSArray *assesment;
@@ -40,6 +41,13 @@
 }
 -(IBAction)back1;
 -(IBAction)sunc:(id)sender;
+-(IBAction)Hometomedi;
+-(IBAction)Hometorem;
+-(IBAction)Hometoass;
+-(IBAction)Hometoapp;
+-(IBAction)Hometocom;
+-(IBAction)Hometoset;
+-(IBAction)signout;
 @property (retain,nonatomic) NSArray *petArray;
 @property (nonatomic,retain) NSDictionary *tableContents;
 @property (nonatomic,retain) NSArray *sortedKeys;

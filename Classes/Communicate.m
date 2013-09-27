@@ -9,6 +9,17 @@
 #import "Communicate.h"
 #import "BlockAlertView.h"
 #import <MessageUI/MFMailComposeViewController.h>
+#import "RootViewController.h"
+#import "SignUp.h"
+#import "AboutmeViewController.h"
+#import "NewViewController.h"
+#import "Cremainder.h"
+#import "que.h"
+#import "Appoinment.h"
+#import "Communicate.h"
+#import "Assessment.h"
+#import "MainViewController.h"
+#import "Welcome.h"
 
 @interface Communicate ()
 
@@ -36,6 +47,12 @@
     [[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"skype:///"]];
  //   NSString* urlString = [NSString stringWithFormat:@\"skype://%@?call\", raja.seenivasan];
                        //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+}
+-(void)back
+{
+    
+    [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 -(IBAction)mailClicked
 {
@@ -125,6 +142,49 @@
     
 }
 
+-(IBAction)comtomedi
+{
+    
+    RootViewController*new = [[RootViewController alloc] initWithNibName:@"roor" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [RootViewController release];
+    
+}
+-(IBAction)comtorem
+{
+    
+    Cremainder*new = [[Cremainder alloc] initWithNibName:@"Cremainder" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Cremainder release];
+}
+-(IBAction)comtoass
+{
+    
+    Assessment*new = [[Assessment alloc] initWithNibName:@"Assessment" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Assessment release];
+}
+-(IBAction)comtoapp
+{
+    
+    Appoinment*new = [[Appoinment alloc] initWithNibName:@"Appoinment" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Appoinment release];
+}
+-(IBAction)comtohome
+{
+    
+    Welcome*new = [[Welcome alloc] initWithNibName:@"Welcome" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Welcome release];
+}
+-(IBAction)comtoset
+{
+    
+    NewViewController*new = [[NewViewController alloc] initWithNibName:@"NewViewController" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [NewViewController release];
+}
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
@@ -153,8 +213,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [comload
+     setImage:[UIImage imageNamed:@"Communicate2.png"]forState:UIControlStateNormal];
     
-    
+    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
+    [home setBackgroundImage:homeImage forState:UIControlStateNormal];
+    [home addTarget:self action:@selector(back)
+   forControlEvents:UIControlEventTouchUpInside];
+    home.frame = CGRectMake(0, 0, 50, 30);
+    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
+                                      initWithCustomView:home] autorelease];
+    self.navigationItem.leftBarButtonItem = cancelButton;
     
     if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
     {

@@ -24,10 +24,19 @@
     NSMutableDictionary *dictionary;
     NSString *dicfile;
     NSMutableArray *dictionaryArray;
+     IBOutlet UIButton * remload;
     
     
 }
 -(IBAction)Addremainder;
+
+-(IBAction)remtohome;
+-(IBAction)remtomedi;
+-(IBAction)remtoass;
+-(IBAction)remtoapp;
+-(IBAction)remtocom;
+-(IBAction)remtoset;
+
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl;
 @property (retain,nonatomic) NSArray *petArray;
 @property (retain, nonatomic) NSMutableDictionary *recordDict;

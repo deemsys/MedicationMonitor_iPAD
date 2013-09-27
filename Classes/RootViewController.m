@@ -11,6 +11,16 @@
 #import "ListCell.h"
 #import "AboutmeViewController.h"
 #import "ADLivelyTableView.h"
+#import "SignUp.h"
+#import "AboutmeViewController.h"
+#import "NewViewController.h"
+#import "Cremainder.h"
+#import "que.h"
+#import "Appoinment.h"
+#import "Communicate.h"
+#import "Assessment.h"
+#import "MainViewController.h"
+#import "Welcome.h"
 
 
 @implementation UINavigationBar (CustomImage)
@@ -36,7 +46,18 @@ AppSharedInstance *instance;
     //[self.view addSubview:i];
     //[self.view sendSubviewToBack:i];
     
+    [mediload setImage:[UIImage imageNamed:@"Medications2.png"]forState:UIControlStateNormal];
+    
     [super viewDidLoad];
+    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
+    [home setBackgroundImage:homeImage forState:UIControlStateNormal];
+    [home addTarget:self action:@selector(back)
+   forControlEvents:UIControlEventTouchUpInside];
+    home.frame = CGRectMake(0, 0, 50, 30);
+    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
+                                      initWithCustomView:home] autorelease];
+    self.navigationItem.leftBarButtonItem = cancelButton;
     
   
     if([[UINavigationBar class] respondsToSelector:@selector(appearance)]) //iOS >=5.0
@@ -72,15 +93,7 @@ AppSharedInstance *instance;
 	//self.navigationItem.backBarButtonItem = backButton;
 	//[backButton release];
     
-    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];  
-    UIImage *homeImage = [UIImage imageNamed:@"back.png"]  ;
-    [home setBackgroundImage:homeImage forState:UIControlStateNormal];  
-    [home addTarget:self action:@selector(back)  
-   forControlEvents:UIControlEventTouchUpInside];  
-    home.frame = CGRectMake(0, 0, 50, 30);  
-    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]  
-                                      initWithCustomView:home] autorelease];  
-    //self.navigationItem.leftBarButtonItem = cancelButton;	
+       //self.navigationItem.leftBarButtonItem = cancelButton;	
 	
      savedValue = [[NSUserDefaults standardUserDefaults]
                       integerForKey:@"ApptType"];
@@ -123,6 +136,52 @@ AppSharedInstance *instance;
     
 	
 }
+
+
+-(IBAction)meditohome
+{
+    
+     Welcome* new = [[Welcome alloc] initWithNibName:@"Welcome" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Welcome release];
+    
+}
+-(IBAction)meditorem
+{
+    
+    Cremainder*new = [[Cremainder alloc] initWithNibName:@"Cremainder" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Cremainder release];
+}
+-(IBAction)meditoass
+{
+    
+    Assessment*new = [[Assessment alloc] initWithNibName:@"Assessment" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Assessment release];
+}
+-(IBAction)meditoapp
+{
+    
+    Appoinment*new = [[Appoinment alloc] initWithNibName:@"Appoinment" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Appoinment release];
+}
+-(IBAction)meditocom
+{
+    
+    Communicate*new = [[Communicate alloc] initWithNibName:@"Communicate" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [Communicate release];
+}
+-(IBAction)meditoset
+{
+    
+    NewViewController*new = [[NewViewController alloc] initWithNibName:@"NewViewController" bundle:nil];
+    [self.navigationController pushViewController:new animated:YES];
+    [NewViewController release];
+}
+
 -(void)back
 {
     [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
