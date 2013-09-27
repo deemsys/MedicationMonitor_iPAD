@@ -11,7 +11,6 @@
 #import "GTabBar.h"
 #import <QuartzCore/QuartzCore.h>
 #import "JSON.h"
-#import "BlockAlertView.h"
 @implementation MediMoniAppDelegate
 
 @synthesize window;
@@ -29,8 +28,7 @@
 
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    
-    isAppResumingFromBackground = YES;/*
+    /*
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
@@ -107,12 +105,7 @@
 
 - (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notif {
     
-        NSString *text=notif.alertBody;
-        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Notification!" message:text];
-        [alert setDestructiveButtonWithTitle:@"x" block:nil];
-        [alert show];
   NSLog(@"Notification Recived, %@, set for Date %@",notif.alertBody,notif.fireDate);
-   
    
 }
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
@@ -120,19 +113,7 @@
  
   
 }
-/*- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-   
-    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (localNotif) {
-        NSString *text=localNotif.alertBody;
-        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Reminder!" message:text];
-        [alert setDestructiveButtonWithTitle:@"x" block:nil];
-        [alert show];
-    }
-   
-}
-*/
+
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
  //   NSLog(@"Error in registration. Error: %@", err);
 }

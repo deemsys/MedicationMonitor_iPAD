@@ -832,14 +832,10 @@ AppSharedInstance *instance;
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    datePicker.minimumDate=[NSDate date];
-    datePicker1.minimumDate=[NSDate date];
-
     [super viewDidLoad];
     [(UITextField*)[self.view viewWithTag:1] resignFirstResponder];
     [(UITextField*)[self.view viewWithTag:6] resignFirstResponder];
-    datePicker.minimumDate=[NSDate date];
-    datePicker1.minimumDate=[NSDate date];
+    datePicker1.minimumDate=datePicker.date;
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
 	df.dateStyle = NSDateFormatterMediumStyle;
 	fromd.text = [NSString stringWithFormat:@"%@",
@@ -1344,12 +1340,10 @@ AppSharedInstance *instance;
             localNotif.repeatInterval = 0;
         }
         
-        UIApplication* app = [UIApplication sharedApplication];
-        // this will schedule the notification to fire at the fire date
-        [app scheduleLocalNotification:localNotif];
         //   NSDictionary *infoDict = [NSDictionary dictionaryWithObject:localNotif.fireDate forKey:@"date"];
         //   localNotif.userInfo = infoDict;
-         // [localNotif release];
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+        // [localNotif release];
     }
     
 }
@@ -1376,7 +1370,7 @@ AppSharedInstance *instance;
     
     NSMutableArray*m=[[NSUserDefaults standardUserDefaults]objectForKey:str];
     //    [self setLocalNotifi];
-   // [self setLocalNotifi];
+    [self setLocalNotifi];
     //  fromd.text=@"FromDate";
     //  tod.text=@"Todate";
     //  }
