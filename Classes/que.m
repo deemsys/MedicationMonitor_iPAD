@@ -844,6 +844,11 @@ AppSharedInstance *instance;
                     {
                         NSString*str=@"Monthly Questionnaire";
                         [recordDict setObject:str forKey:@"type"];
+                        NSUserDefaults *sharedDefaults = [NSUserDefaults standardUserDefaults];
+                        [sharedDefaults setObject:[NSDate date] forKey:@"nowoldmonth"];
+                        //[[NSUserDefaults standardUserDefaults]setObject:now forKey:@"nowold"];
+                        [sharedDefaults synchronize];
+
                     }
                     [recordDict setObject:@"" forKey:@"name"];
                     NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
@@ -948,27 +953,33 @@ AppSharedInstance *instance;
         [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"daily"];
         
     }
-    NSDate *tt= [dateFormat dateFromString:currentdate];
-    NSCalendar   *calendar = [[[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar] autorelease];
-   
-    NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
+    NSDate*nowdate=[NSDate date];
+    NSDate*oldmonth=[[NSUserDefaults standardUserDefaults]objectForKey:@"nowoldmonth"];
+    NSDate *nextmonth = [NSDate dateWithTimeInterval:(30*24*60*60) sinceDate:oldmonth];
+    NSLog(@"Next Month Date %@",nextmonth);
+    NSDateFormatter *dateFormat1 = [[NSDateFormatter alloc] init] ;
+    [dateFormat1 setDateFormat:@"dd-MM-YYYY"];
+    NSString *afterdays= [dateFormat1 stringFromDate:nextmonth];
+    NSString *currentaccess = [dateFormat stringFromDate:nowdate];
+    NSLog(@"Last accessed date %@",oldmonth);
+    NSLog(@" allowable date%@",afterdays);
+    NSLog(@"current date %@",currentaccess);
+
     
-    components.day = 1;
-   
-    NSDate *tomorrow = [calendar dateByAddingComponents: components toDate:tt options: 0];
     
-    NSString *tomorrowdate = [dateFormat stringFromDate:tomorrow];
-    
-    NSLog(@"New date %@",tomorrowdate);
+    NSDate *nextday = [NSDate dateWithTimeInterval:(24*60*60) sinceDate:old];
+   NSString *nextdate = [dateFormat stringFromDate:nextday];
     
     daily=[[NSUserDefaults standardUserDefaults]integerForKey:@"daily"];
     int okok=[[NSUserDefaults standardUserDefaults]integerForKey:@"selectAss"];
+    NSString *text=@"You have already answer your daily assessment. Your next daily assessment will be on ";
+    NSString *Tt=[text stringByAppendingString:nextdate];
     //  [[NSUserDefaults standardUserDefaults] setInteger:indexPath.section forKey:@"selectAss"];
     //////NSLog(@"okok:%i",okok);
     if(okok==1 && daily==1 )
     {
         
-        question.text =@"You have already answer your daily assessment. Your next daily assessment will be on tomorrow.";
+        question.text =Tt;
         //   question.textAlignment = NSTextAlignmentJustified;
         
         question.numberOfLines = 0;
@@ -999,8 +1010,29 @@ AppSharedInstance *instance;
     NSString *type=[[NSUserDefaults standardUserDefaults]objectForKey:@"questionType"];
     if([type isEqualToString:@"Monthly Questionnaire"])
     {
+        if ([currentaccess compare:afterdays] == NSOrderedDescending)
+        {
+
         [self mothly];
         return;
+        }
+        else if([currentaccess compare:afterdays]==NSOrderedAscending)
+        {
+        NSString *te=@"You have already answer your monthly assessment. Your next monthly assessment will be on .";
+            NSString *title=[te stringByAppendingString:afterdays];
+            
+            question.text =title;
+            //   question.textAlignment = NSTextAlignmentJustified;
+            
+            question.numberOfLines = 0;
+            
+            return;
+        }
+        else
+        {
+            [self mothly];
+            return;
+        }
     }
     
     

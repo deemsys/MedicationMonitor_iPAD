@@ -134,7 +134,6 @@ AppSharedInstance *instance;
 {
     
     
-    c=1;
     instance = [AppSharedInstance sharedInstance];
     self.petArray = [instance getPet];
     self._assQues=[instance getAssQue];
@@ -152,20 +151,20 @@ AppSharedInstance *instance;
 		case NotReachable:
 		{
 			isConnect=NO;
-			//NSLog(@"Access Not Available");
+			NSLog(@"Access Not Available");
 			break;
 		}
 			
 		case ReachableViaWWAN:
 		{
 			isConnect=YES;
-			//NSLog(@"Reachable WWAN");
+			NSLog(@"Reachable WWAN");
 			break;
 		}
 		case ReachableViaWiFi:
 		{
 			isConnect=YES;
-			//NSLog(@"Reachable WiFi");
+		NSLog(@"Reachable WiFi");
 			break;
 		}
 	}
@@ -305,9 +304,9 @@ AppSharedInstance *instance;
         dateFromString = [dateFormatter dateFromString:dateString];
         [dateFormatter release];
         NSString*s=[NSString stringWithFormat:@"%@",arrayListType];
-        NSLog(@"date from array list date %@",dateFromString);
-        NSLog(@"type from array list type %@",s );
-        NSLog(@"name from array list %@ " ,[NSString stringWithFormat:@"%@",arrayList ]);
+       // NSLog(@"date from array list date %@",dateFromString);
+       // NSLog(@"type from array list type %@",s );
+        //NSLog(@"name from array list %@ " ,[NSString stringWithFormat:@"%@",arrayList ]);
         UILocalNotification *localNotif = [[UILocalNotification alloc] init];
         if (localNotif == nil)
             return;
@@ -320,8 +319,7 @@ AppSharedInstance *instance;
         //NSString*s=[NSString stringWithFormat:@"%@",arrayListType];
         if([s isEqualToString:@"Daily"])
         {
-            localNotif.fireDate=[NSDate date];
-            localNotif.repeatInterval = NSDayCalendarUnit;
+          localNotif.repeatInterval = NSDayCalendarUnit;
         }
         else
         {
@@ -1089,8 +1087,7 @@ AppSharedInstance *instance;
     
     myTable.backgroundColor = [UIColor clearColor];
     reminderarray=[[NSMutableArray alloc]init];
-     [self sunc1];
-    NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+      NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
     for(int i=0;i<[notificationArray count];i++)
     {
         UILocalNotification *notif = [notificationArray objectAtIndex:i];
