@@ -374,14 +374,14 @@ AppSharedInstance *instance;
         
         // this will fire the notification right away, it will still also fire at the date we set
         //i hidden here dueto displaying the same remainder for 2 times==>
-        //[app presentLocalNotificationNow:localNotif];
+     [app presentLocalNotificationNow:localNotif];
         // Specify custom data for the notification
         NSDictionary *infoDict = [NSDictionary dictionaryWithObject: localNotif.fireDate forKey:@"date"];
         localNotif.userInfo = infoDict;
         
         // Schedule the notification
         // [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
-        //    [localNotif release];
+         [localNotif release];
         [[self navigationController] popViewControllerAnimated:YES];
     }
     

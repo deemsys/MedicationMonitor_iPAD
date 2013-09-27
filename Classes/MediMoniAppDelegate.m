@@ -11,7 +11,7 @@
 #import "GTabBar.h"
 #import <QuartzCore/QuartzCore.h>
 #import "JSON.h"
-#import "BlockAlertView.h"
+
 @implementation MediMoniAppDelegate
 
 @synthesize window;
@@ -105,20 +105,17 @@
 }
 
 - (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notif {
-    NSString *text=notif.alertBody;
-          BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Notification!" message:text];
-          [alert setDestructiveButtonWithTitle:@"x" block:nil];
-[alert show];
-
     
-  NSLog(@"Notification Recived, %@, set for Date %@",notif.alertBody,notif.fireDate);
-   
+    NSLog(@"Notification Recived, %@, set for Date %@",notif.alertBody,notif.fireDate);
+    
 }
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
     const void *devTokenBytes = [devToken bytes];
- 
-  
+    
+    
 }
+
+
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
  //   NSLog(@"Error in registration. Error: %@", err);

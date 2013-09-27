@@ -12,7 +12,6 @@
 #import "fileMngr.h"
 #import "AppSharedInstance.h"
 #import "ADLivelyTableView.h"
-#import "BlockAlertView.h"
 #import "ListCell.h"
 #import "RootViewController.h"
 #import "SignUp.h"
@@ -274,6 +273,7 @@ AppSharedInstance *instance;
     
     
     
+    
     /*REMINDERS***************/
     
     
@@ -292,9 +292,9 @@ AppSharedInstance *instance;
         NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"remindername"];
         NSDictionary *arrayListType=[(NSDictionary*)anUpdate objectForKey:@"remindertype"];
         NSDictionary *arrayListDate=[(NSDictionary*)anUpdate objectForKey:@"reminderdate"];
-        ////NSLog(@"remaindername:%@",arrayList);
-        ////NSLog(@"remaindername:%@",arrayListType);
-        ////NSLog(@"remaindername:%@",arrayListDate);
+        NSLog(@"remaindername:%@",arrayList);
+        NSLog(@"remaindername:%@",arrayListType);
+        NSLog(@"remaindername:%@",arrayListDate);
         
         
         
@@ -304,8 +304,10 @@ AppSharedInstance *instance;
         NSDate *dateFromString = [[NSDate alloc] init];
         dateFromString = [dateFormatter dateFromString:dateString];
         [dateFormatter release];
-        
-        
+        NSString*s=[NSString stringWithFormat:@"%@",arrayListType];
+        NSLog(@"date from array list date %@",dateFromString);
+        NSLog(@"type from array list type %@",s );
+        NSLog(@"name from array list %@ " ,[NSString stringWithFormat:@"%@",arrayList ]);
         UILocalNotification *localNotif = [[UILocalNotification alloc] init];
         if (localNotif == nil)
             return;
@@ -315,9 +317,10 @@ AppSharedInstance *instance;
         localNotif.alertAction = @"View";
         localNotif.soundName = UILocalNotificationDefaultSoundName;
         localNotif.applicationIconBadgeNumber = 0;
-        NSString*s=[NSString stringWithFormat:@"%@",arrayListType];
+        //NSString*s=[NSString stringWithFormat:@"%@",arrayListType];
         if([s isEqualToString:@"Daily"])
         {
+            localNotif.fireDate=[NSDate date];
             localNotif.repeatInterval = NSDayCalendarUnit;
         }
         else
@@ -325,14 +328,25 @@ AppSharedInstance *instance;
             localNotif.repeatInterval = 0;
         }
         
-        //    NSDictionary *infoDict = [NSDictionary dictionaryWithObject: localNotif.fireDate forKey:@"date"];
-        //  localNotif.userInfo = infoDict;
+        /*   NSMutableArray *SheduleArray=[[NSMutableArray alloc] initWithArray:[[UIApplication sharedApplication]scheduledLocalNotifications]];
+         for(int s=0;s<[SheduleArray count];s++){
+         UILocalNotification *Not=[SheduleArray objectAtIndex:s];
+         int getId=[[Not.userInfo valueForKey:@"Id"] intValue];
+         if(getId==(int)runNumber)
+         {
+         [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+         }
+         }
+         */
+        
+        
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
         [localNotif release];
         
         
         
     }
+    
     
     
     
@@ -1262,14 +1276,7 @@ AppSharedInstance *instance;
      [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
     welcome.text=[NSString stringWithFormat:@"Welcome %@ !",name];
 
-    if(first==1)
-    {
-    BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Welcome!" message:name];
-
-    [alert setDestructiveButtonWithTitle:@"x" block:nil];
-    [alert show];
-    }
-    NSDictionary *temp =[[NSDictionary alloc]initWithObjectsAndKeys:reminderarray,@"Reminder",_AppDArr,@"Appointment",petArray,@"Medication",nil];
+      NSDictionary *temp =[[NSDictionary alloc]initWithObjectsAndKeys:reminderarray,@"Reminder",_AppDArr,@"Appointment",petArray,@"Medication",nil];
     
     self.tableContents =temp;
     [temp release];
