@@ -977,7 +977,7 @@ AppSharedInstance *instance;
     
     NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
     
-    
+    //For displaying multiple medicine,reminder,appointments in welcome screen...
     NSDictionary *temp =[[NSDictionary alloc]initWithObjectsAndKeys:reminderarray,@"Reminder",_AppDArr,@"Appointment",petArray,@"Medication",nil];
     
     self.tableContents =temp;
@@ -1188,6 +1188,7 @@ AppSharedInstance *instance;
      hintView.title = @"Welcome!";
      [hintView addPageWithTitle:@"Info" text:name];
      [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
+       welcome.text=[NSString stringWithFormat:@"Welcome %@ !",name];
     if(c!=1)
     {
     BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Welcome!" message:name];
@@ -1215,9 +1216,28 @@ AppSharedInstance *instance;
     
     
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 35.0f;
+}
 
-
-
+//To set color for every header in table section
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *tempView=[[UIView alloc]initWithFrame:CGRectMake(0,200,300,300)];
+    tempView.backgroundColor= [UIColor colorWithPatternImage:[UIImage imageNamed:@"Top_Panel.png"]];
+    UILabel *tempLabel=[[UILabel alloc]initWithFrame:CGRectMake(15,0,300,44)];
+    tempLabel.backgroundColor=[UIColor clearColor];
+    tempLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    tempLabel.shadowOffset = CGSizeMake(0,2);
+    tempLabel.textColor = [UIColor whiteColor]; //here you can change the text color of header.
+    tempLabel.font = [UIFont fontWithName:@"Helvetica" size:22];
+    tempLabel.font = [UIFont boldSystemFontOfSize:22];
+    tempLabel.text=[self.sortedKeys objectAtIndex:section];
+    [tempView addSubview:tempLabel];
+    
+    [tempLabel release];
+    return tempView;
+}
 
 //Apponment
 -(NSString *)HttpPostEntityFirst:(NSString*)firstEntity ForValue1:(NSString*)value1  EntityThird:(NSString*)thirdEntity ForValue3:(NSString*)value3
