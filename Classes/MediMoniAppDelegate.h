@@ -18,6 +18,7 @@
     UIWindow *window;
     UITabBarController *tabBarController;
     GTabBar *tabView;
+    BOOL isAppResumingFromBackground;
 }
 - (void)createEditableCopyOfDatabaseIfNeeded;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
