@@ -445,7 +445,7 @@ AppSharedInstance *instance;
 		//
 		topLabel.tag = TOP_LABEL_TAG;
 		topLabel.backgroundColor = [UIColor clearColor];
-		topLabel.textColor = [UIColor colorWithRed:0.6 green:0.4 blue:0.2 alpha:1.0];
+		topLabel.textColor = [UIColor colorWithRed:0.25 green:0.0 blue:0.0 alpha:1.0];
 		topLabel.highlightedTextColor = [UIColor redColor];
 		topLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]];
         
@@ -470,7 +470,8 @@ AppSharedInstance *instance;
 		//
 		bottomLabel.tag = BOTTOM_LABEL_TAG;
 		bottomLabel.backgroundColor = [UIColor clearColor];
-		bottomLabel.textColor = [UIColor colorWithRed:0.6 green:0.4 blue:0.2 alpha:1.0];
+		bottomLabel.textColor = [UIColor colorWithRed:0.25 green:0.0 blue:0.0 alpha:1.0];
+
 		bottomLabel.highlightedTextColor = [UIColor redColor];
 		bottomLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize] - 2];
         

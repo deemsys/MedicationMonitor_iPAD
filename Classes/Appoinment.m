@@ -375,7 +375,7 @@ reuseIdentifier:CellIdentifier]
 		topLabel.backgroundColor = [UIColor clearColor];
 		topLabel.textColor = [UIColor colorWithRed:0.25 green:0.0 blue:0.0 alpha:1.0];
 		topLabel.highlightedTextColor = [UIColor redColor];
-		topLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]];
+		topLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]+2];
         
 		//
 		// Create the label for the top row of text
@@ -423,8 +423,8 @@ reuseIdentifier:CellIdentifier]
     
 
     
-    topLabel.text=[_AppDArr objectAtIndex:indexPath.row];
-     bottomLabel.text=[_AppNArr objectAtIndex:indexPath.row];
+    bottomLabel.text=[_AppDArr objectAtIndex:indexPath.row];
+     topLabel.text=[_AppNArr objectAtIndex:indexPath.row];
     
 	
 	

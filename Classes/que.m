@@ -255,7 +255,7 @@ AppSharedInstance *instance;
     
     
     int a=[[NSUserDefaults standardUserDefaults]integerForKey:@"selectAss"];
-    if(a==1)
+    if(a==50)
     {
         NSString*str=@"Daily Questionnaire";
         [recordDict setObject:str forKey:@"type"];
@@ -758,7 +758,7 @@ AppSharedInstance *instance;
                     
                     int a=[[NSUserDefaults standardUserDefaults]integerForKey:@"selectAss"];
                     //NSLog(@"asstype:%i",a);
-                    if(a==1)
+                    if(a==50)
                     {
                         NSString*str=@"Daily Questionnaire";
                         [recordDict setObject:str forKey:@"type"];
@@ -880,7 +880,7 @@ AppSharedInstance *instance;
     NSString *text=@"You have already answer your daily assessment. Your next daily assessment will be on ";
     NSString *Tt=[text stringByAppendingString:nextdate];
     
-    if(okok==1 && daily==1 )
+    if(okok==50 && daily==1 )
     {
         
         question.text =Tt;
@@ -933,11 +933,44 @@ AppSharedInstance *instance;
     
     
 }
+    
+    NSDate*oldweek=[[NSUserDefaults standardUserDefaults]objectForKey:@"nowoldweek"];
+    NSDate *nextweek = [NSDate dateWithTimeInterval:(7*24*60*60) sinceDate:oldweek];
+    NSLog(@"Next Week Date %@",nextweek);
+    NSDateFormatter *dateFormat11 = [[NSDateFormatter alloc] init] ;
+    [dateFormat11 setDateFormat:@"dd-MM-YYYY"];
+    NSString *afterdays1= [dateFormat11 stringFromDate:nextweek];
+    NSString *currentaccess1 = [dateFormat stringFromDate:nowdate];
+    NSLog(@"Last accessed week date %@",oldweek);
+    NSLog(@" allowable date for next week %@",afterdays1);
+    NSLog(@"current date in week calculation %@",currentaccess1);
 if([type isEqualToString:@"Weekly Questionnaire"])
+{
+    if ([currentaccess1 compare:afterdays1] == NSOrderedDescending)
+{
+    NSLog(@"currentaccess > next week date ");
+    [self weekly];
+    return;
+}
+else if([currentaccess1 compare:afterdays1]==NSOrderedAscending)
+{
+    NSLog(@"Current date < next month date");
+    NSString *te=@"You have already answer your weekly assessment. Your next weekly assessment will be on ";
+    NSString *title=[te stringByAppendingString:afterdays1];
+    
+    question.text =title;
+    //   question.textAlignment = NSTextAlignmentJustified;
+    
+    question.numberOfLines = 0;
+    
+    return;
+}
+else
 {
     [self weekly];
     return;
 }
+    }
     
     
     
@@ -964,7 +997,7 @@ if([type isEqualToString:@"Weekly Questionnaire"])
            
                 question.text=[(NSDictionary*)anUpdate objectForKey:@"assquestion"];
                 question.numberOfLines = 0;
-           
+                          
                 NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
                 questionid = [num intValue];
                 [num release];
@@ -1006,9 +1039,7 @@ if([type isEqualToString:@"Weekly Questionnaire"])
                 NSNumber *numid = [(NSDictionary*)anUpdate objectForKey:@"ansid"];
                 int nextID = [numid intValue];
                 
-                
-                
-                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                 [button addTarget:self
                            action:@selector(aMethod:)
                  forControlEvents:UIControlEventTouchUpInside];
@@ -1232,6 +1263,10 @@ if([type isEqualToString:@"Weekly Questionnaire"])
                     {
                         NSString*str=@"Weekly Questionnaire";
                         [recordDict setObject:str forKey:@"type"];
+                        NSUserDefaults *sharedDefaults = [NSUserDefaults standardUserDefaults];
+                        [sharedDefaults setObject:[NSDate date] forKey:@"nowoldweek"];
+                        
+                        [sharedDefaults synchronize];
                     }
                     [recordDict setObject:@"" forKey:@"name"];
                     NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
@@ -1792,7 +1827,7 @@ if([type isEqualToString:@"Weekly Questionnaire"])
     
     int a=[[NSUserDefaults standardUserDefaults]integerForKey:@"selectAss"];
     NSLog(@"a value :%i",a);
-    if(a==1)
+    if(a==50)
     {
         NSString*str=@"Daily Questionnaire";
         [recordDict setObject:str forKey:@"type"];
