@@ -164,6 +164,7 @@
 						<string key="NSFrame">{{374, 648}, {121, 42}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -192,6 +193,7 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<bool key="IBUISelected">YES</bool>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
 						<reference key="IBUIHighlightedTitleColor" ref="151792227"/>
@@ -202,7 +204,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="20471564"/>
 						<object class="NSCustomResource" key="IBUISelectedImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">Select.png</string>
+							<string key="NSResourceName">SELECT2.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="959943251"/>
 						<reference key="IBUIFont" ref="897224106"/>
@@ -445,7 +447,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="LoginBG.png">{768, 1024}</string>
-			<string key="Select.png">{27, 23}</string>
+			<string key="SELECT2.png">{27, 23}</string>
 			<string key="Signin2.png">{120, 44}</string>
 			<string key="Signup2.png">{120, 44}</string>
 		</dictionary>

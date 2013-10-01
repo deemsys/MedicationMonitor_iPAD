@@ -539,7 +539,7 @@ AppSharedInstance *instance;
     Audio.backgroundColor = [UIColor clearColor];
     Audio.rowHeight=90;
 	Audio.separatorColor = [UIColor clearColor];
-    //[Audio reloadData];
+    [Audio reloadData];
 
     
     
@@ -601,7 +601,7 @@ AppSharedInstance *instance;
     self.navigationItem.titleView = label;
     label.text = NSLocalizedString(@"Questionnaire?", @"");
     [label sizeToFit];
-    
+    [Audio reloadData];
 [myTable reloadData];
    
 }
