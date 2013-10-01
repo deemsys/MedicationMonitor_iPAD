@@ -857,17 +857,6 @@ AppSharedInstance *instance;
         [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"daily"];
         
     }
-    NSDate*nowdate=[NSDate date];
-    NSDate*oldmonth=[[NSUserDefaults standardUserDefaults]objectForKey:@"nowoldmonth"];
-    NSDate *nextmonth = [NSDate dateWithTimeInterval:(30*24*60*60) sinceDate:oldmonth];
-    NSLog(@"Next Month Date %@",nextmonth);
-    NSDateFormatter *dateFormat1 = [[NSDateFormatter alloc] init] ;
-    [dateFormat1 setDateFormat:@"dd-MM-YYYY"];
-    NSString *afterdays= [dateFormat1 stringFromDate:nextmonth];
-    NSString *currentaccess = [dateFormat stringFromDate:nowdate];
-    NSLog(@"Last accessed date %@",oldmonth);
-    NSLog(@" allowable date for next month %@",afterdays);
-    NSLog(@"current date in month calculation %@",currentaccess);
 
     
     
@@ -902,8 +891,18 @@ AppSharedInstance *instance;
         
 	}
     
-       
+    NSDate *nowdate=[NSDate date];
     NSString *type=[[NSUserDefaults standardUserDefaults]objectForKey:@"questionType"];
+    NSDate*oldmonth=[[NSUserDefaults standardUserDefaults]objectForKey:@"nowoldmonth"];
+    NSDate *nextmonth = [NSDate dateWithTimeInterval:(31*24*60*60) sinceDate:oldmonth];
+    NSLog(@"Next Month Date %@",nextmonth);
+    NSDateFormatter *dateFormat1 = [[NSDateFormatter alloc] init] ;
+    [dateFormat1 setDateFormat:@"dd-MM-YYYY"];
+    NSString *afterdays= [dateFormat1 stringFromDate:nextmonth];
+    NSString *currentaccess = [dateFormat stringFromDate:nowdate];
+    NSLog(@"Last accessed month date %@",oldmonth);
+    NSLog(@" allowable date for next month %@",afterdays);
+    NSLog(@"current date in month calculation %@",currentaccess);
     if([type isEqualToString:@"Monthly Questionnaire"])
     {
         if ([currentaccess compare:afterdays] == NSOrderedDescending)
@@ -930,9 +929,9 @@ AppSharedInstance *instance;
             [self mothly];
             return;
         }
+    }
     
-    
-}
+
     
     NSDate*oldweek=[[NSUserDefaults standardUserDefaults]objectForKey:@"nowoldweek"];
     NSDate *nextweek = [NSDate dateWithTimeInterval:(7*24*60*60) sinceDate:oldweek];
