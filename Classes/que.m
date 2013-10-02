@@ -3,6 +3,7 @@
 #import "AppSharedInstance.h"
 #import "SpeakHereViewController.h"
 #import "BlockAlertView.h"
+#import "Assessment.h"
 #define DOCUMENTS_FOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 #define USE_CUSTOM_DRAWING 1
 #define USE_CUSTOM_DRAWING 1
@@ -403,6 +404,7 @@ AppSharedInstance *instance;
         
     
     [[self navigationController] popViewControllerAnimated:YES];
+   
 }
 - (IBAction)save:(id)sender
 {
@@ -480,7 +482,10 @@ AppSharedInstance *instance;
 {
     /* Line added to avoid the overlapping of back button with Questionnarie? in Navigation controller*/
     [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
-    [[self navigationController] popViewControllerAnimated:YES];
+    
+    Assessment*new = [[Assessment alloc] initWithNibName:@"Assessment" bundle:nil];
+    [self.navigationController pushViewController:new animated:NO];
+    [Assessment release];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

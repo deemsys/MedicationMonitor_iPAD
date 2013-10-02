@@ -16,7 +16,7 @@
 		0D99686717D9A37F008CB6CF /* AboutmeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D99686617D9A37F008CB6CF /* AboutmeViewController.m */; };
 		0D99687717DA5DFB008CB6CF /* AddMedi.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D99687617DA5DFB008CB6CF /* AddMedi.xib */; };
 		0D99687917DB0021008CB6CF /* adddate&time.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D99687817DB0021008CB6CF /* adddate&time.png */; };
-		0D9CBFEC17E3B77500A067D5 /* select2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9CBFEA17E3B77500A067D5 /* select2.png */; };
+		0D9CBFEC17E3B77500A067D5 /* sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9CBFEA17E3B77500A067D5 /* sample.png */; };
 		0D9CBFED17E3B77500A067D5 /* unselect2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9CBFEB17E3B77500A067D5 /* unselect2.png */; };
 		0D9E5FD417CF194E002CB015 /* LoginBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9E5FD317CF194E002CB015 /* LoginBG.png */; };
 		0D9E5FD617CF1BCA002CB015 /* Medications2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D9E5FD517CF1BCA002CB015 /* Medications2.png */; };
@@ -249,7 +249,7 @@
 		0D99686617D9A37F008CB6CF /* AboutmeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutmeViewController.m; sourceTree = "<group>"; };
 		0D99687617DA5DFB008CB6CF /* AddMedi.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddMedi.xib; sourceTree = "<group>"; };
 		0D99687817DB0021008CB6CF /* adddate&time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "adddate&time.png"; path = "Classes/adddate&time.png"; sourceTree = "<group>"; };
-		0D9CBFEA17E3B77500A067D5 /* select2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select2.png; sourceTree = "<group>"; };
+		0D9CBFEA17E3B77500A067D5 /* sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample.png; sourceTree = "<group>"; };
 		0D9CBFEB17E3B77500A067D5 /* unselect2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unselect2.png; sourceTree = "<group>"; };
 		0D9E5FD317CF194E002CB015 /* LoginBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBG.png; sourceTree = "<group>"; };
 		0D9E5FD517CF1BCA002CB015 /* Medications2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Medications2.png; sourceTree = "<group>"; };
@@ -1089,7 +1089,7 @@
 		C8FF1FE515C806F6001E546A /* Remainder */ = {
 			isa = PBXGroup;
 			children = (
-				0D9CBFEA17E3B77500A067D5 /* select2.png */,
+				0D9CBFEA17E3B77500A067D5 /* sample.png */,
 				0DCD64AB17FB458900DE776B /* unselect.png */,
 				0DCD64B117FB4ACC00DE776B /* select1.png */,
 				0D9CBFEB17E3B77500A067D5 /* unselect2.png */,
@@ -1317,7 +1317,7 @@
 				0D99687717DA5DFB008CB6CF /* AddMedi.xib in Resources */,
 				0D99687917DB0021008CB6CF /* adddate&time.png in Resources */,
 				0D94C15217E3861B00B6ED22 /* noimage.png in Resources */,
-				0D9CBFEC17E3B77500A067D5 /* select2.png in Resources */,
+				0D9CBFEC17E3B77500A067D5 /* sample.png in Resources */,
 				0D9CBFED17E3B77500A067D5 /* unselect2.png in Resources */,
 				0D28688F17EB254B00DED1FA /* Default-Portrait@2x~ipad-Portrait~ipad.png in Resources */,
 				0D28689117EB254D00DED1FA /* Default-Portrait@2x~ipad-Portrait@2x~ipad.png in Resources */,

@@ -754,20 +754,20 @@ AppSharedInstance *instance;
     self.navigationItem.leftBarButtonItem = cancelButton;
     
     
-   // NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	//NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+NSString *documentsDirectory = [paths objectAtIndex:0];
 	
 
     
-    //NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"pet_%d.png",[[recordDict objectForKey:@"pk"] intValue]]];
+NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"pet_%d.png",[[recordDict objectForKey:@"pk"] intValue]]];
     
-   // NSData *imageData = [NSData dataWithContentsOfFile:path];
+ NSData *imageData = [NSData dataWithContentsOfFile:path];
     
-    //UIImage *buttonImage1 = [UIImage imageWithData:imageData];
+UIImage *buttonImage1 = [UIImage imageWithData:imageData];
     
     
     
-   // buttonImage1 = [buttonImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(85, 76) interpolationQuality:kCGInterpolationHigh];
+ buttonImage1 = [buttonImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(85, 76) interpolationQuality:kCGInterpolationHigh];
     
     UIImageWriteToSavedPhotosAlbum(buttonImage,self,nil,nil);
     [iButton setImage:buttonImage forState:UIControlStateNormal];
@@ -1193,7 +1193,7 @@ AppSharedInstance *instance;
 
     
        [recordDict setObject:type forKey:@"type"];
-    [self saveImage:buttonImage];
+    //[self saveImage:buttonImage];
       
     NSString *str=name.text;
     [[NSUserDefaults standardUserDefaults]setObject:_TimeArray forKey:str];
@@ -1209,7 +1209,7 @@ AppSharedInstance *instance;
     [recordDict setObject:tim.text forKey:@"notes"];
     // }
     
-    [self saveImage:buttonImage];
+    //[self saveImage:buttonImage];
 
     
     

@@ -391,7 +391,8 @@ AppSharedInstance *instance;
        // aboutmeViewController.recordDict = [self._assQues objectAtIndex:indexPath.row];
                    [self.navigationController pushViewController:aboutmeViewController animated:YES];
         [aboutmeViewController release];
-   
+        [myTable reloadData];
+        [Audio reloadData];
        /* NSString*str=[[photoArray objectAtIndex:indexPath.row]objectForKey:@"name" ];
 
         if (audioPlayerRecord)
