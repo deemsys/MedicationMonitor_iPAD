@@ -67,7 +67,7 @@ AppSharedInstance *instance;
     [remload setImage:[UIImage imageNamed:@"Reminders2.png"]forState:UIControlStateNormal];
     
     UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
+    UIImage *homeImage = [UIImage imageNamed:@" "]  ;
     [home setBackgroundImage:homeImage forState:UIControlStateNormal];
     [home addTarget:self action:@selector(back)
    forControlEvents:UIControlEventTouchUpInside];
@@ -219,7 +219,7 @@ AppSharedInstance *instance;
     self.petArray = [instance getPet];
 	[myTable reloadData];
     
-    NSLog(@"raja:%i",[dictionaryArray count]);
+  //  NSLog(@"raja:%i",[dictionaryArray count]);
     
     
     
@@ -259,7 +259,7 @@ AppSharedInstance *instance;
 {
     
     RootViewController*new = [[RootViewController alloc] initWithNibName:@"roor" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [RootViewController release];
     
 }
@@ -268,43 +268,42 @@ AppSharedInstance *instance;
     
     Welcome*new = [[Welcome alloc] initWithNibName:@"Welcome" bundle:nil];
     new.first=0;
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Welcome release];
 }
 -(IBAction)remtoass
 {
     
     Assessment*new = [[Assessment alloc] initWithNibName:@"Assessment" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Assessment release];
 }
 -(IBAction)remtoapp
 {
     
     Appoinment*new = [[Appoinment alloc] initWithNibName:@"Appoinment" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Appoinment release];
 }
 -(IBAction)remtocom
 {
     
     Communicate*new = [[Communicate alloc] initWithNibName:@"Communicate" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Communicate release];
 }
 -(IBAction)remtoset
 {
     
     NewViewController*new = [[NewViewController alloc] initWithNibName:@"NewViewController" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [NewViewController release];
 }
 
 
 -(void)back
 {
-    [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
-    [[self navigationController] popViewControllerAnimated:YES];
+    
 }
 
 

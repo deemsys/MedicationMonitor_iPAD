@@ -21,8 +21,7 @@
 -(void)back
 {
     
-    [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
-    [[self navigationController] popViewControllerAnimated:YES];
+   
 }
 
 
@@ -47,7 +46,7 @@
 {
     
     RootViewController*new = [[RootViewController alloc] initWithNibName:@"roor" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [RootViewController release];
     
 }
@@ -55,35 +54,35 @@
 {
     
     Cremainder*new = [[Cremainder alloc] initWithNibName:@"Cremainder" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Cremainder release];
 }
 -(IBAction)settoass
 {
     
     Assessment*new = [[Assessment alloc] initWithNibName:@"Assessment" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Assessment release];
 }
 -(IBAction)settoapp
 {
     
     Appoinment*new = [[Appoinment alloc] initWithNibName:@"Appoinment" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Appoinment release];
 }
 -(IBAction)settocom
 {
     
     Communicate*new = [[Communicate alloc] initWithNibName:@"Communicate" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Communicate release];
 }
 -(IBAction)settohome
 {
     
     Welcome*new = [[Welcome alloc] initWithNibName:@"Welcome" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Welcome release];
 }
 
@@ -93,7 +92,7 @@
     [super viewDidLoad];
     [setload setImage:[UIImage imageNamed:@"Settings2.png"]forState:UIControlStateNormal];
     UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
+    UIImage *homeImage = [UIImage imageNamed:@""]  ;
     [home setBackgroundImage:homeImage forState:UIControlStateNormal];
     [home addTarget:self action:@selector(back)
    forControlEvents:UIControlEventTouchUpInside];

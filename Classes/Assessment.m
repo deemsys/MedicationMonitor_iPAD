@@ -29,15 +29,13 @@ AppSharedInstance *instance;
 
 -(void)back
 {
-    /* Line added to avoid the overlapping of back button with Questionnarie? in Navigation controller*/
-    [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
-    [[self navigationController] popViewControllerAnimated:YES];
+    
 }
 -(IBAction)asstomedi
 {
     
     RootViewController*new = [[RootViewController alloc] initWithNibName:@"roor" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [RootViewController release];
     
 }
@@ -45,7 +43,7 @@ AppSharedInstance *instance;
 {
     
     Cremainder*new = [[Cremainder alloc] initWithNibName:@"Cremainder" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Cremainder release];
 }
 -(IBAction)asstohome
@@ -53,28 +51,28 @@ AppSharedInstance *instance;
     
     Welcome*new = [[Welcome alloc] initWithNibName:@"Welcome" bundle:nil];
     new.first=0;
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Welcome release];
 }
 -(IBAction)asstoapp
 {
     
     Appoinment*new = [[Appoinment alloc] initWithNibName:@"Appoinment" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Appoinment release];
 }
 -(IBAction)asstocom
 {
     
     Communicate*new = [[Communicate alloc] initWithNibName:@"Communicate" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Communicate release];
 }
 -(IBAction)asstoset
 {
     
     NewViewController*new = [[NewViewController alloc] initWithNibName:@"NewViewController" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [NewViewController release];
 }
 
@@ -94,6 +92,7 @@ AppSharedInstance *instance;
 	return [self._assQues count];
     }
 }
+
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -228,6 +227,16 @@ AppSharedInstance *instance;
 	NSInteger row = [indexPath row];
 	if(aTableView.tag==200)
     {
+        
+        /*UIButton *Button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        Button.frame = CGRectMake(10.0f, 5.0f, 320.0f, 44.0f);
+        Button.backgroundColor = [UIColor redColor];
+        [Button addTarget:self
+                   action:@selector(hidefor:)
+         forControlEvents:UIControlEventTouchUpInside];
+        [Button setTitle:@"Hello" forState:UIControlStateNormal];
+        [cell addSubview:Button];
+          */      
         
         UIImage *indicatorImage = [UIImage imageNamed:@"Music File.png"];
         cell.accessoryView =
@@ -427,49 +436,18 @@ AppSharedInstance *instance;
 
 }
 
-- (void)tableView:(UITableView *)atableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+/*- (void)tableView:(UITableView *)atableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	
     
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
     if(atableView.tag==200)
+        
     {
-        [photoArray removeObjectAtIndex:[indexPath section]];
-        [recordDict removeObjectForKey:@"pk"];
-       
-        NSUInteger row1 = [indexPath section];
-        NSUInteger count = [photoArray count];
-        NSString*str=[[photoArray objectAtIndex:(count-row1-1)]objectForKey:@"pk" ];
-         
-        
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", str]];
-        
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *recDir = [paths objectAtIndex:0];
-        NSString*p=[NSString stringWithFormat:@"%@/%@recordTest.text", recDir,str];
-        NSString*pa=[NSString stringWithFormat:@"%@/%@recordTest.text", recDir,[NSString stringWithFormat:@"A%@",str]];
         
         
-        NSMutableArray *_Question=[[NSMutableArray alloc]initWithContentsOfFile:p];
-        //NSLog(@"STR:%@",_Question);
-        NSMutableArray *_Answer=[[NSMutableArray alloc]initWithContentsOfFile:pa];
-	
-        
-        [_Question removeObjectAtIndex:indexPath.section];
-        [_Answer removeObjectAtIndex:indexPath.section];
-        [photoArray removeObjectAtIndex:[indexPath section]];
-        
-        
-        [fileMngr saveDatapath:p  contentarray:_Question];
-        
-        [fileMngr saveDatapath:pa contentarray:_Answer];
-       
-   
-            [Audio reloadData];
-       // [self viewWillAppear:YES];
-         
-        //[self reload];
-        
+        [photoArray removeObjectAtIndex:indexPath.row];
+             [Audio reloadData];
        
     }
     else{
@@ -477,7 +455,7 @@ AppSharedInstance *instance;
     }
 }
 
-}
+}*/
 
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl
 {
@@ -495,18 +473,7 @@ AppSharedInstance *instance;
     {
        myTable.hidden=YES;
         Audio.hidden=NO;
-     //   [self displayPhoto];
-        
-      //  NSURL *url = [[NSUserDefaults standardUserDefaults]URLForKey:@"url"];
-        
-       //;
-        
-        //    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/recordTest.caf", [[NSBundle mainBundle] resourcePath]]];
-     //   NSError *error;
-       // audioPlayerRecord = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-     //   [audioPlayerRecord play];
-      //  ////NSLog(@"Recoder file >");
-
+    
     }
     
 
@@ -535,8 +502,8 @@ AppSharedInstance *instance;
     
     [assload setImage:[UIImage imageNamed:@"Assesment2.png"]forState:UIControlStateNormal];
     
-    UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
+   UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *homeImage = [UIImage imageNamed:@" "]  ;
     [home setBackgroundImage:homeImage forState:UIControlStateNormal];
     [home addTarget:self action:@selector(back)
    forControlEvents:UIControlEventTouchUpInside];
@@ -566,13 +533,13 @@ AppSharedInstance *instance;
      myTable.backgroundColor = [UIColor clearColor];
     myTable.rowHeight=90;
 	myTable.separatorColor = [UIColor clearColor];
-     [myTable reloadData];
+    
     
     
     Audio.backgroundColor = [UIColor clearColor];
     Audio.rowHeight=90;
 	Audio.separatorColor = [UIColor clearColor];
-    [Audio reloadData];
+    //[Audio reloadData];
 
     
     
@@ -605,12 +572,11 @@ AppSharedInstance *instance;
     
     // }
     photoArray=a;
-  //  //NSLog(@"YES:%@",photoArray);
-   
-    
-     photoArray = [[photoArray reverseObjectEnumerator] allObjects];
-  //  ////NSLog(@"SELF>_ASSAns::::%@",self._assAns);
-    if ([recordDict count]>0) {
+  
+    if ([recordDict count]>0)
+    {
+        
+        
 	
 	}
 	else {
@@ -636,126 +602,14 @@ AppSharedInstance *instance;
     label.text = NSLocalizedString(@"Questionnaire?", @"");
     [label sizeToFit];
     
-  
+[myTable reloadData];
    
 }
 
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    instance = [AppSharedInstance sharedInstance];
-    
-    
-  
-	//[self displayPhoto];
-    
-    
-    self._assQues=[instance getAssesment];
-     self._assAns=[instance getAssAnswer];
-    
-    
-    
-    photoArray=[instance getAudio];
-    if ([recordDict count]>0) {
-        
-	}
-	else {
-		recordDict = [[NSMutableDictionary alloc] init];
-        
-	}
-  ////NSLog(@"SELF>_ASSQUES::::%@",  self._assQues);
-   //  ////NSLog(@"SELF>_ASSAns::::%@",  self._assAns);
-    
-    
-    
-      photoArray = [instance getAudio];
-    
-   // //NSLog(@"%i",[photoArray count]);
-    NSMutableArray*a=[[NSMutableArray alloc]init];
-    for(int j=0;j<[photoArray count];j++)
-    {
-       // //NSLog(@"yes");
-        NSString*s1= [[photoArray objectAtIndex:j] objectForKey:@"patid"];
-        NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
-        //  //NSLog(@"AAAAAAAAAAs1:%@",UserId);
-        //  ////NSLog(@"s:%@",s);
-        if([s1 isEqualToString:UserId])
-        {
-            [a addObject:[photoArray objectAtIndex:j]];
-            
-            
-        }
     }
-    
-    // }
-    photoArray=a;
-   // //NSLog(@"YES:%@",photoArray);
- //   ////NSLog(@"PHOto:%i",[photoArray count]);
-  //   photoArray = [[photoArray reverseObjectEnumerator] allObjects];
-    [myTable reloadData];
-      [Audio reloadData];
-    
-/*for (id anUpdate in self._assQues)
-{
-      NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"assparentquestionid"];
-   // ////NSLog(@"assparentquestionid:%@",arrayList);
-    NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assparentanswerid"];
-    int theValue = [num intValue];
-     [num release];
-    if(theValue==number)
-    {
-         NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"assquestion"];
-        ////NSLog(@"assquestion:%@",arrayList);
-        question.text=[(NSDictionary*)anUpdate objectForKey:@"assquestion"];
-        
-        NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
-        questionid = [num intValue];
-        [num release];
-        //return;
-        
-    }
-}
-    
-     int x=0;
-    for (id anUpdate in self._assAns)
-    {
-        NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
-        
-        NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
-        int theValue = [num intValue];
-      //  [num release];
-       
-        if(theValue==questionid)
-        {
-        // ////NSLog(@"questionid:%@",arrayList);
-            NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"answer"];
-               NSDictionary *arrayList2=[(NSDictionary*)anUpdate objectForKey:@"ansid"];
-            
-            ////NSLog(@"ANSID:::%@",arrayList2);
-            NSNumber *num = [(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
-          
-            
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [button addTarget:self
-                       action:@selector(aMethod:)
-             forControlEvents:UIControlEventTouchUpInside];
-            [button setTitle:[(NSDictionary*)anUpdate objectForKey:@"answer"]  forState:UIControlStateNormal];
-            button.frame = CGRectMake(80.0, 210.0, 360.0, 40.0);
-            button.center=CGPointMake(384, 304+x);
-            button.tag= [num intValue];
-            [self.view addSubview:button];
-            x=x+60;
-          //  [num release];
-            
-        }
-       
-    }
-    
-    
-   */
-
-    
-}
 
 -(void)aMethod:(UIButton*)but
 {

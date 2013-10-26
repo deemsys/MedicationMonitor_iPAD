@@ -19,7 +19,7 @@
     NSMutableDictionary *recordDict;
     NSMutableArray *_AppDArr;
     NSMutableArray *_AppNArr;
-    NSArray *petArray;
+    NSMutableArray *petArray;
     IBOutlet UIButton*syn;
     NSArray *_assQues;
     NSArray *_assAns;
@@ -49,7 +49,7 @@
 -(IBAction)Hometocom;
 -(IBAction)Hometoset;
 -(IBAction)signout;
-@property (retain,nonatomic) NSArray *petArray;
+@property (retain,nonatomic) NSMutableArray *petArray;
 @property (nonatomic,retain) NSDictionary *tableContents;
 @property (nonatomic,retain) NSArray *sortedKeys;
 @property (retain,nonatomic) NSArray *_assQues;

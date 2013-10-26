@@ -751,9 +751,9 @@ AppSharedInstance *instance;
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    //[self saveImage:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
+    [self saveImage:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
     
-    buttonImage =  [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    //buttonImage =  [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     //UIImage *buttonImage = [UIImage imageNamed:@"Camera.png"];
     
 	[iButton setImage:buttonImage forState:UIControlStateNormal];
@@ -900,16 +900,17 @@ AppSharedInstance *instance;
     
     NSData *imageData = [NSData dataWithContentsOfFile:path];
     
-    UIImage *buttonImage = [UIImage imageWithData:imageData];
+    UIImage *buttonImage1 = [UIImage imageWithData:imageData];
     
     
     
-    buttonImage = [buttonImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(85, 76) interpolationQuality:kCGInterpolationHigh];
+    buttonImage1 = [buttonImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(85, 76) interpolationQuality:kCGInterpolationHigh];
+    [iButton setImage:buttonImage1 forState:UIControlStateNormal];
+
     
     
 	//aButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[iButton setImage:buttonImage forState:UIControlStateNormal];
-    //   aButton.backgroundColor=[UIColor redColor];
+	    //   aButton.backgroundColor=[UIColor redColor];
 	//aButton.frame = CGRectMake(175.0, 200.0, 450, 270);
 	//aButton.tag=121;
     //  [aButton setOpaque:YES];
@@ -1357,14 +1358,9 @@ AppSharedInstance *instance;
     
     
     
+       [recordDict setObject:type forKey:@"type"];
     [self saveImage:buttonImage];
-    [recordDict setObject:type forKey:@"type"];
-    
-    ////NSLog(@"Type:%@",type);
-    // if([type isEqualToString:@"Once"])
-    // {
-    
-    
+      
     NSString *str=name.text;
     [[NSUserDefaults standardUserDefaults]setObject:_TimeArray forKey:str];
     
@@ -1387,7 +1383,8 @@ AppSharedInstance *instance;
     [recordDict setObject:tim.text forKey:@"notes"];
     // }
     
-    
+    [self saveImage:buttonImage];
+
     
     
     

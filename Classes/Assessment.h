@@ -10,7 +10,7 @@
     int questionid;
     IBOutlet UITableView*myTable;
     IBOutlet UILabel*question;
-    
+    int reu;
     NSMutableArray *_assArray;
     AVAudioPlayer *audioPlayerRecord;
  
@@ -29,7 +29,7 @@
 -(IBAction)asstoapp;
 -(IBAction)asstocom;
 -(IBAction)asstoset;
-
+@property(assign)int reu;
 @property (nonatomic) int currentPage;
 @property (retain,nonatomic) NSArray *_assQues;
 @property (retain,nonatomic) NSArray *_assAns;

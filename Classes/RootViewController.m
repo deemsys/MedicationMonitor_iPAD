@@ -50,7 +50,7 @@ AppSharedInstance *instance;
     
     [super viewDidLoad];
     UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
+    UIImage *homeImage = [UIImage imageNamed:@" "]  ;
     [home setBackgroundImage:homeImage forState:UIControlStateNormal];
     [home addTarget:self action:@selector(back)
    forControlEvents:UIControlEventTouchUpInside];
@@ -143,7 +143,7 @@ AppSharedInstance *instance;
     
      Welcome* new = [[Welcome alloc] initWithNibName:@"Welcome" bundle:nil];
     new.first=0;
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Welcome release];
     
 }
@@ -151,42 +151,41 @@ AppSharedInstance *instance;
 {
     
     Cremainder*new = [[Cremainder alloc] initWithNibName:@"Cremainder" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Cremainder release];
 }
 -(IBAction)meditoass
 {
     
     Assessment*new = [[Assessment alloc] initWithNibName:@"Assessment" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Assessment release];
 }
 -(IBAction)meditoapp
 {
     
     Appoinment*new = [[Appoinment alloc] initWithNibName:@"Appoinment" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Appoinment release];
 }
 -(IBAction)meditocom
 {
     
     Communicate*new = [[Communicate alloc] initWithNibName:@"Communicate" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Communicate release];
 }
 -(IBAction)meditoset
 {
     
     NewViewController*new = [[NewViewController alloc] initWithNibName:@"NewViewController" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [NewViewController release];
 }
 
 -(void)back
 {
-    [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
-      [[self navigationController] popViewControllerAnimated:YES];
+   
 }
 
 
@@ -196,7 +195,7 @@ AppSharedInstance *instance;
      [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
       [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
 	self.petArray = [instance getPet];
-       NSLog(@"self.petarray in medication:%@",self.petArray);
+   //    NSLog(@"self.petarray in medication:%@",self.petArray);
     NSMutableArray*a=[[NSMutableArray alloc]init];
    // for (id anUpdate in self.petArray)
   //  {
@@ -209,7 +208,7 @@ AppSharedInstance *instance;
           NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
       //  NSLog(@"AAAAAAAAAAs1:%@",UserId);
         //  //NSLog(@"s:%@",s);
-        if([s1 isEqualToString:UserId])
+        if(([s1 isEqualToString:UserId])||([s1 isEqual:@""]))
         {
             [a addObject:[self.petArray objectAtIndex:j]];
         
@@ -219,7 +218,7 @@ AppSharedInstance *instance;
        
    // }
     self.petArray=a;
-        NSLog(@"YES:%@",petArray);
+        //NSLog(@"YES:%@",petArray);
     
     
 //NSLog(@"Petarrat:%@",self.petArray);

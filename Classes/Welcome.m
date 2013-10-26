@@ -24,6 +24,7 @@
 #import "Assessment.h"
 #import "MainViewController.h"
 #import "LoginScreen.h"
+#import "BlockAlertView.h"
 #define USE_CUSTOM_DRAWING 1
 #define USE_CUSTOM_DRAWING 1
 @interface Welcome ()
@@ -39,8 +40,6 @@
 @synthesize tableContents;
 @synthesize sortedKeys;
 @synthesize first;
-
-int c;
 
 
 
@@ -81,7 +80,7 @@ AppSharedInstance *instance;
 {
     
     LoginScreen*new = [[LoginScreen alloc] initWithNibName:@"LoginScreen" bundle:nil];
-   [self.navigationController pushViewController:new animated:YES];
+   [self.navigationController pushViewController:new animated:NO];
     [LoginScreen release];
     
 }
@@ -90,7 +89,7 @@ AppSharedInstance *instance;
 {
     
     RootViewController*new = [[RootViewController alloc] initWithNibName:@"roor" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [RootViewController release];
     
 }
@@ -98,35 +97,35 @@ AppSharedInstance *instance;
 {
     
     Cremainder*new = [[Cremainder alloc] initWithNibName:@"Cremainder" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Cremainder release];
 }
 -(IBAction)Hometoass
 {
     
     Assessment*new = [[Assessment alloc] initWithNibName:@"Assessment" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Assessment release];
 }
 -(IBAction)Hometoapp
 {
     
     Appoinment*new = [[Appoinment alloc] initWithNibName:@"Appoinment" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Appoinment release];
 }
 -(IBAction)Hometocom
 {
     
     Communicate*new = [[Communicate alloc] initWithNibName:@"Communicate" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Communicate release];
 }
 -(IBAction)Hometoset
 {
     
     NewViewController*new = [[NewViewController alloc] initWithNibName:@"NewViewController" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [NewViewController release];
 }
 
@@ -366,7 +365,7 @@ AppSharedInstance *instance;
     //NSDictionary *qusres1 = [luckyNumbersASS objectForKey:@"assessment"];
     
     // ////NSLog(@"RESULT ASSESS =%@",patQuestion);ass
-    
+     
     
     
     for (id anUpdate in patQuestion)
@@ -535,14 +534,18 @@ AppSharedInstance *instance;
     
     
     NSMutableArray*tempM=[[NSMutableArray alloc]init];
+    NSMutableArray*tempD=[[NSMutableArray alloc]init];
+
     for (id anUpdate in items1)
     {
         NSDictionary *arrayList1=[(NSDictionary*)anUpdate objectForKey:@"serviceresponse"];
-        //NSLog(@"MEDI NAME:%@",[arrayList1 objectForKey:@"medicinename"]);
-        //  ////NSLog(@"DIRECTION:%@",[arrayList1 objectForKey:@"direction"]);
+      NSLog(@"MEDI NAME:%@",[arrayList1 objectForKey:@"medicinename"]);
+        NSLog(@"DIRECTION:%@",[arrayList1 objectForKey:@"direction"]);
+        NSLog(@"NOTES:%@",[arrayList1 objectForKey:@"medicinenotes"]);
         
         [tempM addObject:[arrayList1 objectForKey:@"medicinename"]];
-        
+            [tempD addObject:[arrayList1 objectForKey:@"direction"]];
+            
         
         
     }
@@ -554,6 +557,8 @@ AppSharedInstance *instance;
         for(int j=0;j<[tempM count];j++)
         {
             [recordDict setObject:[tempM objectAtIndex:j] forKey:@"name"];
+            [recordDict setObject:[tempD objectAtIndex:j] forKey:@"akc"];
+           
             [instance insertPet:recordDict];
             
         }
@@ -587,6 +592,7 @@ AppSharedInstance *instance;
                         xx=0;
                         ////NSLog(@"raja");
                         [recordDict setObject:[tempM objectAtIndex:i] forKey:@"name"];
+                         [recordDict setObject:[tempD objectAtIndex:i] forKey:@"akc"];
                         [instance insertPet:recordDict];
                         //  [_AppDArr addObject:[tempM objectAtIndex:i]];
                         
@@ -601,7 +607,7 @@ AppSharedInstance *instance;
     
     
     
-    //NSLog(@"Petarrat:%@",self.petArray);
+   NSLog(@"Petarrat in sync:%@",self.petArray);
     
     
     
@@ -688,7 +694,7 @@ AppSharedInstance *instance;
     HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
 	HUD.mode = MBProgressHUDModeCustomView;
     [HUD hide:YES afterDelay:0];
-    [self viewDidLoad];
+    [self viewWillAppear:YES];
     
 }
 
@@ -986,8 +992,8 @@ AppSharedInstance *instance;
     }
     
     self.petArray = [instance getPet];
-    NSLog(@"self.petarray:%@",self.petArray);
-    NSMutableArray*a=[[NSMutableArray alloc]init];
+    NSLog(@"self.petarray in welcome view will appear:%@",self.petArray);
+ NSMutableArray*a=[[NSMutableArray alloc]init];
     // for (id anUpdate in self.petArray)
     //  {
     // NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"patid"];
@@ -999,17 +1005,17 @@ AppSharedInstance *instance;
         NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
         //  NSLog(@"AAAAAAAAAAs1:%@",UserId);
         //  //NSLog(@"s:%@",s);
-        if([s1 isEqualToString:UserId])
+      if(([s1 isEqualToString:UserId])||([s1 isEqual:@""]))
         {
             [a addObject:[self.petArray objectAtIndex:j]];
             
             
         }
     }
-    
+    //a=[a arrayByAddingObjectsFromArray:petArray];
     // }
     self.petArray=a;
-    NSLog(@"YES:%@",petArray);
+   // NSLog(@"After Adding Equivalent data and medicine details:%@",petArray);
     
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -1200,8 +1206,8 @@ AppSharedInstance *instance;
 	//	[instance insertPet:recordDict];
     
     self.petArray = [instance getPet];
-    NSLog(@"self.petarray:%@",self.petArray);
-    NSMutableArray*a=[[NSMutableArray alloc]init];
+   // NSLog(@"self.petarray:%@",self.petArray);
+  NSMutableArray*a=[[NSMutableArray alloc]init];
     // for (id anUpdate in self.petArray)
     //  {
     // NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"patid"];
@@ -1213,7 +1219,7 @@ AppSharedInstance *instance;
         NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
         //  NSLog(@"AAAAAAAAAAs1:%@",UserId);
         //  //NSLog(@"s:%@",s);
-        if([s1 isEqualToString:UserId])
+    if(([s1 isEqualToString:UserId])||([s1 isEqual:@""]))
         {
             [a addObject:[self.petArray objectAtIndex:j]];
             
@@ -1223,7 +1229,7 @@ AppSharedInstance *instance;
     
     // }
     self.petArray=a;
-    NSLog(@"YES:%@",petArray);
+    //NSLog(@"PEt Array values in did load welcome file:%@",petArray);
     
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -1272,6 +1278,15 @@ AppSharedInstance *instance;
      [hintView addPageWithTitle:@"Info" text:name];
      [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
     welcome.text=[NSString stringWithFormat:@"Welcome %@ !",name];
+    if(first==1)
+    {
+        first=0;
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Welcome!" message:name];
+        
+        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+        [alert setDestructiveButtonWithTitle:@"x" block:nil];
+        [alert show];
+    }
 
       NSDictionary *temp =[[NSDictionary alloc]initWithObjectsAndKeys:reminderarray,@"Reminder",_AppDArr,@"Appointment",petArray,@"Medication",nil];
     

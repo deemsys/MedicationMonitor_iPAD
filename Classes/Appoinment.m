@@ -82,7 +82,7 @@ AppSharedInstance *instance;
     [label sizeToFit];
     
     UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
+    UIImage *homeImage = [UIImage imageNamed:@" "]  ;
     [home setBackgroundImage:homeImage forState:UIControlStateNormal];
     [home addTarget:self action:@selector(back)
    forControlEvents:UIControlEventTouchUpInside];
@@ -160,7 +160,7 @@ AppSharedInstance *instance;
 {
     
     RootViewController*new = [[RootViewController alloc] initWithNibName:@"roor" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [RootViewController release];
     
 }
@@ -168,42 +168,41 @@ AppSharedInstance *instance;
 {
     
     Cremainder*new = [[Cremainder alloc] initWithNibName:@"Cremainder" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Cremainder release];
 }
 -(IBAction)apptoass
 {
     
     Assessment*new = [[Assessment alloc] initWithNibName:@"Assessment" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Assessment release];
 }
 -(IBAction)apptohome
 {
     
     Welcome*new = [[Welcome alloc] initWithNibName:@"Welcome" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Welcome release];
 }
 -(IBAction)apptocom
 {
     
     Communicate*new = [[Communicate alloc] initWithNibName:@"Communicate" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [Communicate release];
 }
 -(IBAction)apptoset
 {
     
     NewViewController*new = [[NewViewController alloc] initWithNibName:@"NewViewController" bundle:nil];
-    [self.navigationController pushViewController:new animated:YES];
+    [self.navigationController pushViewController:new animated:NO];
     [NewViewController release];
 }
 
 -(void)back
 {
-    [[self.navigationController.navigationBar viewWithTag:111]removeFromSuperview];
-      [[self navigationController] popViewControllerAnimated:YES];
+    
 }
 
 - (void)edit_Clicked {

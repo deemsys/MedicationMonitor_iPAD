@@ -59,6 +59,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{307, 266}, {371, 42}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView" ref="945090116"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUITag">6</int>
@@ -484,6 +485,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 								<int key="NSvFlags">-2147483384</int>
 								<string key="NSFrame">{{328, 178}, {297, 216}}</string>
 								<reference key="NSSuperview" ref="556074938"/>
+								<reference key="NSNextKeyView" ref="302092705"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
@@ -836,6 +838,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{45, 235}, {83, 21}}</string>
 								<reference key="NSSuperview" ref="302092705"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
