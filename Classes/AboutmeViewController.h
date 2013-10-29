@@ -52,7 +52,7 @@
     NSMutableArray *_onceTime;
     IBOutlet  UIDatePicker*timepicker;
     IBOutlet UILabel*tim;
-
+    int total;
     IBOutlet UIDatePicker*setTimePicker;
     
 }
@@ -82,6 +82,7 @@
 @property (nonatomic,retain) IBOutlet UIDatePicker *datePicker1;
 @property (retain, nonatomic) NSMutableDictionary *recordDict;
 @property (retain,nonatomic) UIDatePicker *dobPicker;
+@property(assign)int total;
 - (void)populateField;
 - (NSString *)calculateAge;
 - (void)updateDate;

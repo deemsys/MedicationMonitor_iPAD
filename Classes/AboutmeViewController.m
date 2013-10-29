@@ -23,6 +23,7 @@
 @synthesize recordDict;
 @synthesize dobPicker;
 @synthesize datePicker;
+@synthesize total;
 @synthesize datePicker1;
 AppSharedInstance *instance;
 
@@ -639,6 +640,8 @@ AppSharedInstance *instance;
 }
 
 -(void)saveImage:(UIImage *)img2{
+    if([[recordDict objectForKey:@"pk"] intValue]>0)
+    {
 	UIImage *thumbImage =[img2 resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(90, 90) interpolationQuality:kCGInterpolationHigh];
 	//thumbImage = [thumbImage croppedImage:CGRectMake(0,0,90,90)];
 	
@@ -647,8 +650,19 @@ AppSharedInstance *instance;
 	NSString *documentsDirectory = [paths objectAtIndex:0];
     
 	[UIImagePNGRepresentation(thumbImage) writeToFile:[documentsDirectory stringByAppendingPathComponent:filename] atomically:YES];
+    }
+else
+{
+    UIImage *thumbImage =[img2 resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(90, 90) interpolationQuality:kCGInterpolationHigh];
+	//thumbImage = [thumbImage croppedImage:CGRectMake(0,0,90,90)];
+	
+	NSString *filename = [NSString stringWithFormat:@"pet_%d.png",total];
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
     
-        
+	[UIImagePNGRepresentation(thumbImage) writeToFile:[documentsDirectory stringByAppendingPathComponent:filename] atomically:YES];
+}
+    
     
 }
 

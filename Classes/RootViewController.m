@@ -34,6 +34,7 @@
 @implementation RootViewController
 @synthesize petArray;
 @synthesize recordDict;
+@synthesize countval;
 AppSharedInstance *instance;
 
 #pragma mark -
@@ -190,6 +191,7 @@ AppSharedInstance *instance;
         }
        
     self.petArray=a;
+    countval=[petArray count];
     
 	[myTable reloadData];
 	if ([petArray count] > 0){
@@ -288,6 +290,7 @@ AppSharedInstance *instance;
     AboutmeViewController *aboutmeViewController = [[AboutmeViewController alloc] initWithNibName:@"AddMedi" bundle:nil];
 	aboutmeViewController.recordDict=recordDict;
     aboutmeViewController.recordDict = [petArray objectAtIndex:indexPath.section];
+    aboutmeViewController.total=countval+1;
     [[NSUserDefaults standardUserDefaults] setInteger:indexPath.section forKey:@"select"];
 	[self.navigationController pushViewController:aboutmeViewController animated:YES];
 	[aboutmeViewController release];

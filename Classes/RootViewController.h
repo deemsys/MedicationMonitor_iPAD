@@ -21,6 +21,7 @@
     BOOL share1;
     int savedValue;
     IBOutlet UIButton * mediload;
+    int countval;
 
 
     
@@ -32,6 +33,7 @@
 -(IBAction)meditoapp;
 -(IBAction)meditocom;
 -(IBAction)meditoset;
+@property (assign)int countval;
 
 @property (retain,nonatomic) NSArray *petArray;
 @property (retain, nonatomic) NSMutableDictionary *recordDict;
