@@ -45,8 +45,9 @@
     
   //  IBOutlet AQLevelMeter*lvlMeter_in;
   
-    int monthindex;
+    int monthindex,weekindex;
     int ret,ret1;
+    int set,set1;
     IBOutlet UILabel*recording;
     IBOutlet UIActivityIndicatorView*rec;
     NSTimer *playerTimer;

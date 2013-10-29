@@ -467,7 +467,7 @@ AppSharedInstance *instance;
                     
                     
                     //**************ANSWERS*************
-                    NSDictionary *arrayList22=[(NSDictionary*)anUpdate objectForKey:@"answer"];
+               NSDictionary *arrayList22=[(NSDictionary*)anUpdate objectForKey:@"answer"];
                     for (id anUpdate in arrayList22)
                     {
                         
@@ -1400,7 +1400,7 @@ AppSharedInstance *instance;
 {
     
     
-    HUD.labelText = @"Feteching ProvidersRequests..";
+    HUD.labelText = @"Feteching Providers Requests..";
     NSString *post =[[NSString alloc] initWithFormat:@"%@=%@&%@=%@",firstEntity,value1,thirdEntity,value3];
     
     
