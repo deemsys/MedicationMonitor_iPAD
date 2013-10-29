@@ -313,8 +313,17 @@ AppSharedInstance *instance;
             localNotif.repeatInterval = 0;
         }
         
-               
-        
+      /*  NSMutableArray *SheduleArray=[[NSMutableArray alloc] initWithArray:[[UIApplication sharedApplication]scheduledLocalNotifications]];
+             for(int s=0;s<[SheduleArray count];s++){
+                 UILocalNotification *Not=[SheduleArray objectAtIndex:s];
+               int getId=[[Not.userInfo valueForKey:@"Id"] intValue];
+                 if(getId==(int)runNumber)
+                 {
+                         [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+                         }
+               }
+   
+        */
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
         [localNotif release];
         
