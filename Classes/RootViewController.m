@@ -43,8 +43,7 @@ AppSharedInstance *instance;
 - (void)viewDidLoad {
     
     UIImageView *i=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"BG.jpg"]];
-    //[self.view addSubview:i];
-    //[self.view sendSubviewToBack:i];
+    
     
     [mediload setImage:[UIImage imageNamed:@"Medications2.png"]forState:UIControlStateNormal];
     
@@ -86,14 +85,6 @@ AppSharedInstance *instance;
 	myTable.rowHeight=110;
 	myTable.separatorColor = [UIColor clearColor];
 	instance = [AppSharedInstance sharedInstance];
-	//UIImage *barButton = [UIImage imageNamed:@"Edit.png"];
-   // [[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-	
-	//UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-	//self.navigationItem.backBarButtonItem = backButton;
-	//[backButton release];
-    
-       //self.navigationItem.leftBarButtonItem = cancelButton;	
 	
      savedValue = [[NSUserDefaults standardUserDefaults]
                       integerForKey:@"ApptType"];
@@ -103,19 +94,6 @@ AppSharedInstance *instance;
     {
         
 
-        
-	/*UIImage *buttonImage = [UIImage imageNamed:@"Edit.png"];
-	UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[aButton setImage:buttonImage forState:UIControlStateNormal];
-	aButton.frame = CGRectMake(0, 0, 50, 30);
-        aButton.tag=111;
-	[aButton addTarget:self action:@selector(edit_Clicked) forControlEvents:UIControlEventTouchUpInside];
-   // [self.navigationController.navigationBar addSubview:aButton];
-        UIBarButtonItem *saveButton11 = [[[UIBarButtonItem alloc]  
-                                         initWithCustomView:aButton] autorelease];  
-        self.navigationItem.leftBarButtonItem = saveButton11;
-        	
-	    */
     
     UIButton *save1 = [UIButton buttonWithType:UIButtonTypeCustom];  
           save1.frame = CGRectMake(0, 0, 135, 40);
@@ -136,10 +114,10 @@ AppSharedInstance *instance;
     
 	
 }
-
+//To Display TAB BARS in viewcontrollers
 
 -(IBAction)meditohome
-{
+{				
     
      Welcome* new = [[Welcome alloc] initWithNibName:@"Welcome" bundle:nil];
     new.first=0;
@@ -191,23 +169,18 @@ AppSharedInstance *instance;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
      [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
       [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
 	self.petArray = [instance getPet];
    //    NSLog(@"self.petarray in medication:%@",self.petArray);
     NSMutableArray*a=[[NSMutableArray alloc]init];
-   // for (id anUpdate in self.petArray)
-  //  {
-       // NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"patid"];
+   
         NSLog(@"%i",[self.petArray count]);
         for(int j=0;j<[self.petArray count];j++)
         {
             NSLog(@"yes");
         NSString*s1= [[self.petArray objectAtIndex:j] objectForKey:@"patid"];
           NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
-      //  NSLog(@"AAAAAAAAAAs1:%@",UserId);
-        //  //NSLog(@"s:%@",s);
         if(([s1 isEqualToString:UserId])||([s1 isEqual:@""]))
         {
             [a addObject:[self.petArray objectAtIndex:j]];
@@ -216,12 +189,7 @@ AppSharedInstance *instance;
         }
         }
        
-   // }
     self.petArray=a;
-        //NSLog(@"YES:%@",petArray);
-    
-    
-//NSLog(@"Petarrat:%@",self.petArray);
     
 	[myTable reloadData];
 	if ([petArray count] > 0){
@@ -236,21 +204,6 @@ AppSharedInstance *instance;
     
     
     
- /*   self.title = [recordDict objectForKey:@"name"];
-	//name.text = [recordDict objectForKey:@"name"];
-	if ([[recordDict objectForKey:@"breed"] length] > 0)
-	//	breed.text = [NSString stringWithFormat:@"Breed: %@",[recordDict objectForKey:@"breed"]];
-	else
-	//	breed.text = @"Breed: unknown";
-	
-	if ([[recordDict objectForKey:@"dob"] length] > 0) {
-		//age.text = [NSString stringWithFormat:@"Age: %@",[self calculateAge:[recordDict objectForKey:@"dob"]]];
-	}
-	else {
-	//	age.text = @"Age: unspecified";
-	}*/
-	
-	
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"pet_%d.png",[[recordDict objectForKey:@"pk"] intValue]]];			
@@ -266,16 +219,8 @@ AppSharedInstance *instance;
 	if (myTable.editing) 
     {
 		myTable.editing=NO;
-	//	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
-										//		  initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-											//	  target:self action:@selector(edit_Clicked)] autorelease];
         
         UIImage *buttonImage = [UIImage imageNamed:@"Edit.png"];
-     //   UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
-       // [aButton setImage:buttonImage forState:UIControlStateNormal];
-      //  aButton.frame = CGRectMake(200.0, 8.0, 65, 30);
-      //  aButton.tag=111;
-       // [aButton addTarget:self action:@selector(edit_Clicked) forControlEvents:UIControlEventTouchUpInside];
         [(UIButton*)[self.navigationController.navigationBar viewWithTag:111] setImage:buttonImage forState:UIControlStateNormal];
         
         
@@ -283,11 +228,6 @@ AppSharedInstance *instance;
 	else {
 		myTable.editing=YES;
         UIImage *buttonImage = [UIImage imageNamed:@"Done.png"];
-        //   UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        // [aButton setImage:buttonImage forState:UIControlStateNormal];
-        //  aButton.frame = CGRectMake(200.0, 8.0, 65, 30);
-        //  aButton.tag=111;
-        // [aButton addTarget:self action:@selector(edit_Clicked) forControlEvents:UIControlEventTouchUpInside];
         [(UIButton*)[self.navigationController.navigationBar viewWithTag:111] setImage:buttonImage forState:UIControlStateNormal];
 		
 	}
@@ -297,17 +237,13 @@ AppSharedInstance *instance;
 - (void)addPet {
     
     
-       //   [self.navigationController.navigationBar viewWithTag:111].hidden=YES;
         AboutmeViewController *aboutmeViewController = [[AboutmeViewController alloc] initWithNibName:@"AddMedi" bundle:nil];
-      //  aboutmeViewController.recordDict=recordDict;
-        //  aboutmeViewController.recordDict = ;
         [self.navigationController pushViewController:aboutmeViewController animated:YES];
         [aboutmeViewController release];	
    
    
     
  		
-	//}
 }
 
 
@@ -347,33 +283,22 @@ AppSharedInstance *instance;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    //[self.navigationController.navigationBar viewWithTag:111].hidden=YES;
    
     
     AboutmeViewController *aboutmeViewController = [[AboutmeViewController alloc] initWithNibName:@"AddMedi" bundle:nil];
 	aboutmeViewController.recordDict=recordDict;
     aboutmeViewController.recordDict = [petArray objectAtIndex:indexPath.section];
-    ////NSLog(@"aboutmeViewController.recordDict:%@",aboutmeViewController.recordDict);
     [[NSUserDefaults standardUserDefaults] setInteger:indexPath.section forKey:@"select"];
 	[self.navigationController pushViewController:aboutmeViewController animated:YES];
 	[aboutmeViewController release];
   
     if(savedValue==5)
     {
-        //[self btnPostPress];
         [self share];
          self.recordDict=recordDict;
         self.recordDict=[petArray objectAtIndex:indexPath.section];
-       /* AboutmeViewController *aboutmeViewController = [[AboutmeViewController alloc] initWithNibName:@"AboutmeViewController" bundle:nil];
-       
-        aboutmeViewController.recordDict = [petArray objectAtIndex:indexPath.section];
-        [self.navigationController pushViewController:aboutmeViewController animated:YES];
-        [aboutmeViewController release];*/
     }
-	/*PetViewController *petViewController = [[PetViewController alloc] initWithNibName:@"PetViewController" bundle:nil];
-	petViewController.recordDict = [petArray objectAtIndex:indexPath.section];
-	[self.navigationController pushViewController:petViewController animated:YES];
-	[petViewController release];*/
+
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

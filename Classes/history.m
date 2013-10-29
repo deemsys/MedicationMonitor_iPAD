@@ -125,18 +125,12 @@ AppSharedInstance *instance;
 	
     
     
-    // NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    //UILocalNotification *notif = [reminderarray objectAtIndex:indexPath.row];
-	//cell.textLabel.font=[UIFont fontWithName:@"Arial" size:30];
-    // [cell.textLabel setText:notif.alertBody];
-    // cell.detailTextLabel.textColor = [UIColor greenColor];
-	//[cell.detailTextLabel setText:[notif.fireDate description]];
-    
+      
     
     NSUInteger row1 = [indexPath row];
     NSUInteger count = [_Question count];
   
-  //      topLabel.text =@"RAJA";
+
         topLabel.frame= CGRectMake(30,10,600,60);
         
         topLabel.text =[NSString stringWithFormat:@"%d.   Q: %@", [indexPath row]+1, [_Question objectAtIndex:indexPath.row]];
@@ -145,13 +139,7 @@ AppSharedInstance *instance;
     
     bottomLabel.frame= CGRectMake(35,54,400,60);
     bottomLabel.text = [NSString stringWithFormat:@"        A: %@", [_Answer objectAtIndex:indexPath.row]];
-       // bottomLabel.text=[NSString stringWithFormat:@"%@",[[photoArray objectAtIndex:(count-row1-1)]objectForKey:@"date" ]];
-    
-     
- 
-	//bottomLabel.text =[notif.fireDate descriptionWithLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]autorelease]] ;
-	
-	
+       	
 	UIImage *rowBackground;
 	UIImage *selectionBackground;
 	NSInteger sectionRows = [aTableView numberOfRowsInSection:[indexPath section]];
@@ -185,10 +173,8 @@ AppSharedInstance *instance;
             rowBackground = [UIImage imageNamed:@"Normal.png"];
             selectionBackground = [UIImage imageNamed:@"Higlight.png"];
         }
-     //   ((UIImageView *)cell.backgroundView).image = rowBackground;
-      //  ((UIImageView *)cell.selectedBackgroundView).image = selectionBackground;
         
-        
+    
         
         
         
@@ -215,9 +201,7 @@ AppSharedInstance *instance;
             rowBackground = [UIImage imageNamed:@"Normal.png"];
             selectionBackground = [UIImage imageNamed:@"Higlight.png"];
         }
-    //    ((UIImageView *)cell.backgroundView).image = rowBackground;
-     //   ((UIImageView *)cell.selectedBackgroundView).image = selectionBackground;
-    }
+     }
 
 	
 	//
@@ -247,35 +231,7 @@ AppSharedInstance *instance;
 {
     if(tableView.tag==200)
     {
-        
-       /*
-    //    tableView.hidden=YES;
-        
-     //   ////NSLog(@"raja");
-        NSString*str=[[photoArray objectAtIndex:indexPath.row]objectForKey:@"name" ];
-    //     ////NSLog(@"str:%@",str);
-           // ////NSLog(@"STR:%@",str);
-        
-        
-        if (audioPlayerRecord)
-        {
-            if (audioPlayerRecord.isPlaying)
-                [audioPlayerRecord stop];
-            else [audioPlayerRecord play];
-            
-            return;
-        }
-        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-        [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *recDir = [paths objectAtIndex:0];
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", str]];
-        ////NSLog(@"raja:%@",url);
-        NSError *error;
-        audioPlayerRecord = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-        audioPlayerRecord.delegate=self;
-        [audioPlayerRecord play];*/
-          
+                  
     }
     else
     {
@@ -321,8 +277,7 @@ AppSharedInstance *instance;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *recDir = [paths objectAtIndex:0];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", str]];
-    ////NSLog(@"raja:%@",url);
-    NSError *error;
+        NSError *error;
     audioPlayerRecord = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     audioPlayerRecord.delegate=self;
     [audioPlayerRecord play];
@@ -336,7 +291,6 @@ AppSharedInstance *instance;
 - (void)viewDidLoad {
  
   [super viewDidLoad];
-   // [self displayPhoto];
     
     
     UIButton *save = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -402,7 +356,6 @@ AppSharedInstance *instance;
     NSString*str=[[NSUserDefaults standardUserDefaults]objectForKey:@"kiss"];
     
     
-    //NSLog(@"STE:%@",str);
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *recDir = [paths objectAtIndex:0];
@@ -413,67 +366,7 @@ AppSharedInstance *instance;
     
     
     _Question=[[NSMutableArray alloc]initWithContentsOfFile:p];
-    //NSLog(@"STR:%@",_Question);
     _Answer=[[NSMutableArray alloc]initWithContentsOfFile:pa];
-    //NSLog(@"STR:%@",_Answer);
-    /*NSFileManager*fm=[NSFileManager defaultManager];
-    
-	NSFileHandle *fh;
-	NSData *buf;
-    if ([fm fileExistsAtPath:p]==YES)
-	{
-		//NSLog(@"Yup..!");
-		fh=[NSFileHandle fileHandleForReadingAtPath:p];
-		if (fh==nil)
-		{
-			//NSLog(@"Fail To Open");
-		}
-		else
-		{
-			buf=[fh readDataToEndOfFile];
-			//NSLog(@"File Opened & Copied");
-			NSString *str = [[NSString alloc] initWithData:buf encoding:NSUTF8StringEncoding];
-           
-            _Question=[[NSMutableArray alloc]initWithContentsOfFile:p];
-             //NSLog(@"STR:%@",_Question);
-            _Answer=[[NSMutableArray alloc]initWithContentsOfFile:pa];
-            //NSLog(@"STR:%@",_Answer);
-		}
-		[fh closeFile];
-    }
-	else
-	{
-		//NSLog(@"NO..!");
-	}
-    
-    
-    /*NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
-    NSData *dataRepresentingSavedArray = [currentDefaults objectForKey:str];
-    if (dataRepresentingSavedArray != nil)
-    {
-        NSMutableArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingSavedArray];
-        if (oldSavedArray != nil)
-            _Question = [[NSMutableArray alloc] initWithArray:oldSavedArray];
-        else
-            _Question = [[NSMutableArray alloc] init];
-    }
-    //NSLog(@"A:%@",_Question);
-    
-    
-    NSUserDefaults *currentDefaults1 = [NSUserDefaults standardUserDefaults];
-    NSData *dataRepresentingSavedArray1 = [currentDefaults1 objectForKey:[NSString stringWithFormat:@"A%@",str]];
-    //NSLog(@"[NSString stringWithFormastr]:%@",[NSString stringWithFormat:@"A%@",str]);
-    if (dataRepresentingSavedArray1 != nil)
-    {
-        NSMutableArray *oldSavedArray1 = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingSavedArray1];
-        if (oldSavedArray1 != nil)
-            _Answer = [[NSMutableArray alloc] initWithArray:oldSavedArray1];
-        else
-            _Answer = [[NSMutableArray alloc] init];
-    }
-*/
-    
-    
     
     
     
@@ -543,36 +436,7 @@ AppSharedInstance *instance;
     _Answer=[[NSMutableArray alloc]initWithContentsOfFile:pa];
     //NSLog(@"STR:%@",_Question);
 
-    /*
-	NSFileHandle *fh;
-	NSData *buf;
-    if ([fm fileExistsAtPath:p]==YES)
-	{
-		//NSLog(@"Yup..!");
-		fh=[NSFileHandle fileHandleForReadingAtPath:p];
-		if (fh==nil)
-		{
-			//NSLog(@"Fail To Open");
-		}
-		else
-		{
-			buf=[fh readDataToEndOfFile];
-			//NSLog(@"File Opened & Copied");
-			NSString *str = [[NSString alloc] initWithData:buf encoding:NSUTF8StringEncoding];
-            
-            _Question=[[NSMutableArray alloc]initWithContentsOfFile:p];
-            //NSLog(@"STR:%@",_Question);
-            _Answer=[[NSMutableArray alloc]initWithContentsOfFile:pa];
-            //NSLog(@"STR:%@",_Answer);
-		}
-		[fh closeFile];
-    }
-	else
-	{
-		//NSLog(@"NO..!");
-	}
-*/
-    instance = [AppSharedInstance sharedInstance];
+       instance = [AppSharedInstance sharedInstance];
     _assQues=[instance getAssQue];
      //  //NSLog(@"A:%@",_assQues);
     

@@ -32,7 +32,6 @@
     }
     if (!button.selected)
     {
-        //NSLog(@"button.tag:%i",button.tag);
         button.selected = !button.selected;
         [[NSUserDefaults standardUserDefaults]setInteger:button.tag forKey:@"syncType"];
     }
@@ -104,7 +103,7 @@
     pickerView.hidden=YES;
     pickerCountry.hidden=YES;
     [super viewDidLoad];
-     //self.tabBarController.tabBar.hidden = YES;
+    
     
     //age picker
     arrayNo = [[NSMutableArray alloc] init];
@@ -249,7 +248,7 @@
     cpass.clearButtonMode = UITextFieldViewModeWhileEditing;
     email.clearButtonMode = UITextFieldViewModeWhileEditing;
     mobile.clearButtonMode = UITextFieldViewModeWhileEditing;
-    //country.clearButtonMode = UITextFieldViewModeWhileEditing;
+    
     firstname.clearButtonMode=UITextFieldViewModeWhileEditing;
     lastname.clearButtonMode=UITextFieldViewModeWhileEditing;
     face.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -275,12 +274,11 @@
                                       initWithCustomView:home] autorelease];
     self.navigationItem.leftBarButtonItem = cancelButton;
 
-   // [pickerView selectRow:1 inComponent:0 animated:NO];
+  
         
     agebutt.text=@"Select Age";
     
-    //agebutt.text= [arrayNo objectAtIndex:[pickerView selectedRowInComponent:0]];
-    
+       
     countrybutt.text=@"United States";
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -295,18 +293,7 @@
     [pickerCountry addGestureRecognizer:tapGR1];
     
     
-   /* UIButton *save = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *saveImage = [UIImage imageNamed:@"Signup2.png"]  ;
-    [save setBackgroundImage:saveImage forState:UIControlStateNormal];
-    [save addTarget:self action:@selector(SingnUp)
-   forControlEvents:UIControlEventTouchUpInside];
-    save.frame = CGRectMake(0, 0, 100, 40);
-    UIBarButtonItem *saveButton = [[[UIBarButtonItem alloc]
-                                    initWithCustomView:save] autorelease];
-    self.navigationItem.rightBarButtonItem = saveButton;
-    
-    */
-    
+      
     }//name, *pass,*cpass,*email,*skype,*face,*mobile,*state,*city,*age,*country
 
 -(void)dismissKeyboard {
@@ -329,10 +316,7 @@
     else if(pickerCountry.tag==2){
         return 1;}
 }
-/*-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerCountry;{
 
-    return 1;
-}*/
 
 
 - (void)pickerViewTapped {
@@ -362,9 +346,7 @@
     if(pickerView.tag==1)
     
     agebutt.text= [arrayNo objectAtIndex:row];
-    
-    //self.agebutt.text = [NSString stringWithFormat:@"%d", [self.pickerView selectedRowInComponent:row]];
-    //agebutt.text=[NSString stringWithFormat:@"%d", [self.pickerView selectedRowInComponent:row]];
+  
     else if(pickerCountry.tag==2)
         countrybutt.text=[countryname objectAtIndex:row];
     
@@ -400,36 +382,6 @@
 
 
 
-/*- (NSInteger)pickerCountry:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;{
-    
-    return [countryname count];
-}
-
-
-- (NSString *)pickerCountry:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
-{
-    return [countryname objectAtIndex:row];
-    
-}
-- (void)pickerCountry:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    
-    
-    countrybutt.text= [countryname objectAtIndex:row];
-    //self.agebutt.text = [NSString stringWithFormat:@"%d", [self.pickerView selectedRowInComponent:row]];
-    //agebutt.text=[NSString stringWithFormat:@"%d", [self.pickerView selectedRowInComponent:row]];
-    self.pickerView.hidden=YES;
-}
-- (IBAction)countrybut:(id)sender{
-    
-    if(pickerCountry.hidden==YES){
-        [(UILabel*)[self.view viewWithTag:4] resignFirstResponder];
-        self.pickerCountry.hidden=NO;}
-    else{
-        self.pickerCountry.hidden=YES;}
-    
-}
-*/
 
 -(IBAction)SingnUp
 {
@@ -446,7 +398,7 @@
         [(UILabel*)[self.view viewWithTag:3] resignFirstResponder];
         [(UILabel*)[self.view viewWithTag:4] resignFirstResponder];
         
-        //NSLog(@"signUp1");
+        //Displaying RedTextBox 
         if ([name.text length] == 0)
         {
             us.hidden=NO;
@@ -494,11 +446,22 @@
         {
             age.hidden=YES;
         }
+    if([mobile.text length]==0 )
+    {
         
-        
-        if([email.text length] != 0&&[cpass.text length] != 0&&[pass.text length] != 0&&[name.text length] != 0 && ![agebutt.text isEqualToString:@"Select Age"] &&! [sex isEqualToString: @"null"])
+        mobileval.hidden=NO;
+    }
+    else
+    {
+        mobileval.hidden=YES;
+    }
+
+    
+    
+        if([email.text length] != 0&&[cpass.text length] != 0&&[pass.text length] != 0&&[name.text length] != 0 && ![agebutt.text isEqualToString:@"Select Age"] &&! [sex isEqualToString: @"null"]&&[mobile.text length] !=0)
             
         {
+            //Sign Up Validation For Required Details
             c=0;
             if ([self validateUsername:[name text]]==1)
             {
@@ -517,7 +480,7 @@
                             {
                                 BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter Valid Mobile Number."];
                                 
-                                //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+                           
                                 [alert setDestructiveButtonWithTitle:@"x" block:nil];
                                 [alert show];
                                 
@@ -528,7 +491,7 @@
                             
                             BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Password Doesnt Match."];
                             
-                            //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+                     
                             [alert setDestructiveButtonWithTitle:@"x" block:nil];
                             [alert show];
                         }
@@ -540,7 +503,6 @@
                         
                         BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid email id."];
                         
-                        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
                         [alert setDestructiveButtonWithTitle:@"x" block:nil];
                         [alert show];
                         
@@ -552,8 +514,7 @@
                 {
                     
                     BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter Age."];
-                    
-                    //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+      
                     [alert setDestructiveButtonWithTitle:@"x" block:nil];
                     [alert show];
                 }
@@ -566,7 +527,6 @@
             else{
                 BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Enter the valid Username."];
                 
-                //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
                 [alert setDestructiveButtonWithTitle:@"x" block:nil];
                 [alert show];
                 
@@ -594,7 +554,6 @@
         {
             BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Please Enter All The Required Fields."];
             
-            //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
             [alert setDestructiveButtonWithTitle:@"x" block:nil];
             [alert show];
         }
@@ -698,14 +657,11 @@
                     HUD.mode = MBProgressHUDModeCustomView;
                     [HUD hide:YES afterDelay:0];
                     
-                 /*   UIAlertView *mes6=[[UIAlertView alloc] initWithTitle:@"INFO" message:@"Registration successful" delegate:self cancelButtonTitle:@"Login" otherButtonTitles:nil, nil];
-                    [mes6 show];
-                    [mes6 release];*/
-                    
+                                    
                     
                     BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Info!" message:@"Registration successful!"];
                     
-                    //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+                  
                     [alert setDestructiveButtonWithTitle:@"x" block:nil];
                     [alert show];
                     [[self navigationController] popViewControllerAnimated:YES];
@@ -719,12 +675,7 @@
                     
                     if ([[menu objectForKey:@"message"] isEqualToString:@"Already Exist"])
                     {
-                        
-                      /*  __block DemoHintView* hintView = [DemoHintView  infoHintView];
-                        hintView.hintID = kHintID_Home;
-                        hintView.title = @"Info!";
-                        [hintView addPageWithTitle:@"Info" text:@"UserName Already Exits and active"];
-                        [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
+                 
                         
                         
                         BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"UserName Already Exits and active."];
@@ -753,14 +704,10 @@
     else if([[name text] isEqualToString:@""])
     {
         
-  /*      UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Failed!" message:@"Registration Failed!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        
-        [alert show];
-        [alert release];*/
-        
+          
         BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Failed!" message:@"Registration Failed."];
         
-        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+
         [alert setDestructiveButtonWithTitle:@"x" block:nil];
         [alert show];
         
@@ -768,11 +715,7 @@
     else
     {
         
-      //  UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"password!" message:@"Incorrect Password" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        
-       // [alert show];
-    //    [alert release];
-        
+             
         BlockAlertView *alert = [BlockAlertView alertWithTitle:@"password!" message:@"Incorrect Password."];
         
         //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
@@ -803,8 +746,7 @@
     
     NSString *post =[[NSString alloc] initWithFormat:@"%@=%@&fname=%@&lname=%@&pswd=%@&sex=%@&age=%@&email=%@&skype=%@&facetime=%@&mobile=%@&country=%@&%@=%@",firstEntity,value1,firstname.text,lastname.text,pass.text,sex,agebutt.text,email.text,skype.text,face.text,mobile.text,countrybutt.text,secondEntity,value2];
     
-   //  NSString *post =[[NSString alloc] initWithFormat:@"facebook_id=%@&facebookscore=%@&level=%@&life=%@&lifeInHand=%@&gold=%@",value1,value2,value1,value1,value1,value1];
-    
+      
     
       NSURL *url=[NSURL URLWithString:@"http://medsmonit.com/Service/patientresponce.php?service=patinsert"];
    

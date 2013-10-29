@@ -40,9 +40,7 @@
      [self.view addSubview:i];
     [self.view sendSubviewToBack:i];
 	[super viewDidLoad];
-	//NSLog(@"Main View Did Load: %@", self.tabBarItem.title);
-  
-        
+	        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(becomeActive:)
                                                      name:UIApplicationDidBecomeActiveNotification
@@ -103,10 +101,7 @@
         
 		[self pushViewController:browseViewController animated:YES];
 		[browseViewController release];
-       //  UITabBarItem *tabBarItem = [[tabItemsArray items] objectAtIndex:4];
-        //[tabBarItem setEnabled:FALSE];
-        //[[[[self.tabBarController tabBar]items]objectAtIndex:4]setEnabled:FALSE];
-        //self.tabBarController.tabBar.hidden=YES;
+    
         
         
 	}

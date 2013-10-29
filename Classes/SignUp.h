@@ -39,6 +39,7 @@
     IBOutlet UIImageView*copa;
     IBOutlet UIImageView*eid;
     IBOutlet UIImageView *age;
+    IBOutlet UIImageView *mobileval;
     int visit,visit1,visit2;
     
 }

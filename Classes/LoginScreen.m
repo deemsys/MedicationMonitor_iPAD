@@ -37,14 +37,10 @@
 
 -(IBAction)rem:(UIButton *)button
 {
-    //for (UIButton *but in [self.view subviews]) {
-    //if ([but isKindOfClass:[UIButton class]] && ![but isEqual:button]) {
-    //[but setSelected:NO];
-    // }
-    //}
+  
     if (!button.selected)
     {
-        ////NSLog(@"button.tag:%i",button.tag);
+        
         button.selected = !button.selected;
         [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"rem"];
         [[NSUserDefaults standardUserDefaults]setObject:name.text forKey:@"remuser"];
@@ -71,8 +67,7 @@
     NSData *responseData;
     
     int UserId=12;
-    //  UIImage *image1=[UIImage imageNamed:@"Medig.png"];
-	//NSData *userImageData = UIImageJPEGRepresentation(image1, 90);
+    
     
     
     
@@ -114,21 +109,17 @@
         
         responseData = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
         result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-        // if(isInDebugMode)
-        //  //NSLog(@"Result: %@", result);
-        
+                
         [url release];
         [req release];
         
-        //   IceCreamManFinderAppDelegate *delegate1=(IceCreamManFinderAppDelegate *)[UIApplication sharedApplication].delegate;
-        
+              
     }
     @catch (NSException* ex) {
-        //NSLog(@"Error: %@",ex);
+       
     }
-    //return responseData;
-    
-    //NSLog(@"res:%@",result);
+        
+
     
     
 }
@@ -139,7 +130,7 @@
     
     [super viewDidLoad];
     
-    //tabItem4.hidden=YES;
+   
     self.tabBarController.tabBar.hidden = YES;
     
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -228,7 +219,7 @@
 {
     [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
     [(UITextField*)[self.view viewWithTag:102] resignFirstResponder];
-    ////NSLog(@"SIgnUP");
+   
     
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -252,14 +243,12 @@
     [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
     [(UITextField*)[self.view viewWithTag:102] resignFirstResponder];
     
-    //  [self audio];
-    //  [self uploadImage];
+   
     if(([name.text length]==0)&&([pass.text length]==0))
     {
         BlockAlertView *alert = [BlockAlertView alertWithTitle: @" Oh Snap!" message:@"Please Enter The Username And Password."];
         
-        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-        
+               
         [alert setDestructiveButtonWithTitle:@"x" block:nil];
         [alert show];
         
@@ -269,18 +258,12 @@
     {
         
         
-        /*    __block DemoHintView* hintView = [DemoHintView  infoHintView];
-         hintView.hintID = kHintID_Home;
-         hintView.title = @"Info!";
-         [hintView addPageWithTitle:@"Info" text:@"Please Enter Your user Name"];
-         [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
+       
         
         
         BlockAlertView *alert = [BlockAlertView alertWithTitle: @" Oh Snap!" message:@"Please Enter The Username."];
         
-        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-        
-        [alert setDestructiveButtonWithTitle:@"x" block:nil];
+               [alert setDestructiveButtonWithTitle:@"x" block:nil];
         [alert show];
         
         
@@ -288,17 +271,12 @@
     else  if ([pass.text length] == 0)
     {
         
-        /*  __block DemoHintView* hintView = [DemoHintView  infoHintView];
-         hintView.hintID = kHintID_Home;
-         hintView.title = @"Info!";
-         [hintView addPageWithTitle:@"Info" text:@"Please Enter CorrectPassword"];
-         [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
+       
         
         
         BlockAlertView *alert = [BlockAlertView alertWithTitle: @" Oh Snap!" message:@"Please Enter The Password."];
         
-        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
-        
+               
         [alert setDestructiveButtonWithTitle:@"x" block:nil];
         [alert show];
     }
@@ -325,9 +303,7 @@
     
     UIImage *image = [UIImage imageNamed:@"AddAftn.png"];
     NSData *imageData = UIImagePNGRepresentation(image);
-    //  NSData *imageData = UIImagePNGRepresentation([dic objectForKey:@"image"]);
-    // setting up the URL to post to
-    NSString *urlString =[NSString stringWithFormat:@"http://192.168.1.88/MedicationMonitor/Service/medicineresponce.php?service=medinsert&patid=2"];
+       NSString *urlString =[NSString stringWithFormat:@"http://192.168.1.88/MedicationMonitor/Service/medicineresponce.php?service=medinsert&patid=2"];
     
     // setting up the request object now
     
@@ -367,7 +343,7 @@
     // now lets make the connection to the web
     NSData *returnData = [ NSURLConnection sendSynchronousRequest: request returningResponse: nil error: nil ]; // send data to the web service
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSASCIIStringEncoding];
-    ////NSLog(@"Raja:%@",returnString);
+    
     
     
     NSString *trimmedString = [returnString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
@@ -376,9 +352,9 @@
     
     
     NSMutableArray *dic0 = [trimmedString1 JSONValue];
-    //   //NSLog(@"Raja:%@",trimmedString);
+
     NSMutableDictionary *dic1 = [dic0 objectAtIndex:0];
-    //  //NSLog(@"Profile photo status : %@",[dic1 valueForKey:@"id"]);
+   
     
 }
 - (void)myTask {
@@ -431,7 +407,7 @@
         return;
     }
     
-    //imgName=@"disconnect.png";
+ 
     
     
     
@@ -447,7 +423,7 @@
     
     SBJSON *json = [[SBJSON new] autorelease];
 	NSDictionary *luckyNumbers = [json objectWithString:resultResponse error:&error];
-    ////NSLog(@"RESULT RESPONSE =%@",luckyNumbers);
+
     if (luckyNumbers == nil)
     {
         ////NSLog(@"Failed");
@@ -469,17 +445,14 @@
             
             NSString *LoginId=[menu objectForKey:@"userid"];
             NSString *LoginId1=[menu objectForKey:@"message"];
-            ////NSLog(@"USERID:%@",LoginId);
-            ////NSLog(@"USERID:%@",LoginId1);
             
-            // [[NSUserDefaults standardUserDefaults] setInteger:  forKey:@"username"];
+         
             
             [[NSUserDefaults standardUserDefaults] setObject:LoginId    forKey:@"loginid"];
             [[NSUserDefaults standardUserDefaults] setObject:name.text forKey:@"username"];
             //name.text=Nil;
             pass.text=nil;
-            //  [self.navigationController popViewControllerAnimated:YES];
-            //deepthi
+         
             
             
             
@@ -494,12 +467,7 @@
         else
         {
             BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Oh Snap!" message:@"Invalid Username And Password."];
-            /* HUD.labelText = @"Invalid Username & Password.";
-             HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
-             HUD.mode = MBProgressHUDModeCustomView;
-             [HUD hide:YES afterDelay:1.6];
-             //NSLog(@"raja");
-             */
+          
             [HUD hide:YES];
             
             [alert setDestructiveButtonWithTitle:@"x" block:nil];
@@ -535,8 +503,6 @@
     
     
     
-    // NSString *authKey=@"rzTFevN099Km39PV";
-    // NSString *userId=@"alagar@ajsquare.net";
     
     
     
@@ -563,16 +529,12 @@
     //when we user https, we need to allow any HTTPS cerificates, so add the one line code,to tell teh NSURLRequest to accept any https certificate, i'm not sure //about the security aspects
     
     
-    //[NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
-    
+        
     NSError *error;
     NSURLResponse *response;
     NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSString *data=[[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
-    //NSLog(@"data:%@",data);
-    ////NSLog(@"%@",data);
-    
-    return data;
+       return data;
     
 }
 
@@ -602,16 +564,11 @@
     if ([name.text length] == 0)
     {
         
-        /*   __block DemoHintView* hintView = [DemoHintView  infoHintView];
-         hintView.hintID = kHintID_Home;
-         hintView.title = @"Info!";
-         [hintView addPageWithTitle:@"Info" text:@"Please Enter Your user Name"];
-         [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
-        
+               
         
         BlockAlertView *alert = [BlockAlertView alertWithTitle:@" Oh Snap!" message:@"Please Enter Your username."];
         
-        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+
         [alert setDestructiveButtonWithTitle:@"x" block:nil];
         [alert show];
         
@@ -620,15 +577,10 @@
     }
     else  if ([pass.text length] == 0)
     {
-        /* __block DemoHintView* hintView = [DemoHintView  infoHintView];
-         hintView.hintID = kHintID_Home;
-         hintView.title = @"Info!";
-         [hintView addPageWithTitle:@"Info" text:@"Please Enter CorrectPassword"];
-         [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
-        
+               
         BlockAlertView *alert = [BlockAlertView alertWithTitle:@" Oh Snap!" message:@"Please Enter The Password."];
         
-        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+
         [alert setDestructiveButtonWithTitle:@"x" block:nil];
         [alert show];
         

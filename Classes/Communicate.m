@@ -39,14 +39,12 @@
 -(IBAction)FaceClicked
 {
     [[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"facetime:///"]];
-//[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"facetime://tel-number"]];
+
 
 }
 -(IBAction)SkypeClicked
 {
     [[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"skype:///"]];
- //   NSString* urlString = [NSString stringWithFormat:@\"skype://%@?call\", raja.seenivasan];
-                       //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 }
 -(void)back
 {
@@ -63,9 +61,7 @@
         mailer.mailComposeDelegate = self;
         
         
-     //UIImageView* view1 = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"Panel_Top.png"]];
-        //  [mailer.navigationBar addSubview:view1];
-        // [self.view sendSubviewToBack:view1];
+     
         [mailer setSubject:@"Mail "];
         
         UIImage *barButton = [UIImage imageNamed:@"sSend.png"];
@@ -85,28 +81,12 @@
         
         UIImage *myImage = [UIImage imageNamed:@"mobiletuts-logo.png"];
         NSData *imageData = UIImagePNGRepresentation(myImage);
-        //   [mailer addAttachmentData:imageData mimeType:@"image/png" fileName:@"mobiletutsImage"];
-        
-        
-       /* NSString *emailBody1 =[NSString stringWithFormat:@"First Choice: %@\n"
-                               "SecondChoice: %@.\n",[_DataArray objectAtIndex:0],[_DataArray objectAtIndex:1]];
-        
-        NSString *emailBody2 =[NSString stringWithFormat:@"FirstChoice AM/PM: %@\n"
-                               "SecondChoice AM/PM: %@.\n",[_DataArray objectAtIndex:2],[_DataArray objectAtIndex:3]];
-        
-        NSString *emailBody3 =[NSString stringWithFormat:@"Appt.Type: %@\n",[_DataArray objectAtIndex:4]];
-        
-        NSString *emailBody4 =[NSString stringWithFormat:@"Name: %@\n" "Address: %@.\n",[_DataArray objectAtIndex:5],[_DataArray objectAtIndex:6]];
-        NSString *emailBody5 =[NSString stringWithFormat:@"Phone: %@\n" "Email: %@.\n",[_DataArray objectAtIndex:7],[_DataArray objectAtIndex:8]];
-        
-        */
-        
-        
+                
         NSString *emailBody = [NSString stringWithFormat:@"hi"];
         [mailer setMessageBody:emailBody isHTML:NO];
         
         // only for iPad
-        // mailer.modalPresentationStyle = UIModalPresentationPageSheet;
+       
         
         [self presentModalViewController:mailer animated:YES ];
         
@@ -114,23 +94,8 @@
     }
     else
     {
-        /*UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure"
-                                                        message:@"Your device doesn't support the composer sheet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles: nil];
-        [alert show];
-        [alert release];
-    */
-
-    BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Failure!" message:@"Your device doesn't support the composer sheet."];
-    /* HUD.labelText = @"Invalid Username & Password.";
-     HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
-     HUD.mode = MBProgressHUDModeCustomView;
-     [HUD hide:YES afterDelay:1.6];
-     //NSLog(@"raja");
-     */
-    
+            BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Failure!" message:@"Your device doesn't support the composer sheet."];
+        
     
     [alert setDestructiveButtonWithTitle:@"x" block:nil];
     [alert show];

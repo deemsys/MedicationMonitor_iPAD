@@ -48,7 +48,7 @@ AppSharedInstance *instance;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+   
     }
     return self;
 }
@@ -174,7 +174,7 @@ AppSharedInstance *instance;
     {
         
     }
-    //  imgName=@"Connected.png";
+  
     else
     {
         HUD.labelText = @"Check network connection....";
@@ -226,8 +226,7 @@ AppSharedInstance *instance;
     {
         NSDictionary *ProID=[(NSDictionary*)anUpdate objectForKey:@"provideid"];
         NSDictionary *ProName=[(NSDictionary*)anUpdate objectForKey:@"providername"];
-        ////NSLog(@"providerId:");
-        ////NSLog(@"ProviderName:%@",ProName);
+      
         [ProDl addObject:[NSString stringWithFormat:@"%@",ProID]];
         [ProNaml addObject:[NSString stringWithFormat:@"%@",ProName]];
     }
@@ -238,7 +237,7 @@ AppSharedInstance *instance;
     HUD.labelText = @"Feteching Data...";
     // return;
     
-    // ////NSLog(@"Provideritems1 =%@",Provideritems1);
+
     
     NSMutableArray *ProD=[[NSMutableArray alloc]init];
     NSMutableArray *ProNam=[[NSMutableArray alloc]init];
@@ -248,8 +247,7 @@ AppSharedInstance *instance;
     {
         NSDictionary *ProID=[(NSDictionary*)anUpdate objectForKey:@"provideid"];
         NSDictionary *ProName=[(NSDictionary*)anUpdate objectForKey:@"providername"];
-        ////NSLog(@"providerId:%@",ProID);
-        ////NSLog(@"ProviderName:%@",ProID);
+       
         [ProD addObject:[NSString stringWithFormat:@"%@",ProID]];
         [ProNam addObject:[NSString stringWithFormat:@"%@",ProName]];
         
@@ -261,14 +259,7 @@ AppSharedInstance *instance;
     [fileMngr saveDatapath:ProDFile contentarray:ProD];
     [fileMngr saveDatapath:ProNamfile contentarray:ProNam];
     
-    ////NSLog(@"%@",ProD);
-    ////NSLog(@"%@",ProNam);
-    
-    
-    
-    
-    
-    
+       
     
     
     
@@ -303,9 +294,7 @@ AppSharedInstance *instance;
         dateFromString = [dateFormatter dateFromString:dateString];
         [dateFormatter release];
         NSString*s=[NSString stringWithFormat:@"%@",arrayListType];
-       // NSLog(@"date from array list date %@",dateFromString);
-       // NSLog(@"type from array list type %@",s );
-        //NSLog(@"name from array list %@ " ,[NSString stringWithFormat:@"%@",arrayList ]);
+     
         UILocalNotification *localNotif = [[UILocalNotification alloc] init];
         if (localNotif == nil)
             return;
@@ -315,8 +304,7 @@ AppSharedInstance *instance;
         localNotif.alertAction = @"View";
         localNotif.soundName = UILocalNotificationDefaultSoundName;
         localNotif.applicationIconBadgeNumber = 0;
-        //NSString*s=[NSString stringWithFormat:@"%@",arrayListType];
-        if([s isEqualToString:@"Daily"])
+                if([s isEqualToString:@"Daily"])
         {
           localNotif.repeatInterval = NSDayCalendarUnit;
         }
@@ -325,17 +313,7 @@ AppSharedInstance *instance;
             localNotif.repeatInterval = 0;
         }
         
-        /*   NSMutableArray *SheduleArray=[[NSMutableArray alloc] initWithArray:[[UIApplication sharedApplication]scheduledLocalNotifications]];
-         for(int s=0;s<[SheduleArray count];s++){
-         UILocalNotification *Not=[SheduleArray objectAtIndex:s];
-         int getId=[[Not.userInfo valueForKey:@"Id"] intValue];
-         if(getId==(int)runNumber)
-         {
-         [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
-         }
-         }
-         */
-        
+               
         
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
         [localNotif release];
@@ -361,11 +339,7 @@ AppSharedInstance *instance;
     
     NSArray *patQuestion=[qusres objectForKey:@"Patient Question"];
     
-    // NSArray *assessment=[luckyNumbersASS objectForKey:@"assessment"];
-    //NSDictionary *qusres1 = [luckyNumbersASS objectForKey:@"assessment"];
-    
-    // ////NSLog(@"RESULT ASSESS =%@",patQuestion);ass
-     
+   NSLog(@"RESULT ASSESS =%@",patQuestion);
     
     
     for (id anUpdate in patQuestion)
@@ -373,7 +347,7 @@ AppSharedInstance *instance;
         NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"assid"];
         NSDictionary *arrayList1=[(NSDictionary*)anUpdate objectForKey:@"assname"];
         
-        //  //NSLog(@"self.assesment.count:%i",[self.assesment count]);
+      
         
         if([self.assesment count]==0)
         {
@@ -384,14 +358,14 @@ AppSharedInstance *instance;
             
             
             NSDictionary *arrayList2=[(NSDictionary*)anUpdate objectForKey:@"assessment"];
-            
+              NSLog(@"Arraylist2 val:%@",arrayList2);
             for (id anUpdate in arrayList2)
             {
                 
                 [recordDict setObject:arrayList forKey:@"assid"];
-                ////NSLog(@"assid:%@",arrayList);
+             
                 [recordDict setObject:arrayList1 forKey:@"assname"];
-                //   [instance insertAss:recordDict];
+               
                 
                 
                 NSDictionary *arrayListid=[(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
@@ -417,9 +391,9 @@ AppSharedInstance *instance;
                 {
                     
                     
-                    //  //NSLog(@"RAJA");
+                 
                     [recordDict setObject:arrayList forKey:@"assid"];
-                    //  [instance insertAnswer:recordDict];
+                 
                     
                     
                     NSDictionary *arrayList1=[(NSDictionary*)anUpdate objectForKey:@"assanswerid"];
@@ -428,7 +402,7 @@ AppSharedInstance *instance;
                     [recordDict setObject:arrayList2 forKey:@"answer"];
                     [instance insertAnswer:recordDict];
                     
-                    //    //NSLog(@"recordDict:R%@",recordDict);
+               
                     
                 }
                 
@@ -444,14 +418,13 @@ AppSharedInstance *instance;
             {
                 NSString*s1= [[self.assesment objectAtIndex:j] objectForKey:@"id"];
                 NSString*s=[(NSDictionary*)anUpdate objectForKey:@"assid"];
-                //  //NSLog(@"AAAAAAAAAAs1:%@",s);
-                //  //NSLog(@"s:%@",s);
+               
                 if(![s1 isEqualToString:s])
                 {
                     Add++;
-                    /*
+                    
                      
-                     */
+                    
                     
                 }
                 
@@ -471,9 +444,9 @@ AppSharedInstance *instance;
                 {
                     
                     [recordDict setObject:arrayList forKey:@"assid"];
-                    ////NSLog(@"assid:%@",arrayList);
+               
                     [recordDict setObject:arrayList1 forKey:@"assname"];
-                    //[instance insertAss:recordDict];
+             
                     
                     
                     NSDictionary *arrayListid=[(NSDictionary*)anUpdate objectForKey:@"assquestionid"];
@@ -510,7 +483,7 @@ AppSharedInstance *instance;
                         [instance insertAnswer:recordDict];
                     }
                 }
-                //   //NSLog(@"RAJAADDASS");
+               
             }
             
             
@@ -550,7 +523,7 @@ AppSharedInstance *instance;
         
     }
     
-    //    ////NSLog(@"PETARRAYCOUNT::%i",[petArray count]);
+   
     
     if([petArray count]==0)
     {
@@ -577,8 +550,7 @@ AppSharedInstance *instance;
                 NSString*s=[tempM objectAtIndex:i];
                 NSString*s1= [[petArray objectAtIndex:j] objectForKey:@"name"];
                 
-                //NSLog(@"PPPPPPPPPPPPPP:%@ %@",s,s1);
-                
+                            
                 if([s isEqualToString:s1])
                 {
                     
@@ -594,7 +566,7 @@ AppSharedInstance *instance;
                         [recordDict setObject:[tempM objectAtIndex:i] forKey:@"name"];
                          [recordDict setObject:[tempD objectAtIndex:i] forKey:@"akc"];
                         [instance insertPet:recordDict];
-                        //  [_AppDArr addObject:[tempM objectAtIndex:i]];
+                      
                         
                         
                     }
@@ -685,11 +657,6 @@ AppSharedInstance *instance;
     [fileMngr saveDatapath:appoFile contentarray:_AppDArr];
     [fileMngr saveDatapath:appoNFile contentarray:_AppNArr];
     
-    
-    //    ////NSLog(@"%@",self._assQues);
-    //NSLog(@"self._assAns:%@",self._assAns);
-    
-    // [HUD hide:YES];
     HUD.labelText = @"Completed.";
     HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
 	HUD.mode = MBProgressHUDModeCustomView;
@@ -825,14 +792,7 @@ AppSharedInstance *instance;
     else if([[self.sortedKeys objectAtIndex:[indexPath section]]isEqual:@"Reminder"])
     {
         UILocalNotification *notif = [reminderarray objectAtIndex:indexPath.row];
-        //cell.textLabel.font=[UIFont fontWithName:@"Arial" size:30];
-        // [cell.textLabel setText:notif.alertBody];
-        // cell.detailTextLabel.textColor = [UIColor greenColor];
-        //[cell.detailTextLabel setText:[notif.fireDate description]];
-        
-        //NSUInteger row1 = [indexPath row];
-        //cell.textLabel.text = [listData objectAtIndex:row1];
-        
+                
         
         topLabel.text = notif.alertBody;
         bottomLabel.text =[notif.fireDate descriptionWithLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]autorelease]] ;
@@ -915,8 +875,7 @@ AppSharedInstance *instance;
     self._assAns=[instance getAssAnswer];
     self.assesment=[instance getAssesment];
     [myTable reloadData];
-    //NSLog(@"self._assAns:::%@",self._assQues);
-    ////NSLog(@"self._assAnswer:::%@",self._assAns);
+   
     
     if(syncType==1)
     {
@@ -978,33 +937,21 @@ AppSharedInstance *instance;
         
         if([result isEqualToString:result1])
         {
-            ////NSLog(@"result schedulh date:%@", result );
-            ////NSLog(@"Result1:::::::%@", result1);
-            //   [reminderarray addObject:notif];
-        }
+                   }
         
         
-        /*NSInteger nWords = 10;
-         NSRange wordRange = NSMakeRange(0,10);
-         NSArray *firstWords = [[[NSString stringWithFormat:@"%@",userInfoCurrent] componentsSeparatedByString:@" "] subarrayWithRange:wordRange];
-         NSString *result = [firstWords componentsJoinedByString:@" "];
-         ////NSLog(@"RESULT:%@",result);*/
-    }
+            }
     
     self.petArray = [instance getPet];
-    NSLog(@"self.petarray in welcome view will appear:%@",self.petArray);
+    //NSLog(@"self.petarray in welcome view will appear:%@",self.petArray);
  NSMutableArray*a=[[NSMutableArray alloc]init];
-    // for (id anUpdate in self.petArray)
-    //  {
-    // NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"patid"];
-    NSLog(@"%i",[self.petArray count]);
+     // NSLog(@"%i",[self.petArray count]);
     for(int j=0;j<[self.petArray count];j++)
     {
         NSLog(@"yes");
         NSString*s1= [[self.petArray objectAtIndex:j] objectForKey:@"patid"];
         NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
-        //  NSLog(@"AAAAAAAAAAs1:%@",UserId);
-        //  //NSLog(@"s:%@",s);
+       
       if(([s1 isEqualToString:UserId])||([s1 isEqual:@""]))
         {
             [a addObject:[self.petArray objectAtIndex:j]];
@@ -1012,10 +959,9 @@ AppSharedInstance *instance;
             
         }
     }
-    //a=[a arrayByAddingObjectsFromArray:petArray];
-    // }
+    
     self.petArray=a;
-   // NSLog(@"After Adding Equivalent data and medicine details:%@",petArray);
+ 
     
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -1121,19 +1067,12 @@ AppSharedInstance *instance;
         
         if([result isEqualToString:result1])
         {
-            ////NSLog(@"result schedulh date:%@", result );
-            ////NSLog(@"Result1:::::::%@", result1);
-            //   [reminderarray addObject:notif];
+           
         }
         
         
         
-        /*NSInteger nWords = 10;
-         NSRange wordRange = NSMakeRange(0,10);
-         NSArray *firstWords = [[[NSString stringWithFormat:@"%@",userInfoCurrent] componentsSeparatedByString:@" "] subarrayWithRange:wordRange];
-         NSString *result = [firstWords componentsJoinedByString:@" "];
-         ////NSLog(@"RESULT:%@",result);*/
-    }
+          }
     
     
     ADLivelyTableView * livelyTableView = (ADLivelyTableView *)myTable;
@@ -1141,16 +1080,7 @@ AppSharedInstance *instance;
     
     myTable.rowHeight=100;
 	myTable.separatorColor = [UIColor clearColor];
-    
-  /*  UIButton *home = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *homeImage = [UIImage imageNamed:@"Back.png"]  ;
-    [home setBackgroundImage:homeImage forState:UIControlStateNormal];
-    [home addTarget:self action:@selector(back)
-   forControlEvents:UIControlEventTouchUpInside];
-    home.frame = CGRectMake(0, 0, 50, 30);
-    UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc]
-                                      initWithCustomView:home] autorelease];
-    self.navigationItem.leftBarButtonItem = cancelButton;*/
+ 
     
     
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -1186,7 +1116,7 @@ AppSharedInstance *instance;
     }
     else
     {
-        //  syn.hidden=YES;
+       
     }
     
     
@@ -1196,29 +1126,23 @@ AppSharedInstance *instance;
     
     if ([recordDict count]>0) {
         
-        ////NSLog(@"recordDictA:%@",recordDict);
+        
 	}
 	else {
 		recordDict = [[NSMutableDictionary alloc] init];
 	}
     
-    //  [recordDict setObject:@"RAJA" forKey:@"name"];
-	//	[instance insertPet:recordDict];
-    
-    self.petArray = [instance getPet];
-   // NSLog(@"self.petarray:%@",self.petArray);
+       self.petArray = [instance getPet];
+   
   NSMutableArray*a=[[NSMutableArray alloc]init];
-    // for (id anUpdate in self.petArray)
-    //  {
-    // NSDictionary *arrayList=[(NSDictionary*)anUpdate objectForKey:@"patid"];
+    
     NSLog(@"%i",[self.petArray count]);
     for(int j=0;j<[self.petArray count];j++)
     {
         NSLog(@"yes");
         NSString*s1= [[self.petArray objectAtIndex:j] objectForKey:@"patid"];
         NSString *UserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
-        //  NSLog(@"AAAAAAAAAAs1:%@",UserId);
-        //  //NSLog(@"s:%@",s);
+        
     if(([s1 isEqualToString:UserId])||([s1 isEqual:@""]))
         {
             [a addObject:[self.petArray objectAtIndex:j]];
@@ -1227,11 +1151,8 @@ AppSharedInstance *instance;
         }
     }
     
-    // }
-    self.petArray=a;
-    //NSLog(@"PEt Array values in did load welcome file:%@",petArray);
-    
-    
+        self.petArray=a;
+       
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *docDirectory = [path objectAtIndex:0];
     
@@ -1266,24 +1187,18 @@ AppSharedInstance *instance;
     
     
     /********************AppoinMent   End********************/
-    
-    // ////NSLog(@"APP-D-ARRA:%i",[_AppDArr count]);
-    //  ////NSLog(@"APP-N-ARR:%i",[_AppNArr count]);
+   
     NSString*name=[[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
     
     NSString *runNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"loginid"];
-    /*   __block DemoHintView* hintView = [DemoHintView  infoHintView];
-     hintView.hintID = kHintID_Home;
-     hintView.title = @"Welcome!";
-     [hintView addPageWithTitle:@"Info" text:name];
-     [hintView showInView:self.view orientation:kHintViewOrientationTop];*/
+    
     welcome.text=[NSString stringWithFormat:@"Welcome %@ !",name];
     if(first==1)
     {
         first=0;
         BlockAlertView *alert = [BlockAlertView alertWithTitle:@"Welcome!" message:name];
         
-        //  [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+
         [alert setDestructiveButtonWithTitle:@"x" block:nil];
         [alert show];
     }

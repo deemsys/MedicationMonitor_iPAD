@@ -60,12 +60,7 @@ AppSharedInstance *instance;
 - (IBAction)changeTimeInLabel:(id)sender
 
 {
-	//Use NSDateFormatter to write out the date in a friendly format
-	/*NSDateFormatter *df = [[NSDateFormatter alloc] init];
-     df.dateStyle = NSDateFormatterMediumStyle;
-     timeLabel.text = [NSString stringWithFormat:@"%@",
-     [df stringFromDate:timePicker.date]];
-     [df release];*/
+	
     
     [(UITextField*)[self.view viewWithTag:101] resignFirstResponder];
     
@@ -90,7 +85,7 @@ AppSharedInstance *instance;
     }
     if (!button.selected)
     {
-        //NSLog(@"button.tag:%i",button.tag);
+     
         button.selected = !button.selected;
         [[NSUserDefaults standardUserDefaults]setInteger:button.tag forKey:@"syncType"];
     }
@@ -136,7 +131,7 @@ AppSharedInstance *instance;
     NSLog(@"Date: %@", dateString);
     
     dateLabel.text=[NSString stringWithFormat:@"%@",theString];
-    //name.text=[NSString stringWithFormat:@"%@",name1];
+   
     
 }
 
@@ -199,7 +194,7 @@ AppSharedInstance *instance;
     if ([[NSFileManager defaultManager] fileExistsAtPath:dicfile])
 	{
 		dictionaryArray=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:dicfile]];
-        //   //NSLog(@"diccccccccc:%@",[dictionaryArray objectAtIndex:0]);
+     
 		
 	}
 	else
@@ -226,7 +221,7 @@ AppSharedInstance *instance;
     
     
     share1=NO;
-    // self.title = @"Medication Monitor";
+
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont boldSystemFontOfSize:20.0];
@@ -275,7 +270,7 @@ AppSharedInstance *instance;
     self.recordDict=recordDict;
     self.petArray = [instance getPet];
 	
-    //NSLog(@"raja:%i",[petArray count]);
+
     
 	
 }
@@ -293,7 +288,7 @@ AppSharedInstance *instance;
         [fileMngr saveDatapath:dicfile contentarray:dictionaryArray];
         
         
-        //[[UIApplication sharedApplication] cancelAllLocalNotifications];
+   
         NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
         NSDate *pickerDate;
         if(alertType==1)
@@ -337,17 +332,12 @@ AppSharedInstance *instance;
             return;
         localNotif.fireDate = itemDate;
         localNotif.timeZone = [NSTimeZone defaultTimeZone];
-        //NSLog(@"fireDate : %@", itemDate);
+        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]autorelease]];
         [formatter setTimeStyle:NSDateFormatterFullStyle];
         
-        // NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
-        //  [formatter setTimeZone:timeZone];
-        
-        
-        //NSLog(@"fireDate : %@", [formatter stringFromDate:itemDate]);
-        // Notification details
+                // Notification details
         localNotif.alertBody = [name text];
         // Set the action button
         localNotif.alertAction = @"View";
@@ -374,7 +364,7 @@ AppSharedInstance *instance;
         
         // this will fire the notification right away, it will still also fire at the date we set
         //i hidden here dueto displaying the same remainder for 2 times==>
-     [app presentLocalNotificationNow:localNotif];
+     //[app presentLocalNotificationNow:localNotif];
         // Specify custom data for the notification
         NSDictionary *infoDict = [NSDictionary dictionaryWithObject: localNotif.fireDate forKey:@"date"];
         localNotif.userInfo = infoDict;
@@ -415,7 +405,7 @@ AppSharedInstance *instance;
     [super viewWillAppear:animated];
     
     self.recordDict=recordDict;
-	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+
     [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
     [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
     
@@ -633,11 +623,7 @@ AppSharedInstance *instance;
 	[tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:NO];
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    //if( ((UIImageView *)cell.backgroundView).image == [UIImage imageNamed:@""]);
-    //  {
-    
-    //  }
-    
+      
     if(cell.textLabel.text==@"add")
     {
         
@@ -647,7 +633,7 @@ AppSharedInstance *instance;
         
         cell.textLabel.text=@"remove";
         cell.textLabel.textColor=[UIColor redColor];
-        //NSLog(@"%i",[dictionary count]);
+   
         
         
     }
@@ -656,7 +642,7 @@ AppSharedInstance *instance;
         NSString*str =  [[petArray objectAtIndex:indexPath.section] objectForKey:@"name"];
         [dictionary removeObject:str];
         cell.textLabel.text=@"add";
-        //NSLog(@"%i",[dictionary count]);
+        
         cell.textLabel.textColor=[UIColor greenColor];
         
     }
@@ -672,30 +658,6 @@ AppSharedInstance *instance;
 
 
 
-
-/*- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
- {
- 
- 
- 
- 
- //[self.navigationController.navigationBar viewWithTag:111].hidden=YES;
- 
- 
- /*  AboutmeViewController *aboutmeViewController = [[AboutmeViewController alloc] initWithNibName:@"AddMedi" bundle:nil];
- aboutmeViewController.recordDict=recordDict;
- aboutmeViewController.recordDict = [petArray objectAtIndex:indexPath.section];
- 
- [[NSUserDefaults standardUserDefaults] setInteger:indexPath.section forKey:@"select"];
- [self.navigationController pushViewController:aboutmeViewController animated:YES];
- [aboutmeViewController release];*/
-
-
-/*PetViewController *petViewController = [[PetViewController alloc] initWithNibName:@"PetViewController" bundle:nil];
- petViewController.recordDict = [petArray objectAtIndex:indexPath.section];
- [self.navigationController pushViewController:petViewController animated:YES];
- [petViewController release];
- }*/
 
 
 
@@ -742,47 +704,17 @@ AppSharedInstance *instance;
     {
         datePicker.hidden=YES;
         
-        /*  NSDateFormatter *df = [[NSDateFormatter alloc] init];
-         df.dateStyle = NSDateFormatterMediumStyle;
-         NSString*str = [NSString stringWithFormat:@"%@",
-         [df stringFromDate:datePicker.date]];
-         
-         //NSLog(@"RAja");
-         [df release];
-         
-         NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-         [outputFormatter setDateFormat:@"  h:mm a"];
-         
-         NSString *timetofill = [outputFormatter stringFromDate:datePicker.date];
-         NSString*str2=timetofill;
-         
-         NSString *coordinates = [NSString stringWithFormat:@"%@ %@", str, str2];
-         dateLabel.text=coordinates;*/
+       
     }
     
     if(timePicker.hidden==NO)
     {
         timePicker.hidden=YES;
-        /*   NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-         [outputFormatter setDateFormat:@"  h:mm a"];
-         
-         NSString *timetofill = [outputFormatter stringFromDate:timePicker.date];
-         timeLabel.text=timetofill;*/
-    }
+            }
     
+     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    //  NSDate *pickerDate = [self.datePicker date];
-    
-    //  setdate.titleLabel.text=[NSString stringWithFormat:@"%@",pickerDate];
-}
+  }
 
 
 

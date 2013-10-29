@@ -70,7 +70,7 @@ AppSharedInstance *instance;
     livelyTableView.initialCellTransformBlock = ADLivelyTransformFan;
    
     share1=NO;
-    // self.title = @"Medication Monitor";
+    
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont boldSystemFontOfSize:20.0];
@@ -209,28 +209,16 @@ AppSharedInstance *instance;
 	if (myTable.editing) 
     {
 		myTable.editing=NO;
-        //	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
-        //		  initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-        //	  target:self action:@selector(edit_Clicked)] autorelease];
-        
+                
         UIImage *buttonImage = [UIImage imageNamed:@"Edit.png"];
-        //   UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        // [aButton setImage:buttonImage forState:UIControlStateNormal];
-        //  aButton.frame = CGRectMake(200.0, 8.0, 65, 30);
-        //  aButton.tag=111;
-        // [aButton addTarget:self action:@selector(edit_Clicked) forControlEvents:UIControlEventTouchUpInside];
-        [(UIButton*)[self.navigationController.navigationBar viewWithTag:111] setImage:buttonImage forState:UIControlStateNormal];
+          [(UIButton*)[self.navigationController.navigationBar viewWithTag:111] setImage:buttonImage forState:UIControlStateNormal];
         
         
 	}		
 	else {
 		myTable.editing=YES;
         UIImage *buttonImage = [UIImage imageNamed:@"Done.png"];
-        //   UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        // [aButton setImage:buttonImage forState:UIControlStateNormal];
-        //  aButton.frame = CGRectMake(200.0, 8.0, 65, 30);
-        //  aButton.tag=111;
-        // [aButton addTarget:self action:@selector(edit_Clicked) forControlEvents:UIControlEventTouchUpInside];
+    
         [(UIButton*)[self.navigationController.navigationBar viewWithTag:111] setImage:buttonImage forState:UIControlStateNormal];
 		
 	}
@@ -280,7 +268,7 @@ AppSharedInstance *instance;
       
     
     
-	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+
      [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
       [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
 	if([_AppDArr count]>0)
@@ -302,8 +290,6 @@ AppSharedInstance *instance;
     
     
 
-     //NSLog(@"APP-D-ARR:%i",[_AppDArr count]);
-     //NSLog(@"APP-N-ARR:%i",[_AppNArr count]);
         
     
     
@@ -330,27 +316,7 @@ AppSharedInstance *instance;
 }
 
 
-// Customize the appearance of table view cells.
-/*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    // Configure the cell...
-    
-	NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
-	UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
-	cell.textLabel.font=[UIFont fontWithName:@"Arial" size:30];
-    [cell.textLabel setText:notif.alertBody];
-   cell.detailTextLabel.textColor = [UIColor greenColor];
-	[cell.detailTextLabel setText:[notif.fireDate description]];
-	return cell;
-}
-*/
+
 
 
 
@@ -455,18 +421,11 @@ reuseIdentifier:CellIdentifier]
 	
     
     
-   // NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
-	//UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
-	//cell.textLabel.font=[UIFont fontWithName:@"Arial" size:30];
-   // [cell.textLabel setText:notif.alertBody];
-   // cell.detailTextLabel.textColor = [UIColor greenColor];
-	//[cell.detailTextLabel setText:[notif.fireDate description]];
+
     
     topLabel.text=[_AppDArr objectAtIndex:indexPath.row];
      bottomLabel.text=[_AppNArr objectAtIndex:indexPath.row];
     
-	//topLabel.text = notif.alertBody;
-	//bottomLabel.text =[notif.fireDate descriptionWithLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]autorelease]] ;
 	
 	
 	UIImage *rowBackground;
@@ -551,7 +510,7 @@ reuseIdentifier:CellIdentifier]
       
     if(savedValue==5)
     {
-        //[self btnPostPress];
+       
         [self share];
         
       

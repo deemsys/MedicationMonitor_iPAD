@@ -194,8 +194,7 @@ static AppSharedInstance * appInstance;
 
 
 - (void)insertAssesment:(NSDictionary *)dbDict {
-    
-    
+
     
 	sqlite3_stmt *compiledStatement;
 	const char *sqlStatement = "INSERT INTO assesment (id,name) values (?,?)";

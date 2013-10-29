@@ -52,8 +52,6 @@ AppSharedInstance *instance;
 -(IBAction)Addremainder
 {
     Addremainder *noteViewController = [[Addremainder alloc] initWithNibName:@"Addremainder" bundle:nil];
-	//noteViewController.recordDict = recordDict;
-    // noteViewController.recordDict = [recordDict objectForKey:@"pk"];
 	[self.navigationController pushViewController:noteViewController animated:YES];
 	[noteViewController release];
 }
@@ -103,7 +101,7 @@ AppSharedInstance *instance;
     livelyTableView.initialCellTransformBlock = ADLivelyTransformFan;
     
     share1=NO;
-    // self.title = @"Medication Monitor";
+   
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont boldSystemFontOfSize:20.0];
@@ -125,27 +123,13 @@ AppSharedInstance *instance;
     
     
     
-    // [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    
+      
     savedValue = [[NSUserDefaults standardUserDefaults]
                   integerForKey:@"ApptType"];
     savedValue=1;
     if(savedValue!=5)
     {
-        /*
-         UIImage *buttonImage = [UIImage imageNamed:@"Edit.png"];
-         UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
-         [aButton setImage:buttonImage forState:UIControlStateNormal];
-         aButton.frame = CGRectMake(0, 0, 50, 30);
-         aButton.tag=111;
-         [aButton addTarget:self action:@selector(edit_Clicked) forControlEvents:UIControlEventTouchUpInside];
-         // [self.navigationController.navigationBar addSubview:aButton];
-         UIBarButtonItem *saveButton11 = [[[UIBarButtonItem alloc]
-         initWithCustomView:aButton] autorelease];
-         self.navigationItem.leftBarButtonItem = saveButton11;
-         
-         */
-        
+                
         
         UIButton *save = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *saveImage = [UIImage imageNamed:@"addreminderdemo.png"]  ;
@@ -189,37 +173,26 @@ AppSharedInstance *instance;
         NSMutableArray*array=[[NSMutableArray alloc]initWithArray:[dictionaryArray objectAtIndex:0]];
         
         
-		//NSMutableArray*array=[dictionaryArray objectAtIndex:0];
-        NSLog(@"CCCCCCCCCC:%i",[array  count]);
+       // NSLog(@"CCCCCCCCCC:%i",[array  count]);
 	}
 	else
 	{
 		dictionaryArray=[[NSMutableArray alloc]init];
-        //NSLog(@"empty");
+        
 	}
     
     
     k=[_RemaindersArray count];
     
     NSLog(@"RemaindersArrayCount:%i",[_RemaindersArray count]);
- 	//UIImage *barButton = [UIImage imageNamed:@"Edit.png"];
-    // [[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-	
-	//UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-	//self.navigationItem.backBarButtonItem = backButton;
-	//[backButton release];
-    
-    
-    //self.navigationItem.leftBarButtonItem = cancelButton;
-	
-    
+ 	    
     
     
     self.recordDict=recordDict;
     self.petArray = [instance getPet];
 	[myTable reloadData];
     
-  //  NSLog(@"raja:%i",[dictionaryArray count]);
+ 
     
     
     
@@ -231,7 +204,7 @@ AppSharedInstance *instance;
 	redSC.thumb.tintColor = [UIColor greenColor];
     redSC. font = [UIFont boldSystemFontOfSize:20];
     redSC.height=50;
-    // [self.view addSubview:redSC];
+    
 	
 	redSC.center = CGPointMake(384, 30);
     redSC.tag = 2;
@@ -312,16 +285,9 @@ AppSharedInstance *instance;
 	if (myTable.editing)
     {
 		myTable.editing=NO;
-        //	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
-        //		  initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-        //	  target:self action:@selector(edit_Clicked)] autorelease];
-        
+                
         UIImage *buttonImage = [UIImage imageNamed:@"Edit.png"];
-        //   UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        // [aButton setImage:buttonImage forState:UIControlStateNormal];
-        //  aButton.frame = CGRectMake(200.0, 8.0, 65, 30);
-        //  aButton.tag=111;
-        // [aButton addTarget:self action:@selector(edit_Clicked) forControlEvents:UIControlEventTouchUpInside];
+       
         [(UIButton*)[self.navigationController.navigationBar viewWithTag:111] setImage:buttonImage forState:UIControlStateNormal];
         
         
@@ -329,12 +295,7 @@ AppSharedInstance *instance;
 	else {
 		myTable.editing=YES;
         UIImage *buttonImage = [UIImage imageNamed:@"Done.png"];
-        //   UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        // [aButton setImage:buttonImage forState:UIControlStateNormal];
-        //  aButton.frame = CGRectMake(200.0, 8.0, 65, 30);
-        //  aButton.tag=111;
-        // [aButton addTarget:self action:@selector(edit_Clicked) forControlEvents:UIControlEventTouchUpInside];
-        [(UIButton*)[self.navigationController.navigationBar viewWithTag:111] setImage:buttonImage forState:UIControlStateNormal];
+               [(UIButton*)[self.navigationController.navigationBar viewWithTag:111] setImage:buttonImage forState:UIControlStateNormal];
 		
 	}
 	[myTable reloadData];
@@ -388,9 +349,7 @@ AppSharedInstance *instance;
 	{
 		dictionaryArray=[[NSMutableArray alloc]initWithArray:[fileMngr fetchDatafrompath:dicfile]];
         NSMutableArray*array=[[NSMutableArray alloc]initWithArray:[dictionaryArray objectAtIndex:0]];
-        //NSMutableArray*array=[dictionaryArray objectAtIndex:0];
-        //NSLog(@"CCCCCCCCCC:%i",[array  count]);
-	}
+       	}
 	else
 	{
 		dictionaryArray=[[NSMutableArray alloc]init];
@@ -400,20 +359,13 @@ AppSharedInstance *instance;
     
     
     
-	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
+	    [[self.navigationController.navigationBar viewWithTag:121]removeFromSuperview];
     [self.navigationController.navigationBar viewWithTag:111].hidden=NO;
 	
 	[myTable reloadData];
     
     
-    //bgImage.image = [UIImage imageNamed:@"firstbg.png"];
-	
-    
-    //[myTable reloadData];
-    
-    //NSLog(@"raja1mmmmmm:%i",[_RemaindersArray count]);
-    
+        
     
     
 }
@@ -437,27 +389,6 @@ AppSharedInstance *instance;
 }
 
 
-// Customize the appearance of table view cells.
-/*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
- 
- static NSString *CellIdentifier = @"Cell";
- 
- UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
- if (cell == nil) {
- cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
- }
- 
- // Configure the cell...
- 
- NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
- UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
- cell.textLabel.font=[UIFont fontWithName:@"Arial" size:30];
- [cell.textLabel setText:notif.alertBody];
- cell.detailTextLabel.textColor = [UIColor greenColor];
- [cell.detailTextLabel setText:[notif.fireDate description]];
- return cell;
- }
- */
 
 
 
@@ -564,11 +495,7 @@ AppSharedInstance *instance;
     
     NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
 	UILocalNotification *notif = [notificationArray objectAtIndex:indexPath.row];
-	//cell.textLabel.font=[UIFont fontWithName:@"Arial" size:30];
-    // [cell.textLabel setText:notif.alertBody];
-    // cell.detailTextLabel.textColor = [UIColor greenColor];
-	//[cell.detailTextLabel setText:[notif.fireDate description]];
-    
+	    
     
 	topLabel.text = notif.alertBody;
 	bottomLabel.text =[notif.fireDate descriptionWithLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]autorelease]] ;
@@ -640,11 +567,7 @@ AppSharedInstance *instance;
     
     
     
-    //    NSLog(@"Selected Row %i",index);
-    
-    // [[NSNotificationCenter defaultCenter] postNotificationName:@"date" object:date];
-    
-    // [[NSNotificationCenter defaultCenter] postNotificationName:@"name" object:name];
+   
     
     
     [self.navigationController pushViewController:noteViewController animated:YES];
@@ -678,16 +601,10 @@ AppSharedInstance *instance;
         [myTable reloadData];
         [self viewDidLoad];
         
-		/*[instance deletePet:[petArray objectAtIndex:indexPath.section]];
-         self.petArray = [instance getPet];
-         [myTable reloadData];
-         if ([petArray count] > 0){
-         noPet.hidden=YES;
-         bgImage.image = [UIImage imageNamed:@"bg.png"];*/
+		
     }
     else{
-		//	noPet.hidden=NO;
-        //bgImage.image = [UIImage imageNamed:@"firstbg.png"];
+		
     }
 	
 	
